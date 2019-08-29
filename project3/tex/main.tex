@@ -1,0 +1,50 @@
+\documentclass[a4paper, 11pt, twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[noend]{algorithm2e}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{epsfig,floatflt}
+\usepackage{physics}
+\usepackage[english]{babel}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+%\usepackage{cite}
+\usepackage[format=plain,
+font=it]{caption}
+\usepackage{url}
+
+\graphicspath{{../figurer/}}
+\DeclareGraphicsExtensions{.pdf}
+
+\begin{document}
+
+\title{}
+
+\author{Eina B. Jørgensen, Anna Lina P. Sjur and Jan-Adrian H. Kallmyr}
+
+\twocolumn[
+  \begin{@twocolumnfalse}
+    \maketitle
+    \input{abstract}
+  \end{@twocolumnfalse}
+]
+
+\input{introduction}
+
+\input{theory}
+
+\input{results}
+
+\input{discussion}
+
+\input{conclusion}
+
+
+\bibliographystyle{plainnat}
+
+\bibliography{ourbib}
+
+%\include{appendix}
+
+\end{document}
