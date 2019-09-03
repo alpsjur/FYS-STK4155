@@ -5,6 +5,8 @@ from matplotlib.ticker import LinearLocator, FormatStrFormatter
 import numpy as np
 from random import random, seed
 
+import projectfunctions as pf
+
 import seaborn as sns
 
 
@@ -12,34 +14,6 @@ sns.set()
 sns.set_style("whitegrid")
 sns.set_palette("husl")
 
-
-def generate_design_polynomial(x, p=1):
-    X = np.zeros((len(x), p+1))
-    for degree in range(0, p+1):
-        X[:, degree] = (x.T)**degree
-    return X
-
-def generate_design_2Dpolynomial(x, y, degree=5):
-    X = np.zeros(( len(x), int(0.5*(degree + 2)*(degree + 1)) ))
-
-    p = 0
-    for i in range(degree + 1):
-        for j in range(degree + 1 - i):
-            X[:, p] = (x.T)**i*(y.T)**j
-            p += 1
-    return X
-
-def least_squares(X, data):
-    beta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(data)
-    model = X @ beta
-    return model
-
-def FrankeFunction(x,y):
-    term1 = 0.75*np.exp(-(0.25*(9*x-2)**2) - 0.25*((9*y-2)**2))
-    term2 = 0.75*np.exp(-((9*x+1)**2)/49.0 - 0.1*(9*y+1))
-    term3 = 0.5*np.exp(-(9*x-7)**2/4.0 - 0.25*((9*y-3)**2))
-    term4 = -0.2*np.exp(-(9*x-4)**2 - (9*y-7)**2)
-    return term1 + term2 + term3 + term4
 
 
 fig = plt.figure()
@@ -59,10 +33,10 @@ x_sorted = np.sort(x_random, axis=0)
 y_random = np.random.uniform(0, 1, n)
 y_sorted = y_random[np.argsort(x_random, axis=0)].flatten()
 
-z = FrankeFunction(x, y)
+z = pf.frankefunction(x, y)
 
-X = generate_design_2Dpolynomial(x_sorted, y_sorted, degree=5)
-z_model = least_squares(X, z)
+X = pf.generate_design_2Dpolynomial(x_sorted, y_sorted, degree=5)
+z_model = pf.least_squares(X, z)
 
 print(z)
 print(z_model)
