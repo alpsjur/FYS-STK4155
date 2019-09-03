@@ -22,6 +22,14 @@ def least_squares(X, data):
     model = X @ beta
     return model
 
+def mse(data, model):
+    error = np.sum(data - model)**2/n
+    return error
+
+def r2(data, model):
+    error = 1 - np.sum(data - model)**2/np.sum(data - np.mean(data))**2
+    return error
+
 def frankefunction(x,y):
     term1 = 0.75*np.exp(-(0.25*(9*x-2)**2) - 0.25*((9*y-2)**2))
     term2 = 0.75*np.exp(-((9*x+1)**2)/49.0 - 0.1*(9*y+1))
