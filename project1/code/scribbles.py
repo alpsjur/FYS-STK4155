@@ -21,7 +21,6 @@ def generate_design_polynomial(x, p=1):
 
 def generate_design_2Dpolynomial(x, y, degree=5):
     X = np.zeros(( len(x), int(0.5*(degree + 2)*(degree + 1)) ))
-    #X = np.zeros(( len(x), (degree + 1)**2))
 
     p = 0
     for i in range(degree + 1):
