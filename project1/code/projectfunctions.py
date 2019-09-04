@@ -23,11 +23,13 @@ def least_squares(X, data):
     return model
 
 def mse(data, model):
-    error = np.sum(data - model)**2/n
+    n = len(data)
+    error = np.sum((data - model)**2)/n
     return error
 
 def r2(data, model):
-    error = 1 - np.sum(data - model)**2/np.sum(data - np.mean(data))**2
+    n = len(data)
+    error = 1 - np.sum((data - model)**2)/np.sum((data - np.mean(data))**2)
     return error
 
 def frankefunction(x,y):

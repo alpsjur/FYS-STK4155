@@ -38,8 +38,13 @@ z = pf.frankefunction(x, y)
 X = pf.generate_design_2Dpolynomial(x_sorted, y_sorted, degree=5)
 z_model = pf.least_squares(X, z)
 
-print(z)
-print(z_model)
+mse_value = pf.mse(z, z_model)
+r2_value = pf.r2(z, z_model)
+
+print(f"MSE = {mse_value:.3f}")
+print(f"R2 = {r2_value:.3f}")
+
+
 # Plot the surface.
 surf = ax.plot_surface(x, y, z,
                         cmap=cm.coolwarm,
