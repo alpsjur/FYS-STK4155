@@ -27,7 +27,7 @@ x_random = np.random.uniform(0, 1, n)
 x_sorted = np.sort(x_random, axis=0)
 
 y_random = np.random.uniform(0, 1, n)
-y_sorted = y_random[np.argsort(x_random, axis=0)].flatten()
+y_sorted = np.sort(y_random,axis=0)
 
 x_grid, y_grid = np.meshgrid(x_sorted,y_sorted)
 
