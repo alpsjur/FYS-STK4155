@@ -20,7 +20,7 @@ fig = plt.figure()
 ax = fig.gca(projection="3d")
 
 # Generating grid in x,y in [0, 1] with n=100 points
-n = 1000
+n = 200
 
 x = np.linspace(0, 1, n)
 y = np.linspace(0, 1, n)
@@ -49,12 +49,14 @@ print(f"R2 = {r2_value:.3f}")
 surf = ax.plot_surface(x, y, z,
                         cmap=cm.coolwarm,
                         linewidth=0,
-                        antialiased=False
+                        antialiased=False,
+                        alpha = 0.5,
                         )
-surf = ax.plot_surface(x, y, z_model,
+surf = ax.scatter(x, y, z_model, c = 'k',marker='.', s=1,
                         cmap=cm.Blues,
                         linewidth=0,
-                        antialiased=False
+                        antialiased=False,
+                        label="prediction"
                         )
 # Customize the z axis.
 ax.set_zlim(-0.10, 1.40)
@@ -65,4 +67,5 @@ fig.colorbar(surf,
             shrink=0.5,
             aspect=5
             )
+ax.legend()
 plt.show()
