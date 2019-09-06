@@ -19,8 +19,7 @@ def generate_design_2Dpolynomial(x, y, degree=5):
 
 def least_squares(X, data):
     beta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(data)
-    model = X @ beta
-    return model
+    return beta
 
 def mse(data, model):
     n = len(data)

@@ -24,7 +24,7 @@ n = 200
 
 x = np.linspace(0, 1, n)
 y = np.linspace(0, 1, n)
-x, y = np.meshgrid(x,y)
+#x_grid, y_grid = np.meshgrid(x,y)
 
 # generating design matrices for both coordinates
 x_random = np.random.uniform(0, 1, n)
@@ -33,10 +33,13 @@ x_sorted = np.sort(x_random, axis=0)
 y_random = np.random.uniform(0, 1, n)
 y_sorted = y_random[np.argsort(x_random, axis=0)].flatten()
 
-z = pf.frankefunction(x, y)
+x_grid, y_grid = np.meshgrid(x_sorted,y_sorted)
+
+z = pf.frankefunction(x_grid, y_grid)
 
 X = pf.generate_design_2Dpolynomial(x_sorted, y_sorted, degree=5)
-z_model = pf.least_squares(X, z)
+beta = pf.least_squares(X, z)
+z_model = X @ beta
 
 mse_value = pf.mse(z, z_model)
 r2_value = pf.r2(z, z_model)
@@ -46,18 +49,20 @@ print(f"R2 = {r2_value:.3f}")
 
 
 # Plot the surface.
-surf = ax.plot_surface(x, y, z,
+surf = ax.plot_surface(x_grid, y_grid, z,
                         cmap=cm.coolwarm,
                         linewidth=0,
                         antialiased=False,
                         alpha = 0.5,
                         )
-surf = ax.scatter(x, y, z_model, c = 'k',marker='.', s=1,
+ax.plot_surface(x_grid, y_grid, z_model,
                         cmap=cm.Blues,
                         linewidth=0,
                         antialiased=False,
-                        label="prediction"
+                        alpha = 0.5,
                         )
+#ax.scatter(x_grid, y_grid, z_model, c = 'k',marker='.', s=1
+#                        )
 # Customize the z axis.
 ax.set_zlim(-0.10, 1.40)
 ax.zaxis.set_major_locator(LinearLocator(10))
