@@ -13,7 +13,8 @@ def generate_design_2Dpolynomial(x, y, degree=5):
     p = 0
     for i in range(degree + 1):
         for j in range(degree + 1 - i):
-            X[:, p] = (x.T)**i*(y.T)**j
+            #X[:, p] = (x.T)**i(y.T)**j
+            X[:, p] = vector_multiply((x.T)**i,(y.T)**j)
             p += 1
     return X
 
@@ -37,3 +38,19 @@ def frankefunction(x,y):
     term3 = 0.5*np.exp(-(9*x-7)**2/4.0 - 0.25*((9*y-3)**2))
     term4 = -0.2*np.exp(-(9*x-4)**2 - (9*y-7)**2)
     return term1 + term2 + term3 + term4
+
+def vector_multiply(x,y):
+    """Handles multiplication of vectors of unequal length"""
+    if len(x) > len (y):
+        z = x
+        for i in range(len(y)):
+            z[i] *= y[i]
+        return z
+    elif len(y) > len (x):
+        z = y
+        for i in range(len(x)):
+            z[i] *= x[i]
+        return z
+    else:
+        z = x*y
+        return z
