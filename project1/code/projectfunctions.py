@@ -13,8 +13,7 @@ def generate_design_2Dpolynomial(x, y, degree=5):
     p = 0
     for i in range(degree + 1):
         for j in range(degree + 1 - i):
-            #X[:, p] = (x.T)**i(y.T)**j
-            X[:, p] = vector_multiply((x.T)**i,(y.T)**j)
+            X[:, p] = (x.T)**i*(y.T)**j
             p += 1
     return X
 
