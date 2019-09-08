@@ -1,10 +1,17 @@
 '''
 Mitt forsøk på k-fold cross-validation
 '''
-import numpy as np
 from sklearn.utils import shuffle
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+import numpy as np
+from random import random, seed
 
-def k_fold_cross_validation(x, y, z, k=10):
+import projectfunctions as pf
+
+def k_fold_cross_validation(x, y, z, degree, k=10):
     evaluation_scores=np.zeros(k)
 
     #shuffle the data
@@ -34,7 +41,7 @@ def k_fold_cross_validation(x, y, z, k=10):
         Her må vi bruke enten OLS, Ridges eller Lassos.
         Foreløpig OLS 5-grad, vil gjøre dette til en variabel
         '''
-        X_train = pf.generate_design_2Dpolynomial(x_train, y_train, degree=5)
+        X_train = pf.generate_design_2Dpolynomial(x_train, y_train, degree)
         beta = pf.least_squares(X_train, z_train)
 
         #evaluate the model on the test set
@@ -43,27 +50,19 @@ def k_fold_cross_validation(x, y, z, k=10):
         og sammenligne med z_test ved MSE eller R_2_score
         Foreløpig MSE
         '''
-        X_test = pf.generate_design_2Dpolynomial(x_test, y_test, degree=5)
+        X_test = pf.generate_design_2Dpolynomial(x_test, y_test, degree)
         z_fit = X_test @ beta
 
         evaluation_scores[i] = pf.mse(z_test, z_fit)
 
     return np.mean(evaluation_scores)
 
-"""
-Tester kode med å flate ut z
-"""
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt
-from matplotlib import cm
-from matplotlib.ticker import LinearLocator, FormatStrFormatter
-import numpy as np
-from random import random, seed
+'''
+plotter feil mot kompleksitet
+'''
 
-import projectfunctions as pf
-
-
-n = 100
+n = 200
+degrees = np.arange(1,11)
 
 x_random = np.random.uniform(0, 1, n)
 x_sorted = np.sort(x_random, axis=0)
@@ -82,16 +81,28 @@ y = y_grid.flatten()
 z_grid = pf.frankefunction(x_grid, y_grid)
 z = z_grid.flatten()
 
-print(k_fold_cross_validation(x,y,z))
+k_fold_mse = []
+mse = []
 
-#fitting a model to all the data
-X = pf.generate_design_2Dpolynomial(x, y, degree=5)
-beta = pf.least_squares(X, z)
-z_model = X @ beta
+for degree in degrees:
+    #performing a k-fold cross-validation
+    k_fold_mse.append(k_fold_cross_validation(x,y,z, degree))
 
-#computing the MSE when no train test split is used
-mse_value = pf.mse(z, z_model)
+    #fitting a model to all the data
+    X = pf.generate_design_2Dpolynomial(x, y, degree)
+    beta = pf.least_squares(X, z)
+    z_model = X @ beta
 
+    #computing the MSE when no train test split is used
+    mse.append(pf.mse(z, z_model))
+
+plt.plot(degrees, k_fold_mse,label="test")
+plt.plot(degrees, mse,label="training")
+plt.legend()
+plt.show()
+
+
+'''
 # Plot the surfacese
 fig = plt.figure()
 ax = fig.gca(projection="3d")
@@ -129,3 +140,4 @@ fig.colorbar(surf,
 
 ax.legend()
 plt.show()
+'''
