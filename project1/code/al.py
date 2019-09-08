@@ -1,6 +1,5 @@
 '''
 Mitt forsøk på k-fold cross-validation
-Denne fungerer foreløpig ikke som ønsket :'( '
 '''
 import numpy as np
 from sklearn.utils import shuffle
@@ -8,10 +7,10 @@ from sklearn.utils import shuffle
 def k_fold_cross_validation(x, y, z, k=10):
     evaluation_scores=np.zeros(k)
 
-    #flatten the data set and shuffle it
+    #shuffle the data
     x_shuffle, y_shuffle, z_shuffle = shuffle(x, y, z, random_state=0)
 
-    #split the data into k folds, not necessarily equal length
+    #split the data into k folds
     x_split = np.array(np.array_split(x_shuffle, k))
     y_split = np.array(np.array_split(y_shuffle, k))
     z_split = np.array(np.array_split(z_shuffle, k))
@@ -32,12 +31,11 @@ def k_fold_cross_validation(x, y, z, k=10):
 
         #fit a model to the training set
         '''
-        Her må vi bruke enten OLS, Ridges eller Lassoself.
-        Foreløpig OLS 5-grad vil gjøre dette til en variabel
+        Her må vi bruke enten OLS, Ridges eller Lassos.
+        Foreløpig OLS 5-grad, vil gjøre dette til en variabel
         '''
         X_train = pf.generate_design_2Dpolynomial(x_train, y_train, degree=5)
         beta = pf.least_squares(X_train, z_train)
-
 
         #evaluate the model on the test set
         '''
@@ -65,7 +63,7 @@ from random import random, seed
 import projectfunctions as pf
 
 
-n = 20
+n = 100
 
 x_random = np.random.uniform(0, 1, n)
 x_sorted = np.sort(x_random, axis=0)
@@ -73,22 +71,61 @@ x_sorted = np.sort(x_random, axis=0)
 y_random = np.random.uniform(0, 1, n)
 y_sorted = np.sort(y_random,axis=0)
 
-#making an x and y grid that maches the size of z
+#making an x and y grid
 x_grid, y_grid = np.meshgrid(x_sorted,y_sorted)
 
+#flatten x and y
 x = x_grid.flatten()
 y = y_grid.flatten()
 
-z = pf.frankefunction(x_grid, y_grid).flatten()
+#compute z and flatten it
+z_grid = pf.frankefunction(x_grid, y_grid)
+z = z_grid.flatten()
 
 print(k_fold_cross_validation(x,y,z))
 
-X = pf.generate_design_2Dpolynomial(x, y, degree=7)
+#fitting a model to all the data
+X = pf.generate_design_2Dpolynomial(x, y, degree=5)
 beta = pf.least_squares(X, z)
 z_model = X @ beta
 
+#computing the MSE when no train test split is used
 mse_value = pf.mse(z, z_model)
 
-print(mse_value)
+# Plot the surfacese
+fig = plt.figure()
+ax = fig.gca(projection="3d")
 
-#print(beta)
+#reshape z_model to matrices so it can be plottet as a surface
+z_model_grid = np.reshape(z_model,(n,n))
+
+surf = ax.plot_surface(x_grid, y_grid, z_model_grid,
+                        cmap=cm.Blues,
+                        linewidth=0,
+                        antialiased=False,
+                        alpha = 0.5,
+                        )
+
+ax.scatter(x_grid, y_grid, z_grid,
+                        #cmap=cm.coolwarm,
+                        linewidth=0,
+                        antialiased=False,
+                        marker = '.',
+                        s = 0.1,
+                        label="data",
+                        c='k'
+                        )
+
+# Customize the z axis.
+ax.set_zlim(-0.10, 1.40)
+ax.zaxis.set_major_locator(LinearLocator(10))
+ax.zaxis.set_major_formatter(FormatStrFormatter("%.02f"))
+# Add a color bar which maps values to colors.
+fig.colorbar(surf,
+            shrink=0.5,
+            aspect=5,
+            label="model"
+            )
+
+ax.legend()
+plt.show()
