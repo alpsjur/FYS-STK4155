@@ -61,7 +61,7 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
 plotter feil mot kompleksitet
 '''
 
-n = 200
+n = 100
 degrees = np.arange(1,11)
 
 x_random = np.random.uniform(0, 1, n)
