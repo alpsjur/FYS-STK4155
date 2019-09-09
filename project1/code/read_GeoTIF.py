@@ -15,7 +15,6 @@ sns.set_palette("husl")
 
 fig = plt.figure()
 ax = fig.gca(projection="3d")
-ax.set_aspect('equal')
 
 #get the number of points
 n_y, n_x = np.shape(terrain1)
