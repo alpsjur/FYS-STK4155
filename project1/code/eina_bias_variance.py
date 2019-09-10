@@ -11,11 +11,18 @@ from random import random, seed
 
 import projectfunctions as pf
 
-def bias(funk,model):
-    n = len(funk)
-    #tror egentlig dette er feil bias
-    error = np.sum((funk - np.mean(model))**2)/n
-    return error
+def expectation(models):
+    """compute a mean vector from n vectors """
+    mean_model =  np.mean(models, axis=1, keepdims=True)
+    return mean_model
+
+def bias(data,expect):
+    """caluclate bias from k expectation values and data of length n"""
+    n = len(data)
+    error = 0
+    for ex in expect:
+        error += pf.mse(data,ex)
+    return error/len(expect)
 
 def variance(model):
     n = len(model)
@@ -23,21 +30,11 @@ def variance(model):
     return error
 
 
-def frankefunction_noice(x,y,sigma):
-    term1 = 0.75*np.exp(-(0.25*(9*x-2)**2) - 0.25*((9*y-2)**2))
-    term2 = 0.75*np.exp(-((9*x+1)**2)/49.0 - 0.1*(9*y+1))
-    term3 = 0.5*np.exp(-(9*x-7)**2/4.0 - 0.25*((9*y-3)**2))
-    term4 = -0.2*np.exp(-(9*x-4)**2 - (9*y-7)**2)
-    f = term1 + term2 + term3 + term4
-    noice = np.random.normal(0,sigma**2,len(f))
-    return f + noice
-
 def k_fold_cross_validation(x, y, z, degree, k=10):
-    """returns evaluation scores for k degrees including
-    [mse[0:k],r2[0:k],bias[0:k],variance[0,k]]
-    """
-    evaluation_scores=np.zeros((4,k))
-
+    mse = []
+    r2 = []
+    var = []
+    bias = []
 
     #shuffle the data
     x_shuffle, y_shuffle, z_shuffle = shuffle(x, y, z, random_state=0)
@@ -50,13 +47,13 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
     #loop through the folds
     for i in range(k):
         #pick out the test fold from data
-        x_test = x_split[i]
-        y_test = y_split[i]
-        z_test = z_split[i]
+        x_test = x_split[:,i]
+        y_test = y_split[:,i]
+        z_test = z_split[:,i]
 
         #pick out the remaining data as training data
         mask = np.ones(x_split.shape, dtype=bool)
-        mask[i] = False
+        mask[:,i] = False
         x_train = x_split[mask]
         y_train = y_split[mask]
         z_train = z_split[mask]
@@ -78,20 +75,22 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
         X_test = pf.generate_design_2Dpolynomial(x_test, y_test, degree)
         z_fit = X_test @ beta
 
-        evaluation_scores[0,i] = pf.mse(z_test, z_fit) #mse
-        evaluation_scores[1,i] = pf.r2(z_test, z_fit) #r2
-        evaluation_scores[2,i] = bias(pf.frankefunction(x_test,y_test), z_fit) #bias
-        evaluation_scores[3,i] = variance(z_fit) #variance
+        expect_z = np.mean(z_fit)
 
-    return evaluation_scores
+        mse.append(pf.mse(z_test, z_fit)) #mse
+        r2.append(pf.r2(z_test, z_fit)) #r2
+        bias.append(pf.mse(z_test,expect_z))
+        var.append(pf.mse(z_fit,expect_z))
+
+    return [np.mean(mse),np.mean(r2),np.mean(bias),np.mean(var)]
 
 '''
 plotter feil mot kompleksitet
 '''
 
-n = 100
+n = 200
 error = 0.2
-degrees = np.arange(0,9)
+degrees = np.arange(1,10)
 
 x_random = np.random.uniform(0, 1, n)
 x_sorted = np.sort(x_random, axis=0)
@@ -107,8 +106,29 @@ x = x_grid.flatten()
 y = y_grid.flatten()
 
 #compute z and flatten it
-z_grid = frankefunction_noice(x_grid, y_grid,error)
+z_grid = pf.frankefunction(x_grid, y_grid,error)
 z = z_grid.flatten()
+
+'''
+"""Make global test values """
+x_train_global, x_test_global, y_train_global, y_test_global = train_test_split(x_sorted, y_sorted, test_size=0.2)
+
+#making an x and y grid
+x_grid_train, y_grid_train = np.meshgrid(x_train_global,y_train_global)
+x_grid_test, y_grid_test = np.meshgrid(x_train_test,y_train_test)
+
+#flatten x and y
+x_train = x_grid_train.flatten()
+y_train = y_grid_train.flatten()
+x_test = x_grid_test.flatten()
+y_test = y_grid_test.flatten()
+
+#compute training z and flatten it
+z_grid_train = pf.frankefunction(x_grid_train, y_grid_train,error)
+z_train = z_grid_train.flatten()
+z_grid_test = pf.frankefunction(x_grid_test, y_grid_test,error)
+z_test = z_grid_test.flatten()
+'''
 
 k_fold_mse = []
 k_fold_bias = []
@@ -118,13 +138,18 @@ mse = []
 
 print("mse   | bias  | var")
 for degree in degrees:
-    #performing a k-fold cross-validation
-    k_fold_mse.append(np.mean(k_fold_cross_validation(x,y,z, degree)[0]))
-    k_fold_r2.append(np.mean(k_fold_cross_validation(x,y,z, degree)[1]))
-    k_fold_bias.append(np.mean(k_fold_cross_validation(x,y,z, degree)[2]))
-    k_fold_var.append(np.mean(k_fold_cross_validation(x,y,z, degree)[3]))
+    """Performing a k-fold cross-validation on training data"""
+    evaluation_scores = k_fold_cross_validation(x,y,z,degree)
 
-    #fitting a model to all the data
+    """Calculate bias, variance r2 and mse"""
+
+    k_fold_mse.append(evaluation_scores[0])
+    k_fold_r2.append(evaluation_scores[1])
+    k_fold_bias.append(evaluation_scores[2])
+    k_fold_var.append(evaluation_scores[3])
+
+
+    """Simple training with no folds for comparison"""
     X = pf.generate_design_2Dpolynomial(x, y, degree)
     beta = pf.least_squares(X, z)
     z_model = X @ beta
@@ -133,10 +158,11 @@ for degree in degrees:
     mse.append(pf.mse(z, z_model))
     print(f"{k_fold_mse[-1]:5.3f} | {k_fold_bias[-1]:5.3f} | {k_fold_var[-1]:5.3f}")
 
-plt.plot(degrees, k_fold_var,label="variance")
-plt.plot(degrees, k_fold_bias, label="bias")
-plt.plot(degrees, k_fold_mse, label="mse")
-plt.plot(degrees, np.array(k_fold_var)+np.array(k_fold_bias)+error**2 ,label="total error")
+plt.plot(degrees, k_fold_var,'--',label="variance")
+plt.plot(degrees, k_fold_bias,'--', label="bias")
+#plt.plot(degrees, k_fold_mse, ,label="k-fold mse")
+plt.plot(degrees, mse, label="regular mse training")
+plt.plot(degrees, np.array(k_fold_var)+np.array(k_fold_bias) ,label="total error w/testing")
 plt.xlabel("degrees")
 plt.legend()
 plt.show()

@@ -31,25 +31,10 @@ def r2(data, model):
     error = 1 - np.sum((data - model)**2)/np.sum((data - np.mean(data))**2)
     return error
 
-def frankefunction(x,y):
+def frankefunction(x,y,noice):
     term1 = 0.75*np.exp(-(0.25*(9*x-2)**2) - 0.25*((9*y-2)**2))
     term2 = 0.75*np.exp(-((9*x+1)**2)/49.0 - 0.1*(9*y+1))
     term3 = 0.5*np.exp(-(9*x-7)**2/4.0 - 0.25*((9*y-3)**2))
     term4 = -0.2*np.exp(-(9*x-4)**2 - (9*y-7)**2)
-    return term1 + term2 + term3 + term4
-
-def vector_multiply(x,y):
-    """Handles multiplication of vectors of unequal length"""
-    if len(x) > len (y):
-        z = x
-        for i in range(len(y)):
-            z[i] *= y[i]
-        return z
-    elif len(y) > len (x):
-        z = y
-        for i in range(len(x)):
-            z[i] *= x[i]
-        return z
-    else:
-        z = x*y
-        return z
+    noice = np.random.normal(0,noice**2,len(x))
+    return term1 + term2 + term3 + term4 + noice
