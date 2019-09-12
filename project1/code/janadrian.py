@@ -22,14 +22,54 @@ def lasso_regression(X, data, hyperparam=1):
     beta = reg.coef_
     return beta
 
-def produce_table(x, y, header, orientation="horizontal"):
-    
+def produce_table(data, header):
+    """
+    Spagetthi code producing a vertical laTEX table.
+    data has shape
+        [[x0, x1, x2],
+         [y0, y1, y2],
+         ...          ]
+    where
+    header = list/array
+    orientation = vertical or horizontal where vertical has a horizontal header
+    and horizontal has a vertical header.
+    """
+    tableString = ""
+    n = len(data[:, 0])
+    tableString += "\\begin{table}[htbp]\n"
+    tableString += "\\begin{{tabular}}{{{0:s}}}\n".format("l"*n)
+    # creating header
+    for element in header:
+        tableString += f"\\textbf{{{element}}} & "
+    tableString = tableString[:-2] + "\\\\\n"
+    # creating table elements
+    for j in range(len(data[0, :])):
+        for i in range(len(data[:, 0])):
+            tableString += f"{data[i, j]:.2f} & "
+        tableString = tableString[:-2] + "\\\\\n"
+    tableString = tableString[:-4] + "\n"
+    tableString += "\\end{tabular}\n"
+    tableString += "\\end{table}\n"
+    return tableString
+
+
 
 
 
 sns.set()
 sns.set_style("whitegrid")
 sns.set_palette("husl")
+
+header = ["x-direction", "y-direction"]
+m = 3
+n = 4
+data = np.zeros((m, n))
+data[0, :] = [1, 2, 3, 5]
+data[1, :] = [10, 35, 64, 74]
+#data = np.array([np.array(i) for i in data])
+
+tableString = produce_table(data, header)
+print(tableString)
 
 
 fig = plt.figure()
