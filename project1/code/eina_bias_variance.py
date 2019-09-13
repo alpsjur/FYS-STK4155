@@ -99,14 +99,14 @@ y_random = np.random.uniform(0, 1, n)
 y_sorted = np.sort(y_random,axis=0)
 
 #making an x and y grid
-x_grid, y_grid = np.meshgrid(x_sorted,y_sorted)
+x_grid, y_grid = np.meshgrid(x_sorted, y_sorted)
 
 #flatten x and y
 x = x_grid.flatten()
 y = y_grid.flatten()
 
 #compute z and flatten it
-z_grid = pf.frankefunction(x_grid, y_grid,error)
+z_grid = pf.frankefunction(x_grid, y_grid, noise=error)
 z = z_grid.flatten()
 
 '''
@@ -158,11 +158,19 @@ for degree in degrees:
     mse.append(pf.mse(z, z_model))
     print(f"{k_fold_mse[-1]:5.3f} | {k_fold_bias[-1]:5.3f} | {k_fold_var[-1]:5.3f}")
 
-plt.plot(degrees, k_fold_var,'--',label="variance")
-plt.plot(degrees, k_fold_bias,'--', label="bias")
+plt.plot(degrees, k_fold_var,'--',
+        label="variance"
+        )
+plt.plot(degrees, k_fold_bias,'--',
+        label="bias"
+        )
 #plt.plot(degrees, k_fold_mse, ,label="k-fold mse")
-plt.plot(degrees, mse, label="regular mse training")
-plt.plot(degrees, np.array(k_fold_var)+np.array(k_fold_bias) ,label="total error w/testing")
+plt.plot(degrees, mse,
+        label="regular mse training"
+        )
+plt.plot(degrees, np.array(k_fold_var) + np.array(k_fold_bias),
+        label="total error w/testing"
+        )
 plt.xlabel("degrees")
 plt.legend()
 plt.show()

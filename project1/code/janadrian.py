@@ -1,114 +1,116 @@
+'''
+Brukt Anna Linas k-fold cross-validation kode og implementert bias variance
+'''
+from sklearn.utils import shuffle
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
 import numpy as np
 from random import random, seed
-from sklearn import linear_model
 
 import projectfunctions as pf
 
-import seaborn as sns
+
+'''
+plotter feil mot kompleksitet
+'''
+
+n = 200
+error = 0.2
+degrees = np.arange(1,10)
+
+x_random = np.random.uniform(0, 1, n)
+x_sorted = np.sort(x_random,
+                    axis=0
+                    )
+
+y_random = np.random.uniform(0, 1, n)
+y_sorted = np.sort(y_random,
+                    axis=0
+                    )
+
+#making an x and y grid
+x_grid, y_grid = np.meshgrid(x_sorted, y_sorted)
+
+#flatten x and y
+x = x_grid.flatten()
+y = y_grid.flatten()
+
+#compute z and flatten it
+z_grid = pf.frankefunction(x_grid, y_grid,
+                            noise=error
+                            )
+z = z_grid.flatten()
+
+reg = pf.ridge_regression
+
+k_fold_mse = []
+k_fold_bias = []
+k_fold_r2 = []
+k_fold_var = []
+mse = []
+
+print("mse   | bias  | var")
+for degree in degrees:
+    """Performing a k-fold cross-validation on training data"""
+    evaluation_scores = pf.k_fold_cross_validation(x, y, z, reg,
+                                                    degree=degree,
+                                                    hyperparam=0
+                                                    )
+
+    """Calculate bias, variance r2 and mse"""
+
+    k_fold_mse.append(evaluation_scores[0])
+    k_fold_r2.append(evaluation_scores[1])
+    k_fold_bias.append(evaluation_scores[2])
+    k_fold_var.append(evaluation_scores[3])
 
 
-def linear_regression(X, data, hyperparam=0):
-    p = len(X[0, :])
-    beta = np.linalg.inv(X.T.dot(X) + hyperparam*np.identity(p)).dot(X.T).dot(data)
-    return beta
+    """Simple training with no folds for comparison"""
+    X = pf.generate_design_2Dpolynomial(x, y, degree)
+    beta = reg(X, z)
+    z_model = X @ beta
 
-def lasso_regression(X, data, hyperparam=1):
-    reg = linear_model.Lasso(alpha=hyperparam)
-    reg.fit(X, data)
-    beta = reg.coef_
-    return beta
+    #computing the MSE when no train test split is used
+    mse.append(pf.mse(z, z_model))
+    print(f"{k_fold_mse[-1]:5.3f} | {k_fold_bias[-1]:5.3f} | {k_fold_var[-1]:5.3f}")
 
-def produce_table(data, header):
-    """
-    Spagetthi code producing a vertical laTEX table.
-    data has shape
-        [[x0, x1, x2],
-         [y0, y1, y2],
-         ...          ]
-    where
-    header = list/array
-    orientation = vertical or horizontal where vertical has a horizontal header
-    and horizontal has a vertical header.
-    """
-    tableString = ""
-    n = len(data[:, 0])
-    tableString += "\\begin{table}[htbp]\n"
-    tableString += "\\begin{{tabular}}{{{0:s}}}\n".format("l"*n)
-    # creating header
-    for element in header:
-        tableString += f"\\textbf{{{element}}} & "
-    tableString = tableString[:-2] + "\\\\\n"
-    # creating table elements
-    for j in range(len(data[0, :])):
-        for i in range(len(data[:, 0])):
-            tableString += f"{data[i, j]:.2f} & "
-        tableString = tableString[:-2] + "\\\\\n"
-    tableString = tableString[:-4] + "\n"
-    tableString += "\\end{tabular}\n"
-    tableString += "\\end{table}\n"
-    return tableString
+plt.plot(degrees, k_fold_var,'--',
+        label="variance"
+        )
+plt.plot(degrees, k_fold_bias,'--',
+        label="bias"
+        )
+#plt.plot(degrees, k_fold_mse, ,label="k-fold mse")
+plt.plot(degrees, mse,
+        label="regular mse training"
+        )
+plt.plot(degrees, np.array(k_fold_var) + np.array(k_fold_bias),
+        label="total error w/testing"
+        )
+plt.xlabel("degrees")
+plt.legend()
+plt.show()
 
+###3D plot ###
 
-
-
-
-sns.set()
-sns.set_style("whitegrid")
-sns.set_palette("husl")
-
-header = ["x-direction", "y-direction"]
-m = 3
-n = 4
-data = np.zeros((m, n))
-data[0, :] = [1, 2, 3, 5]
-data[1, :] = [10, 35, 64, 74]
-#data = np.array([np.array(i) for i in data])
-
-tableString = produce_table(data, header)
-print(tableString)
-
-
+'''
+# Plot the surfacese
 fig = plt.figure()
 ax = fig.gca(projection="3d")
 
-# Generating grid in x,y in [0, 1] with n=100 points
-n = 200
+#reshape z_model to matrices so it can be plottet as a surface
+z_model_grid = np.reshape(z_model,(n,n))
 
-# generating design matrices for both coordinates
-x_random = np.random.uniform(0, 1, n) #+ 0.1*np.random.randn(n, 1)
-x_sorted = np.sort(x_random, axis=0)
-
-y_random = np.random.uniform(0, 1, n) #+ 0.1*np.random.randn(n, 1)
-y_sorted = np.sort(y_random,axis=0)
-
-x_grid, y_grid = np.meshgrid(x_sorted,y_sorted)
-
-z_true = pf.frankefunction(x_grid, y_grid)
-
-X = pf.generate_design_2Dpolynomial(x_sorted, y_sorted, degree=5)
-beta = lasso_regression(X, z_true, hyperparam=0.5)
-z_model = X @ beta
-
-
-mse_value = pf.mse(z_true, z_model)
-r2_value = pf.r2(z_true, z_model)
-
-print(f"MSE = {mse_value:.3f}")
-print(f"R2 = {r2_value:.3f}")
-
-# Plot the surface.
-surf = ax.plot_surface(x_grid, y_grid, z_model,
+surf = ax.plot_surface(x_grid, y_grid, z_model_grid,
                         cmap=cm.Blues,
                         linewidth=0,
                         antialiased=False,
                         alpha = 0.5,
                         )
 
-ax.scatter(x_grid, y_grid, z_true,
+ax.scatter(x_grid, y_grid, z_grid,
                         #cmap=cm.coolwarm,
                         linewidth=0,
                         antialiased=False,
@@ -131,3 +133,4 @@ fig.colorbar(surf,
 
 ax.legend()
 plt.show()
+'''

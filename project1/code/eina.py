@@ -24,10 +24,10 @@ x_random = np.random.uniform(0, 1, n)
 x_sorted = np.sort(x_random, axis=0)
 
 y_random = np.random.uniform(0, 1, n)
-y_sorted = np.sort(y_random,axis=0)
+y_sorted = np.sort(y_random, axis=0)
 
 #making an x and y grid
-x_grid, y_grid = np.meshgrid(x_sorted,y_sorted)
+x_grid, y_grid = np.meshgrid(x_sorted, y_sorted)
 #x_grid, y_grid = np.meshgrid(np.linspace(0,1,n),np.linspace(0,1,n))
 
 #flatten x and y
@@ -37,6 +37,7 @@ y = y_grid.flatten()
 #compute z and flatten it
 z_grid = pf.frankefunction(x_grid, y_grid)
 z_true = z_grid.flatten()
+print(z_true)
 
 X = pf.generate_design_2Dpolynomial(x, y, degree=5)
 
@@ -54,7 +55,7 @@ print(f"R2 = {r2_value:.3f}")
 
 
 
-surf = ax.plot_surface(x_grid, y_grid, np.reshape(z_model,(n,n)),
+surf = ax.plot_surface(x_grid, y_grid, np.reshape(z_model, (n, n)),
                         cmap=cm.Blues,
                         linewidth=0,
                         antialiased=False,
