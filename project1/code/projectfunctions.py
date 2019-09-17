@@ -29,7 +29,7 @@ def least_squares(X, data):
     """
     Least squares solved using matrix inversion
     """
-    beta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(data)
+    beta = np.linalg.pinv(X.T.dot(X)).dot(X.T).dot(data)
     return beta
 
 def ridge_regression(X, data, hyperparam=0):
@@ -37,7 +37,7 @@ def ridge_regression(X, data, hyperparam=0):
     Ridge regression solved using matrix inversion
     """
     p = len(X[0, :])
-    beta = np.linalg.inv(X.T.dot(X) + hyperparam*np.identity(p)).dot(X.T).dot(data)
+    beta = np.linalg.pinv(X.T.dot(X) + hyperparam*np.identity(p)).dot(X.T).dot(data)
     return beta
 
 def lasso_regression(X, data, hyperparam=1):
