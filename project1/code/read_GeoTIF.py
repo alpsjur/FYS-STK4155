@@ -6,7 +6,7 @@ from matplotlib import cm
 import seaborn as sns
 
 # Load the terrain
-terrain1 = imread('../data/test_data_oslo.tif')
+oslo_data = imread('../data/test_data_oslo.tif')
 
 # Show the terrain
 sns.set()
@@ -17,16 +17,16 @@ fig = plt.figure()
 ax = fig.gca(projection="3d")
 
 #get the number of points
-n_y, n_x = np.shape(terrain1)
+n_y, n_x = np.shape(oslo_data)
 
 #making an x and y grid (may want to define x and y differently)
 x_grid, y_grid = np.meshgrid(np.arange(n_x),np.arange(n_y))
 
-print(np.shape(terrain1))
+print(np.shape(oslo_data))
 print(np.shape(x_grid))
 
 # Plot the surface.
-surf = ax.plot_surface(x_grid, y_grid, terrain1,
+surf = ax.plot_surface(x_grid, y_grid, oslo_data,
                         cmap=cm.coolwarm,
                         linewidth=0,
                         antialiased=False,
@@ -38,13 +38,11 @@ fig.colorbar(surf,
             shrink=0.5,
             aspect=5
             )
-plt.show()
+#plt.show()
 
-'''
 plt.figure()
 plt.title('Terrain over Oslo fjord')
-plt.imshow(terrain1, cmap='gray')
+plt.imshow(oslo_data, cmap='gray')
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.show()
-'''

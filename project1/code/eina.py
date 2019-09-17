@@ -20,10 +20,10 @@ x_random = np.random.uniform(0, 1, n)
 x_sorted = np.sort(x_random, axis=0)
 
 y_random = np.random.uniform(0, 1, n)
-y_sorted = np.sort(y_random,axis=0)
+y_sorted = np.sort(y_random, axis=0)
 
 #making an x and y grid
-x_grid, y_grid = np.meshgrid(x_sorted,y_sorted)
+x_grid, y_grid = np.meshgrid(x_sorted, y_sorted)
 #x_grid, y_grid = np.meshgrid(np.linspace(0,1,n),np.linspace(0,1,n))
 
 #flatten x and y
@@ -34,6 +34,7 @@ y = y_grid.flatten()
 z_grid = pf.frankefunction(x_grid, y_grid,0.05)
 #z_grid = x_grid**2 - y_grid**2 #a more simple example
 z_true = z_grid.flatten()
+print(z_true)
 
 ### compute mse for degrees ####
 
