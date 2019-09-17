@@ -108,7 +108,7 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
     BIAS = []
 
     #shuffle the data
-    x_shuffle, y_shuffle, z_shuffle = shuffle(x, y, z, random_state=0)
+    x_shuffle, y_shuffle, z_shuffle = shuffle(x, y, z)
 
     #split the data into k folds
     x_split = np.array_split(x_shuffle, k)
