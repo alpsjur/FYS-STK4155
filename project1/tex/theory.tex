@@ -3,7 +3,7 @@
 
 \subsection{Ordinary least squares}
 
-\subsection{Ridge regression
+\subsection{Ridge regression}
 	
 \subsection{Lasso regression}
 
@@ -12,6 +12,26 @@
 \subsection{Score function}
 
 \subsection{k-fold cross validation}
+There are several ways of estimating the skill of a machine learning model. One such procedure is the k-fold cross-validation, which is used when working with a limited data sample. 
+
+\begin{algorithm}[htbp]\label{alg:met}\caption{The $k$-fold cross-validation algorithm.}
+	\SetAlgoLined
+	\BlankLine
+	\BlankLine
+	Shuffle the dataset randomly\;
+	Divide the dataset into $k$ folds\;
+	\ForEach{$k$}{
+		Take the $k$th fold out to use as test data set\;
+		Set the remaining folds as training data set\;
+		Fit a model to the training set\;
+		Evaluate the model on the test set\;
+		Retain the evaluation score and discard the model \;
+	}
+	Calculate the mean of the evaluation scores\;	
+	\BlankLine
+	\BlankLine
+\end{algorithm}
+
 
 % Eksempel for store matriser
 \[A =
