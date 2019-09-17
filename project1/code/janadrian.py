@@ -16,7 +16,7 @@ import projectfunctions as pf
 plotter feil mot kompleksitet
 '''
 
-n = 103
+n = 100
 error = 0.2
 degrees = np.arange(1, 25)
 
