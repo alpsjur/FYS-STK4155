@@ -86,7 +86,7 @@ def variance(model):
     error = np.sum((model - np.mean(model))**2)/n
     return error
 
-def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=10):
+def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
     """
     k-fold CV calculating evaluation scores: MSE, R2, variance, and bias for
     data trained on k folds.
@@ -157,7 +157,7 @@ def frankefunction(x, y, noise=0):
     term2 = 0.75*np.exp(-((9*x + 1)**2)/49.0 - 0.1*(9*y + 1))
     term3 = 0.5*np.exp(-(9*x - 7)**2/4.0 - 0.25*((9*y - 3)**2))
     term4 = -0.2*np.exp(-(9*x - 4)**2 - (9*y - 7)**2)
-    noice = np.random.normal(0, noise**2, len(x))
+    noice = np.random.normal(0, noise, len(x))
     return term1 + term2 + term3 + term4 + noise
 
 def produce_table(data, header):

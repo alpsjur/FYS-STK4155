@@ -11,24 +11,6 @@ from random import random, seed
 
 import projectfunctions as pf
 
-def expectation(models):
-    """compute a mean vector from n vectors """
-    mean_model =  np.mean(models, axis=1, keepdims=True)
-    return mean_model
-
-def bias(data,expect):
-    """caluclate bias from k expectation values and data of length n"""
-    n = len(data)
-    error = 0
-    for ex in expect:
-        error += pf.mse(data,ex)
-    return error/len(expect)
-
-def variance(model):
-    n = len(model)
-    error = np.sum((model - np.mean(model))**2)/n
-    return error
-
 
 def k_fold_cross_validation(x, y, z, degree, k=10):
     mse = []
@@ -40,31 +22,54 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
     x_shuffle, y_shuffle, z_shuffle = shuffle(x, y, z, random_state=0)
 
     #split the data into k folds
-    x_split = np.array(np.array_split(x_shuffle, k))
-    y_split = np.array(np.array_split(y_shuffle, k))
-    z_split = np.array(np.array_split(z_shuffle, k))
+    x_split = np.array_split(x_shuffle, k)
+    y_split = np.array_split(y_shuffle, k)
+    z_split = np.array_split(z_shuffle, k)
 
     #loop through the folds
     for i in range(k):
         #pick out the test fold from data
-        x_test = x_split[:,i]
-        y_test = y_split[:,i]
-        z_test = z_split[:,i]
+        x_test = x_split[i]
+        y_test = y_split[i]
+        z_test = z_split[i]
 
-        #pick out the remaining data as training data
-        mask = np.ones(x_split.shape, dtype=bool)
-        mask[:,i] = False
-        x_train = x_split[mask]
-        y_train = y_split[mask]
-        z_train = z_split[mask]
+
+        x_train = []
+        y_train = []
+        z_train = []
+
+        for j in range(k):
+            if j != i:
+                for elem in x_split[j]:
+                    x_train.append(elem)
+                for elem in y_split[j]:
+                    y_train.append(elem)
+                for elem in z_split[j]:
+                    z_train.append(elem)
+
+        x_train = np.array(x_train)
+        y_train = np.array(y_train)
+        z_train = np.array(z_train)
+
+
 
         #fit a model to the training set
         '''
         Her må vi bruke enten OLS, Ridges eller Lassos.
-        Foreløpig OLS 5-grad, vil gjøre dette til en variabel
         '''
         X_train = pf.generate_design_2Dpolynomial(x_train, y_train, degree)
-        beta = pf.least_squares(X_train, z_train)
+
+        U_train,S,V_T = np.linalg.svd(X_train,full_matrices=False)
+
+        #Economy sized SVD
+        p = int((degree + 1)*(degree + 2)/2)+1
+        U_train = U_train[:,0:p]
+        X_train = X_train[:,0:p]
+
+        z_model = U_train.dot(U_train.T).dot(z_train)
+
+        X_inv = V_T.T.dot(np.linalg.inv(np.diag(S))).dot(U_train.T)
+        beta = X_inv @ z_model
 
         #evaluate the model on the test set
         '''
@@ -73,6 +78,7 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
         Foreløpig MSE
         '''
         X_test = pf.generate_design_2Dpolynomial(x_test, y_test, degree)
+
         z_fit = X_test @ beta
 
         expect_z = np.mean(z_fit)
@@ -87,10 +93,10 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
 '''
 plotter feil mot kompleksitet
 '''
-
-n = 200
+#np.random.seed(108)
+n = 30
 error = 0.2
-degrees = np.arange(1,10)
+degrees = np.arange(1,20)
 
 x_random = np.random.uniform(0, 1, n)
 x_sorted = np.sort(x_random, axis=0)
@@ -106,29 +112,9 @@ x = x_grid.flatten()
 y = y_grid.flatten()
 
 #compute z and flatten it
-z_grid = pf.frankefunction(x_grid, y_grid, noise=error)
+#z_grid = pf.frankefunction(x_grid, y_grid, noise=error)*5
+z_grid = x_grid**2 + y_grid**2 + np.random.normal(0,error,len(x_grid))
 z = z_grid.flatten()
-
-'''
-"""Make global test values """
-x_train_global, x_test_global, y_train_global, y_test_global = train_test_split(x_sorted, y_sorted, test_size=0.2)
-
-#making an x and y grid
-x_grid_train, y_grid_train = np.meshgrid(x_train_global,y_train_global)
-x_grid_test, y_grid_test = np.meshgrid(x_train_test,y_train_test)
-
-#flatten x and y
-x_train = x_grid_train.flatten()
-y_train = y_grid_train.flatten()
-x_test = x_grid_test.flatten()
-y_test = y_grid_test.flatten()
-
-#compute training z and flatten it
-z_grid_train = pf.frankefunction(x_grid_train, y_grid_train,error)
-z_train = z_grid_train.flatten()
-z_grid_test = pf.frankefunction(x_grid_test, y_grid_test,error)
-z_test = z_grid_test.flatten()
-'''
 
 k_fold_mse = []
 k_fold_bias = []
@@ -151,8 +137,13 @@ for degree in degrees:
 
     """Simple training with no folds for comparison"""
     X = pf.generate_design_2Dpolynomial(x, y, degree)
-    beta = pf.least_squares(X, z)
-    z_model = X @ beta
+
+    U,S,V_T = np.linalg.svd(X)
+    p = int((degree + 1)*(degree + 2)/2)+1
+
+    U = U[:,0:p]
+
+    z_model = U.dot(U.T).dot(z)
 
     #computing the MSE when no train test split is used
     mse.append(pf.mse(z, z_model))
@@ -168,18 +159,25 @@ plt.plot(degrees, k_fold_bias,'--',
 plt.plot(degrees, mse,
         label="regular mse training"
         )
-plt.plot(degrees, np.array(k_fold_var) + np.array(k_fold_bias),
+plt.plot(degrees, k_fold_mse,
         label="total error w/testing"
         )
+"""
+plt.plot(degrees, np.array(k_fold_var) + np.array(k_fold_bias),
+        label="variance + bias"
+        )
+"""
+        
 plt.xlabel("degrees")
 plt.legend()
+#plt.axis([1, degrees[-1], 0, 0.3 ])
 plt.show()
 
 ###3D plot ###
 
-'''
+"""
 # Plot the surfacese
-fig = plt.figure()
+fig = plt.figure(2)
 ax = fig.gca(projection="3d")
 
 #reshape z_model to matrices so it can be plottet as a surface
@@ -203,7 +201,7 @@ ax.scatter(x_grid, y_grid, z_grid,
                         )
 
 # Customize the z axis.
-ax.set_zlim(-0.10, 1.40)
+#ax.set_zlim(-0.10, 1.40)
 ax.zaxis.set_major_locator(LinearLocator(10))
 ax.zaxis.set_major_formatter(FormatStrFormatter("%.02f"))
 # Add a color bar which maps values to colors.
@@ -215,4 +213,4 @@ fig.colorbar(surf,
 
 ax.legend()
 plt.show()
-'''
+"""
