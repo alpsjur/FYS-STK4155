@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.utils import shuffle
+from sklearn import linear_model
 
 
 def generate_design_polynomial(x, p=1):
@@ -143,12 +144,24 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
         X_test = generate_design_2Dpolynomial(x_test, y_test, degree=degree)
         z_fit = X_test @ beta
 
+        #fra Morten sin kode
+        error_ = np.mean( np.mean((z_test - z_fit)**2) )
+        bias_ = np.mean( (z_test - np.mean(z_fit))**2 )
+        variance_ = np.mean( np.var(z_fit) )
+
+        MSE.append(error_) #mse
+        R2.append(0) #r2
+        BIAS.append(bias_)
+        VAR.append(variance_)
+
+        '''
         expect_z = np.mean(z_fit)
 
         MSE.append(mse(z_test, z_fit)) #mse
         R2.append(r2(z_test, z_fit)) #r2
         BIAS.append(mse(z_test, expect_z))
         VAR.append(mse(z_fit, expect_z))
+        '''
 
     return [np.mean(MSE), np.mean(R2), np.mean(BIAS), np.mean(VAR)]
 
@@ -157,7 +170,7 @@ def frankefunction(x, y, noise=0):
     term2 = 0.75*np.exp(-((9*x + 1)**2)/49.0 - 0.1*(9*y + 1))
     term3 = 0.5*np.exp(-(9*x - 7)**2/4.0 - 0.25*((9*y - 3)**2))
     term4 = -0.2*np.exp(-(9*x - 4)**2 - (9*y - 7)**2)
-    noice = np.random.normal(0, noise, len(x))
+    noise = np.random.normal(0, noise, len(x))
     return term1 + term2 + term3 + term4 + noise
 
 def produce_table(data, header):
