@@ -17,7 +17,7 @@ plotter feil mot kompleksitet
 '''
 
 n = 100
-error = 0.2
+error = 1
 degrees = np.arange(1, 25)
 
 x_random = np.random.uniform(0, 1, n)
