@@ -30,7 +30,7 @@ def variance(model):
     return error
 
 
-def k_fold_cross_validation(x, y, z, degree, k=10):
+def k_fold_cross_validation(x, y, z, degree, k=5):
     mse = []
     r2 = []
     var = []
@@ -88,9 +88,9 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
 plotter feil mot kompleksitet
 '''
 
-n = 200
+n = 100
 error = 0.2
-degrees = np.arange(1,10)
+degrees = np.arange(1,15)
 
 x_random = np.random.uniform(0, 1, n)
 x_sorted = np.sort(x_random, axis=0)
@@ -108,27 +108,6 @@ y = y_grid.flatten()
 #compute z and flatten it
 z_grid = pf.frankefunction(x_grid, y_grid,error)
 z = z_grid.flatten()
-
-'''
-"""Make global test values """
-x_train_global, x_test_global, y_train_global, y_test_global = train_test_split(x_sorted, y_sorted, test_size=0.2)
-
-#making an x and y grid
-x_grid_train, y_grid_train = np.meshgrid(x_train_global,y_train_global)
-x_grid_test, y_grid_test = np.meshgrid(x_train_test,y_train_test)
-
-#flatten x and y
-x_train = x_grid_train.flatten()
-y_train = y_grid_train.flatten()
-x_test = x_grid_test.flatten()
-y_test = y_grid_test.flatten()
-
-#compute training z and flatten it
-z_grid_train = pf.frankefunction(x_grid_train, y_grid_train,error)
-z_train = z_grid_train.flatten()
-z_grid_test = pf.frankefunction(x_grid_test, y_grid_test,error)
-z_test = z_grid_test.flatten()
-'''
 
 k_fold_mse = []
 k_fold_bias = []
@@ -158,20 +137,22 @@ for degree in degrees:
     mse.append(pf.mse(z, z_model))
     print(f"{k_fold_mse[-1]:5.3f} | {k_fold_bias[-1]:5.3f} | {k_fold_var[-1]:5.3f}")
 
-plt.plot(degrees, k_fold_var,'--',label="variance")
-plt.plot(degrees, k_fold_bias,'--', label="bias")
-#plt.plot(degrees, k_fold_mse, ,label="k-fold mse")
+
+plt.figure(1)
+#plt.plot(degrees, k_fold_var,'--',label="variance")
+#plt.plot(degrees, k_fold_bias,'--', label="bias")
+plt.plot(degrees, k_fold_mse,label="k-fold mse")
 plt.plot(degrees, mse, label="regular mse training")
-plt.plot(degrees, np.array(k_fold_var)+np.array(k_fold_bias) ,label="total error w/testing")
+#plt.plot(degrees, np.array(k_fold_var)+np.array(k_fold_bias) ,label="total error w/testing")
 plt.xlabel("degrees")
 plt.legend()
 plt.show()
 
 ###3D plot ###
 
-'''
+"""
 # Plot the surfacese
-fig = plt.figure()
+fig = plt.figure(2)
 ax = fig.gca(projection="3d")
 
 #reshape z_model to matrices so it can be plottet as a surface
@@ -207,4 +188,4 @@ fig.colorbar(surf,
 
 ax.legend()
 plt.show()
-'''
+"""

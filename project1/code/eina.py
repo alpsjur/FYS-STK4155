@@ -14,11 +14,7 @@ sns.set()
 sns.set_style("whitegrid")
 sns.set_palette("husl")
 
-
-fig = plt.figure()
-ax = fig.gca(projection="3d")
-
-n = 200
+n = 50
 
 x_random = np.random.uniform(0, 1, n)
 x_sorted = np.sort(x_random, axis=0)
@@ -35,25 +31,54 @@ x = x_grid.flatten()
 y = y_grid.flatten()
 
 #compute z and flatten it
-z_grid = pf.frankefunction(x_grid, y_grid)
+z_grid = pf.frankefunction(x_grid, y_grid,0.05)
+#z_grid = x_grid**2 - y_grid**2 #a more simple example
 z_true = z_grid.flatten()
 
-X = pf.generate_design_2Dpolynomial(x, y, degree=5)
+### compute mse for degrees ####
+
+mse = []
+degrees = []
+
+plt.figure(1)
+for deg in range(1,8):
+    X = pf.generate_design_2Dpolynomial(x, y, degree=deg)
+
+    U,S,V_T = np.linalg.svd(X)
+
+    D = S.dot(S.T)
+    z_model = U.dot(D).dot(U.T).dot(z_true)
 
 
-###
+
+    #beta = pf.least_squares(X, z_true)
+    #z_model = X @ beta
+
+    mse.append(pf.mse(z_true,z_model))
+    degrees.append(deg)
+
+plt.plot(degrees,mse)
+plt.xlabel("model complexity")
+plt.ylabel("mean squared error")
+plt.show()
+
+#### 3D PLOT###
+
+X = pf.generate_design_2Dpolynomial(x, y, degree=degrees=6)
+
 
 beta = pf.least_squares(X, z_true)
 z_model = X @ beta
 
-mse_value = pf.mse(z_true, z_model)
-r2_value = pf.r2(z_true, z_model)
+U,S,V_T = np.linalg.svd(X)
 
-print(f"MSE = {mse_value:.3f}")
-print(f"R2 = {r2_value:.3f}")
-
+D = S.dot(S.T)
+z_model = U.dot(D).dot(U.T).dot(z_true)
 
 
+
+fig = plt.figure(2)
+ax = fig.gca(projection="3d")
 surf = ax.plot_surface(x_grid, y_grid, np.reshape(z_model,(n,n)),
                         cmap=cm.Blues,
                         linewidth=0,
@@ -72,7 +97,7 @@ ax.scatter(x, y, z_true,
                         )
 
 # Customize the z axis.
-ax.set_zlim(-0.10, 1.40)
+#ax.set_zlim(-0.10, 1.40)
 ax.zaxis.set_major_locator(LinearLocator(10))
 ax.zaxis.set_major_formatter(FormatStrFormatter("%.02f"))
 # Add a color bar which maps values to colors.
