@@ -107,23 +107,24 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=10):
     x_shuffle, y_shuffle, z_shuffle = shuffle(x, y, z, random_state=0)
 
     #split the data into k folds
-    x_split = np.array(np.array_split(x_shuffle, k))
-    y_split = np.array(np.array_split(y_shuffle, k))
-    z_split = np.array(np.array_split(z_shuffle, k))
+    x_split = np.array_split(x_shuffle, k)
+    y_split = np.array_split(y_shuffle, k)
+    z_split = np.array_split(z_shuffle, k)
 
     #loop through the folds
     for i in range(k):
         #pick out the test fold from data
-        x_test = x_split[:,i]
-        y_test = y_split[:,i]
-        z_test = z_split[:,i]
+        x_test = x_split[i]
+        y_test = y_split[i]
+        z_test = z_split[i]
 
-        #pick out the remaining data as training data
-        mask = np.ones(x_split.shape, dtype=bool)
-        mask[:,i] = False
-        x_train = x_split[mask]
-        y_train = y_split[mask]
-        z_train = z_split[mask]
+        # pick out the remaining data as training data
+        # concatenate joins a sequence of arrays into a array
+        # ravel flattens the resulting array
+        x_train = np.concatenate(x_split[0:i] + x_split[i+1:]).ravel()
+        y_train = np.concatenate(y_split[0:i] + y_split[i+1:]).ravel()
+        z_train = np.concatenate(z_split[0:i] + z_split[i+1:]).ravel()
+
 
         #fit a model to the training set
         '''
@@ -139,7 +140,7 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=10):
         og sammenligne med z_test ved MSE eller R_2_score
         Foreløpig MSE
         '''
-        X_test = generate_design_2Dpolynomial(x_test, y_test, degree)
+        X_test = generate_design_2Dpolynomial(x_test, y_test, degree=degree)
         z_fit = X_test @ beta
 
         expect_z = np.mean(z_fit)

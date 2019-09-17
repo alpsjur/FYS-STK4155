@@ -16,9 +16,9 @@ import projectfunctions as pf
 plotter feil mot kompleksitet
 '''
 
-n = 200
+n = 103
 error = 0.2
-degrees = np.arange(1,10)
+degrees = np.arange(1, 25)
 
 x_random = np.random.uniform(0, 1, n)
 x_sorted = np.sort(x_random,
