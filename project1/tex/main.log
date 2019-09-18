@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  17 SEP 2019 15:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  18 SEP 2019 09:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1659,7 +1659,11 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
-(./abstract.tex) (./introduction.tex) (./theory.tex) (./results.tex
+(./abstract.tex) (./introduction.tex) (./theory.tex [1{/var/lib/texmf/fonts/map
+/pdftex/updmap/pdftex.map}
+
+
+]) (./results.tex
 
 ! LaTeX Error: File `' not found.
 
@@ -1674,25 +1678,17 @@ I could not locate the file with any of these extensions:
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]) (./discussion.tex)
-(./conclusion.tex) (./main.bbl
-
-Package natbib Warning: Empty `thebibliography' environment on input line 8.
-
-) [2
+) (./discussion.tex) (./conclusion.tex) (./main.bbl) [2
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 12715 strings out of 493029
- 222328 string characters out of 6136234
- 281289 words of memory out of 5000000
- 16128 multiletter control sequences out of 15000+600000
+ 12722 strings out of 493029
+ 222464 string characters out of 6136234
+ 281329 words of memory out of 5000000
+ 16135 multiletter control sequences out of 15000+600000
  10363 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,11n,42p,10407b,434s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,11n,42p,10407b,430s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
@@ -1704,7 +1700,7 @@ t/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmti10.pfb>
-Output written on main.pdf (2 pages, 118693 bytes).
+Output written on main.pdf (2 pages, 127485 bytes).
 PDF statistics:
  55 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream

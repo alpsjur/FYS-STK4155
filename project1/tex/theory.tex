@@ -12,9 +12,9 @@
 \subsection{Score function}
 
 \subsection{k-fold cross validation}
-There are several ways of estimating the skill of a machine learning model. One such procedure is the k-fold cross-validation, which is used when working with a limited data sample. 
+There are several methods for estimating the skill of a machine learning model. One such method is the $k$-fold cross-validation procedure, which can be used when working with a limited data sample. The idea is to divide the data sample into $k$ groups or folds, and then retain one of the folds to use as a test set after fitting a model to the remaining data. This is done for all folds. Algorithm \ref{alg:k-fold} outlines the different steps in the procedure. 
 
-\begin{algorithm}[htbp]\label{alg:met}\caption{The $k$-fold cross-validation algorithm.}
+\begin{algorithm}[htbp]\caption{The $k$-fold cross-validation algorithm.}\label{alg:k-fold}
 	\SetAlgoLined
 	\BlankLine
 	\BlankLine
@@ -25,12 +25,14 @@ There are several ways of estimating the skill of a machine learning model. One 
 		Set the remaining folds as training data set\;
 		Fit a model to the training set\;
 		Evaluate the model on the test set\;
-		Retain the evaluation score and discard the model \;
+		Retain the evaluation score and discard the model\;
 	}
 	Calculate the mean of the evaluation scores\;	
 	\BlankLine
 	\BlankLine
 \end{algorithm}
+
+This yields a statistical estimate for how well the model will preform on new data. The choice of $k$ will however effect the bias and variance in the estimation of the evaluation scores. It has been shown empirically that $k=5$ or $k=10$ gives neither a high bias nor variance \citep{james2013introduction}. In this project, a value of 5 was chosen for $k$. 
 
 
 % Eksempel for store matriser
