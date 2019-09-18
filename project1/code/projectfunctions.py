@@ -74,11 +74,6 @@ def expectation(models):
 def bias(data, model):
     """caluclate bias from k expectation values and data of length n"""
     n = len(data)
-    """
-    error = 0
-    for ex in expect:
-        error += pf.mse(data, ex)
-    """
     error = mse(data, np.mean(model))
     return error
 
@@ -95,7 +90,7 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
     k-fold CV calculating evaluation scores: MSE, R2, variance, and bias for
     data trained on k folds.
     where
-        x, y = coordinates
+        x, y = coordinates (will generalise for arbitrary number of parameters)
         z = data/model
         reg = regression function reg(X, data, hyperparam)
         degree = degree of polynomial
@@ -172,8 +167,6 @@ def produce_table(data, header):
          ...          ]
     where
     header = list/array
-    orientation = vertical or horizontal where vertical has a horizontal header
-    and horizontal has a vertical header.
     """
     tableString = ""
     n = len(data[:, 0])
