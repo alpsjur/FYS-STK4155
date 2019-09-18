@@ -1,8 +1,5 @@
 from sklearn.utils import shuffle
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
-from matplotlib import cm
-from matplotlib.ticker import LinearLocator, FormatStrFormatter
 import numpy as np
 from random import random, seed
 
@@ -68,15 +65,15 @@ def plot_test(ax, x, y, z, max_degree, reg, hyperparam, k=5, noise=1, show_bias_
 
     #Plots bias and variance if show_bias_var is True
     if show_bias_var:
-        ax.plot(degrees, k_fold_var,marker='--',
+        ax.plot(degrees, k_fold_var,
             )
-        ax.plot(degrees, k_fold_bias,marker='--',
+        ax.plot(degrees, k_fold_bias,
             )
 
 
 n = 100
 noise = 1
-k = 10
+k = 5
 reg = pf.ridge_regression
 max_degree = 15
 hyperparams = np.linspace(0,4,5)
@@ -109,8 +106,14 @@ ax1.legend(['$\lambda={}$'.format(i) for i in hyperparams])
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(1,1,1)
 
-plot_test(ax2, x,y,z, max_degree, reg, hyperparam=0)
+plot_test(ax2, x,y,z, max_degree, reg, hyperparam=0
+            #,show_bias_var=True
+            )
 plot_training(ax2, x,y,z, max_degree, reg, hyperparam=0)
-ax2.legend(['test mse','training mse'])
+ax2.legend(['test mse'
+            #,'variance'
+            #,'bias'
+            ,'training mse']
+            )
 
 plt.show()
