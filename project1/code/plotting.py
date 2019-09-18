@@ -8,22 +8,18 @@ from random import random, seed
 
 import projectfunctions as pf
 
-def plot_training(ax, n, max_degree, reg, hyperparam, noise=1):
-    """Function for plotting mse only evaluated at the training data """
+def plot_training(ax, x, y, z, max_degree, reg, hyperparam, noise=1):
+    """
+    Function for plotting mse evaluated only at the training data where
+    ax = matplotlib.axis object
+    x, y = coordinates
+    z = data
+    reg = regression function reg(X, data, hyperparam)
+    max_degree = maximum degree of polynomial
+    hyperparam = hyperparameter for calibrating model
+    noise = standard deviation of the normal distributed noise
+    """
     degrees = np.arange(1,max_degree+1)
-    x_val = np.linspace(0,1,n)
-    y_val = np.linspace(0,1,n)
-
-    #making an x and y grid
-    x_grid, y_grid = np.meshgrid(x_val, y_val)
-
-    #flatten x and y
-    x = x_grid.flatten()
-    y = y_grid.flatten()
-
-    #compute z and flatten it
-    z_grid = pf.frankefunction(x, y, noise=noise)
-    z = z_grid.flatten()
 
     mse = []
 
@@ -38,24 +34,19 @@ def plot_training(ax, n, max_degree, reg, hyperparam, noise=1):
 
     ax.plot(degrees, mse)
 
-def plot_test(ax, n, max_degree, reg, hyperparam, k=10,noise=1, show_bias_var=False):
-    """Function for plotting the mse (and bias, variance)
-    calculated using k-fold cross-validation"""
+def plot_test(ax, x, y, z, max_degree, reg, hyperparam, k=5, noise=1, show_bias_var=False):
+    """
+    Function for plotting the mse (and bias, variance)
+    calculated using k-fold cross-validation, where
+        ax = matplotlib.axis object
+        reg = regression function reg(X, data, hyperparam)
+        max_degree = maximum degree of polynomial
+        hyperparam = hyperparameter for calibrating model
+        k = number of folds for cross validation
+        show_bias_var = if True the bias and variance will also be plotted
+        noise = standard deviation of the normal distributed noise
+    """
     degrees = np.arange(1,max_degree+1)
-
-    x_val = np.linspace(0,1,n)
-    y_val = np.linspace(0,1,n)
-
-    #making an x and y grid
-    x_grid, y_grid = np.meshgrid(x_val, y_val)
-
-    #flatten x and y
-    x = x_grid.flatten()
-    y = y_grid.flatten()
-
-    #compute z and flatten it
-    z_grid = pf.frankefunction(x, y, noise=noise)
-    z = z_grid.flatten()
 
     k_fold_mse = []
     k_fold_bias = []
@@ -83,26 +74,43 @@ def plot_test(ax, n, max_degree, reg, hyperparam, k=10,noise=1, show_bias_var=Fa
             )
 
 
-n = 50
+n = 100
 noise = 1
 k = 10
 reg = pf.ridge_regression
-max_degree = 20
-hyperparams = np.linspace(0,2,5)
+max_degree = 15
+hyperparams = np.linspace(0,4,5)
 
+x_val = np.linspace(0,1,n)
+y_val = np.linspace(0,1,n)
+
+#making an x and y grid
+x_grid, y_grid = np.meshgrid(x_val, y_val)
+
+#flatten x and y
+x = x_grid.flatten()
+y = y_grid.flatten()
+
+#compute z and flatten it
+z_grid = pf.frankefunction(x, y, noise=noise)
+z = z_grid.flatten()
+
+'''
+#ploting
 fig1 = plt.figure()
 ax1 = fig1.add_subplot(1,1,1)
 
 for hyperparam in hyperparams:
-    plot_test(ax1, n, max_degree, reg, hyperparam)
+    plot_test(ax1, x,y,z, max_degree, reg, hyperparam,noise=noise)
 
 ax1.legend(['$\lambda={}$'.format(i) for i in hyperparams])
+'''
 
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(1,1,1)
 
-for i in range(3):
-    plot_test(ax2, n, max_degree, reg, hyperparam=0, noise=0.2)
-    #plot_training(ax2, n, max_degree, reg, hyperparam=0)
+plot_test(ax2, x,y,z, max_degree, reg, hyperparam=0)
+plot_training(ax2, x,y,z, max_degree, reg, hyperparam=0)
+ax2.legend(['test mse','training mse'])
 
 plt.show()

@@ -129,21 +129,11 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
         y_train = np.concatenate(y_split[0:i] + y_split[i+1:]).ravel()
         z_train = np.concatenate(z_split[0:i] + z_split[i+1:]).ravel()
 
-
         #fit a model to the training set
-        '''
-        Her må vi bruke enten OLS, Ridges eller Lassos.
-        Foreløpig OLS 5-grad, vil gjøre dette til en variabel
-        '''
         X_train = generate_design_2Dpolynomial(x_train, y_train, degree=degree)
         beta = reg(X_train, z_train, hyperparam=hyperparam)
 
         #evaluate the model on the test set
-        '''
-        Her må vi bruke modellen til å beregne z_tilde for (x_test, y_test)
-        og sammenligne med z_test ved MSE eller R_2_score
-        Foreløpig MSE
-        '''
         X_test = generate_design_2Dpolynomial(x_test, y_test, degree=degree)
         z_fit = X_test @ beta
 
@@ -160,8 +150,8 @@ def frankefunction(x, y, noise=1):
     term2 = 0.75*np.exp(-((9*x + 1)**2)/49.0 - 0.1*(9*y + 1))
     term3 = 0.5*np.exp(-(9*x - 7)**2/4.0 - 0.25*((9*y - 3)**2))
     term4 = -0.2*np.exp(-(9*x - 4)**2 - (9*y - 7)**2)
-    noise = np.random.normal(0, noise, len(x))
-    return term1 + term2 + term3 + term4 + noise
+    noise_ = np.random.normal(0, noise, len(x))
+    return term1 + term2 + term3 + term4 + noise_
 
 def produce_table(data, header):
     """
