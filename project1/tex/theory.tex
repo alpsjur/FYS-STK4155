@@ -26,13 +26,42 @@ where $n$ is the number of cases.
 
 In this project, we are dealing with a two dimensional problem, where each row of the design matrix represents the variables of a $m$th order polynomial, i.e. is on the form $[\{x^iy^j : i+y\leq m\}]$
 
-In order to compute the regression parameters, a cost function $C(\boldsymbol{\beta})$ is introduced. The $\boldsymbol{\beta}$ that are used are the ones that minimize the cost function. Different cost functions gives rise to different regression methods. Here we will look at Ordinary least squares, Ridge and Lasso regression. 
+In order to compute the regression parameters, a cost function $C(\boldsymbol{\beta})$ is introduced. The $\boldsymbol{\beta}$ that are used will then be the ones that minimize the cost function. Different cost functions gives rise to different regression methods. Here we will look at Ordinary least squares, Ridge and Lasso regression. 
 
 \subsection{Ordinary least squares}
+One form of the cost function is given as
+\begin{align*}
+	C(\boldsymbol{\beta}) 
+	&= \frac{1}{n}\sum_{n=0}^{n-1} \left(y_i-\tilde{y}_i\right)^2 \\
+	&= \frac{1}{n}\sum_{n=0}^{n-1} \left(y_i-\boldsymbol{x}_{i*}\boldsymbol{\beta}\right)^2\\
+	&=\frac{1}{n}\left(\left(\boldsymbol{y}-\boldsymbol{X\beta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X\beta}\right)\right)
+\end{align*}
+where $\boldsymbol{x}_{i}$ is the $i$th row of the design matrix. By setting $\frac{\partial C(\boldsymbol{\beta})}{\partial\boldsymbol{\beta}}=0$, one can show that the model parameters that minimizes the cost function are given by
+\begin{equation*}
+	\boldsymbol{\beta}=\left(\boldsymbol{X}^T\boldsymbol{X}\right)^{-1}\boldsymbol{X}^T\boldsymbol{y}
+\end{equation*}
+These are the model parameters used in the Ordinary Least Squares (OLS) model. 
 
 \subsection{Ridge regression}
+Something something restrain
+
+In Ridge regression, the cost function takes the form 
+\begin{equation*}
+	C(\boldsymbol{\beta}) 
+	= \frac{1}{n}\sum_{n=0}^{n-1} \left(y_i-\boldsymbol{x}_{i*}\boldsymbol{\beta}\right)^2 + \lambda \sum_{i=0}^{p-1}\beta_i^2
+\end{equation*}
+
+Minimizing this results in model parameters on the form
+\begin{equation*}
+\boldsymbol{\beta}=\left(\boldsymbol{X}^T\boldsymbol{X}+\boldsymbol{\lambda}\boldsymbol{I}\right)^{-1}\boldsymbol{X}^T\boldsymbol{y}
+\end{equation*}
 	
 \subsection{Lasso regression}
+
+\begin{equation*}
+C(\boldsymbol{\beta}) 
+= \frac{1}{n}\sum_{n=0}^{n-1} \left(y_i-\boldsymbol{x}_{i*}\boldsymbol{\beta}\right)^2 + \lambda \sum_{i=0}^{p-1}\left|\beta\right|
+\end{equation*}
 
 \subsection{Score function}
 
@@ -58,6 +87,8 @@ There are several methods for estimating the skill of a machine learning model. 
 \end{algorithm}
 
 This yields a statistical estimate for how well the model will preform on new data. The choice of $k$ will however effect the bias and variance in the estimation of the evaluation scores. It has been shown empirically that $k=5$ or $k=10$ gives neither a high bias nor variance \citep{james2013introduction}. In this project, a value of 5 was chosen for $k$. 
+
+\subsection{The bias-variance trade-off}
 
 \subsection{Franke's function and digital terrain data}
 In this project, the different regression methods were applied on both constructed and real data. The first was in the form of a sum of weighted exponentials, known as Franke's function:
