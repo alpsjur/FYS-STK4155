@@ -1,13 +1,38 @@
 \section{Theory}
 \label{sec:theory}
 
+\subsection{Linear Regression}
+A linear Regression model makes a prediction of the response variable $y_i$ by computing a weighted sum of the explanatory variables:
+
+\begin{equation*}
+	\tilde{y}_i = \beta_0x_{i0} + \beta_1x_{i1} + \ldots + \beta_{p-1}x_{ip-1} 
+\end{equation*}
+Here, $\tilde{y}_i$ is the prediction, $\{\beta_j\}_{j=0}^{p-1}$ are the regression parameters, while $p$ are the number of explanatory variables. 
+
+In vectorized form, this can be written as
+
+\begin{equation*}
+	\boldsymbol{\tilde{y}} = \boldsymbol{X}\boldsymbol{\beta}
+\end{equation*}
+where $\boldsymbol{\tilde{y}}=[\tilde{y}_0,\tilde{y}_1,\ldots, \tilde{y}_{n-1}]^T$ are the predicted values, $\boldsymbol{\beta}=[\beta_0, \beta_1, \ldots . \beta_{n-1}]^T$ are the regression parameters,  and $\boldsymbol{X}$ is the so called design matrix given by  
+
+\[\boldsymbol{X} =
+\mqty[x_{00} & x_{01} & \hdots & x_{0p-1} \\
+x_{10} & x_{11} & \hdots & x_{1p-1} \\
+\vdots & \ddots & \ddots &  \vdots \\
+x_{n0} & \hdots & \hdots & x_{np-1}],
+\]
+where $n$ is the number of cases. 
+
+In this project, we are dealing with a two dimensional problem, where each row of the design matrix represents the variables of a $m$th order polynomial, i.e. is on the form $[\{x^iy^j : i+y\leq m\}]$
+
+In order to compute the regression parameters, a cost function $C(\boldsymbol{\beta})$ is introduced. The $\boldsymbol{\beta}$ that are used are the ones that minimize the cost function. Different cost functions gives rise to different regression methods. Here we will look at Ordinary least squares, Ridge and Lasso regression. 
+
 \subsection{Ordinary least squares}
 
 \subsection{Ridge regression}
 	
 \subsection{Lasso regression}
-
-\subsection{Mean squared error}
 
 \subsection{Score function}
 
@@ -34,13 +59,18 @@ There are several methods for estimating the skill of a machine learning model. 
 
 This yields a statistical estimate for how well the model will preform on new data. The choice of $k$ will however effect the bias and variance in the estimation of the evaluation scores. It has been shown empirically that $k=5$ or $k=10$ gives neither a high bias nor variance \citep{james2013introduction}. In this project, a value of 5 was chosen for $k$. 
 
+\subsection{Franke's function and digital terrain data}
+In this project, the different regression methods were applied on both constructed and real data. The first was in the form of a sum of weighted exponentials, known as Franke's function:
 
-% Eksempel for store matriser
-\[A =
-\mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\
-a_1 & b_2 & c_2 & 0 & \hdots & 0 \\
-0 & a_2 & b_3 & c_3 & \hdots & 0 \\
-\vdots & \ddots & \ddots & \ddots & \ddots & \vdots \\
-0 & \hdots & \ddots & a_{n-2} & b_{n-1} & c_{n-1} \\
-0 & \hdots & \hdots & 0 & a_{n-1} & b_n],
-\]
+\begin{align*}
+	f\left(x,y\right) &=\frac{3}{4}\exp\left(-\frac{\left(9x-2\right)^2}{4}-\frac{\left(9y-2\right)^2}{4} \right) \\
+	&+\frac{3}{4}\exp\left(-\frac{\left(9x+1\right)^2}{49}-\frac{\left(9y+1\right)^2}{10} \right) \\
+	&+\frac{1}{2}\exp\left(-\frac{\left(9x-7\right)^2}{4}-\frac{\left(9y-3\right)^2}{4} \right) \\
+	&-\frac{1}{5}\exp\left(-\left(9x-4\right)^2-\left(9y-7\right)^2 \right)	
+\end{align*}
+
+In addition to the above terms, a normal distributed noise term with $\mu = 0$ and $\sigma^2 = 1$ was added. 
+
+After testing the code on the simpler Franke's function, the same regression methods were used and evaluated on real digital terrain data downloaded from \url{https://earthexplorer.usgs.gov/}. The data used in this project is of the Oslo fjord region. 
+
+

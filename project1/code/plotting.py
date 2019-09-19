@@ -107,12 +107,12 @@ fig2 = plt.figure()
 ax2 = fig2.add_subplot(1,1,1)
 
 plot_test(ax2, x,y,z, max_degree, reg, hyperparam=0
-            #,show_bias_var=True
+            ,show_bias_var=True
             )
 plot_training(ax2, x,y,z, max_degree, reg, hyperparam=0)
 ax2.legend(['test mse'
-            #,'variance'
-            #,'bias'
+            ,'variance'
+            ,'bias'
             ,'training mse']
             )
 
