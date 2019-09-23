@@ -18,7 +18,7 @@ plotter feil mot kompleksitet
 
 n = 100
 error = 1
-degrees = np.arange(1, 25)
+degrees = np.arange(1, 20)
 
 x_random = np.random.uniform(0, 1, n)
 x_sorted = np.sort(x_random,
@@ -34,8 +34,8 @@ y_sorted = np.sort(y_random,
 x_grid, y_grid = np.meshgrid(x_sorted, y_sorted)
 
 #flatten x and y
-x = x_grid.flatten()
-y = y_grid.flatten()
+x = x_grid.ravel()
+y = y_grid.ravel()
 
 #compute z and flatten it
 z_grid = pf.frankefunction(x_grid, y_grid,
@@ -83,9 +83,9 @@ plt.plot(degrees, k_fold_bias,'--',
         label="bias"
         )
 #plt.plot(degrees, k_fold_mse, ,label="k-fold mse")
-plt.plot(degrees, mse,
-        label="regular mse training"
-        )
+#plt.plot(degrees, mse,
+#        label="regular mse training"
+#        )
 plt.plot(degrees, np.array(k_fold_var) + np.array(k_fold_bias),
         label="total error w/testing"
         )
