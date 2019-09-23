@@ -22,9 +22,9 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
     x_shuffle, y_shuffle, z_shuffle = shuffle(x, y, z, random_state=0)
 
     #split the data into k folds
-    x_split = np.array_split(x_shuffle, k)
-    y_split = np.array_split(y_shuffle, k)
-    z_split = np.array_split(z_shuffle, k)
+    x_split = np.split(x_shuffle, k)
+    y_split = np.split(y_shuffle, k)
+    z_split = np.split(z_shuffle, k)
 
     #loop through the folds
     for i in range(k):
@@ -33,7 +33,7 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
         y_test = y_split[i]
         z_test = z_split[i]
 
-
+        """
         x_train = []
         y_train = []
         z_train = []
@@ -50,6 +50,11 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
         x_train = np.array(x_train)
         y_train = np.array(y_train)
         z_train = np.array(z_train)
+        """
+
+        x_train = np.concatenate(x_split[0:i] + x_split[i+1:]).ravel()
+        y_train = np.concatenate(y_split[0:i] + y_split[i+1:]).ravel()
+        z_train = np.concatenate(z_split[0:i] + z_split[i+1:]).ravel()
 
 
 
@@ -94,16 +99,17 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
 plotter feil mot kompleksitet
 '''
 #np.random.seed(108)
-n = 30
+n = 50
 error = 0.2
 degrees = np.arange(1,20)
 
 x_random = np.random.uniform(0, 1, n)
-x_sorted = np.sort(x_random, axis=0)
+#x_sorted = np.sort(x_random, axis=0)
+x_sorted = np.linspace(0,1,n)
 
 y_random = np.random.uniform(0, 1, n)
-y_sorted = np.sort(y_random,axis=0)
-
+#y_sorted = np.sort(y_random,axis=0)
+y_sorted = np.linspace(0,1,n)
 #making an x and y grid
 x_grid, y_grid = np.meshgrid(x_sorted, y_sorted)
 
@@ -112,8 +118,7 @@ x = x_grid.flatten()
 y = y_grid.flatten()
 
 #compute z and flatten it
-#z_grid = pf.frankefunction(x_grid, y_grid, noise=error)*5
-z_grid = x_grid**2 + y_grid**2 + np.random.normal(0,error,len(x_grid))
+z_grid = pf.frankefunction(x_grid, y_grid, noise=0) + np.random.normal(0,np.sqrt(error),(n,n))
 z = z_grid.flatten()
 
 k_fold_mse = []
@@ -122,7 +127,7 @@ k_fold_r2 = []
 k_fold_var = []
 mse = []
 
-print("mse   | bias  | var")
+print("degree |  mse  | bias  | var")
 for degree in degrees:
     """Performing a k-fold cross-validation on training data"""
     evaluation_scores = k_fold_cross_validation(x,y,z,degree)
@@ -147,7 +152,8 @@ for degree in degrees:
 
     #computing the MSE when no train test split is used
     mse.append(pf.mse(z, z_model))
-    print(f"{k_fold_mse[-1]:5.3f} | {k_fold_bias[-1]:5.3f} | {k_fold_var[-1]:5.3f}")
+    print(f"{degree:6.0f} | {k_fold_mse[-1]:5.3f} | {k_fold_bias[-1]:5.3f} | {k_fold_var[-1]:5.3f}")
+
 
 plt.plot(degrees, k_fold_var,'--',
         label="variance"
@@ -155,7 +161,7 @@ plt.plot(degrees, k_fold_var,'--',
 plt.plot(degrees, k_fold_bias,'--',
         label="bias"
         )
-#plt.plot(degrees, k_fold_mse, ,label="k-fold mse")
+
 plt.plot(degrees, mse,
         label="regular mse training"
         )
@@ -167,15 +173,17 @@ plt.plot(degrees, np.array(k_fold_var) + np.array(k_fold_bias),
         label="variance + bias"
         )
 """
-        
+
 plt.xlabel("degrees")
 plt.legend()
+plt.title(f"Error, bias and variance for n={n}, $\sigma^2$ = {error}")
 #plt.axis([1, degrees[-1], 0, 0.3 ])
+#plt.savefig("../selected results/fig1.pdf")
 plt.show()
 
 ###3D plot ###
 
-"""
+'''
 # Plot the surfacese
 fig = plt.figure(2)
 ax = fig.gca(projection="3d")
@@ -213,4 +221,4 @@ fig.colorbar(surf,
 
 ax.legend()
 plt.show()
-"""
+'''
