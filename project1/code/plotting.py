@@ -45,38 +45,42 @@ def plot_test(ax, x, y, z, max_degree, reg, hyperparam, k=5, noise=1, show_bias_
     """
     degrees = np.arange(1,max_degree+1)
 
-    k_fold_mse = []
-    k_fold_bias = []
-    k_fold_r2 = []
-    k_fold_var = []
+    k_fold_mse = np.zeros(len(degrees))
+    k_fold_bias = np.zeros(len(degrees))
+    k_fold_r2 = np.zeros(len(degrees))
+    k_fold_var = np.zeros(len(degrees))
 
     for degree in degrees:
         """Performing a k-fold cross-validation on training data"""
         evaluation_scores = pf.k_fold_cross_validation(x,y,z, reg, degree=degree,hyperparam=hyperparam,k=k)
 
         """Calculate bias, variance r2 and mse"""
-        k_fold_mse.append(evaluation_scores[0])
-        k_fold_r2.append(evaluation_scores[1])
-        k_fold_bias.append(evaluation_scores[2])
-        k_fold_var.append(evaluation_scores[3])
+        k_fold_mse[degree-1]=(evaluation_scores[0])
+        k_fold_r2[degree-1]=(evaluation_scores[1])
+        k_fold_bias[degree-1]=(evaluation_scores[2])
+        k_fold_var[degree-1]=(evaluation_scores[3])
 
     #Plot mse
     ax.plot(degrees, k_fold_mse)
 
     #Plots bias and variance if show_bias_var is True
     if show_bias_var:
-        ax.plot(degrees, k_fold_var,
+        ax.plot(degrees, k_fold_var
+            #,'--'
             )
-        ax.plot(degrees, k_fold_bias,
+        ax.plot(degrees, k_fold_bias
+            #,'--'
+            )
+        ax.plot(degrees, k_fold_var+k_fold_bias
             )
 
 
-n = 100
+n = 50
 noise = 1
 k = 5
 reg = pf.ridge_regression
 max_degree = 15
-hyperparams = np.linspace(0,4,5)
+#hyperparams = np.linspace(0,4,5)
 
 x_val = np.linspace(0,1,n)
 y_val = np.linspace(0,1,n)
@@ -89,8 +93,9 @@ x = x_grid.flatten()
 y = y_grid.flatten()
 
 #compute z and flatten it
-z_grid = pf.frankefunction(x, y, noise=noise)
+z_grid = pf.frankefunction(x_grid, y_grid, noise=noise)
 z = z_grid.flatten()
+
 
 '''
 #ploting
@@ -113,6 +118,7 @@ plot_training(ax2, x,y,z, max_degree, reg, hyperparam=0)
 ax2.legend(['test mse'
             ,'variance'
             ,'bias'
+            ,'variance+bias'
             ,'training mse']
             )
 
