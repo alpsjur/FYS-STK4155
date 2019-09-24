@@ -33,25 +33,6 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
         y_test = y_split[i]
         z_test = z_split[i]
 
-        """
-        x_train = []
-        y_train = []
-        z_train = []
-
-        for j in range(k):
-            if j != i:
-                for elem in x_split[j]:
-                    x_train.append(elem)
-                for elem in y_split[j]:
-                    y_train.append(elem)
-                for elem in z_split[j]:
-                    z_train.append(elem)
-
-        x_train = np.array(x_train)
-        y_train = np.array(y_train)
-        z_train = np.array(z_train)
-        """
-
         x_train = np.concatenate(x_split[0:i] + x_split[i+1:]).ravel()
         y_train = np.concatenate(y_split[0:i] + y_split[i+1:]).ravel()
         z_train = np.concatenate(z_split[0:i] + z_split[i+1:]).ravel()
@@ -64,19 +45,11 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
         '''
         X_train = pf.generate_design_2Dpolynomial(x_train, y_train, degree)
 
-        U_train,S,V_T = np.linalg.svd(X_train,full_matrices=False)
-
         #Economy sized SVD
         p = int((degree + 1)*(degree + 2)/2)+1
-        U_train = U_train[:,0:p]
         X_train = X_train[:,0:p]
+        beta,z_model = pf.least_squares(X_train,z_train,svd=True)
 
-        z_model = U_train.dot(U_train.T).dot(z_train)
-
-        X_inv = V_T.T.dot(np.linalg.inv(np.diag(S))).dot(U_train.T)
-        beta = X_inv @ z_model
-
-        #evaluate the model on the test set
         '''
         Her må vi bruke modellen til å beregne z_tilde for (x_test, y_test)
         og sammenligne med z_test ved MSE eller R_2_score
@@ -99,8 +72,8 @@ def k_fold_cross_validation(x, y, z, degree, k=10):
 plotter feil mot kompleksitet
 '''
 #np.random.seed(108)
-n = 50
-error = 0.2
+n = 30
+error = 0.1
 degrees = np.arange(1,20)
 
 x_random = np.random.uniform(0, 1, n)
@@ -118,7 +91,7 @@ x = x_grid.flatten()
 y = y_grid.flatten()
 
 #compute z and flatten it
-z_grid = pf.frankefunction(x_grid, y_grid, noise=0) + np.random.normal(0,np.sqrt(error),(n,n))
+z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0,np.sqrt(error),(n,n))
 z = z_grid.flatten()
 
 k_fold_mse = []
@@ -127,7 +100,7 @@ k_fold_r2 = []
 k_fold_var = []
 mse = []
 
-print("degree |  mse  | bias  | var")
+print("degree |  mse  | bias  |  var  | beta 95 % ")
 for degree in degrees:
     """Performing a k-fold cross-validation on training data"""
     evaluation_scores = k_fold_cross_validation(x,y,z,degree)
@@ -141,18 +114,18 @@ for degree in degrees:
 
 
     """Simple training with no folds for comparison"""
-    X = pf.generate_design_2Dpolynomial(x, y, degree)
-
-    U,S,V_T = np.linalg.svd(X)
     p = int((degree + 1)*(degree + 2)/2)+1
+    X = pf.generate_design_2Dpolynomial(x, y, degree)
+    X = X[:,0:p]
 
-    U = U[:,0:p]
-
-    z_model = U.dot(U.T).dot(z)
+    beta,z_model = pf.least_squares(X,z,svd=True)
+    b_ = np.mean(beta)
+    std_b = np.std(beta)
 
     #computing the MSE when no train test split is used
     mse.append(pf.mse(z, z_model))
-    print(f"{degree:6.0f} | {k_fold_mse[-1]:5.3f} | {k_fold_bias[-1]:5.3f} | {k_fold_var[-1]:5.3f}")
+    print(f"{degree:6.0f} | {k_fold_mse[-1]:5.3f} | {k_fold_bias[-1]:5.3f} | \
+{k_fold_var[-1]:5.3f} | <{b_ - 1.96*std_b/np.sqrt(len(beta)):.3f} , {b_ + 1.96*std_b/np.sqrt(len(beta)):.3f}>")
 
 
 plt.plot(degrees, k_fold_var,'--',
@@ -168,16 +141,10 @@ plt.plot(degrees, mse,
 plt.plot(degrees, k_fold_mse,
         label="total error w/testing"
         )
-"""
-plt.plot(degrees, np.array(k_fold_var) + np.array(k_fold_bias),
-        label="variance + bias"
-        )
-"""
 
 plt.xlabel("degrees")
 plt.legend()
 plt.title(f"Error, bias and variance for n={n}, $\sigma^2$ = {error}")
-#plt.axis([1, degrees[-1], 0, 0.3 ])
 #plt.savefig("../selected results/fig1.pdf")
 plt.show()
 

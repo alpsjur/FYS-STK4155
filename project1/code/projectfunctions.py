@@ -26,12 +26,21 @@ def generate_design_2Dpolynomial(x, y, degree=5):
             p += 1
     return X
 
-def least_squares(X, data):
+def least_squares(X, data,svd=False):
     """
     Least squares solved using matrix inversion
     """
-    beta = np.linalg.pinv(X.T.dot(X)).dot(X.T).dot(data)
-    return beta
+    if svd == False:
+        beta = np.linalg.pinv(X.T.dot(X)).dot(X.T).dot(data)
+        model = X @ beta
+        return beta, model
+    if svd == True:
+        U,S,V_T = np.linalg.svd(X,full_matrices=False)
+        model = U.dot(U.T).dot(data)
+        X_inv = V_T.T.dot(np.linalg.inv(np.diag(S))).dot(U.T)
+        beta = X_inv @ model
+        return beta, model
+
 
 def ridge_regression(X, data, hyperparam=0):
     """
