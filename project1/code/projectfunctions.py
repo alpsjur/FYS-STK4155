@@ -26,20 +26,11 @@ def generate_design_2Dpolynomial(x, y, degree=5):
             p += 1
     return X
 
-def least_squares(X, data,svd=False):
+def least_squares(X, data, hyperparam=0):
     """
     Least squares solved using matrix inversion
     """
-    if svd == False:
-        beta = np.linalg.pinv(X.T.dot(X)).dot(X.T).dot(data)
-        model = X @ beta
-        return beta, model
-    if svd == True:
-        U,S,V_T = np.linalg.svd(X,full_matrices=False)
-        model = U.dot(U.T).dot(data)
-        X_inv = V_T.T.dot(np.linalg.inv(np.diag(S))).dot(U.T)
-        beta = X_inv @ model
-        return beta, model
+    return ridge_regression(X,data,hyperparam=0)
 
 
 def ridge_regression(X, data, hyperparam=0):
@@ -75,11 +66,6 @@ def r2(data, model):
     error = 1 - np.sum((data - model)**2)/np.sum((data - np.mean(data))**2)
     return error
 
-def expectation(models):
-    """compute a mean vector from n vectors """
-    mean_model =  np.mean(models, axis=1, keepdims=True)
-    return mean_model
-
 def bias(data, model):
     """caluclate bias from k expectation values and data of length n"""
     n = len(data)
@@ -91,7 +77,7 @@ def variance(model):
     Calculating the variance of the model: Var[model]
     """
     n = len(model)
-    error = bias(model, model)
+    error = mse(model, np.mean(model))
     return error
 
 def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
@@ -155,8 +141,7 @@ def frankefunction(x, y):
     term2 = 0.75*np.exp(-((9*x + 1)**2)/49.0 - 0.1*(9*y + 1))
     term3 = 0.5*np.exp(-(9*x - 7)**2/4.0 - 0.25*((9*y - 3)**2))
     term4 = -0.2*np.exp(-(9*x - 4)**2 - (9*y - 7)**2)
-    noise_ = np.random.normal(0, noise, x.shape)
-    return term1 + term2 + term3 + term4 + noise_
+    return term1 + term2 + term3 + term4
 
 def produce_table(data, header):
     """
