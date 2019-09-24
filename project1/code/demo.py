@@ -31,6 +31,9 @@ z = z_grid.flatten()
 
 
 #calculationg bias, variance, mse for each fold
+'''
+Her beregner vi bias og varians inne i hver fold
+'''
 k_fold_mse = np.zeros(len(degrees))
 k_fold_bias = np.zeros(len(degrees))
 k_fold_r2 = np.zeros(len(degrees))
@@ -62,6 +65,10 @@ ax.legend()
 ax.set_title('Bias and variance calculated in each fold')
 
 #calculationg bias, variance, mse globaly
+'''
+Her beregner vi bias og varians globalt, ved å sammenligne med et test-sett
+som  holdes utenfor k-fold cross-validation
+'''
 k_fold_mse = np.zeros(len(degrees))
 k_fold_bias = np.zeros(len(degrees))
 k_fold_r2 = np.zeros(len(degrees))
