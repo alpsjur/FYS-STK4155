@@ -6,7 +6,7 @@ from random import random, seed
 
 import projectfunctions as pf
 
-n = 100
+n = 50
 noise = 1
 k = 5
 reg = pf.ridge_regression
