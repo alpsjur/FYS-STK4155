@@ -29,7 +29,9 @@ def plot_training(ax, x, y, z, max_degree, reg, hyperparam, noise=1):
         #computing the MSE when no train test split is used
         mse.append(pf.mse(z, z_model))
 
-    ax.plot(degrees, mse)
+    ax.plot(degrees, mse
+            ,label='training mse'
+            )
 
 def plot_test(ax, x, y, z, max_degree, reg, hyperparam, k=5, noise=1, show_bias_var=False):
     """
@@ -51,33 +53,33 @@ def plot_test(ax, x, y, z, max_degree, reg, hyperparam, k=5, noise=1, show_bias_
     k_fold_var = np.zeros(len(degrees))
 
     for degree in degrees:
-        """Performing a k-fold cross-validation on training data"""
-        evaluation_scores = pf.k_fold_cross_validation(x,y,z, reg, degree=degree,hyperparam=hyperparam,k=k)
+        [mse, r2, bias, var] = pf.bias_variance(x, y, z, reg, degree=degree, hyperparam=hyperparam, k=k)
 
-        """Calculate bias, variance r2 and mse"""
-        k_fold_mse[degree-1]=(evaluation_scores[0])
-        k_fold_r2[degree-1]=(evaluation_scores[1])
-        k_fold_bias[degree-1]=(evaluation_scores[2])
-        k_fold_var[degree-1]=(evaluation_scores[3])
+        k_fold_mse[degree-1]=mse
+        k_fold_r2[degree-1]=r2
+        k_fold_bias[degree-1]=bias
+        k_fold_var[degree-1]=var
+
 
     #Plot mse
-    ax.plot(degrees, k_fold_mse)
+    ax.plot(degrees, k_fold_mse,label='test mse')
 
     #Plots bias and variance if show_bias_var is True
     if show_bias_var:
         ax.plot(degrees, k_fold_var
-            #,'--'
+            ,label='variance'
             )
         ax.plot(degrees, k_fold_bias
-            #,'--'
+            ,label='bias^2'
             )
         ax.plot(degrees, k_fold_var+k_fold_bias
+            ,label='bias^2+variance'
             )
 
 
 n = 50
 noise = 1
-k = 5
+k = 10
 reg = pf.ridge_regression
 max_degree = 15
 #hyperparams = np.linspace(0,4,5)
@@ -93,7 +95,7 @@ x = x_grid.flatten()
 y = y_grid.flatten()
 
 #compute z and flatten it
-z_grid = pf.frankefunction(x_grid, y_grid, noise=noise)
+z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0,np.sqrt(noise),x_grid.shape)
 z = z_grid.flatten()
 
 
@@ -115,11 +117,6 @@ plot_test(ax2, x,y,z, max_degree, reg, hyperparam=0
             ,show_bias_var=True
             )
 plot_training(ax2, x,y,z, max_degree, reg, hyperparam=0)
-ax2.legend(['test mse'
-            ,'variance'
-            ,'bias'
-            ,'variance+bias'
-            ,'training mse']
-            )
+ax2.legend()
 
 plt.show()
