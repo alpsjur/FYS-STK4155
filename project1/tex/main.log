@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  24 SEP 2019 13:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  24 SEP 2019 14:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1685,10 +1685,10 @@ LaTeX Font Info:    Try loading font information for U+dsrom on input line 121.
 (/usr/share/texlive/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1953) has occurred while \output is active []
 
  [3])
-Underfull \hbox (badness 2617) in paragraph at lines 137--37
+Underfull \hbox (badness 2617) in paragraph at lines 139--37
 []\OT1/cmr/m/n/10.95 After test-ing the code on the sim-pler
  []
 
@@ -1709,10 +1709,10 @@ If that doesn't work, type  X <return>  to quit.
 
 ) (./discussion.tex) (./conclusion.tex) (./main.bbl) [4] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 12776 strings out of 493029
- 223392 string characters out of 6136234
- 283585 words of memory out of 5000000
- 16170 multiletter control sequences out of 15000+600000
+ 12779 strings out of 493029
+ 223470 string characters out of 6136234
+ 284649 words of memory out of 5000000
+ 16173 multiletter control sequences out of 15000+600000
  13281 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,14n,42p,10407b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1732,7 +1732,7 @@ cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb>
-Output written on main.pdf (4 pages, 187661 bytes).
+Output written on main.pdf (4 pages, 189319 bytes).
 PDF statistics:
  81 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream
