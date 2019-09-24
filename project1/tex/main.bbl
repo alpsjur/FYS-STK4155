@@ -1,9 +1,16 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{4}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Hastie et~al.(2009)Hastie, Tibshirani, and
+  Friedman]{hastie2009elements}
+Trevor Hastie, Robert Tibshirani, and Jerome Friedman.
+\newblock The elements of statistical learning: prediction, inference and data
+  mining.
+\newblock \emph{Springer-Verlag, New York}, 2009.
 
 \bibitem[Hoerl and Kennard(1970)]{hoerl1970ridge}
 Arthur~E Hoerl and Robert~W Kennard.
