@@ -85,11 +85,11 @@ def variance(model):
 def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
     """
     k-fold CV calculating evaluation scores: MSE, R2, Bias, variance for
-    data trained on k folds. Returns MSE, R2 and a matrix of beta values
-    for all the folds.
-    where
+    data trained on k folds. Returns MSE, R2 Bias, variance, and a matrix of beta
+    values for all the folds.
+    arguments:
         x, y = coordinates (will generalise for arbitrary number of parameters)
-        z = data/model
+        z = data
         reg = regression function reg(X, data, hyperparam)
         degree = degree of polynomial
         hyperparam = hyperparameter for calibrating model
@@ -143,6 +143,10 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
 
 def bias_variance(x, y, z, reg, degree=5, hyperparam=0, k=5):
     """
+    Calculating bias and variance when evaluating the models generated in
+    k-fold cross-validation on the sae global test set 
+    Inspired by the calculation of bias and variance for bootstrap in the
+    regression slides.
     """
     #splits the sets into a set for cross-validation and a global validation set
     x, x_val, y, y_val, z, z_val = train_test_split(x,y,z,test_size=0.2)
@@ -154,10 +158,6 @@ def bias_variance(x, y, z, reg, degree=5, hyperparam=0, k=5):
 
     X_val = generate_design_2Dpolynomial(x_val, y_val, degree=degree)
     z_pred = X_val @ betas
-
-    #z_pred_mean = np.mean(z_pred, axis=1,keepdims=True)
-    #BIAS = np.mean(np.mean((z_val-z_pred_mean)**2,axis=1))
-    #VAR = np.mean(np.var(z_pred,axis=1,keepdims=True))
 
     z_val = np.reshape(z_val,(len(z_val),1))
 
