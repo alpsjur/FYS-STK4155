@@ -129,9 +129,10 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
         # pick out the remaining data as training data
         # concatenate joins a sequence of arrays into a array
         # ravel flattens the resulting array
-        x_train = np.concatenate(x_split[0:i] + x_split[i+1:]).ravel()
-        y_train = np.concatenate(y_split[0:i] + y_split[i+1:]).ravel()
-        z_train = np.concatenate(z_split[0:i] + z_split[i+1:]).ravel()
+
+        x_train = np.delete(x_split, i, axis=0).ravel()
+        y_train = np.delete(y_split, i, axis=0).ravel()
+        z_train = np.delete(z_split, i, axis=0).ravel()
 
         #fit a model to the training set
         X_train = generate_design_2Dpolynomial(x_train, y_train, degree=degree)
@@ -154,7 +155,8 @@ def frankefunction(x, y):
     term2 = 0.75*np.exp(-((9*x + 1)**2)/49.0 - 0.1*(9*y + 1))
     term3 = 0.5*np.exp(-(9*x - 7)**2/4.0 - 0.25*((9*y - 3)**2))
     term4 = -0.2*np.exp(-(9*x - 4)**2 - (9*y - 7)**2)
-    return term1 + term2 + term3 + term4
+    noise_ = np.random.normal(0, noise, x.shape)
+    return term1 + term2 + term3 + term4 + noise_
 
 def produce_table(data, header):
     """

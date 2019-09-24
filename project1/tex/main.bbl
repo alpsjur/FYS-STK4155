@@ -1,9 +1,14 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{3}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Hoerl and Kennard(1970)]{hoerl1970ridge}
+Arthur~E Hoerl and Robert~W Kennard.
+\newblock Ridge regression: Biased estimation for nonorthogonal problems.
+\newblock \emph{Technometrics}, 12\penalty0 (1):\penalty0 55--67, 1970.
 
 \bibitem[James et~al.(2013)James, Witten, Hastie, and
   Tibshirani]{james2013introduction}
@@ -12,5 +17,11 @@ G.~James, D.~Witten, T.~Hastie, and R.~Tibshirani.
   R}.
 \newblock Springer Texts in Statistics. Springer New York, 2013.
 \newblock ISBN 9781461471387.
+
+\bibitem[Tibshirani(1996)]{tibshirani1996lasso}
+Robert Tibshirani.
+\newblock Regression shrinkage and selection via the lasso.
+\newblock \emph{Journal of the Royal Statistical Society: Series B
+  (Methodological)}, 58\penalty0 (1):\penalty0 267--288, 1996.
 
 \end{thebibliography}
