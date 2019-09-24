@@ -17,7 +17,7 @@ plotter feil mot kompleksitet
 #np.random.seed(108)
 n = 60
 error = 1
-degrees = np.arange(1,20)
+degrees = np.arange(1,15)
 
 x_random = np.random.uniform(0, 1, n)
 #x_sorted = np.sort(x_random, axis=0)
@@ -88,12 +88,11 @@ plt.plot(degrees, k_fold_mse,
 
 plt.xlabel("degrees")
 plt.legend()
-plt.title(f"Error, bias and variance for n={n}, $\sigma^2$ = {error}")
+plt.title(f"Least Squares: Error, bias and variance for n={n}, $\sigma^2$ = {error}")
 #plt.savefig("../selected results/fig1.pdf")
 plt.show()
 
 ###3D plot ###
-
 '''
 # Plot the surfacese
 fig = plt.figure(2)
@@ -120,7 +119,7 @@ ax.scatter(x_grid, y_grid, z_grid,
                         )
 
 # Customize the z axis.
-#ax.set_zlim(-0.10, 1.40)
+ax.set_zlim(-0.10, 1.40)
 ax.zaxis.set_major_locator(LinearLocator(10))
 ax.zaxis.set_major_formatter(FormatStrFormatter("%.02f"))
 # Add a color bar which maps values to colors.
@@ -133,17 +132,3 @@ fig.colorbar(surf,
 ax.legend()
 plt.show()
 '''
-def least_squares(X, data, hyperparam=0, svd=False):
-    """
-    Least squares solved using matrix inversion
-    """
-    if svd == False:
-        beta = np.linalg.pinv(X.T.dot(X)).dot(X.T).dot(data)
-        model = X @ beta
-        return beta, model
-    if svd == True:
-        U,S,V_T = np.linalg.svd(X,full_matrices=False)
-        model = U.dot(U.T).dot(data)
-        X_inv = V_T.T.dot(np.linalg.inv(np.diag(S))).dot(U.T)
-        beta = X_inv @ model
-        return beta, model
