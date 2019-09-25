@@ -8,12 +8,12 @@ from sklearn.utils import resample
 
 import projectfunctions as pf
 
-#np.random.seed(2018)
+np.random.seed(2019)
 
-n = 10
-noise = 1
+n = 20
+noise = 0.1
 reg = pf.ridge_regression
-maxdegree = 30
+maxdegree = 15
 hyperparam = 0
 n_boostraps = 100
 
@@ -28,17 +28,17 @@ x = x_grid.ravel()
 y = y_grid.ravel()
 
 #compute z and flatten it
-z_grid = pf.frankefunction(x, y)#+ np.random.normal(0,np.sqrt(noise),x.shape)
+z_grid = pf.frankefunction(x, y) + np.random.normal(0, noise, x.shape)
 z = z_grid.ravel()
 
-mse_test = np.zeros(maxdegree)
-mse_train = np.zeros(maxdegree)
-bias = np.zeros(maxdegree)
-variance = np.zeros(maxdegree)
-polydegree = np.zeros(maxdegree)
+mse_test = np.zeros(maxdegree+1)
+mse_train = np.zeros(maxdegree+1)
+bias = np.zeros(maxdegree+1)
+variance = np.zeros(maxdegree+1)
+polydegree = np.zeros(maxdegree+1)
 x_train, x_test, y_train, y_test, z_train, z_test = train_test_split(x, y, z, test_size=0.2)
 
-for degree in range(maxdegree):
+for degree in range(maxdegree+1):
     #calculating train mse
     X_train = pf.generate_design_2Dpolynomial(x_train, y_train, degree=degree)
     beta_train = reg(X_train, z_train, hyperparam=hyperparam)
