@@ -70,23 +70,21 @@ ax.set_title('Bias and variance calculated in each fold')
 Her beregner vi bias og varians globalt, ved å sammenligne med et test-sett
 som  holdes utenfor k-fold cross-validation.
 '''
-k_fold_mse = np.zeros(len(degrees))
+k_fold_error = np.zeros(len(degrees))
 k_fold_bias = np.zeros(len(degrees))
-k_fold_r2 = np.zeros(len(degrees))
 k_fold_var = np.zeros(len(degrees))
 
 for degree in degrees:
-    [mse, r2, bias, var] = pf.bias_variance(x, y, z, reg, degree=degree, hyperparam=hyperparam, k=k)
+    [error, bias, var] = pf.bias_variance(x, y, z, reg, degree=degree, hyperparam=hyperparam, k=k)
 
-    k_fold_mse[degree-1]=mse
-    k_fold_r2[degree-1]=r2
+    k_fold_error[degree-1]=error
     k_fold_bias[degree-1]=bias
     k_fold_var[degree-1]=var
 
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(1,1,1)
-ax2.plot(degrees, k_fold_mse
-        ,label='test mse'
+ax2.plot(degrees, k_fold_error
+        ,label='test error'
         )
 ax2.plot(degrees, k_fold_var
         ,label='variance'

@@ -4,13 +4,13 @@ from sklearn import linear_model
 from sklearn.model_selection import train_test_split
 
 
-def generate_design_polynomial(x, p=1):
+def generate_design_polynomial(x, degree=1):
     """
     Creates a design matrix for a 1d polynomial of degree p
         1 + x + x**2 + ...
     """
-    X = np.zeros((len(x), p+1))
-    for degree in range(0, p+1):
+    X = np.zeros((len(x), degree+1))
+    for degree in range(0, degree+1):
         X[:, degree] = (x.T)**degree
     return X
 
@@ -144,7 +144,7 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
 def bias_variance(x, y, z, reg, degree=5, hyperparam=0, k=5):
     """
     Calculating bias and variance when evaluating the models generated in
-    k-fold cross-validation on the sae global test set 
+    k-fold cross-validation on the sae global test set
     Inspired by the calculation of bias and variance for bootstrap in the
     regression slides.
     """
@@ -161,10 +161,10 @@ def bias_variance(x, y, z, reg, degree=5, hyperparam=0, k=5):
 
     z_val = np.reshape(z_val,(len(z_val),1))
 
-    #error = np.mean( np.mean((z_val - z_pred)**2, axis=1, keepdims=True) )
+    error = np.mean( np.mean((z_val - z_pred)**2, axis=1, keepdims=True) )
     BIAS = np.mean( (z_val - np.mean(z_pred, axis=1, keepdims=True))**2 )
     VAR = np.mean( np.var(z_pred, axis=1, keepdims=True) )
-    return [MSE, R2, BIAS, VAR]
+    return [error, BIAS, VAR]
 
 def frankefunction(x, y):
     term1 = 0.75*np.exp(-(0.25*(9*x - 2)**2) - 0.25*((9*y - 2)**2))
