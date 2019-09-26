@@ -12,7 +12,7 @@ noise = 0.1
 reg = pf.ridge_regression
 maxdegree = 15
 hyperparam = 0
-n_boostraps = 200
+n_bootstraps = 200
 
 x_val = np.linspace(0,1,n)
 y_val = np.linspace(0,1,n)
@@ -36,33 +36,20 @@ polydegree = np.zeros(maxdegree+1)
 x_train, x_test, y_train, y_test, z_train, z_test = train_test_split(x, y, z, test_size=0.2)
 
 for degree in range(maxdegree+1):
+
     #calculating train mse
     X_train = pf.generate_design_2Dpolynomial(x_train, y_train, degree=degree)
     beta_train = reg(X_train, z_train, hyperparam=hyperparam)
     z_train_pred = X_train @ beta_train
     mse_train[degree] = np.mean((z_train - z_train_pred)**2)
 
-    #preforming bootstrap
-    X_test = pf.generate_design_2Dpolynomial(x_test, y_test, degree=degree)
-    z_pred = np.empty((z_test.shape[0], n_boostraps))
-    for i in range(n_boostraps):
-        x_, y_, z_ = resample(x_train, y_train, z_train)
-        X = pf.generate_design_2Dpolynomial(x_, y_, degree=degree)
-        beta = reg(X, z_, hyperparam=hyperparam)
-        z_pred_temp = X_test @ beta
-        z_pred[:, i] = z_pred_temp.ravel()
+    scores = pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, reg, degree=degree, hyperparam=hyperparam)
 
-    z_test = np.reshape(z_test,(len(z_test),1))
     polydegree[degree] = degree
-    mse_test[degree] = np.mean( np.mean((z_test - z_pred)**2, axis=1, keepdims=True) )
-    bias[degree] = np.mean( (z_test - np.mean(z_pred, axis=1, keepdims=True))**2 )
-    variance[degree] = np.mean( np.var(z_pred, axis=1, keepdims=True) )
-    #print('Polynomial degree:', degree)
-    #print('Error:', error[degree])
-    #print('Bias^2:', bias[degree])
-    #print('Var:', variance[degree])
-    #print('{} >= {} + {} = {}'.format(error[degree], bias[degree], variance[degree], bias[degree]+variance[degree]))
-
+    mse_test[degree] = scores[0]
+    bias[degree] = scores[2]
+    variance[degree] = scores[3]
+    
 plt.plot(polydegree, mse_test
         ,label='mse test'
         )

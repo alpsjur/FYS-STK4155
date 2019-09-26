@@ -70,7 +70,7 @@ ax.set_title('Bias and variance calculated in each fold')
 Her beregner vi bias og varians globalt, ved å sammenligne med et test-sett
 som  holdes utenfor k-fold cross-validation.
 '''
-k_fold_error = np.zeros(len(degrees))
+k_fold_mse = np.zeros(len(degrees))
 k_fold_bias = np.zeros(len(degrees))
 k_fold_var = np.zeros(len(degrees))
 
