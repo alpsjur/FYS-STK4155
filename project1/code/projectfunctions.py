@@ -1,7 +1,6 @@
 import numpy as np
 from sklearn.utils import shuffle
 from sklearn import linear_model
-from sklearn.model_selection import train_test_split
 from sklearn.utils import resample
 
 
