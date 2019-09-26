@@ -121,9 +121,9 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
         # concatenate joins a sequence of arrays into a array
         # ravel flattens the resulting array
 
-        x_train = np.delete(x_split, i, axis=0, keepdims=True).ravel()
-        y_train = np.delete(y_split, i, axis=0, keepdims=True).ravel()
-        z_train = np.delete(z_split, i, axis=0, keepdims=True).ravel()
+        x_train = np.delete(x_split, i, axis=0).ravel()
+        y_train = np.delete(y_split, i, axis=0).ravel()
+        z_train = np.delete(z_split, i, axis=0).ravel()
 
         #fit a model to the training set
         X_train = generate_design_2Dpolynomial(x_train, y_train, degree=degree)
