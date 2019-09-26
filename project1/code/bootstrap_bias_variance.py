@@ -1,9 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.linear_model import LinearRegression, Ridge, Lasso
-from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
-from sklearn.pipeline import make_pipeline
 from sklearn.utils import resample
 
 import projectfunctions as pf
@@ -15,7 +12,7 @@ noise = 0.1
 reg = pf.ridge_regression
 maxdegree = 15
 hyperparam = 0
-n_boostraps = 100
+n_boostraps = 200
 
 x_val = np.linspace(0,1,n)
 y_val = np.linspace(0,1,n)

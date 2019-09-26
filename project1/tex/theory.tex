@@ -61,7 +61,6 @@ Minimizing this results in model parameters on the form
 \end{equation}
 Here, $\boldsymbol{I}$ is the identity matrix of the same size as $\boldsymbol{X}^T\boldsymbol{X}$. The parameter $\lambda$ then has to be tuned, for example by the use of cross-validation. 
 One can see that by setting $\lambda = 0$, (\ref{eq:ridge}) simplifies to the OLS solution in (\ref{eq:ols}).
-Since both OLS and Ridge gives an explicit expression for $\boldsymbol{\beta}$, the model parameters can be calculated directly. In this project, expression (\ref{eq:ols}) and (\ref{eq:ridge}) was calculated using the linear algebra functionality in the python package \texttt{numpy}.
 	
 \subsection{Lasso regression}
 The choice of the penalty term in (\ref{eq:ridge_cost}) is somewhat arbitrary, and other penalty functions could be considered. \cite{tibshirani1996lasso} introduced a penalty function such that the cost function takes the form
@@ -69,9 +68,7 @@ The choice of the penalty term in (\ref{eq:ridge_cost}) is somewhat arbitrary, a
 \begin{equation*}
 C(\boldsymbol{\beta}) 
 = \frac{1}{n}\sum_{n=0}^{n-1} \left(y_i-\boldsymbol{x}_{i*}\boldsymbol{\beta}\right)^2 + \lambda \sum_{i=0}^{p-1}\left|\beta\right|
-\end{equation*}
-
-Unlike OLS and Ridge regression, there is no general, explicit expression for the model parameters in Lasso regression. Therefore, in this project, functionalities from the \texttt{scikit-learn} package was used to calculate $\boldsymbol{\beta}$  in the Lasso regression case.  
+\end{equation*} 
 
 \subsection{Evaluation scores}
 In this project, we will use two well known expressions to calculate the error in the predicted values. That is the Mean Square error (MSE)
@@ -110,13 +107,36 @@ There are several methods for estimating the skill of a machine learning model. 
 
 This yields a statistical estimate for how well the model will preform on new data. The choice of $k$ will however effect the bias and variance in the estimation of the evaluation scores. It has been shown empirically that $k=5$ or $k=10$ gives neither a high bias nor variance \citep{james2013introduction}. In this project, a value of 5 was chosen for $k$. 
 
+\subsection{Bootstrap method for resampling}
+Algorithm \ref{alg:bootstrap} gives an overview of the bootstrap method. 
+
+\begin{algorithm}[htbp]\caption{The bootstrap algorithm.}\label{alg:bootstrap}
+	\SetAlgoLined
+	\BlankLine
+	\BlankLine
+	Split the data into training and test sets\;
+	Set a number of bootstrap samples $n$\;
+	Set a sample size $N$\;
+	\ForEach{$n$}{
+		Draw a $N$-sized sample with replacement from the training set\;
+		Fit a model to the data sample\;
+		Apply the model on the test set\;
+	}
+	Evaluate all the model predictions\;
+	Calculate the mean of the evaluation scores\;	
+	\BlankLine
+	\BlankLine
+\end{algorithm}
+
 \subsection{The bias-variance trade-off}
 Taking a look at the MSE again, (\ref{eq:mse}) can be expressed as the expectation value of $\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^2$, which can be decomposed as follows. For the full derivation, see \ref{sec:appendix}. 
 \begin{align}\label{eq:bias-variance}
+\begin{split}
 	\mathds{E}\left[\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^2\right] 
-	=&\frac{1}{n}\sum_{i=0}^{n-1}\left(f_i-\mathds{E}\left[\boldsymbol{\tilde{y}}\right]\right)^2 \\
-	+&\frac{1}{n}\sum_{i=0}^{n-1}\left(\tilde{y}_i-\mathds{E}\left[\boldsymbol{\tilde{y}}\right]\right)^2 + \sigma^2 \\
+	=&\frac{1}{n}\sum_{i=0}^{n-1}\left(f_i-\mathds{E}\left[{\tilde{y}_i}\right]\right)^2 \\
+	+&\frac{1}{n}\sum_{i=0}^{n-1}\left(\tilde{y}_i-\mathds{E}\left[{\tilde{y}_i}\right]\right)^2 + \sigma^2 \\
 	=& Bias^2 + Variance + \sigma^2
+\end{split}
 \end{align}
 Here, $f_i$ comes from (\ref{eq_model}) written out element wise as $y_i = f_i + \epsilon_i$. The first term in (\ref{eq:bias-variance}) is the squared bias, while the second term is the variance of the model. The last term, $\sigma^2$, comes from the assumption of a normal distributed noise in (\ref{eq_model}), and is the so called irreducible error. This error is beyond our control, even if the true value of $f_i$ is known. 
 
@@ -135,3 +155,12 @@ In this project, the different regression methods were applied on both construct
 In addition to the above terms, a normal distributed noise term with $\mu = 0$ and $\sigma^2 = 1$ was added. 
 
 After testing the code on the simpler Franke's function, the same regression methods were used and evaluated on real digital terrain data downloaded from \url{https://earthexplorer.usgs.gov/}. The data used in this project is of the Oslo fjord region. 
+
+\subsection{Implementation}
+Since both OLS and Ridge gives an explicit expression for $\boldsymbol{\beta}$, the model parameters can be calculated directly. In this project, expression (\ref{eq:ols}) and (\ref{eq:ridge}) was calculated using the linear algebra functionality in the Python package \texttt{numpy}.
+
+Unlike OLS and Ridge regression, there is no general, explicit expression for the model parameters in Lasso regression. Therefore, functionalities from the \texttt{scikit-learn} package was used to calculate $\boldsymbol{\beta}$  in the Lasso regression case. 
+
+
+
+All plots were made using the Python package \texttt{matplotlib}. 
