@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from random import random, seed
 from sklearn.model_selection import train_test_split
-
+import seaborn as sns
 import projectfunctions as pf
 
 def plot_train_vs_degree(ax, x, y, z, reg, max_degree, hyperparam, **kwargs):
@@ -65,7 +65,7 @@ def plot_test_vs_degree(ax, x, y, z,  reg, max_degree, hyperparam ,show_bias_var
         hyperparam = hyperparameter for model
         show_bias_var = if True the bias and variance will also be plotted
     """
-    degrees = np.arange(1,max_degree+1)
+    degrees = np.arange(0,max_degree+1)
 
     k_fold_mse = np.zeros(len(degrees))
     k_fold_bias = np.zeros(len(degrees))
@@ -150,14 +150,51 @@ def plot_test_vs_lambda(ax, x, y, z, reg, degree, hyperparams ,show_bias_var=Fal
             , **kwargs
             )
 
-if __name__ == '__main__':
+def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperparams , **kwargs):
+    """
+    Function for plotting the mse vs complexity for multiple lambda
+    calculated using bootstrap, where
+        ax = matplotlib.axis object
+        reg = regression function reg(X, data, hyperparam)
+        max_degree = maximum degree of polynomial
+        hyperparaml = list of hyperparameters for model
 
+    """
+    degrees = np.arange(0,max_degree+1)
+
+    k_fold_mse = np.zeros(len(degrees))
+    k_fold_bias = np.zeros(len(degrees))
+    k_fold_r2 = np.zeros(len(degrees))
+    k_fold_var = np.zeros(len(degrees))
+
+    x_train, x_test, y_train, y_test, z_train, z_test = train_test_split(x, y, z, test_size=0.2)
+
+    for hyperparam in hyperparams:
+        for degree in degrees:
+            [mse, r2, bias, var] = pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, reg, degree=degree, hyperparam=hyperparam)
+
+            k_fold_mse[degree-1]=mse
+            k_fold_r2[degree-1]=r2
+            k_fold_bias[degree-1]=bias
+            k_fold_var[degree-1]=var
+
+
+            #Plot mse
+        ax.plot(degrees, k_fold_mse
+            ,label='$\lambda$={}'.format(hyperparam)
+            , **kwargs
+            )
+
+if __name__ == '__main__':
+    sns.set()
 
     n = 20
     noise = 0.1
     reg = pf.ridge_regression
     max_degree = 15
+    degree = 5
     hyperparam = 0
+    hyperparams = np.logspace(-8,0,9)
 
     x_val = np.linspace(0,1,n)
     y_val = np.linspace(0,1,n)
@@ -174,18 +211,22 @@ if __name__ == '__main__':
     z = z_grid.flatten()
 
 
-    fig1 = plt.figure()
-    ax1 = fig1.add_subplot(1,1,1)
+    #fig1 = plt.figure()
+    #ax1 = fig1.add_subplot(1,1,1)
 
-    plot_test_vs_degree(ax1, x, y, z, reg, max_degree, hyperparam, show_bias_var=True)
-    plot_train_vs_degree(ax1, x, y, z, reg, max_degree, hyperparam)
-    ax1.legend()
+    #plot_test_vs_degree(ax1, x, y, z, reg, max_degree, hyperparam, show_bias_var=True)
+    #plot_train_vs_degree(ax1, x, y, z, reg, max_degree, hyperparam)
+    #ax1.legend()
 
-    fig2 = plt.figure()
-    ax2 = fig2.add_subplot(1,1,1)
-    hyperparams = np.logspace(1e-6,1,6)
-    degree = 5
+    #fig2 = plt.figure()
+    #ax2 = fig2.add_subplot(1,1,1)
 
-    plot_test_vs_lambda(ax2, x, y, z, reg, degree, hyperparams)
+    #plot_test_vs_lambda(ax2, x, y, z, reg, degree, hyperparams)
+
+    fig3 = plt.figure()
+    ax3 = fig3.add_subplot(1,1,1)
+
+    plot_test_vs_degree_multiple_lambda(ax3, x, y, z, reg, max_degree, hyperparams)
+    ax3.legend()
 
     plt.show()
