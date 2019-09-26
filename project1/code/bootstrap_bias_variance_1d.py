@@ -6,16 +6,20 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
 from sklearn.utils import resample
 
+import projectfunctions as pf
+
 np.random.seed(2018)
 
 n = 40
 n_boostraps = 100
 maxdegree = 14
+reg = pf.ridge_regression
+hyperparam = 0
 
 
 # Make data set.
 x = np.linspace(-3, 3, n).reshape(-1, 1)
-y = np.exp(-x**2) + 1.5 * np.exp(-(x-2)**2)+ np.random.normal(0, 0.1, x.shape)
+y = np.exp(-x**2) + 1.5 * np.exp(-(x-2)**2)+ np.random.normal(0, 1, x.shape)
 error = np.zeros(maxdegree)
 bias = np.zeros(maxdegree)
 variance = np.zeros(maxdegree)
@@ -23,12 +27,16 @@ polydegree = np.zeros(maxdegree)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
 for degree in range(maxdegree):
-    model = make_pipeline(PolynomialFeatures(degree=degree), LinearRegression(fit_intercept=False))
+    X_test = pf.generate_design_polynomial(x_test, degree=degree)
     y_pred = np.empty((y_test.shape[0], n_boostraps))
     for i in range(n_boostraps):
         x_, y_ = resample(x_train, y_train)
-        y_pred[:, i] = model.fit(x_, y_).predict(x_test).ravel()
+        X = pf.generate_design_polynomial(x_, degree=degree)
+        beta = reg(X, y_, hyperparam=hyperparam)
+        y_pred_temp = X_test @ beta
+        y_pred[:, i] = y_pred_temp.ravel()
 
+    y_test = np.reshape(y_test,(len(y_test),1))
     polydegree[degree] = degree
     error[degree] = np.mean( np.mean((y_test - y_pred)**2, axis=1, keepdims=True) )
     bias[degree] = np.mean( (y_test - np.mean(y_pred, axis=1, keepdims=True))**2 )

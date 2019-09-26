@@ -47,7 +47,7 @@ print("degree |  mse  | bias  |  var  | beta 95 % ")
 for degree in degrees:
     """Performing a k-fold cross-validation on training data"""
     #evaluation_scores = k_fold_cross_validation(x,y,z,degree)
-    evaluation_scores = pf.k_fold_cross_validation(x,y,z,pf.least_squares,degree=degree)
+    evaluation_scores, beta = pf.k_fold_cross_validation(x,y,z,pf.least_squares,degree=degree)
 
     """Calculate bias, variance r2 and mse"""
 

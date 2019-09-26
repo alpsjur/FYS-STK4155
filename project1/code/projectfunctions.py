@@ -1,15 +1,16 @@
 import numpy as np
 from sklearn.utils import shuffle
 from sklearn import linear_model
+from sklearn.model_selection import train_test_split
 
 
-def generate_design_polynomial(x, p=1):
+def generate_design_polynomial(x, degree=1):
     """
     Creates a design matrix for a 1d polynomial of degree p
         1 + x + x**2 + ...
     """
-    X = np.zeros((len(x), p+1))
-    for degree in range(0, p+1):
+    X = np.zeros((len(x), degree+1))
+    for degree in range(0, degree+1):
         X[:, degree] = (x.T)**degree
     return X
 
@@ -22,6 +23,7 @@ def generate_design_2Dpolynomial(x, y, degree=5):
     p = 0
     for i in range(degree + 1):
         for j in range(degree + 1 - i):
+            #print( x**i*y**j)
             X[:, p] = x**i*y**j
             p += 1
     return X
@@ -82,20 +84,23 @@ def variance(model):
 
 def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
     """
-    k-fold CV calculating evaluation scores: MSE, R2, variance, and bias for
-    data trained on k folds.
-    where
+    k-fold CV calculating evaluation scores: MSE, R2, Bias, variance for
+    data trained on k folds. Returns MSE, R2 Bias, variance, and a matrix of beta
+    values for all the folds.
+    arguments:
         x, y = coordinates (will generalise for arbitrary number of parameters)
-        z = data/model
+        z = data
         reg = regression function reg(X, data, hyperparam)
         degree = degree of polynomial
         hyperparam = hyperparameter for calibrating model
         k = number of folds for cross validation
     """
-    MSE = []
-    R2 = []
-    VAR = []
-    BIAS = []
+    p = int(0.5*(degree + 2)*(degree + 1))
+    MSE = np.zeros(k)
+    R2 = np.zeros(k)
+    BIAS = np.zeros(k)
+    VAR = np.zeros(k)
+    betas = np.zeros((p,k))
 
     #shuffle the data
     x_shuffle, y_shuffle, z_shuffle = shuffle(x, y, z)
@@ -128,13 +133,38 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
         X_test = generate_design_2Dpolynomial(x_test, y_test, degree=degree)
         z_fit = X_test @ beta
 
+        betas[:,i] = beta
+        MSE[i] = mse(z_test, z_fit) #mse
+        R2[i] = r2(z_test, z_fit) #r2
+        BIAS[i] = bias(z_test, z_fit)
+        VAR[i]= variance(z_fit)
 
-        MSE.append(mse(z_test, z_fit)) #mse
-        R2.append(r2(z_test, z_fit)) #r2
-        BIAS.append(bias(z_test, z_fit))
-        VAR.append(variance(z_fit))
+    return [np.mean(MSE), np.mean(R2), np.mean(BIAS), np.mean(VAR)], betas
 
-    return [np.mean(MSE), np.mean(R2), np.mean(BIAS), np.mean(VAR)]
+def bias_variance(x, y, z, reg, degree=5, hyperparam=0, k=5):
+    """
+    Calculating bias and variance when evaluating the models generated in
+    k-fold cross-validation on the sae global test set
+    Inspired by the calculation of bias and variance for bootstrap in the
+    regression slides.
+    """
+    #splits the sets into a set for cross-validation and a global validation set
+    x, x_val, y, y_val, z, z_val = train_test_split(x,y,z,test_size=0.2)
+
+    #preforms k-fold cross-validation, storing the betas and scores
+    scores, betas = k_fold_cross_validation(x, y, z, reg, degree=degree, hyperparam=hyperparam, k=k)
+    MSE = scores[0]
+    R2 = scores[1]
+
+    X_val = generate_design_2Dpolynomial(x_val, y_val, degree=degree)
+    z_pred = X_val @ betas
+
+    z_val = np.reshape(z_val,(len(z_val),1))
+
+    error = np.mean( np.mean((z_val - z_pred)**2, axis=1, keepdims=True) )
+    BIAS = np.mean( (z_val - np.mean(z_pred, axis=1, keepdims=True))**2 )
+    VAR = np.mean( np.var(z_pred, axis=1, keepdims=True) )
+    return [error, BIAS, VAR]
 
 def frankefunction(x, y):
     term1 = 0.75*np.exp(-(0.25*(9*x - 2)**2) - 0.25*((9*y - 2)**2))
