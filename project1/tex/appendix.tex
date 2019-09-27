@@ -4,11 +4,19 @@
 \section*{Appendix}
 \label{sec:appendix}
 
-\begin{align*}
-	\mathds{E}\left[\left(y-\tilde{y}\right)^2\right] =& \mathds{E}\left[\left(f+\epsilon - \tilde{y}\right)^2\right] \\
-	=& \mathds{E}\left[\left(f+\epsilon - \tilde{y} + \mathds{E}\left[\tilde{y}\right] - \mathds{E}\left[\tilde{y}\right]\right)^2\right] \\
-	=& 
-\end{align*}
+\begin{align}\label{eq:derivation_bias_variance}
+\begin{split}
+	\mathds{E}[(y-\tilde{y})^2] =& \mathds{E}[(f+\epsilon - \tilde{y})^2] \\
+	=& \mathds{E}[\left(f+\epsilon - \tilde{y} + \mathds{E}[\tilde{y}] - \mathds{E}[\tilde{y}]\right)^2] \\
+	=& \mathds{E}[(f-\mathds{E}[\tilde{y}])^2] + \mathds{E}[\epsilon^2] + \mathds{E}[(\mathds{E}[\tilde{y}]-\tilde{y})^2] + 2\mathds{E}[(f-\mathds{E}[\tilde{y}])\epsilon] \\
+	&+ 2\mathds{E}[\epsilon(\mathds{E}[\tilde{y}]-\tilde{y})] + 2\mathds{E}[(\mathds{E}[\tilde{y}]-\tilde{y})(f-\mathds{E}[\tilde{y}])] \\
+	=& (f-\mathds{E}[\tilde{y}])^2 + \mathds{E}[\epsilon^2] + \mathds{E}[(\mathds{E}[\tilde{y}]-f)^2] + 2(f-\mathds{E}[\tilde{y}])\mathds{E}[\epsilon] \\
+	&+ 2\mathds{E}[\epsilon]\mathds{E}[\mathds{E}[\tilde{y}]-\tilde{y}] + 2\mathds{E}[\mathds{E}[\tilde{y}]-\tilde{y}](f-\mathds{E}[\tilde{y}]) \\
+	=& (f-\mathds{E}[\tilde{y}])^2 + \mathds{E}[\epsilon^2] + \mathds{E}[(\mathds{E}[\tilde{y}]-\tilde{y})^2] \\
+	=& Bias[\tilde{y}]^2 + Var[y] + Var[\tilde{y}] \\
+	=& Bias[\tilde{y}]^2 + \sigma^2 + Var[\tilde{y}]
+\end{split}
+\end{align}
 %  \[A =
 %    \mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\
 %          a_1 & b_2 & c_2 & 0 & \hdots & 0 \\

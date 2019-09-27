@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.utils import shuffle
 from sklearn import linear_model
-from sklearn.model_selection import train_test_split
+from sklearn.utils import resample
 
 
 def generate_design_polynomial(x, degree=1):
@@ -81,6 +81,48 @@ def variance(model):
     n = len(model)
     error = mse(model, np.mean(model))
     return error
+
+def bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, \
+              reg, degree=5, hyperparam=0, n_bootstraps=200):
+    '''
+    bootstrap resampling method calculating mse, r2, bias and variance
+    arguments
+        x_train, y_train = coordinates for training model
+        x_test, y_test = coordinates for testing model
+        z_train = data to fit model on
+        z_test = data to test model on
+        reg = regression function reg(X, data, hyperparam)
+        degree = degree of polynomial
+        hyperparam = hyperparameter for calibrating model
+        n_bootstraps = number of bootstrap sycles
+    Returns [mse, r2, bias, variance]
+    '''
+    #make a design matrix for the test data
+    X_test = generate_design_2Dpolynomial(x_test, y_test, degree=degree)
+
+    #initialize matrix for storing the predictions
+    z_pred = np.empty((z_test.shape[0], n_bootstraps))
+
+    #preforming n_bootstraps sycles
+    for i in range(n_bootstraps):
+        x_, y_, z_ = resample(x_train, y_train, z_train)
+        X = generate_design_2Dpolynomial(x_, y_, degree=degree)
+        beta = reg(X, z_, hyperparam=hyperparam)
+        z_pred_temp = X_test @ beta
+        #storing the prediction for evaluation
+        z_pred[:, i] = z_pred_temp.ravel()
+
+    z_test = np.reshape(z_test,(len(z_test),1))
+
+    #evaluate predictions
+    mse = np.mean( np.mean((z_test - z_pred)**2, axis=1, keepdims=True) )
+    r2 = np.mean(1 - np.mean((z_test - z_pred)**2, axis=1, keepdims=True)\
+                 /np.mean((z_test - np.mean(z_test))**2, axis=1, keepdims=True) )
+    bias = np.mean( (z_test - np.mean(z_pred, axis=1, keepdims=True))**2 )
+    variance = np.mean( np.var(z_pred, axis=1, keepdims=True) )
+
+    return [mse, r2, bias, variance]
+
 
 def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
     """
