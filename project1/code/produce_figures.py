@@ -80,8 +80,17 @@ plt.savefig(figdir+'biasvarianceOLS.pdf')
 
 '''
 
+hyperparams = list(np.logspace(-5, -1, 5))
+hyperparams.insert(0, 0)
+
 fig4 = plt.figure()
 ax4 = fig4.add_subplot(1,1,1)
+
+plf.plot_test_vs_degree_multiple_lambda(ax4, x, y, z, reg, max_degree, hyperparams)
+ax4.legend(frameon=False, fontsize=14)
+ax4.set_xlabel("Degrees", fontsize=14)
+ax4.set_ylabel("MSE", fontsize=14)
+plt.savefig("../figures/lambdavsdegrees.pdf")
 
 
 

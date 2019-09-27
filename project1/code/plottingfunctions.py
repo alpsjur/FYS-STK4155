@@ -221,7 +221,7 @@ def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperpara
 
 
             #Plot mse
-        ax.semilogy(degrees, k_fold_mse
+        ax.plot(degrees, k_fold_mse
             ,label=f"$\lambda$={hyperparam:g}"
             , **kwargs
             )
