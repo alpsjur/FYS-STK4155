@@ -80,4 +80,9 @@ plt.savefig(figdir+'biasvarianceOLS.pdf')
 
 '''
 
+fig4 = plt.figure()
+ax4 = fig4.add_subplot(1,1,1)
+
+
+
 plt.show()
