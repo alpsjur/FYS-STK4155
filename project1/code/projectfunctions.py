@@ -43,15 +43,15 @@ def ridge_regression(X, data, hyperparam=0):
     beta = np.linalg.pinv(X.T.dot(X) + hyperparam*np.identity(p)).dot(X.T).dot(data)
     return beta
 
-def lasso_regression(X, data, hyperparam=1):
+def lasso_regression(X, data, hyperparam=1, **kwargs):
     """
     Lasso regression solved using scikit learn's in-built method Lasso
     """
     reg = linear_model.Lasso(alpha=hyperparam,
-                            copy_X=True,
-                            fit_intercept=True,
-                            max_iter=1000,
-                            tol = 1e-3)
+                            max_iter=1e3,
+                            tol = 1e-1,
+                            fit_intercept=False
+                            )
     reg.fit(X, data)
     beta = reg.coef_
     return beta

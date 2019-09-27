@@ -93,5 +93,16 @@ ax4.set_ylabel("MSE", fontsize=14)
 plt.savefig("../figures/lambdavsdegrees.pdf")
 
 
+reg = pf.lasso_regression
+hyperparams = list(np.logspace(-6, -1, 6))
+
+fig5 = plt.figure()
+ax5 = fig3.add_subplot(1,1,1)
+
+plot_test_vs_degree_multiple_lambda(ax5, x, y, z, reg, max_degree, hyperparams)
+ax5.legend(frameon=False, fontsize=14)
+ax5.set_xlabel("Degrees", fontsize=14)
+ax5.set_ylabel("MSE", fontsize=14)
+plt.savefig("../figures/lambdavsdegrees.pdf")
 
 plt.show()
