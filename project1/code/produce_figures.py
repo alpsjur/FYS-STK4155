@@ -36,6 +36,8 @@ y = y_grid.flatten()
 z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0,noise,x_grid.shape)
 z = z_grid.flatten()
 
+'''
+
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
 
@@ -75,5 +77,7 @@ ax3.set_xlabel('degree', fontsize=18)
 ax3.set_ylabel('value', fontsize=18)
 
 plt.savefig(figdir+'biasvarianceOLS.pdf')
+
+'''
 
 plt.show()
