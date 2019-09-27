@@ -187,6 +187,7 @@ def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperpara
 
 if __name__ == '__main__':
     sns.set()
+    sns.set_palette("husl")
 
     n = 20
     noise = 0.1
@@ -194,7 +195,7 @@ if __name__ == '__main__':
     max_degree = 15
     degree = 5
     hyperparam = 0
-    hyperparams = np.logspace(-8,0,9)
+    hyperparams = [0,1e-7, 1e-6, 1e-5, 1e-4, 1e-3] #np.logspace(-7,-2,6)
 
     x_val = np.linspace(0,1,n)
     y_val = np.linspace(0,1,n)
