@@ -116,8 +116,8 @@ def bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, \
 
     #evaluate predictions
     mse = np.mean( np.mean((z_test - z_pred)**2, axis=1, keepdims=True) )
-    r2 = np.mean(1 - np.mean((z_test - z_pred)**2, axis=1, keepdims=True)\
-                 /np.mean((z_test - np.mean(z_test))**2, axis=1, keepdims=True) )
+    r2 = np.mean(1 - np.sum((z_test - z_pred)**2, axis=1, keepdims=True)\
+                 /np.sum((z_test - np.mean(z_test))**2, axis=1, keepdims=True) )
     bias = np.mean( (z_test - np.mean(z_pred, axis=1, keepdims=True))**2 )
     variance = np.mean( np.var(z_pred, axis=1, keepdims=True) )
 
@@ -137,12 +137,12 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
         hyperparam = hyperparameter for calibrating model
         k = number of folds for cross validation
     """
-    p = int(0.5*(degree + 2)*(degree + 1))
+    #p = int(0.5*(degree + 2)*(degree + 1))
     MSE = np.zeros(k)
     R2 = np.zeros(k)
     BIAS = np.zeros(k)
     VAR = np.zeros(k)
-    betas = np.zeros((p,k))
+    #betas = np.zeros((p,k))
 
     #shuffle the data
     x_shuffle, y_shuffle, z_shuffle = shuffle(x, y, z)
@@ -175,13 +175,13 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
         X_test = generate_design_2Dpolynomial(x_test, y_test, degree=degree)
         z_fit = X_test @ beta
 
-        betas[:,i] = beta
+        #betas[:,i] = beta
         MSE[i] = mse(z_test, z_fit) #mse
         R2[i] = r2(z_test, z_fit) #r2
         BIAS[i] = bias(z_test, z_fit)
         VAR[i]= variance(z_fit)
 
-    return [np.mean(MSE), np.mean(R2), np.mean(BIAS), np.mean(VAR)], betas
+    return [np.mean(MSE), np.mean(R2), np.mean(BIAS), np.mean(VAR)] #betas
 
 def bias_variance(x, y, z, reg, degree=5, hyperparam=0, k=5):
     """

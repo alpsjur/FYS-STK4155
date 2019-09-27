@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 import seaborn as sns
 import projectfunctions as pf
 
-def plot_train_vs_degree(ax, x, y, z, reg, max_degree, hyperparam, **kwargs):
+def plot_train_vs_degree(ax, x, y, z, reg, max_degree, hyperparam, plot_r2=False, **kwargs):
     '''
     Function for plotting mse when the model is evaluated on the training set
         ax = matplotlib.axis object
@@ -15,7 +15,7 @@ def plot_train_vs_degree(ax, x, y, z, reg, max_degree, hyperparam, **kwargs):
         hyperparam = hyperparameter for calibrating model
     '''
     degrees = np.arange(0,max_degree+1)
-    mse = []
+    error = []
 
     for degree in degrees:
         """Simple training with no cross validation"""
@@ -23,14 +23,21 @@ def plot_train_vs_degree(ax, x, y, z, reg, max_degree, hyperparam, **kwargs):
         beta = reg(X, z, hyperparam=hyperparam)
         z_model = X @ beta
 
-        #computing the MSE when no train test split is used
-        mse.append(pf.mse(z, z_model))
+        if plot_r2:
+            #computing the MSE when no train test split is used
+            error.append(pf.r2(z, z_model))
+            label = 'r2 train'
 
-    ax.plot(degrees, mse, **kwargs
-            ,label='mse training'
+        else:
+            #computing the r2 score when no train test split is used
+            error.append(pf.mse(z, z_model))
+            label = 'mse train'
+
+    ax.plot(degrees, error, **kwargs
+            ,label=label
             )
 
-def plot_train_vs_lambda(ax, x, y, z, reg, degree, hyperparams, **kwargs):
+def plot_train_vs_lambda(ax, x, y, z, reg, degree, hyperparams, r2=False, **kwargs):
     '''
     Function for plotting mse ws hyperparam when the model is evaluated on
     the training set
@@ -39,7 +46,7 @@ def plot_train_vs_lambda(ax, x, y, z, reg, degree, hyperparams, **kwargs):
         degree = degree of polynomial
         hyperparams = hyperparameter for calibrating model
     '''
-    mse = []
+    error = []
 
     for hyperparam in hyperparams:
         """Simple training with no cross validation"""
@@ -47,15 +54,41 @@ def plot_train_vs_lambda(ax, x, y, z, reg, degree, hyperparams, **kwargs):
         beta = reg(X, z, hyperparam=hyperparam)
         z_model = X @ beta
 
-        #computing the MSE when no train test split is used
-        mse.append(pf.mse(z, z_model))
+        if not r2:
+            #computing the MSE when no train test split is used
+            error.append(pf.mse(z, z_model))
+            label = 'mse train'
 
-    ax.plot(hyperparams, mse, **kwargs
-            ,label='mse training'
+        if r2:
+            #computing the r2 score when no train test split is used
+            error.append(pf.r2(z, z_model))
+            label = 'r2 train'
+
+    ax.plot(hyperparams, error, **kwargs
+            ,label=label
             )
 
+def plot_test_vs_degree_kfold(ax, x, y, z,  reg, max_degree, hyperparam, plot_r2=False, **kwargs):
+    degrees = np.arange(0,max_degree+1)
 
-def plot_test_vs_degree(ax, x, y, z,  reg, max_degree, hyperparam ,show_bias_var=False, **kwargs):
+    kfold_error = []
+
+    for degree in degrees:
+        [mse, r2, bias, var] = pf.k_fold_cross_validation(x, y, z, reg, degree=degree, hyperparam=hyperparam)
+
+        if plot_r2:
+            kfold_error.append(r2)
+            label = 'r2 test'
+
+        else:
+            kfold_error.append(mse)
+            label = 'mse test'
+
+    ax.plot(degrees, kfold_error, **kwargs
+            ,label=label
+            )
+
+def plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam ,show_bias_var=False, plot_r2=False, **kwargs):
     """
     Function for plotting the mse (and bias, variance) vs complexity
     calculated using bootstrap, where
@@ -67,36 +100,40 @@ def plot_test_vs_degree(ax, x, y, z,  reg, max_degree, hyperparam ,show_bias_var
     """
     degrees = np.arange(0,max_degree+1)
 
-    k_fold_mse = np.zeros(len(degrees))
-    k_fold_bias = np.zeros(len(degrees))
-    k_fold_r2 = np.zeros(len(degrees))
-    k_fold_var = np.zeros(len(degrees))
+    boot_error = np.zeros(len(degrees))
+    boot_bias = np.zeros(len(degrees))
+    boot_var = np.zeros(len(degrees))
 
     x_train, x_test, y_train, y_test, z_train, z_test = train_test_split(x, y, z, test_size=0.2)
 
     for degree in degrees:
         [mse, r2, bias, var] = pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, reg, degree=degree, hyperparam=hyperparam)
 
-        k_fold_mse[degree-1]=mse
-        k_fold_r2[degree-1]=r2
-        k_fold_bias[degree-1]=bias
-        k_fold_var[degree-1]=var
+        boot_bias[degree]=bias
+        boot_var[degree]=var
 
+        if plot_r2:
+            boot_error[degree]=r2
+            label = 'r2 test'
+
+        else:
+            boot_error[degree]=mse
+            label = 'mse test'
 
     #Plot mse
-    ax.plot(degrees, k_fold_mse
-            ,label='test mse'
+    ax.plot(degrees, boot_error
+            ,label=label
             , **kwargs
             )
 
     #Plots bias and variance if show_bias_var is True
     if show_bias_var:
-        ax.plot(degrees, k_fold_var
+        ax.plot(degrees, boot_var
             ,label='variance'
             ,ls='--'
             , **kwargs
             )
-        ax.plot(degrees, k_fold_bias
+        ax.plot(degrees, boot_bias
             ,label='bias^2'
             ,ls='--'
             , **kwargs
@@ -133,7 +170,7 @@ def plot_test_vs_lambda(ax, x, y, z, reg, degree, hyperparams ,show_bias_var=Fal
 
     #Plot mse
     ax.plot(hyperparams, boot_mse
-            ,label='test mse'
+            ,label='mse test'
             , **kwargs
             )
 
@@ -173,10 +210,10 @@ def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperpara
         for degree in degrees:
             [mse, r2, bias, var] = pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, reg, degree=degree, hyperparam=hyperparam)
 
-            k_fold_mse[degree-1]=mse
-            k_fold_r2[degree-1]=r2
-            k_fold_bias[degree-1]=bias
-            k_fold_var[degree-1]=var
+            k_fold_mse[degree]=mse
+            k_fold_r2[degree]=r2
+            k_fold_bias[degree]=bias
+            k_fold_var[degree]=var
 
 
             #Plot mse
