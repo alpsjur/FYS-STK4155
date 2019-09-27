@@ -16,7 +16,7 @@ plotter feil mot kompleksitet
 '''
 #np.random.seed(108)
 n = 60
-error = 1
+error = 0.1
 degrees = np.arange(1,15)
 
 x_random = np.random.uniform(0, 1, n)
@@ -43,7 +43,9 @@ k_fold_r2 = []
 k_fold_var = []
 mse = []
 
-print("degree |  mse  | bias  |  var  | beta 95 % ")
+'''
+
+print("degree |  mse  | bias  |  var  |")
 for degree in degrees:
     """Performing a k-fold cross-validation on training data"""
     #evaluation_scores = k_fold_cross_validation(x,y,z,degree)
@@ -63,13 +65,11 @@ for degree in degrees:
 
     beta = pf.least_squares(X,z)
     z_model = X @ beta
-    b_ = np.mean(beta)
-    std_b = np.std(beta)
 
     #computing the MSE when no train test split is used
     mse.append(pf.mse(z, z_model))
     print(f"{degree:6.0f} | {k_fold_mse[-1]:5.3f} | {k_fold_bias[-1]:5.3f} | \
-{k_fold_var[-1]:5.3f} | <{b_ - 1.96*std_b/np.sqrt(len(beta)):.3f} , {b_ + 1.96*std_b/np.sqrt(len(beta)):.3f}>")
+{k_fold_var[-1]:5.3f}")
 
 
 plt.plot(degrees, k_fold_var,'--',
@@ -90,6 +90,21 @@ plt.xlabel("degrees")
 plt.legend()
 plt.title(f"Least Squares: Error, bias and variance for n={n}, $\sigma^2$ = {error}")
 #plt.savefig("../selected results/fig1.pdf")
+plt.show()
+
+'''
+plt.figure(3)
+X = pf.generate_design_2Dpolynomial(x, y)
+
+beta = pf.least_squares(X,z)
+z_model = X @ beta
+
+#var_beta = pf.variance(z_model)*np.linalg.pinv(X.T.dot(X))
+weight = np.sqrt( np.diag( np.linalg.inv(X.T.dot(X))))*1.96
+plt.errorbar(np.arange(1,len(beta)+1), beta, yerr=2*weight,fmt='o',label=f"beta confidence interval")
+#plt.plot(np.arange(1,len(beta)+1),beta,'r-',label=f"beta-values")
+plt.legend()
+#plt.xlabel("$\beta$-value index")
 plt.show()
 
 ###3D plot ###
