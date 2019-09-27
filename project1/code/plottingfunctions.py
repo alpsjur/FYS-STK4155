@@ -26,7 +26,7 @@ def plot_train_vs_degree(ax, x, y, z, reg, max_degree, hyperparam, plot_r2=False
         if plot_r2:
             #computing the MSE when no train test split is used
             error.append(pf.r2(z, z_model))
-            label = 'r2 train'
+            label = 'R2 train'
 
         else:
             #computing the r2 score when no train test split is used
@@ -62,7 +62,7 @@ def plot_train_vs_lambda(ax, x, y, z, reg, degree, hyperparams, r2=False, **kwar
         if r2:
             #computing the r2 score when no train test split is used
             error.append(pf.r2(z, z_model))
-            label = 'r2 train'
+            label = 'R2 train'
 
     ax.plot(hyperparams, error, **kwargs
             ,label=label
@@ -78,7 +78,7 @@ def plot_test_vs_degree_kfold(ax, x, y, z,  reg, max_degree, hyperparam, plot_r2
 
         if plot_r2:
             kfold_error.append(r2)
-            label = 'r2 test'
+            label = 'R2 test'
 
         else:
             kfold_error.append(mse)
@@ -225,6 +225,21 @@ def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperpara
             ,label=f"$\lambda$={hyperparam:g}"
             , **kwargs
             )
+
+def plot_bias_confidence(ax, x, y, z, reg, degree, hyperparam, confidence=1.96 ,**kwargs):
+    """
+    Function plotting betas and their confidence intervalls
+    """
+    X = pf.generate_design_2Dpolynomial(x, y, degree)
+    beta = reg(X, z, hyperparam=hyperparam)
+
+    #weight = np.sqrt( np.diag( np.linalg.inv(X.T.dot(X))))*confidence
+    weight = np.sqrt( np.diag( np.linalg.inv( X.T @ X ) ) )*confidence
+    ax.errorbar(np.arange(1,len(beta)+1), beta
+                ,yerr=weight
+                ,fmt='o'
+                ,**kwargs
+                )
 
 if __name__ == '__main__':
     sns.set()
