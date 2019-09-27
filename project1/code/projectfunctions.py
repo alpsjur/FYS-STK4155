@@ -47,7 +47,11 @@ def lasso_regression(X, data, hyperparam=1):
     """
     Lasso regression solved using scikit learn's in-built method Lasso
     """
-    reg = linear_model.Lasso(alpha=hyperparam)
+    reg = linear_model.Lasso(alpha=hyperparam,
+                            copy_X=True,
+                            fit_intercept=True,
+                            max_iter=1000,
+                            tol = 1e-3)
     reg.fit(X, data)
     beta = reg.coef_
     return beta
