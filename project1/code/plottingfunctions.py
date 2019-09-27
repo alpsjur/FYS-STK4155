@@ -222,21 +222,25 @@ def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperpara
 
             #Plot mse
         ax.plot(degrees, k_fold_mse
-            ,label='$\lambda$={}'.format(hyperparam)
+            ,label=f"$\lambda$={hyperparam:g}"
             , **kwargs
             )
 
 if __name__ == '__main__':
     sns.set()
+    sns.set_style("whitegrid")
     sns.set_palette("husl")
 
     n = 20
     noise = 0.1
     reg = pf.ridge_regression
-    max_degree = 15
+    #reg = pf.lasso_regression
+    max_degree = 20
     degree = 5
     hyperparam = 0
-    hyperparams = [0,1e-7, 1e-6, 1e-5, 1e-4, 1e-3] #np.logspace(-7,-2,6)
+    #hyperparams = [0,1e-7, 1e-6, 1e-5, 1e-4, 1e-3] #np.logspace(-7,-2,6)
+    hyperparams = list(np.logspace(-5, -1, 5))
+    hyperparams.insert(0, 0)
 
     x_val = np.linspace(0,1,n)
     y_val = np.linspace(0,1,n)
@@ -269,6 +273,9 @@ if __name__ == '__main__':
     ax3 = fig3.add_subplot(1,1,1)
 
     plot_test_vs_degree_multiple_lambda(ax3, x, y, z, reg, max_degree, hyperparams)
-    ax3.legend()
+    ax3.legend(frameon=False, fontsize=14)
+    ax3.set_xlabel("Degrees", fontsize=14)
+    ax3.set_ylabel("MSE", fontsize=14)
+    plt.savefig("../figures/lambdavsdegrees.pdf")
 
     plt.show()

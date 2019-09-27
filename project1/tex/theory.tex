@@ -59,7 +59,7 @@ Minimizing this results in model parameters on the form
 \begin{equation}\label{eq:ridge}
 \boldsymbol{\beta}=\left(\boldsymbol{X}^T\boldsymbol{X}+\boldsymbol{\lambda}\boldsymbol{I}\right)^{-1}\boldsymbol{X}^T\boldsymbol{y}
 \end{equation}
-Here, $\boldsymbol{I}$ is the identity matrix of the same size as $\boldsymbol{X}^T\boldsymbol{X}$. The parameter $\lambda$ then has to be tuned, for example by the use of cross-validation.
+Here, $\boldsymbol{I}$ is the identity matrix.. The parameter $\lambda$ then has to be tuned, for example by the use of cross-validation.
 One can see that by setting $\lambda = 0$, (\ref{eq:ridge}) simplifies to the OLS solution in (\ref{eq:ols}).
 
 \subsection{Lasso regression}
@@ -71,7 +71,7 @@ C(\boldsymbol{\beta})
 \end{equation*}
 
 \subsection{Evaluation scores}
-In this project, we will use two well known expressions to calculate the error in the predicted values. That is the Mean Square error (MSE)
+In this project, we will use two well known expressions to calculate the error in the predicted values. That is the Mean Square Error (MSE)
 \begin{equation}\label{eq:mse}
 	MSE(\boldsymbol{y},\boldsymbol{\tilde{y}}) = \frac{1}{n} \sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2
 \end{equation}
@@ -105,7 +105,7 @@ There are several methods for estimating the skill of a machine learning model. 
 	\BlankLine
 \end{algorithm}
 
-This yields a statistical estimate for how well the model will preform on new data. The choice of $k$ will however effect the bias and variance in the estimation of the evaluation scores. It has been shown empirically that $k=5$ or $k=10$ gives neither a high bias nor variance \citep{james2013introduction}. In this project, a value of 5 was chosen for $k$.
+This yields a statistical estimate for how well the model will preform on new data. The choice of $k$ will however affect the bias and variance in the estimation of the evaluation scores. It has been shown empirically that $k=5$ or $k=10$ gives neither a high bias nor variance \citep{james2013introduction}. In this project, a value of 5 was chosen for $k$.
 
 \subsection{Bootstrap method for resampling}
 Algorithm \ref{alg:bootstrap} gives an overview of the bootstrap method.
