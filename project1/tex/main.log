@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.27)  27 SEP 2019 11:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.27)  27 SEP 2019 14:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1794,7 +1794,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
 (./abstract.tex) (./introduction.tex)
-Underfull \vbox (badness 7238) has occurred while \output is active []
+Underfull \vbox (badness 4316) has occurred while \output is active []
 
 
 (./theory.tex [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
@@ -1815,58 +1815,65 @@ Underfull \hbox (badness 2617) in paragraph at lines 157--158
  []
 
 ) (./results.tex
+<../figures/mseVSdegreeOLS.pdf, id=25, 462.52798pt x 346.89601pt>
+File: ../figures/mseVSdegreeOLS.pdf Graphic file (type pdf)
+<use ../figures/mseVSdegreeOLS.pdf>
+Package pdftex.def Info: ../figures/mseVSdegreeOLS.pdf  used on input line 8.
+(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-./results.tex:7: LaTeX Error: File `' not found.
+Overfull \hbox (5.0pt too wide) in paragraph at lines 8--9
+ [][] 
+ []
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.7 	\includegraphics[width=0.5\textwidth]{}
-                                            
-I could not locate the file with any of these extensions:
-.pdf,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+<../figures/r2VSdegreeOLS.pdf, id=26, 462.52798pt x 346.89601pt>
+File: ../figures/r2VSdegreeOLS.pdf Graphic file (type pdf)
+<use ../figures/r2VSdegreeOLS.pdf>
+Package pdftex.def Info: ../figures/r2VSdegreeOLS.pdf  used on input line 15.
+(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-) (./discussion.tex) (./conclusion.tex) (./main.bbl [4]) [5
+Overfull \hbox (5.0pt too wide) in paragraph at lines 15--16
+ [][] 
+ []
 
-]
+) (./discussion.tex) (./conclusion.tex) (./main.bbl [4 <../figures/mseVSdegreeO
+LS.pdf>]) [5
+
+ <../figures/r2VSdegreeOLS.pdf>]
 \openout2 = `appendix.aux'.
 
- (./appendix.tex)
-[6
+ (./appendix.tex) [6
 
 
-] (./main.aux (./appendix.aux)) ) 
+] (./main.aux
+(./appendix.aux)) ) 
 Here is how much of TeX's memory you used:
- 14469 strings out of 492982
- 259253 string characters out of 6134896
- 329586 words of memory out of 5000000
- 17877 multiletter control sequences out of 15000+600000
+ 14479 strings out of 492982
+ 259631 string characters out of 6134896
+ 329594 words of memory out of 5000000
+ 17886 multiletter control sequences out of 15000+600000
  539913 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,21n,39p,10407b,430s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/doublest
-roke/dsrom10.pfb>
-Output written on main.pdf (6 pages, 193390 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
+12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb>
+Output written on main.pdf (6 pages, 266656 bytes).
 PDF statistics:
- 87 PDF objects out of 1000 (max. 8388607)
- 62 compressed objects within 1 object stream
+ 116 PDF objects out of 1000 (max. 8388607)
+ 88 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
