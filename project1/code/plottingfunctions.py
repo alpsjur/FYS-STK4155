@@ -120,11 +120,15 @@ def plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam ,show_bia
             boot_error[degree]=mse
             label = 'mse test'
 
+    if show_bias_var:
+        label = 'mse'
+
     #Plot mse
     ax.plot(degrees, boot_error
             ,label=label
             , **kwargs
             )
+
 
     #Plots bias and variance if show_bias_var is True
     if show_bias_var:
@@ -134,7 +138,7 @@ def plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam ,show_bia
             , **kwargs
             )
         ax.plot(degrees, boot_bias
-            ,label='bias^2'
+            ,label='bias$^2$'
             ,ls='--'
             , **kwargs
             )
