@@ -108,8 +108,7 @@ There are several methods for estimating the skill of a machine learning model. 
 This yields a statistical estimate for how well the model will preform on new data. The choice of $k$ will however affect the bias and variance in the estimation of the evaluation scores. It has been shown empirically that $k=5$ or $k=10$ gives neither a high bias nor variance \citep{james2013introduction}. In this project, a value of 5 was chosen for $k$.
 
 \subsection{Bootstrap method for resampling}
-Algorithm \ref{alg:bootstrap} gives an overview of the bootstrap method.
-
+Another procedure for estimating the skill of a model is the Bootstrap method for resampling. In Bootstrap, a sample is drawn, with replacement, from the data, and the model is fitted to the sample. This is done multiple times, and for each cycle, the fitted model makes a prediction on a test set. Finally, all the predictions are evaluated. Algorithm \ref{alg:bootstrap} gives an overview of the bootstrap method.
 \begin{algorithm}[htbp]\caption{The bootstrap algorithm.}\label{alg:bootstrap}
 	\SetAlgoLined
 	\BlankLine
@@ -127,6 +126,8 @@ Algorithm \ref{alg:bootstrap} gives an overview of the bootstrap method.
 	\BlankLine
 	\BlankLine
 \end{algorithm}
+
+The sample size $N$ was set to the same size as the train set in this project. 
 
 \subsection{The bias-variance trade-off}
 Taking a look at the MSE again, (\ref{eq:mse}) can be expressed as the expectation value of $\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^2$, which can be decomposed as follows. For the full derivation, see \eqref{eq:derivation_bias_variance}.
