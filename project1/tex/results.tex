@@ -56,9 +56,15 @@ Sticking to the bootstrap method for resampling, and using $n=20$ with $\sigma^2
 \end{figure}
 
 \subsubsection{Resampling with Ridge-regression}
-In order to find the parameters that will give the least MSE for the Ridge regression method, we need to tune both the
+In order to find the parameters that will give the least MSE for the Ridge regression method, we need to tune both the degree $m$ of the polynomial that we fit, and the optimal $\lambda$-value. This is obtained by doing Ridge regression on the data set with bootstrap, for both different values of $m$ and different values of $\lambda$ as shown in figure \ref{fig:lambdavsdegreesRIDGE}
 
 \subsubsection{Resampling with Lasso-regression}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{lambdavsdegreesRIDGE}
+	\caption{MSE for the Ridge regression method on the data set with $n=20$ and noice $\sigma^2=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda$. When $\lambda=0$ it is equivalent to the OLS-method.}
+	\label{fig:lambdavsdegreesRIDGE}
+\end{figure}
 
 \vfill
 \newpage

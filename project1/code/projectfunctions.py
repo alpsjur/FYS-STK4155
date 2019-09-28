@@ -187,31 +187,6 @@ def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
 
     return [np.mean(MSE), np.mean(R2), np.mean(BIAS), np.mean(VAR)] #betas
 
-def bias_variance(x, y, z, reg, degree=5, hyperparam=0, k=5):
-    """
-    Calculating bias and variance when evaluating the models generated in
-    k-fold cross-validation on the sae global test set
-    Inspired by the calculation of bias and variance for bootstrap in the
-    regression slides.
-    """
-    #splits the sets into a set for cross-validation and a global validation set
-    x, x_val, y, y_val, z, z_val = train_test_split(x,y,z,test_size=0.2)
-
-    #preforms k-fold cross-validation, storing the betas and scores
-    scores, betas = k_fold_cross_validation(x, y, z, reg, degree=degree, hyperparam=hyperparam, k=k)
-    MSE = scores[0]
-    R2 = scores[1]
-
-    X_val = generate_design_2Dpolynomial(x_val, y_val, degree=degree)
-    z_pred = X_val @ betas
-
-    z_val = np.reshape(z_val,(len(z_val),1))
-
-    error = np.mean( np.mean((z_val - z_pred)**2, axis=1, keepdims=True) )
-    BIAS = np.mean( (z_val - np.mean(z_pred, axis=1, keepdims=True))**2 )
-    VAR = np.mean( np.var(z_pred, axis=1, keepdims=True) )
-    return [error, BIAS, VAR]
-
 def frankefunction(x, y):
     term1 = 0.75*np.exp(-(0.25*(9*x - 2)**2) - 0.25*((9*y - 2)**2))
     term2 = 0.75*np.exp(-((9*x + 1)**2)/49.0 - 0.1*(9*y + 1))
@@ -219,7 +194,7 @@ def frankefunction(x, y):
     term4 = -0.2*np.exp(-(9*x - 4)**2 - (9*y - 7)**2)
     return term1 + term2 + term3 + term4
 
-def produce_table(data, header):
+def produce_table(data, hheader, vheader=None):
     """
     Spagetthi code producing a vertical laTEX table.
     data has shape
@@ -230,17 +205,19 @@ def produce_table(data, header):
     header = list/array
     """
     tableString = ""
-    n = len(data[:, 0])
+    n = len(data[:][0])
     tableString += "\\begin{table}[htbp]\n"
     tableString += "\\begin{{tabular}}{{{0:s}}}\n".format("l"*n)
     # creating header
-    for element in header:
+    for element in hheader:
         tableString += f"\\textbf{{{element}}} & "
     tableString = tableString[:-2] + "\\\\\n"
     # creating table elements
-    for j in range(len(data[0, :])):
-        for i in range(len(data[:, 0])):
-            tableString += f"{data[i, j]:.2f} & "
+    for j in range(len(data[0][:])):
+        if vheader is not None:
+            tableString += f"\\textbf{{{vheader[j]}}} & "
+        for i in range(len(data[:][0])):
+            tableString += f"{data[i][j]:.2g} & "
         tableString = tableString[:-2] + "\\\\\n"
     tableString = tableString[:-4] + "\n"
     tableString += "\\end{tabular}\n"
