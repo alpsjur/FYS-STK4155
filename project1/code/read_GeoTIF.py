@@ -19,6 +19,8 @@ ax = fig.gca(projection="3d")
 #get the number of points
 n_y, n_x = np.shape(oslo_data)
 
+print(n_x)
+
 #making an x and y grid (may want to define x and y differently)
 x_grid, y_grid = np.meshgrid(np.arange(n_x),np.arange(n_y))
 
