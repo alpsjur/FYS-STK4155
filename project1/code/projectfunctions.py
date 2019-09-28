@@ -218,30 +218,41 @@ def frankefunction(x, y):
     term4 = -0.2*np.exp(-(9*x - 4)**2 - (9*y - 7)**2)
     return term1 + term2 + term3 + term4
 
-def produce_table(data, header):
+def produce_table(data, hheader=None, vheader=None):
     """
     Spagetthi code producing a vertical laTEX table.
-    data has shape
+    data has shape of an array
         [[x0, x1, x2, ..., xN],
          [y0, y1, y2, ..., yN],
          ...          ]
     where
-    header = list/array
+    hheader = list/array of horizontal header
+    vheader = list/array of vertical header
+    If greek letters are used, then they must be enclosed by $$,
+    i. e. $\lambda$
     """
     tableString = ""
-    n = len(data[:, 0])
+    n = len(data[:][0])
     tableString += "\\begin{table}[htbp]\n"
-    tableString += "\\begin{{tabular}}{{{0:s}}}\n".format("l"*n)
+    tableString += "\\centering\n"
+    tableString += "\\begin{{tabular}}[width=0.5\\textwidth]{{l{0:s}}}\n".format("c"*(len(hheader)-1))
+    tableString += "\\hline\n"
     # creating header
-    for element in header:
-        tableString += f"\\textbf{{{element}}} & "
+    if hheader is not None:
+        for element in hheader:
+            tableString += f"\\textbf{{{element}}} & "
     tableString = tableString[:-2] + "\\\\\n"
+    tableString += "\\hline\n"
     # creating table elements
     for j in range(len(data[0, :])):
+        if vheader is not None:
+            tableString += f"\\textbf{{{vheader[j]}}} & "
         for i in range(len(data[:, 0])):
             tableString += f"{data[i, j]:.2f} & "
         tableString = tableString[:-2] + "\\\\\n"
     tableString = tableString[:-4] + "\n"
     tableString += "\\end{tabular}\n"
+    tableString += "\\caption{{}}\n"
+    tableString += "\\label{{table:}}\n"
     tableString += "\\end{table}\n"
     return tableString
