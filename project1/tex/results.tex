@@ -8,11 +8,11 @@ Resultater vi skal ha med
 \item Bias-variance tradeoff (OLS)
 \item Ridge - beste $\lambda$ og degree
 \item Lasso - beste $\lambda$ og degree
-\item tabell minste feil for de ulike metodene
+\item tabell minste feil for de ulike metodene (hvilken deg og $\lambda$)
 \item Terrengdata - OLS
 \item Terrengdata - Ridge
 \item Terrengdata - Lasso
-\item Tabell - minste feil for de ulike metodene
+\item tabell minste feil for de ulike metodene (hvilken deg og $\lambda$)
 \end{itemize}
 \subsection{Regression on Franke's function}
 The {''}terrain'' data $z$ in this part was produced by applying Franke's function to a $n\cross n$ evenly spaced $xy$ grid, with $x_i,y_i\in [0,1]$, and for each point add a normally distributed noice with $\mu = 0$ and $\sigma^2 = 0.1$.
@@ -37,7 +37,7 @@ To study the mean squared error \eqref{eq:mse} as a function of the model comple
 	\label{fig:mseVSdegreeOLS}
 \end{figure}
 
-Applying the same analisys to the $R^2$-score \eqref{eq:r2} of the two cases, we get the result as shown in figure \ref{fig:r2VSdegreeOLS}. For the $R^2$ score, we found the results easier to obtain when using the \emph{k-fold cross validation} method (algorithm \ref{alg:k-fold}) for resamling.
+Applying the same analisys to the $R^2$-score \eqref{eq:r2} of the two cases, we get the result as shown in figure \ref{fig:r2VSdegreeOLS}. For the $R^2$ score, we found the results easier to obtain when using the \emph{k-fold cross validation} method (algorithm \ref{alg:k-fold}) for resampling.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{r2VSdegreeOLS}
@@ -46,6 +46,19 @@ Applying the same analisys to the $R^2$-score \eqref{eq:r2} of the two cases, we
 \end{figure}
 
 \subsubsection{Bias-Variance-tradeoff}
+Sticking to the bootstrap method for resampling, and using $n=20$ with $\sigma^2 = 0.1$ we also compute the bias and variance of the model as discussed in the theory. Plotting the variance, bias and MSE together results in figure \ref{fig:biasvarianceOLS}.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{biasvarianceOLS}
+	\caption{Bias, variance and MSE for the ordinary least square method on the data set with $n=20$ and noice $\sigma^2=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The bias starts of high and decreases as the model complexity increases, whilst the variance grows with the model complexity.}
+	\label{fig:biasvarianceOLS}
+\end{figure}
+
+\subsubsection{Resampling with Ridge-regression}
+In order to find the parameters that will give the least MSE for the Ridge regression method, we need to tune both the
+
+\subsubsection{Resampling with Lasso-regression}
 
 \vfill
 \newpage
