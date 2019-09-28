@@ -248,14 +248,13 @@ if __name__ == '__main__':
 
     n = 20
     noise = 0.1
-    reg = pf.ridge_regression
+    reg = pf.lasso_regression
     #reg = pf.lasso_regression
-    max_degree = 20
+    max_degree = 12
     degree = 5
     hyperparam = 0
     #hyperparams = [0,1e-7, 1e-6, 1e-5, 1e-4, 1e-3] #np.logspace(-7,-2,6)
-    hyperparams = list(np.logspace(-5, -1, 5))
-    hyperparams.insert(0, 0)
+    hyperparams = list(np.logspace(-6, -1, 6))
 
     x_val = np.linspace(0,1,n)
     y_val = np.linspace(0,1,n)
@@ -268,7 +267,7 @@ if __name__ == '__main__':
     y = y_grid.flatten()
 
     #compute z and flatten it
-    z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0,noise,x_grid.shape)
+    z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0,noise, x_grid.shape)
     z = z_grid.flatten()
 
 

@@ -103,6 +103,16 @@ plf.plot_bias_confidence(ax5, x, y, z, reg, degree, hyperparam, linewidth = 2)
 ax5.set_xlabel(r'$i$', fontsize=18)
 ax5.set_ylabel(r'$\beta_i$', fontsize=18)
 
-plt.savefig(figdir+"betaconfidence.pdf")
+reg = pf.lasso_regression
+hyperparams = list(np.logspace(-6, -1, 6))
+
+fig6 = plt.figure()
+ax6 = fig3.add_subplot(1,1,1)
+
+plot_test_vs_degree_multiple_lambda(ax6, x, y, z, reg, max_degree, hyperparams)
+ax6.legend(frameon=False, fontsize=14)
+ax6.set_xlabel("Degrees", fontsize=14)
+ax6.set_ylabel("MSE", fontsize=14)
+plt.savefig("../figures/lambdavsdegrees.pdf")
 
 plt.show()
