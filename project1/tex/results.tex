@@ -1,14 +1,7 @@
 \section{Results}
 \label{sec:results}
-Resultater vi skal ha med
+Resultater vi mangler
 \begin{itemize}
-\item $\beta$ - confidens intervall
-\item MSE - train vs test (OLS)
-\item R2 - train vs test (OLS)
-\item Bias-variance tradeoff (OLS)
-\item Ridge - beste $\lambda$ og degree
-\item Lasso - beste $\lambda$ og degree
-\item tabell minste feil for de ulike metodene (hvilken deg og $\lambda$)
 \item Terrengdata - OLS
 \item Terrengdata - Ridge
 \item Terrengdata - Lasso
@@ -58,13 +51,38 @@ Sticking to the bootstrap method for resampling, and using $n=20$ with $\sigma^2
 \subsubsection{Resampling with Ridge-regression}
 In order to find the parameters that will give the least MSE for the Ridge regression method, we need to tune both the degree $m$ of the polynomial that we fit, and the optimal $\lambda$-value. This is obtained by doing Ridge regression on the data set with bootstrap, for both different values of $m$ and different values of $\lambda$ as shown in figure \ref{fig:lambdavsdegreesRIDGE}
 
-\subsubsection{Resampling with Lasso-regression}
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{lambdavsdegreesRIDGE}
 	\caption{MSE for the Ridge regression method on the data set with $n=20$ and noice $\sigma^2=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda$. When $\lambda=0$ it is equivalent to the OLS-method.}
 	\label{fig:lambdavsdegreesRIDGE}
 \end{figure}
+
+\subsubsection{Resampling with Lasso-regression}
+The same analisys, with various $\lambda$ and $m$-values is done for Lasso-regression (figure \ref{fig:lambdavsdegreesLASSO})
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{lambdavsdegreesLASSO}
+	\caption{MSE for the Lasso regression method on the data set with $n=20$ and noice $\sigma^2=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda$}
+	\label{fig:lambdavsdegreesLASSO}
+\end{figure}
+
+\subsubsection{Comparing MSE of the different regression methods}
+A different, and less visual way of finding the method that gives the best approximation, that is, the smalles MSE, is to store all the MSE data for all hyperparameters and degrees, make the computer find the smalles value, and the corresponsing parameters which is presented in table \ref{tab:minerrorFRANKE}.
+\begin{table}[htbp]
+\caption{The smalles MSE for the different regressions methods, and the hyperparameter $\lambda$ and the degree $m$ that results the MSE in question. Produced using the bootstrap resampling method.}
+\centering
+\begin{tabular}[width=0.5\textwidth]{lccc}
+\hline
+\textbf{Reg} & \textbf{min. MSE} & $\boldsymbol{m}$ & $\boldsymbol{\lambda}$ \\
+\hline
+\textbf{OLS} & 0.016 & 7 & 0 \\
+\textbf{Ridge} & 0.014 & 9 & 1e-05 \\
+\textbf{Lasso} & 0.043 & 9 & 1e-06
+\end{tabular}
+\label{tab:minerrorFRANKE}
+\end{table}
+
 
 \vfill
 \newpage
