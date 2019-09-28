@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 import projectfunctions as pf
 
 
-def write_test_vs_degree_boot(filename, x, y, z,  reg, degrees, hyperparam ,show_bias_var=False, plot_r2=False, **kwargs):
+def write_test_vs_degree_boot(filename, x, y, z,  reg, degrees, hyperparam ,show_bias_var=False, plot_r2=False):
     """
     Function for writing the mse vs complexity to file
     calculated using bootstrap, where
