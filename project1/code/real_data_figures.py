@@ -47,9 +47,8 @@ z = oslo_data.ravel()
 reg = pf.ridge_regression
 hyperparam = 0
 degrees = np.linspace(0, 15, 16, dtype=int)
-print(degrees)
 
-filename = datadir + "realData.txt"
+filename = datadir + "realData_OLS.txt"
 io.write_test_vs_degree_boot(filename, x, y, z,  reg, degrees, hyperparam ,show_bias_var=False, plot_r2=False)
 
 """
