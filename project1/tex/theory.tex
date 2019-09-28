@@ -70,6 +70,11 @@ C(\boldsymbol{\beta})
 = \frac{1}{n}\sum_{n=0}^{n-1} \left(y_i-\boldsymbol{x}_{i*}\boldsymbol{\beta}\right)^2 + \lambda \sum_{i=0}^{p-1}\left|\beta\right|
 \end{equation*}
 
+\subsection{Variance of model parameters$}
+\begin{equation*}
+	Var\left(\boldsymbol{\beta}\right) = \sigma^2\left(\boldsymbol{X}^T\boldsymbol{X}\right)^{-1}
+\end{equation*}
+
 \subsection{Evaluation scores}
 In this project, we will use two well known expressions to calculate the error in the predicted values. That is the Mean Square Error (MSE)
 \begin{equation}\label{eq:mse}
