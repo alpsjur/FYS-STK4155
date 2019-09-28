@@ -104,7 +104,8 @@ weight = np.sqrt( np.diag( np.linalg.inv(X.T.dot(X))))*1.96
 plt.errorbar(np.arange(1,len(beta)+1), beta, yerr=2*weight,fmt='o',label=f"beta confidence interval")
 #plt.plot(np.arange(1,len(beta)+1),beta,'r-',label=f"beta-values")
 plt.legend()
-#plt.xlabel("$\beta$-value index")
+plt.xlabel("beta-value index")
+plt.savefig("../figures/betaconfidence.pdf")
 plt.show()
 
 ###3D plot ###
