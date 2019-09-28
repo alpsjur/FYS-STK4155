@@ -41,7 +41,7 @@ fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
 
 plf.plot_test_vs_degree_boot(ax, x, y, z, reg, max_degree, hyperparam, linewidth=2)
-plf.plot_train_vs_degree(ax, x, y, z, reg, max_degree, hyperparam,linewidth=2)
+plf.plot_train_vs_degree(ax, x, y, z, reg, max_degree, hyperparam, linewidth=2)
 
 ax.legend(fontsize=18,loc='upper center', bbox_to_anchor=(0.5, 1.15),frameon=False, ncol=2)
 ax.tick_params(axis='both', labelsize=14)
@@ -54,7 +54,7 @@ plt.savefig(figdir+'mseVSdegreeOLS.pdf')
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(1,1,1)
 
-plf.plot_test_vs_degree_kfold(ax2, x, y, z, reg, max_degree, hyperparam, plot_r2= True, linewidth=2)
+plf.plot_test_vs_degree_kfold(ax2, x, y, z, reg, max_degree, hyperparam, plot_r2=True, linewidth=2)
 plf.plot_train_vs_degree(ax2, x, y, z, reg, max_degree, hyperparam, plot_r2=True, linewidth=2)
 
 ax2.legend(fontsize=18,loc='upper center', bbox_to_anchor=(0.5, 1.15),frameon=False, ncol=2)

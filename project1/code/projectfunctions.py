@@ -23,7 +23,6 @@ def generate_design_2Dpolynomial(x, y, degree=5):
     p = 0
     for i in range(degree + 1):
         for j in range(degree + 1 - i):
-            #print( x**i*y**j)
             X[:, p] = x**i*y**j
             p += 1
     return X
@@ -43,14 +42,14 @@ def ridge_regression(X, data, hyperparam=0):
     beta = np.linalg.pinv(X.T.dot(X) + hyperparam*np.identity(p)).dot(X.T).dot(data)
     return beta
 
-def lasso_regression(X, data, hyperparam=1, **kwargs):
+def lasso_regression(X, data, hyperparam=1):
     """
     Lasso regression solved using scikit learn's in-built method Lasso
     """
     reg = linear_model.Lasso(alpha=hyperparam,
                             max_iter=1e3,
                             tol = 1e-1,
-                            fit_intercept=False
+                            fit_intercept=False # we already have a column of 1s
                             )
     reg.fit(X, data)
     beta = reg.coef_

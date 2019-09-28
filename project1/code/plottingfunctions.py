@@ -69,7 +69,7 @@ def plot_train_vs_lambda(ax, x, y, z, reg, degree, hyperparams, r2=False, **kwar
             )
 
 def plot_test_vs_degree_kfold(ax, x, y, z,  reg, max_degree, hyperparam, plot_r2=False, **kwargs):
-    degrees = np.arange(0,max_degree+1)
+    degrees = np.arange(0, max_degree+1)
 
     kfold_error = []
 
@@ -98,7 +98,7 @@ def plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam ,show_bia
         hyperparam = hyperparameter for model
         show_bias_var = if True the bias and variance will also be plotted
     """
-    degrees = np.arange(0,max_degree+1)
+    degrees = np.arange(0, max_degree+1)
 
     boot_error = np.zeros(len(degrees))
     boot_bias = np.zeros(len(degrees))
@@ -286,10 +286,10 @@ if __name__ == '__main__':
     fig3 = plt.figure()
     ax3 = fig3.add_subplot(1,1,1)
 
-    plot_test_vs_degree_multiple_lambda(ax3, x, y, z, reg, max_degree, hyperparams)
-    ax3.legend(frameon=False, fontsize=14)
-    ax3.set_xlabel("Degrees", fontsize=14)
-    ax3.set_ylabel("MSE", fontsize=14)
+    plot_test_vs_degree_multiple_lambda(ax3, x, y, z, reg, max_degree, hyperparams, linewidth=2)
+    ax3.legend(frameon=False, fontsize=18)
+    ax3.set_xlabel("Degrees", fontsize=18)
+    ax3.set_ylabel("MSE", fontsize=18)
     plt.savefig("../figures/lambdavsdegrees.pdf")
 
     plt.show()
