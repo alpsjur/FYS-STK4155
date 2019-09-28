@@ -19,5 +19,9 @@ def write_test_vs_degree_boot(filename, x, y, z,  reg, degrees, hyperparam ,show
 
     for degree in degrees:
         [mse, r2, bias, var] = pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, reg, degree=degree, hyperparam=hyperparam)
-        file.write(f'{degree} {mse}')
+        file.write(f'{degree} {mse}\n')
     file.close()
+
+def read_file(filename):
+    degree, mse = np.loadtxt(filename)
+    return degree, mse 
