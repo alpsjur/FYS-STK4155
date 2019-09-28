@@ -28,9 +28,10 @@ n_y, n_x = np.shape(oslo_data)
 x_grid, y_grid = np.meshgrid(np.linspace(0,1,n_x),np.linspace(0,1,n_y))
 
 #downsizing
-oslo_data = oslo_data[::4,::4]
-x_grid = x_grid[::4,::4]
-y_grid = y_grid[::4,::4] 
+reduction = 10
+oslo_data = oslo_data[::reduction,::reduction]
+x_grid = x_grid[::reduction,::reduction]
+y_grid = y_grid[::reduction,::reduction]
 
 
 #flatten the data
@@ -43,11 +44,11 @@ z = oslo_data.ravel()
 "plotting MSE vs degree for terrain data using OLS"
 reg = pf.ridge_regression
 hyperparam = 0
-max_degree = 20
+max_degree = 15
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
-plf.plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam, linewith=2)
+plf.plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam, linewidth=2)
 ax.tick_params(axis='both', labelsize=14)
 ax.set_xlabel('degree', fontsize=18)
 ax.set_ylabel('MSE', fontsize=18)
