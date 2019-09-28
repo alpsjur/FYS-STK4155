@@ -88,7 +88,7 @@ def plot_test_vs_degree_kfold(ax, x, y, z,  reg, max_degree, hyperparam, plot_r2
             ,label=label
             )
 
-def plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam ,show_bias_var=False, plot_r2=False, **kwargs):
+def plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam ,show_bias_var=False, plot_r2=False,return_minimum=True, **kwargs):
     """
     Function for plotting the mse (and bias, variance) vs complexity
     calculated using bootstrap, where
@@ -142,6 +142,9 @@ def plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam ,show_bia
             ,ls='--'
             , **kwargs
             )
+    if return_minimum:
+        return  [min(boot_error),np.argmin(boot_error)]
+
 
 def plot_test_vs_lambda(ax, x, y, z, reg, degree, hyperparams ,show_bias_var=False, **kwargs):
     """
@@ -191,7 +194,7 @@ def plot_test_vs_lambda(ax, x, y, z, reg, degree, hyperparams ,show_bias_var=Fal
             , **kwargs
             )
 
-def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperparams , **kwargs):
+def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperparams,return_minimum=True , **kwargs):
     """
     Function for plotting the mse vs complexity for multiple lambda
     calculated using bootstrap, where
@@ -210,6 +213,11 @@ def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperpara
 
     x_train, x_test, y_train, y_test, z_train, z_test = train_test_split(x, y, z, test_size=0.2)
 
+    if return_minimum:
+        error = np.zeros((len(degrees),len(hyperparams)))
+
+    hyper_index = 0
+
     for hyperparam in hyperparams:
         for degree in degrees:
             [mse, r2, bias, var] = pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, reg, degree=degree, hyperparam=hyperparam)
@@ -219,12 +227,19 @@ def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperpara
             k_fold_bias[degree]=bias
             k_fold_var[degree]=var
 
+            if return_minimum:
+                error[degree,hyper_index] = mse
+        hyper_index += 1
+
 
             #Plot mse
         ax.plot(degrees, k_fold_mse
             ,label=f"$\lambda$={hyperparam:.2g}"
             , **kwargs
             )
+    if return_minimum:
+        index = (np.array(np.where(error == error.min())).flatten())
+        return [error.min(), degrees[index[0]], hyperparams[index[1]]]
 
 def plot_bias_confidence(ax, x, y, z, reg, degree, hyperparam, confidence=1.96 ,**kwargs):
     """
@@ -293,3 +308,33 @@ if __name__ == '__main__':
     plt.savefig("../figures/lambdavsdegrees.pdf")
 
     plt.show()
+
+def find_minimum_MSE(x,y,z,hyperparams,degrees):
+    """
+    Uses bootstrap resampling on data to find MSE of OLS, Ridge and
+    Lasso-regression. Finds the minimum MSE for each method and returns it,
+    along with the corresponding hyperparameter and degree.
+    Arguments:
+        x, y = coordinates (will generalise for arbitrary number of parameters)
+        z = data
+        hyperparams = list of hyperparameters to test
+        degrees = list of polynomial degrees to test
+    """
+    x_train, x_test, y_train, y_test, z_train, z_test = train_test_split(x, y, z, test_size=0.2)
+    ols_error = zeros(len(degrees))
+    ridge_error = zeros((len(degrees),len(hyperparams)))
+    lasso_error = zeros((len(degrees),len(hyperparams)))
+
+    #OLS
+    for degree in degrees:
+        [ols_error[degree], r2, bias, var] = pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, pf.least_squares, degree=degree, hyperparam=0)
+
+    #RIDGE
+    for degree in degrees:
+        for i in range(len(hyperparams)):
+            [ridge_error[degree,i], r2, bias, var] =  pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, pf.ridge_regression, degree=degree, hyperparam=hyperparams[i])
+
+    #RIDGE
+    for degree in degrees:
+        for i in range(len(hyperparams)):
+            [ridge_error[degree,i], r2, bias, var] =  pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, pf.lasso_regression, degree=degree, hyperparam=hyperparams[i])
