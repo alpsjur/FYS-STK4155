@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.27)  27 SEP 2019 18:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.27)  28 SEP 2019 12:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1862,7 +1862,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 43--44
 pdfTeX warning: pdflatex (file ../figures/mseVSdegreeOLS.pdf): PDF inclusion: m
 ultiple pdfs with page group included in a single page
 >]
-<../figures/biasvarianceOLS.pdf, id=85, 462.52798pt x 346.89601pt>
+<../figures/biasvarianceOLS.pdf, id=75, 462.52798pt x 346.89601pt>
 File: ../figures/biasvarianceOLS.pdf Graphic file (type pdf)
 <use ../figures/biasvarianceOLS.pdf>
 Package pdftex.def Info: ../figures/biasvarianceOLS.pdf  used on input line 53.
@@ -1923,10 +1923,10 @@ amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/doublestroke/dsrom1
 0.pfb>
-Output written on main.pdf (8 pages, 297725 bytes).
+Output written on main.pdf (8 pages, 340663 bytes).
 PDF statistics:
- 171 PDF objects out of 1000 (max. 8388607)
- 112 compressed objects within 2 object streams
+ 158 PDF objects out of 1000 (max. 8388607)
+ 123 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
