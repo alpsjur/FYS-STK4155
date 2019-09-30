@@ -79,7 +79,7 @@ Here, $\sigma^2$ is the variance of $\boldsymbol{\epsilon}$ in (\ref{eq_model}).
  
 It can be shown that the confidence interval of $\beta_i$ then is given as \citep{hastie2009elements}
 \begin{equation*}
-	(\beta_i-z^{1-\alpha}v_i^{\frac{1}{2}}, \quad \beta_i+z^{1-\alpha}v_i^{\frac{1}{2}})
+	(\beta_i-z^{1-\alpha}v_i^{\frac{1}{2}}\sigma, \quad \beta_i+z^{1-\alpha}v_i^{\frac{1}{2}}\sigma)
 \end{equation*}  
 Here, $v_i$ is the $i$th diagonal element of $\left(\boldsymbol{X}^T\boldsymbol{X}\right)^{-1}$ and $z^{1-\alpha}$ is the $1-\alpha$ percentile of the normal distribution. For a 95\% confidence interval, $z^{1-\alpha}=1.96$.
 
