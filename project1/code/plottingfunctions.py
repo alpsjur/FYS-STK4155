@@ -247,8 +247,8 @@ def plot_bias_confidence(ax, x, y, z, reg, degree, hyperparam, noise, confidence
     """
     X = pf.generate_design_2Dpolynomial(x, y, degree)
     beta = reg(X, z, hyperparam=hyperparam)
-    weight = np.sqrt( noise*np.diag( np.linalg.inv( X.T @ X )) )*confidence
-    #weight = noise*np.sqrt( noise*np.diag( np.linalg.inv( X.T @ X )) )*confidence
+    #weight = np.sqrt( noise*np.diag( np.linalg.inv( X.T @ X )) )*confidence
+    weight = noise*np.sqrt( noise*np.diag( np.linalg.inv( X.T @ X )) )*confidence
     ax.errorbar(beta,np.arange(1,len(beta)+1)
                 ,xerr=weight
                 ,fmt='.'
