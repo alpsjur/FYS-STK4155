@@ -45,11 +45,11 @@ z = oslo_data.ravel()
 
 "plotting MSE vs degree for terrain data using OLS"
 reg = pf.ridge_regression
-hyperparam = 0
-degrees = np.linspace(0, 15, 16, dtype=int)
+hyperparam = 1e-6
+degrees = np.linspace(16, 21, 5, dtype=int)
 
-filename = datadir + "realData_OLS.txt"
-io.write_test_vs_degree_boot(filename, x, y, z,  reg, degrees, hyperparam ,show_bias_var=False, plot_r2=False)
+filename = datadir + "realData_Ridge_1e-6.txt"
+io.write_test_vs_degree_boot(filename, x, y, z,  reg, degrees, hyperparam)
 
 """
 fig = plt.figure()

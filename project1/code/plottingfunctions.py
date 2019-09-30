@@ -241,14 +241,14 @@ def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperpara
         index = (np.array(np.where(error == error.min())).flatten())
         return [error.min(), degrees[index[0]], hyperparams[index[1]]]
 
-def plot_bias_confidence(ax, x, y, z, reg, degree, hyperparam, confidence=1.96 ,**kwargs):
+def plot_bias_confidence(ax, x, y, z, reg, degree, hyperparam, noise, confidence=1.96 ,**kwargs):
     """
     Function plotting betas and their confidence intervalls
     """
     X = pf.generate_design_2Dpolynomial(x, y, degree)
     beta = reg(X, z, hyperparam=hyperparam)
-    #weight = np.sqrt( np.diag( np.linalg.inv(X.T.dot(X))))*confidence
-    weight = np.sqrt( np.diag( np.linalg.inv( X.T @ X ) ) )*confidence
+    weight = np.sqrt( noise*np.diag( np.linalg.inv( X.T @ X )) )*confidence
+    #weight = noise*np.sqrt( noise*np.diag( np.linalg.inv( X.T @ X )) )*confidence
     ax.errorbar(beta,np.arange(1,len(beta)+1)
                 ,xerr=weight
                 ,fmt='.'

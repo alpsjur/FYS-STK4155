@@ -101,7 +101,7 @@ ax5 = fig5.add_subplot(1,1,1)
 degree = 5
 reg = pf.least_squares
 
-plf.plot_bias_confidence(ax5, x, y, z, reg, degree, hyperparam, linewidth = 5)
+plf.plot_bias_confidence(ax5, x, y, z, reg, degree, hyperparam, noise, linewidth = 5)
 ax5.set_ylabel(r'$i$', fontsize=18)
 ax5.set_xlabel(r'$\beta_i$', fontsize=18)
 ax5.set_yticks(np.arange(1,22,2))
