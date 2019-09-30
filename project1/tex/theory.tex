@@ -70,11 +70,18 @@ C(\boldsymbol{\beta})
 = \frac{1}{n}\sum_{n=0}^{n-1} \left(y_i-\boldsymbol{x}_{i*}\boldsymbol{\beta}\right)^2 + \lambda \sum_{i=0}^{p-1}\left|\beta\right|
 \end{equation*}
 
-\subsection{Variance of model parameters}
-Dette skjønner jeg ikke.re
+\subsection{Confidence interval of model parameters}
+The variance-covariance matrix of the OLS parameters in (\ref{eq:ols}) is given as 
 \begin{equation*}
 	Var\left(\boldsymbol{\beta}\right) = \sigma^2\left(\boldsymbol{X}^T\boldsymbol{X}\right)^{-1}
 \end{equation*}
+Here, $\sigma^2$ is the variance of $\boldsymbol{\epsilon}$ in (\ref{eq_model}). 
+ 
+It can be shown that the confidence interval of $\beta_i$ then is given as \citep{hastie2009elements}
+\begin{equation*}
+	(\beta_i-z^{1-\alpha}v_i^{\frac{1}{2}}, \quad \beta_i+z^{1-\alpha}v_i^{\frac{1}{2}})
+\end{equation*}  
+Here, $v_i$ is the $i$th diagonal element of $\left(\boldsymbol{X}^T\boldsymbol{X}\right)^{-1}$ and $z^{1-\alpha}$ is the $1-\alpha$ percentile of the normal distribution. For a 95\% confidence interval, $z^{1-\alpha}=1.96$.
 
 \subsection{Evaluation scores}
 In this project, we will use two well known expressions to calculate the error in the predicted values. That is the Mean Square Error (MSE)
