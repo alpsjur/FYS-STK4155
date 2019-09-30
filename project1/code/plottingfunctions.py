@@ -31,7 +31,7 @@ def plot_train_vs_degree(ax, x, y, z, reg, max_degree, hyperparam, plot_r2=False
         else:
             #computing the r2 score when no train test split is used
             error.append(pf.mse(z, z_model))
-            label = 'mse train'
+            label = 'MSE train'
 
     ax.plot(degrees, error, **kwargs
             ,label=label
@@ -57,7 +57,7 @@ def plot_train_vs_lambda(ax, x, y, z, reg, degree, hyperparams, r2=False, **kwar
         if not r2:
             #computing the MSE when no train test split is used
             error.append(pf.mse(z, z_model))
-            label = 'mse train'
+            label = 'MSE train'
 
         if r2:
             #computing the r2 score when no train test split is used
@@ -82,7 +82,7 @@ def plot_test_vs_degree_kfold(ax, x, y, z,  reg, max_degree, hyperparam, plot_r2
 
         else:
             kfold_error.append(mse)
-            label = 'mse test'
+            label = 'MSE test'
 
     ax.plot(degrees, kfold_error, **kwargs
             ,label=label
@@ -118,10 +118,10 @@ def plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam ,show_bia
 
         else:
             boot_error[degree]=mse
-            label = 'mse test'
+            label = 'MSE test'
 
     if show_bias_var:
-        label = 'mse'
+        label = 'MSE'
 
     #Plot mse
     ax.plot(degrees, boot_error
@@ -177,7 +177,7 @@ def plot_test_vs_lambda(ax, x, y, z, reg, degree, hyperparams ,show_bias_var=Fal
 
     #Plot mse
     ax.plot(hyperparams, boot_mse
-            ,label='mse test'
+            ,label='MSE'
             , **kwargs
             )
 

@@ -2,8 +2,10 @@
 \citation{hastie2009elements}
 \citation{hoerl1970ridge}
 \citation{tibshirani1996lasso}
-\providecommand \oddpage@label [2]{}
-\babel@aux{english}{}
+\select@language{english}
+\@writefile{toc}{\select@language{english}}
+\@writefile{lof}{\select@language{english}}
+\@writefile{lot}{\select@language{english}}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
 \newlabel{sec:introduction}{{1}{1}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Theory and methods}{1}}
@@ -27,35 +29,35 @@
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces The $k$-fold cross-validation algorithm.\relax }}{3}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{alg:k-fold}{{1}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Bootstrap method for resampling}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.8}The bias-variance trade-off}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8}Bootstrap method for resampling}{3}}
 \citation{hastie2009elements}
 \@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces The bootstrap algorithm.\relax }}{4}}
 \newlabel{alg:bootstrap}{{2}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.9}The bias-variance trade-off}{4}}
 \newlabel{eq:bias-variance}{{7}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.9}Franke's function and digital terrain data}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.10}Implementation}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{4}}
-\newlabel{sec:results}{{3}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.10}Franke's function and digital terrain data}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.11}Implementation}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{5}}
+\newlabel{sec:results}{{3}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Regression on Franke's function}{5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}$\beta $-values confidence interval}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}MSE and $R^2$ of OLS, with and without resampling}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces DENNE FIGUREN SKAL ENDRES. The $\beta $-values and their confidence interval for $n=??$ and $m=5$ with OLS.\relax }}{5}}
 \newlabel{fig:betaconfidence}{{1}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}MSE and $R^2$ of OLS, with and without resampling}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces MSE of the model as a function of degree $m$, with n=20, noice $\sigma ^2$ = 0.1. In the case where no resampling is done (mse-train), the MSE flattens out at a low value. When applying the bootstrap method (mse-test) for resampling however, the MSE begins to rise after reaching a certain model complexity, creating a minimum point where the error is the lowest.\relax }}{5}}
 \newlabel{fig:mseVSdegreeOLS}{{2}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Bias-Variance-tradeoff}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces $R^2$-score of the model as a function of degree $m$, with n=20, noice $\sigma ^2$ = 0.1. In the case where no resampling is done (r2-train), the $R^2$ increases and then flattens out. When applying the k-fold cross validation method (r2-test) for resampling however, the $R^2$ begins to decrease after reaching a certain model complexity, creating a maximum point where the $R^2$-score is closest to 1 (the optimal value).\relax }}{6}}
 \newlabel{fig:r2VSdegreeOLS}{{3}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Bias-Variance-tradeoff}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Bias, variance and MSE for the ordinary least square method on the data set with $n=20$ and noice $\sigma ^2=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The bias starts of high and decreases as the model complexity increases, whilst the variance grows with the model complexity.\relax }}{6}}
 \newlabel{fig:biasvarianceOLS}{{4}{6}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Resampling with Ridge-regression}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Resampling with Lasso-regression}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces MSE for the Ridge regression method on the data set with $n=20$ and noice $\sigma ^2=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda $. When $\lambda =0$ it is equivalent to the OLS-method.\relax }}{7}}
 \newlabel{fig:lambdavsdegreesRIDGE}{{5}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Resampling with Lasso-regression}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.6}Comparing MSE of the different regression methods}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces MSE for the Lasso regression method on the data set with $n=20$ and noice $\sigma ^2=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda $\relax }}{7}}
 \newlabel{fig:lambdavsdegreesLASSO}{{6}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.6}Comparing MSE of the different regression methods}{7}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces The smalles MSE for the different regressions methods, and the hyperparameter $\lambda $ and the degree $m$ that results the MSE in question. Produced using the bootstrap resampling method.\relax }}{7}}
 \newlabel{tab:minerrorFRANKE}{{1}{7}}
 \bibstyle{plainnat}
