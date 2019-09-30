@@ -194,7 +194,7 @@ def plot_test_vs_lambda(ax, x, y, z, reg, degree, hyperparams ,show_bias_var=Fal
             , **kwargs
             )
 
-def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperparams,return_minimum=True , **kwargs):
+def plot_test_vs_degree_multiple_lambda(ax, x, y, z,  reg, max_degree, hyperparams, return_minimum=True, **kwargs):
     """
     Function for plotting the mse vs complexity for multiple lambda
     calculated using bootstrap, where
