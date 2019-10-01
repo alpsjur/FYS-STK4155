@@ -7,17 +7,11 @@ import numpy as np
 from random import random, seed
 from imageio import imread
 import pandas as pd
+import seaborn as sns
 
 import projectfunctions as pf
 import solvers as sol
 
-
-import numpy as np
-from imageio import imread
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib import cm
-import seaborn as sns
 
 reg = pf.ridge_regression
 n = 20

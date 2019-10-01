@@ -88,7 +88,7 @@ def plot_test_vs_degree_kfold(ax, x, y, z,  reg, max_degree, hyperparam, plot_r2
             ,label=label
             )
 
-def plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam ,show_bias_var=False, plot_r2=False,return_minimum=True, **kwargs):
+def plot_test_vs_degree_boot(ax, x, y, z,  reg, max_degree, hyperparam, show_bias_var=False, plot_r2=False,return_minimum=True, **kwargs):
     """
     Function for plotting the mse (and bias, variance) vs complexity
     calculated using bootstrap, where

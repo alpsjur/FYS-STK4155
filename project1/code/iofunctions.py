@@ -16,7 +16,7 @@ def generate_train_vs_degree(x, y, z, reg, max_degree, hyperparam, filename):
         hyperparam = hyperparameter for calibrating model
     '''
     degrees = np.arange(0, max_degree+1)
-    outfile = open(filename, "w")
+    outfile = open(filename, "a")
     outfile.write("degree mse r2\n")
     for degree in degrees:
         """Simple training with no cross validation"""
@@ -39,7 +39,7 @@ def generate_train_vs_lambda(x, y, z, reg, degree, hyperparams, filename):
         degree = degree of polynomial
         hyperparams = hyperparameter for calibrating model
     '''
-    outfile = open(filename, "w")
+    outfile = open(filename, "a")
     outfile.write("lambda mse r2\n")
     for hyperparam in hyperparams:
         """Simple training with no cross validation"""
@@ -55,7 +55,7 @@ def generate_train_vs_lambda(x, y, z, reg, degree, hyperparams, filename):
 def generate_test_vs_degree_kfold(x, y, z,  reg, max_degree, hyperparam, filename):
     degrees = np.arange(0, max_degree+1)
 
-    outfile = open(filename, "w")
+    outfile = open(filename, "a")
     outfile.write("degree mse r2 bias var\n")
     for degree in degrees:
         [mse, r2, bias, var] = pf.k_fold_cross_validation(x, y, z, reg, degree=degree, hyperparam=hyperparam)
@@ -78,7 +78,7 @@ def generate_test_vs_degree_boot(x, y, z,  reg, degrees, hyperparam, filename, r
 
     x_train, x_test, y_train, y_test, z_train, z_test = train_test_split(x, y, z, test_size=0.2)
 
-    outfile = open(filename, "w")
+    outfile = open(filename, "a")
     outfile.write("degree mse r2 bias var\n")
     for degree in degrees:
         [mse, r2, bias, var] = pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, reg, degree=degree, hyperparam=hyperparam)
@@ -108,7 +108,7 @@ def generate_test_vs_lambda(x, y, z, reg, degree, hyperparams, filename):
 
     x_train, x_test, y_train, y_test, z_train, z_test = train_test_split(x, y, z, test_size=0.2)
 
-    outfile = open(filename, "w")
+    outfile = open(filename, "a")
     outfile.write("lambda mse r2 bias var\n")
     for hyperparam in hyperparams:
         [mse, r2, bias, var] = pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, reg, degree=degree, hyperparam=hyperparam)
@@ -116,7 +116,7 @@ def generate_test_vs_lambda(x, y, z, reg, degree, hyperparams, filename):
         outfile.write(outstring)
     outfile.close()
 
-def generate_test_vs_degree_multiple_lambda(x, y, z,  reg, max_degree, hyperparams, filename, return_minimum=True):
+def generate_test_vs_degree_multiple_lambda(x, y, z,  reg, degrees, hyperparams, filename, return_minimum=True):
     """
     Function for plotting the mse vs complexity for multiple lambda
     calculated using bootstrap, where
@@ -126,12 +126,6 @@ def generate_test_vs_degree_multiple_lambda(x, y, z,  reg, max_degree, hyperpara
         hyperparaml = list of hyperparameters for model
 
     """
-    degrees = np.arange(0,max_degree+1)
-
-    k_fold_mse = np.zeros(len(degrees))
-    k_fold_bias = np.zeros(len(degrees))
-    k_fold_r2 = np.zeros(len(degrees))
-    k_fold_var = np.zeros(len(degrees))
 
     x_train, x_test, y_train, y_test, z_train, z_test = train_test_split(x, y, z, test_size=0.2)
 
@@ -142,7 +136,7 @@ def generate_test_vs_degree_multiple_lambda(x, y, z,  reg, max_degree, hyperpara
 
     hyper_index = 0
     for hyperparam in hyperparams:
-        outfile = open(filename[:-4] + f"_lambda{hyperparam:e}.txt", "w")
+        outfile = open(filename[:-4] + f"_lambda{hyperparam:.0e}.txt", "a")
         outfile.write("degree mse r2 bias var\n")
         for degree in degrees:
             [mse, r2, bias, var] = pf.bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, reg, degree=degree, hyperparam=hyperparam)
