@@ -32,16 +32,16 @@ y = y_grid.ravel()
 z = oslo_data.ravel()
 
 
-reg = pf.lasso_regression
-hyperparams = list(np.logspace(-6, -1, 6))
+reg = pf.ridge_regression
+hyperparams = list(np.logspace(-9, -2, 8))
 
 min_degree = 0
-max_degree = 15
+max_degree = 20
 degrees = np.linspace(min_degree, max_degree, (max_degree - min_degree) + 1, dtype=int)
 
 return_minimum = False
 
-datadir = "../data/lasso/"
+datadir = "../data/ridge/"
 filename = datadir + "realData_boot.txt"
 
 #io.generate_train_vs_degree(x, y, z, reg, max_degree, hyperparam, filename)
