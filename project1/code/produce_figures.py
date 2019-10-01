@@ -5,7 +5,7 @@ import plottingfunctions as plf
 import seaborn as sns
 
 #for reprodusability
-np.random.seed(2019)
+#np.random.seed(2019)
 
 figdir = "../figures/"
 sns.set()
@@ -37,8 +37,6 @@ y = y_grid.flatten()
 z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0,noise,x_grid.shape)
 z = z_grid.flatten()
 
-'''
-'''
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
 
@@ -52,7 +50,6 @@ ax.set_ylabel('value', fontsize=18)
 ax.set_ylim(0,0.09)
 
 plt.savefig(figdir+'mseVSdegreeOLS.pdf')
-'''
 
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(1,1,1)
@@ -81,7 +78,6 @@ ax3.set_ylabel('value', fontsize=18)
 
 plt.savefig(figdir+'biasvarianceOLS.pdf')
 
-'''
 
 hyperparams = list(np.logspace(-5, -1, 5))
 hyperparams.insert(0, 0)
@@ -96,7 +92,7 @@ ax4.set_xlabel("degree", fontsize=18)
 ax4.set_ylabel("MSE", fontsize=18)
 ax4.set_ylim(0,0.09)
 plt.savefig(figdir+"lambdavsdegreesRIDGE.pdf")
-'''
+
 
 fig5 = plt.figure()
 ax5 = fig5.add_subplot(1,1,1)
@@ -112,7 +108,7 @@ plt.savefig(figdir + "betaconfidence.pdf")
 plt.show()
 
 
-'''
+
 reg = pf.lasso_regression
 hyperparams = list(np.logspace(-6, -1, 6))
 
