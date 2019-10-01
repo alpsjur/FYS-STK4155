@@ -42,15 +42,15 @@ y = y_grid.ravel()
 z = oslo_data.ravel()
 
 #plotting
-
-"plotting MSE vs degree for terrain data using OLS"
+'''
+#"plotting MSE vs degree for terrain data using OLS"
 reg = pf.ridge_regression
 hyperparam = 1e-2
 degrees = np.linspace(0, 20, 21, dtype=int)
 
 filename = datadir + "realData_Ridge_1e-2.txt"
 io.write_test_vs_degree_boot(filename, x, y, z,  reg, degrees, hyperparam)
-
+'''
 """
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -62,7 +62,7 @@ ax.set_ylabel('MSE', fontsize=18)
 
 plt.savefig(figdir+'mseVSdegreeOLS_terrain.pdf')
 
-"plotting MSE vs degree for terrain data using Ridge for multiple lambda"
+#"plotting MSE vs degree for terrain data using Ridge for multiple lambda"
 reg = pf.ridge_regression
 hyperparams = list(np.logspace(-5, -1, 5))
 hyperparams.insert(0, 0)
@@ -80,7 +80,7 @@ plt.savefig(figdir+"lambdavsdegreesRIDGE_terrain.pdf")
 
 plt.show()
 """
-"""
+'''
 reg = pf.ridge_regression
 hyperparam = 0
 
@@ -91,10 +91,11 @@ z_pred = X @ beta
 z_pred_grid = z_pred.reshape(x_grid.shape)
 
 plt.figure()
-plt.title('Terrain over Oslo fjord')
+#plt.title('Terrain over inner Oslo fjord')
 plt.imshow(oslo_data, cmap='gray')
 plt.xlabel('X')
 plt.ylabel('Y')
+plt.savefig(figdir+'terrainpicture.pdf')
 
 fig = plt.figure()
 ax = fig.gca(projection="3d")
@@ -131,4 +132,4 @@ fig2.colorbar(surf,
             )
 
 plt.show()
-"""
+'''

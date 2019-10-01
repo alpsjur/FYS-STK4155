@@ -3,7 +3,7 @@
 \renewcommand\theequation{A.\arabic{equation}}
 \section*{Appendix}
 \label{sec:appendix}
-
+\subsubsection*{Decomposition of MSE in bias and variance}
 \begin{align}\label{eq:derivation_bias_variance}
 \begin{split}
 	\mathds{E}[(y-\tilde{y})^2] =& \mathds{E}[(f+\epsilon - \tilde{y})^2] \\
@@ -27,6 +27,27 @@ Here, we have used that
 \begin{equation*}
 	Var[\epsilon] = \sigma^2 \rightarrow Var[y] = \mathds{E}[(f+\epsilon-f)^2] = \sigma^2
 \end{equation*}
+
+\subsubsection*{Visualization of terrain data}
+Figure \ref{fig:terrainpic} visualizes the real terrain data before reduction. Figure \ref{fig:terrainpic_reduced} displays the data after reduction, for comparison.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{terrainpicture.pdf}
+		\caption{Full terrain data over the inner \\Oslo fjord with $1000\times 1000$ data points. \\Here black represents the ocean level.}
+		\label{fig:terrainpic}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{terrainpicture_reduced.pdf}
+		\caption{Reduced terrain data over the inner Oslo fjord in grey scale with $100\times 100$ data points, i.e. every tenth point of every tenth row.}
+	\label{fig:terrainpic_reduced}
+	\end{subfigure}
+	\caption{Comparison of full and reduced terrain data.}
+	\label{fig:terrain}
+\end{figure}
 
 %  \[A =
 %    \mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\
