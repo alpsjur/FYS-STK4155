@@ -15,7 +15,7 @@ plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
 #compare test and training for OLS
-reg = pf.ridge_regression
+reg = pf.least_squares
 n = 20
 noise = 0.1
 max_degree = 12
@@ -37,8 +37,8 @@ y = y_grid.flatten()
 z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0,noise,x_grid.shape)
 z = z_grid.flatten()
 
-'''
-'''
+
+
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
 
@@ -49,10 +49,10 @@ ax.legend(fontsize=18,loc='upper center', bbox_to_anchor=(0.5, 1.15),frameon=Fal
 ax.tick_params(axis='both', labelsize=14)
 ax.set_xlabel('degree', fontsize=18)
 ax.set_ylabel('value', fontsize=18)
-ax.set_ylim(0,0.09)
+ax.set_ylim(0,0.1)
 
 plt.savefig(figdir+'mseVSdegreeOLS.pdf')
-'''
+
 
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(1,1,1)
@@ -82,7 +82,7 @@ ax3.set_ylabel('value', fontsize=18)
 plt.savefig(figdir+'biasvarianceOLS.pdf')
 
 '''
-
+reg = pf.ridge_regression
 hyperparams = list(np.logspace(-5, -1, 5))
 hyperparams.insert(0, 0)
 
@@ -96,7 +96,7 @@ ax4.set_xlabel("degree", fontsize=18)
 ax4.set_ylabel("MSE", fontsize=18)
 ax4.set_ylim(0,0.09)
 plt.savefig(figdir+"lambdavsdegreesRIDGE.pdf")
-'''
+
 
 fig5 = plt.figure()
 ax5 = fig5.add_subplot(1,1,1)
@@ -112,7 +112,7 @@ plt.savefig(figdir + "betaconfidence.pdf")
 plt.show()
 
 
-'''
+
 reg = pf.lasso_regression
 hyperparams = list(np.logspace(-6, -1, 6))
 
@@ -127,7 +127,7 @@ ax6.set_ylim(0,0.09)
 plt.savefig(figdir+"lambdavsdegreesLASSO.pdf")
 
 plt.show()
-'''
+
 if return_minimum:
 
     data = [[min_OLS[0], min_RIDGE[0],min_LASSO[0]],
