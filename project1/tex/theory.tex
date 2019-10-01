@@ -65,11 +65,11 @@ One can see that by setting $\lambda = 0$, (\ref{eq:ridge}) simplifies to the OL
 \subsection{Lasso regression}
 The choice of the penalty term in (\ref{eq:ridge_cost}) is somewhat arbitrary, and other penalty functions could be considered. \cite{tibshirani1996lasso} introduced a penalty function such that the cost function takes the form
 
-\begin{equation*}
+\begin{equation}\label{eq:lasso}
 C(\boldsymbol{\beta})
 = \frac{1}{n}\sum_{n=0}^{n-1} \left(y_i-\boldsymbol{x}_{i*}\boldsymbol{\beta}\right)^2 + \lambda \sum_{i=0}^{p-1}\left|\beta\right|
-\end{equation*}
-
+\end{equation}
+This gives rise to the Lasso regression model. Unlike for OLS and Ridges regression, there is no explicit expression for the model parameters. Instead, methods like gradient descent is used to find the $\boldsymbol{\beta}$ that minimizes the cost function. 
 \subsection{Confidence interval of model parameters}
 The variance-covariance matrix of the OLS parameters in (\ref{eq:ols}) is given as 
 \begin{equation*}
@@ -121,7 +121,7 @@ There are several methods for estimating the skill of a machine learning model. 
 This yields a statistical estimate for how well the model will preform on new data. The choice of $k$ will however affect the bias and variance in the estimation of the evaluation scores. It has been shown empirically that $k=5$ or $k=10$ gives neither a high bias nor variance \citep{james2013introduction}. In this project, a value of 5 was chosen for $k$.
 
 \subsection{Bootstrap method for resampling}
-Another procedure for estimating the skill of a model is the Bootstrap method for resampling. In Bootstrap, a sample is drawn, with replacement, from the data, and the model is fitted to the sample. This is done multiple times, and for each cycle, the fitted model makes a prediction on a test set. Finally, all the predictions are evaluated. Algorithm \ref{alg:bootstrap} gives an overview of the bootstrap method.
+Another procedure for estimating the skill of a model is the Bootstrap method for resampling. In Bootstrap, a sample is drawn, with replacement, from the data, and the model is fitted to the sample. This is done multiple times, and for each cycle, the fitted model makes a prediction on a test set. Finally, all the predictions are evaluated. Algorithm \ref{alg:bootstrap} gives an overview of the bootstrap method used in this project.
 \begin{algorithm}[htbp]\caption{The bootstrap algorithm.}\label{alg:bootstrap}
 	\SetAlgoLined
 	\BlankLine
@@ -132,7 +132,7 @@ Another procedure for estimating the skill of a model is the Bootstrap method fo
 	\ForEach{$n$}{
 		Draw a $N$-sized sample with replacement from the training set\;
 		Fit a model to the data sample\;
-		Apply the model on the test set\;
+		Apply the model on the test set, and store the prediction\;
 	}
 	Evaluate all the model predictions\;
 	Calculate the mean of the evaluation scores\;
@@ -166,15 +166,15 @@ In this project, the different regression methods were applied on both construct
 	&-\frac{1}{5}\exp\left(-\left(9x-4\right)^2-\left(9y-7\right)^2 \right)
 \end{align*}
 
-In addition to the above terms, a normal distributed noise term with $\mu = 0$ and $\sigma^2 = 1$ was added.
+In addition to the above terms, a normal distributed noise term with $\mu = 0$ and $\sigma = 0.1$ was added.
 
 After testing the code on the simpler Franke's function, the same regression methods were used and evaluated on real digital terrain data downloaded from \url{https://earthexplorer.usgs.gov/}. The data used in this project is of the inner Oslo fjord region. Due to the large amount of data points, the set was reduced to 1\% of its original size, by selecting every 10th point of every 10th row. The main features of the terrain was still preserved, as can be seen in Figure \ref{fig:terrain} in the Appendix. 
 
 \subsection{Implementation}
-Since both OLS and Ridge gives an explicit expression for $\boldsymbol{\beta}$, the model parameters can be calculated directly. In this project, expression (\ref{eq:ols}) and (\ref{eq:ridge}) was calculated using the linear algebra functionality in the Python package \texttt{numpy}.
+Since both OLS and Ridge gives an explicit expression for $\boldsymbol{\beta}$, the model parameters can be calculated directly. In this project, expression (\ref{eq:ols}) and (\ref{eq:ridge}) was calculated using the linear algebra functionality in the Python package \texttt{numpy}. To prevent problems with matrix inversions, the function \texttt{numpy.linalg.pinv}, which calculates the inverse using singular-value decomposition, was used. 
 
 Unlike OLS and Ridge regression, there is no general, explicit expression for the model parameters in Lasso regression. Therefore, functionalities from the \texttt{scikit-learn} package was used to calculate $\boldsymbol{\beta}$  in the Lasso regression case.
 
+All plots were made using the Python package \texttt{matplotlib}. 
 
-
-All plots were made using the Python package \texttt{matplotlib}.
+The full code can be found in a github repository \footnote{https://github.com/janadr/FYS-STK4155/tree/master/project1}.

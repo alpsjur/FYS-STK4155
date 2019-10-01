@@ -248,64 +248,12 @@ def plot_bias_confidence(ax, x, y, z, reg, degree, hyperparam, noise, confidence
     X = pf.generate_design_2Dpolynomial(x, y, degree)
     beta = reg(X, z, hyperparam=hyperparam)
     weight = noise*np.sqrt(np.diag( np.linalg.inv( X.T @ X )) )*confidence
+    print(2*weight)
     ax.errorbar(beta,np.arange(1,len(beta)+1)
                 ,xerr=weight
                 ,fmt='.'
                 ,**kwargs
                 )
-
-if __name__ == '__main__':
-    sns.set()
-    sns.set_style("whitegrid")
-    sns.set_palette("husl")
-
-    n = 20
-    noise = 0.1
-    reg = pf.lasso_regression
-    #reg = pf.lasso_regression
-    max_degree = 12
-    degree = 5
-    hyperparam = 0
-    #hyperparams = [0,1e-7, 1e-6, 1e-5, 1e-4, 1e-3] #np.logspace(-7,-2,6)
-    hyperparams = list(np.logspace(-6, -1, 6))
-
-    x_val = np.linspace(0,1,n)
-    y_val = np.linspace(0,1,n)
-
-    #making an x and y grid
-    x_grid, y_grid = np.meshgrid(x_val, y_val)
-
-    #flatten x and y
-    x = x_grid.flatten()
-    y = y_grid.flatten()
-
-    #compute z and flatten it
-    z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0,noise, x_grid.shape)
-    z = z_grid.flatten()
-
-
-    #fig1 = plt.figure()
-    #ax1 = fig1.add_subplot(1,1,1)
-
-    #plot_test_vs_degree(ax1, x, y, z, reg, max_degree, hyperparam, show_bias_var=True)
-    #plot_train_vs_degree(ax1, x, y, z, reg, max_degree, hyperparam)
-    #ax1.legend()
-
-    #fig2 = plt.figure()
-    #ax2 = fig2.add_subplot(1,1,1)
-
-    #plot_test_vs_lambda(ax2, x, y, z, reg, degree, hyperparams)
-
-    fig3 = plt.figure()
-    ax3 = fig3.add_subplot(1,1,1)
-
-    plot_test_vs_degree_multiple_lambda(ax3, x, y, z, reg, max_degree, hyperparams, linewidth=2)
-    ax3.legend(frameon=False, fontsize=18)
-    ax3.set_xlabel("Degrees", fontsize=18)
-    ax3.set_ylabel("MSE", fontsize=18)
-    plt.savefig("../figures/lambdavsdegrees.pdf")
-
-    plt.show()
 
 def find_minimum_MSE(x,y,z,hyperparams,degrees):
     """

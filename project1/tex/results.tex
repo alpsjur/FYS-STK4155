@@ -2,16 +2,17 @@
 \label{sec:results}
 Resultater vi mangler
 \begin{itemize}
+\item Franke - Bias varianse for Ridge og Lasso
 \item Terrengdata - OLS
 \item Terrengdata - Ridge
 \item Terrengdata - Lasso
 \item tabell minste feil for de ulike metodene (hvilken deg og $\lambda$)
 \end{itemize}
 \subsection{Regression on Franke's function}
-The {''}terrain'' data $z$ in this part was produced by applying Franke's function to a $n\cross n$ evenly spaced $xy$ grid, with $x_i,y_i\in [0,1]$, and for each point add a normally distributed noise with $\mu = 0$ and $\sigma^2 = 0.1$.
+The {''}terrain'' data $z$ in this part was produced by applying Franke's function to a $n\cross n$ evenly spaced $xy$ grid, with $x_i,y_i\in [0,1]$, and for each point added a normally distributed noise with $\mu = 0$ and $\sigma = 0.1$.
 \subsubsection{$\beta$-values confidence interval}
 Before applying any resampling methods we used the regular \emph{ordinary least squares} method \eqref{eq:ols} to our data and had a look at the confidence interval of the $\beta$ values when approximating the data to a polynomial of degree $m=5$. The confidence intervals are shown in Figure \ref{fig:betaconfidence}.
-
+The confidence intervals range between 0.23 and 35 in width.  
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{betaconfidence}
@@ -26,44 +27,44 @@ To study the mean squared error \eqref{eq:mse} as a function of the model comple
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{mseVSdegreeOLS}
-	\caption{MSE of the model as a function of degree $m$, with n=20, noise $\sigma^2$ = 0.1. In the case where no resampling is done (mse-train), the MSE flattens out at a low value. When applying the bootstrap method (mse-test) for resampling however, the MSE begins to rise after reaching a certain model complexity, creating a minimum point where the error is the lowest.}
+	\caption{MSE of the model as a function of degree $m$, with n=20, noise $\sigma$ = 0.1. In the case where no resampling is done (MSE-train), the MSE flattens out at a low value. When applying the bootstrap method (MSE-test) for resampling however, the MSE begins to rise after reaching a certain model complexity, creating a minimum point where the error is the lowest.}
 	\label{fig:mseVSdegreeOLS}
 \end{figure}
 
-Applying the same analisys to the $R^2$-score \eqref{eq:r2} of the two cases, we get the result as shown in Figure \ref{fig:r2VSdegreeOLS}. For the $R^2$ score, we found the results easier to obtain when using the \emph{k-fold cross validation} method (Algorithm \ref{alg:k-fold}) for resampling.
+Applying the same analisys to the $R^2$-score \eqref{eq:r2} of the two cases, we get the result as shown in Figure \ref{fig:r2VSdegreeOLS}. For the $R^2$ score, we found the results easier to obtain when using the \emph{k-fold cross validation} method (Algorithm \ref{alg:k-fold}).
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{r2VSdegreeOLS}
-	\caption{$R^2$-score of the model as a function of degree $m$, with n=20, noise $\sigma^2$ = 0.1. In the case where no resampling is done (r2-train), the $R^2$ increases and then flattens out. When applying the k-fold cross validation method (r2-test) for resampling however, the $R^2$ begins to decrease after reaching a certain model complexity, creating a maximum point where the $R^2$-score is closest to 1 (the optimal value).}
+	\caption{$R^2$-score of the model as a function of degree $m$, with n=20, noise $\sigma$ = 0.1. In the case where no resampling is done (R2-train), the $R^2$ increases and then flattens out. When applying the k-fold cross validation method (R2-test) for resampling however, the $R^2$ begins to decrease after reaching a certain model complexity, creating a maximum point where the $R^2$-score is closest to 1 (the optimal value).}
 	\label{fig:r2VSdegreeOLS}
 \end{figure}
 
 \subsubsection{Bias-Variance-tradeoff}
-Sticking to the bootstrap method for resampling, and using $n=20$ with $\sigma^2 = 0.1$ we also compute the bias and variance of the model as discussed in the theory. Plotting the variance, bias and MSE together results in Figure \ref{fig:biasvarianceOLS}.
+Sticking to the bootstrap method for resampling, and using $n=20$ with $\sigma = 0.1$ we also compute the bias and variance of the model as discussed in the theory. Plotting the variance, bias and MSE together results in Figure \ref{fig:biasvarianceOLS}.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{biasvarianceOLS}
-	\caption{Bias, variance and MSE for the ordinary least square method on the data set with $n=20$ and noise $\sigma^2=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The bias starts of high and decreases as the model complexity increases, whilst the variance grows with the model complexity.}
+	\caption{Bias, variance and MSE for the ordinary least square method on the data set with $n=20$ and noise $\sigma=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The bias starts of high and decreases as the model complexity increases, whilst the variance grows with the model complexity.}
 	\label{fig:biasvarianceOLS}
 \end{figure}
 
 \subsubsection{Resampling with Ridge-regression}
-In order to find the parameters that will give the least MSE for the Ridge regression method, we need to tune both the degree $m$ of the polynomial that we fit, and the optimal $\lambda$-value. This is obtained by doing Ridge regression on the data set with bootstrap, for both different values of $m$ and different values of $\lambda$ as shown in Figure \ref{fig:lambdavsdegreesRIDGE}
+In order to find the parameters that will give the least MSE for the Ridge regression method, we need to tune both the degree $m$ of the polynomial that we fit, and the optimal $\lambda$-value. This is obtained by doing Ridge regression on the data set with bootstrap, for both different values of $m$ and different values of $\lambda$ as shown in Figure \ref{fig:lambdavsdegreesRIDGE}.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{lambdavsdegreesRIDGE}
-	\caption{MSE for the Ridge regression method on the data set with $n=20$ and noise $\sigma^2=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda$. When $\lambda=0$ it is equivalent to the OLS-method.}
+	\caption{MSE for the Ridge regression method on the data set with $n=20$ and noise $\sigma=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda$. When $\lambda=0$ it is equivalent to the OLS-method.}
 	\label{fig:lambdavsdegreesRIDGE}
 \end{figure}
 
 \subsubsection{Resampling with Lasso-regression}
-The same analisys, with various $\lambda$ and $m$-values is done for Lasso-regression (Figure \ref{fig:lambdavsdegreesLASSO})
+The same analisys, with various $\lambda$ and $m$-values is done for Lasso-regression (Figure \ref{fig:lambdavsdegreesLASSO}).
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{lambdavsdegreesLASSO}
-	\caption{MSE for the Lasso regression method on the data set with $n=20$ and noise $\sigma^2=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda$}
+	\caption{MSE for the Lasso regression method on the data set with $n=20$ and noise $\sigma=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda$}
 	\label{fig:lambdavsdegreesLASSO}
 \end{figure}
 

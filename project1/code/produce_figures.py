@@ -37,6 +37,7 @@ y = y_grid.flatten()
 z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0,noise,x_grid.shape)
 z = z_grid.flatten()
 
+'''
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
 
@@ -87,12 +88,12 @@ ax4 = fig4.add_subplot(1,1,1)
 
 min_RIDGE = plf.plot_test_vs_degree_multiple_lambda(ax4, x, y, z, reg, max_degree, hyperparams,return_minimum)
 
-ax4.legend(frameon=False, fontsize=14)
+ax4.legend(frameon=False, fontsize=18, ncol=2)
 ax4.set_xlabel("degree", fontsize=18)
 ax4.set_ylabel("MSE", fontsize=18)
 ax4.set_ylim(0,0.09)
 plt.savefig(figdir+"lambdavsdegreesRIDGE.pdf")
-
+'''
 
 fig5 = plt.figure()
 ax5 = fig5.add_subplot(1,1,1)
@@ -107,7 +108,7 @@ ax5.set_yticks(np.arange(1,22,2))
 plt.savefig(figdir + "betaconfidence.pdf")
 plt.show()
 
-
+'''
 
 reg = pf.lasso_regression
 hyperparams = list(np.logspace(-6, -1, 6))
@@ -116,7 +117,7 @@ fig6 = plt.figure()
 ax6 = fig6.add_subplot(1,1,1)
 
 min_LASSO = plf.plot_test_vs_degree_multiple_lambda(ax6, x, y, z, reg, max_degree, hyperparams,return_minimum)
-ax6.legend(frameon=False, fontsize=18)
+ax6.legend(frameon=False, fontsize=18, ncol=2)
 ax6.set_xlabel("degree", fontsize=18)
 ax6.set_ylabel("MSE", fontsize=18)
 ax6.set_ylim(0,0.09)
