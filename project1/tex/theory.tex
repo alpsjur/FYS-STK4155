@@ -168,7 +168,7 @@ In this project, the different regression methods were applied on both construct
 
 In addition to the above terms, a normal distributed noise term with $\mu = 0$ and $\sigma^2 = 1$ was added.
 
-After testing the code on the simpler Franke's function, the same regression methods were used and evaluated on real digital terrain data downloaded from \url{https://earthexplorer.usgs.gov/}. The data used in this project is of the Oslo fjord region.
+After testing the code on the simpler Franke's function, the same regression methods were used and evaluated on real digital terrain data downloaded from \url{https://earthexplorer.usgs.gov/}. The data used in this project is of the inner Oslo fjord region. Due to the large amount of data points, the set was reduced to 1\% of its original size, by selecting every 10th point of every 10th row. The main features of the terrain was still preserved, as can be seen in Figure \ref{fig:terrain} in the Appendix. 
 
 \subsection{Implementation}
 Since both OLS and Ridge gives an explicit expression for $\boldsymbol{\beta}$, the model parameters can be calculated directly. In this project, expression (\ref{eq:ols}) and (\ref{eq:ridge}) was calculated using the linear algebra functionality in the Python package \texttt{numpy}.

@@ -3,8 +3,7 @@
 
 % Discuss beta confidence intervals
 \subsubsection*{Behaviour of the different regression methods applied to Franke's function}
-
-Noe om $\beta$ konfidensintervall omtrent her....\\
+Let's first look at the $\beta$ confidence interval in Figure \ref{fig:biasvarianceOLS}.  
 
 % Discuss R2 and MSE values for the different methods
 Looking at the  the mean squared error and the $R^2$-value of the approximation to Franke's function using ordinary least squares (figure \ref{fig:mseVSdegreeOLS} and \ref{fig:r2VSdegreeOLS}), we see the difference in the results when using the entire training set as test data, and when separating the data into test and training data using resampling. Comparing the two results, they both display the same trend: When train and test data is not separated the approximation seems to unambiguously become better with increased model complexity, though, converging to what looks to be the minimum error. When using designated test data, however, it becomes appearent that using the training data for testing gives a false sense of security, as the mean squared error now starts increasing and the $R^2$-value decreasing when a certain model complexity is reached. It appears that a complexity given by a polynomial of degree $m \in [5,7]$ gives the best result for both the $R^2$-value and the MSE when doing ordinary least squares regression in this case.
