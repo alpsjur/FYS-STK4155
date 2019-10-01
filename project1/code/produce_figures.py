@@ -15,7 +15,7 @@ plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
 #compare test and training for OLS
-reg = pf.ridge_regression
+reg = pf.least_squares
 n = 20
 noise = 0.1
 max_degree = 12
@@ -47,7 +47,7 @@ ax.legend(fontsize=18,loc='upper center', bbox_to_anchor=(0.5, 1.15),frameon=Fal
 ax.tick_params(axis='both', labelsize=14)
 ax.set_xlabel('degree', fontsize=18)
 ax.set_ylabel('value', fontsize=18)
-ax.set_ylim(0,0.09)
+ax.set_ylim(0,0.1)
 
 plt.savefig(figdir+'mseVSdegreeOLS.pdf')
 
@@ -123,7 +123,7 @@ ax6.set_ylim(0,0.09)
 plt.savefig(figdir+"lambdavsdegreesLASSO.pdf")
 
 plt.show()
-'''
+
 if return_minimum:
 
     data = [[min_OLS[0], min_RIDGE[0],min_LASSO[0]],
