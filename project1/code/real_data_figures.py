@@ -42,7 +42,7 @@ y = y_grid.ravel()
 z = oslo_data.ravel()
 
 #plotting
-'''
+
 "plotting MSE vs degree for terrain data using OLS"
 reg = pf.ridge_regression
 hyperparam = 1e-2
@@ -50,7 +50,7 @@ degrees = np.linspace(0, 20, 21, dtype=int)
 
 filename = datadir + "realData_Ridge_1e-2.txt"
 io.write_test_vs_degree_boot(filename, x, y, z,  reg, degrees, hyperparam)
-'''
+
 """
 fig = plt.figure()
 ax = fig.add_subplot(111)
