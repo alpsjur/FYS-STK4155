@@ -89,8 +89,22 @@ A different, and less visual way of finding the method that gives the best appro
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{mseVSdegreeOLS_terrain}
-	\caption{MSE for the OLS regression method on the terrain data set.}
+	\caption{MSE for the OLS regression method on the reduced terrain data set. The MSE decreases as the degree increases, and flattens out for degrees higher than about 15}
 	\label{fig:mseVSdegreeOLSterrain}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{ridge_multilambda_mse}
+	\caption{MSE for the Ridge regression method on the reduced terrain data set.}
+	\label{fig:mseVSdegreeLASSOterrain}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{lasso_multilambda_mse}
+	\caption{MSE for the Lasso regression method on the reduced terrain data set.}
+	\label{fig:mseVSdegreeRIDGEterrain}
 \end{figure}
 
 \vfill
