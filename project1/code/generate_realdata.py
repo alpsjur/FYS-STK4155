@@ -49,4 +49,4 @@ filename = datadir + "realData_boot.txt"
 #io.generate_test_vs_degree_kfold(x, y, z,  reg, max_degree, hyperparam, filename)
 #io.generate_test_vs_degree_boot(x, y, z,  reg, degrees, hyperparam, filename, return_minimum=False)
 #io.generate_test_vs_lambda(x, y, z, reg, degree, hyperparams, filename)
-io.generate_test_vs_degree_multiple_lambda(x, y, z,  reg, degrees, hyperparams, filename, return_minimum=False)
+#io.generate_test_vs_degree_multiple_lambda(x, y, z,  reg, degrees, hyperparams, filename, return_minimum=False)

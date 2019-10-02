@@ -93,7 +93,7 @@ ax4.set_xlabel("degree", fontsize=18)
 ax4.set_ylabel("MSE", fontsize=18)
 ax4.set_ylim(0,0.09)
 plt.savefig(figdir+"lambdavsdegreesRIDGE.pdf")
-'''
+
 
 fig5 = plt.figure()
 ax5 = fig5.add_subplot(1,1,1)
@@ -108,7 +108,6 @@ ax5.set_yticks(np.arange(1,22,2))
 plt.savefig(figdir + "betaconfidence.pdf")
 plt.show()
 
-'''
 
 reg = pf.lasso_regression
 hyperparams = list(np.logspace(-6, -1, 6))
