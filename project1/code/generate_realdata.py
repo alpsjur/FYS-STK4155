@@ -35,8 +35,8 @@ z = oslo_data.ravel()
 reg = pf.ridge_regression
 hyperparams = list(np.logspace(-9, -2, 8))
 
-min_degree = 0
-max_degree = 20
+min_degree = 21
+max_degree = 25
 degrees = np.linspace(min_degree, max_degree, (max_degree - min_degree) + 1, dtype=int)
 
 return_minimum = False
@@ -49,4 +49,4 @@ filename = datadir + "realData_boot.txt"
 #io.generate_test_vs_degree_kfold(x, y, z,  reg, max_degree, hyperparam, filename)
 #io.generate_test_vs_degree_boot(x, y, z,  reg, degrees, hyperparam, filename, return_minimum=False)
 #io.generate_test_vs_lambda(x, y, z, reg, degree, hyperparams, filename)
-#io.generate_test_vs_degree_multiple_lambda(x, y, z,  reg, degrees, hyperparams, filename, return_minimum=False)
+io.generate_test_vs_degree_multiple_lambda(x, y, z,  reg, degrees, hyperparams, filename, return_minimum=False)
