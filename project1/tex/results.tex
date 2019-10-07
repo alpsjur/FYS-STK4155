@@ -2,6 +2,7 @@
 \label{sec:results}
 \subsection{Regression on Franke's function}
 The {''}terrain'' data $z$ in this part was produced by applying Franke's function to a $n\cross n$ evenly spaced $xy$ grid, with $x_i,y_i\in [0,1]$, where we, for each point, added a normally distributed noise with $\mu = 0$ and $\sigma = 0.1$.
+For a visualization of the franke functions data points and the prediction, see Figure \ref{fig:franke_visual} in the appendix.
 \subsubsection{$\beta$-values confidence interval}
 Before applying any resampling method we used the regular \emph{ordinary least squares} method \eqref{eq:ols} to our data and had a look at the confidence interval of the $\beta$ values when approximating the data to a polynomial of degree $m=5$. The confidence intervals are shown in Figure \ref{fig:betaconfidence}.
 They range between 0.23 and 35 in width, while the calculated $\beta_i$ values range between approximately -50 and 50.
@@ -77,7 +78,7 @@ A different, and less visual way of finding the method that gives the best appro
 \end{table}
 
 \subsubsection{Terrain data}
-Some of the same figures were produced for real terrain data as for data generated with Franke's function. MSE as a function of degree for the OLS regression method can be seen in Figure \ref{fig:mseVSdegreeOLSterrain}. The MSE starts off at about 14500 for $m=0$, and decreases to about 2000 as the degree approaches 35. 
+Some of the same figures were produced for real terrain data as for data generated with Franke's function. MSE as a function of degree for the OLS regression method can be seen in Figure \ref{fig:mseVSdegreeOLSterrain}. The MSE starts off at about 14500 for $m=0$, and decreases to about 2000 as the degree approaches 35.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{mseVSdegreeOLS_terrain}
@@ -85,7 +86,7 @@ Some of the same figures were produced for real terrain data as for data generat
 	\label{fig:mseVSdegreeOLSterrain}
 \end{figure}
 
-Figure \ref{fig:mseVSdegreeRIDGEterrain} and \ref{fig:mseVSdegreeLASSOterrain} shows the same plot, but for Ridge and Lasso regression. Note that the degree here only goes up to 20 for Ridge and 15 for Lasso. Similar as for the results for Franke's function, each figure shows MSE for multiple $\lambda$. 
+Figure \ref{fig:mseVSdegreeRIDGEterrain} and \ref{fig:mseVSdegreeLASSOterrain} shows the same plot, but for Ridge and Lasso regression. Note that the degree here only goes up to 20 for Ridge and 15 for Lasso. Similar as for the results for Franke's function, each figure shows MSE for multiple $\lambda$.
 
 \begin{figure}[htbp]
 	\centering
@@ -100,6 +101,8 @@ Figure \ref{fig:mseVSdegreeRIDGEterrain} and \ref{fig:mseVSdegreeLASSOterrain} s
 	\caption{MSE for the Lasso regression method on the reduced terrain data set. Different colours represents different hyperparameters $\lambda$. The MSE decreases as the degree increases. The minimum MSE decreases as $\lambda$ decreases.}
 	\label{fig:mseVSdegreeRIDGEterrain}
 \end{figure}
+
+For a visualization of what the prediction made by regression methods can look like, see figure \ref{fig:terrainpic_ridge} in the appendix
 
 \vfill
 \newpage

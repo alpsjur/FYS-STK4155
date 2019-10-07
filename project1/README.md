@@ -19,6 +19,7 @@ Our answer is presented in the following folders:
  * iofunctions.py - functions for doing calculations related to the project and writing the results to be stored in files.
  * generate_realdata.py - produce .txt files with results using *projectfunctions* and *iofunctions*
  * plot_realdata.py - produce figures for the results of the real data.
+ * real_data_figures.py - produce plots of the terrain data
 
 3. data
 
