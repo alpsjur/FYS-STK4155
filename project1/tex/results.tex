@@ -12,7 +12,7 @@ Resultater vi mangler
 The {''}terrain'' data $z$ in this part was produced by applying Franke's function to a $n\cross n$ evenly spaced $xy$ grid, with $x_i,y_i\in [0,1]$, and for each point added a normally distributed noise with $\mu = 0$ and $\sigma = 0.1$.
 \subsubsection{$\beta$-values confidence interval}
 Before applying any resampling methods we used the regular \emph{ordinary least squares} method \eqref{eq:ols} to our data and had a look at the confidence interval of the $\beta$ values when approximating the data to a polynomial of degree $m=5$. The confidence intervals are shown in Figure \ref{fig:betaconfidence}.
-They range between 0.23 and 35 in width.  
+They range between 0.23 and 35 in width.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{betaconfidence}
@@ -77,9 +77,9 @@ A different, and less visual way of finding the method that gives the best appro
 \hline
 \textbf{Reg} & \textbf{min. MSE} & $\boldsymbol{m}$ & $\boldsymbol{\lambda}$ \\
 \hline
-\textbf{OLS} & 0.016 & 7 & - \\
-\textbf{Ridge} & 0.014 & 9 & 1e-05 \\
-\textbf{Lasso} & 0.043 & 9 & 1e-06
+\textbf{OLS} & 0.017 & 6 & - \\
+\textbf{Ridge} & 0.015 & 9 & 1e-04 \\
+\textbf{Lasso} & 0.021 & 11 & 1e-06
 \end{tabular}
 \label{tab:minerrorFRANKE}
 \end{table}
