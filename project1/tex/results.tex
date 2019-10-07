@@ -1,9 +1,9 @@
 \section{Results}
 \label{sec:results}
 \subsection{Regression on Franke's function}
-The {''}terrain'' data $z$ in this part was produced by applying Franke's function to a $n\cross n$ evenly spaced $xy$ grid, with $x_i,y_i\in [0,1]$, and for each point added a normally distributed noise with $\mu = 0$ and $\sigma = 0.1$.
+The {''}terrain'' data $z$ in this part was produced by applying Franke's function to a $n\cross n$ evenly spaced $xy$ grid, with $x_i,y_i\in [0,1]$, where we, for each point, added a normally distributed noise with $\mu = 0$ and $\sigma = 0.1$.
 \subsubsection{$\beta$-values confidence interval}
-Before applying any resampling methods we used the regular \emph{ordinary least squares} method \eqref{eq:ols} to our data and had a look at the confidence interval of the $\beta$ values when approximating the data to a polynomial of degree $m=5$. The confidence intervals are shown in Figure \ref{fig:betaconfidence}.
+Before applying any resampling method we used the regular \emph{ordinary least squares} method \eqref{eq:ols} to our data and had a look at the confidence interval of the $\beta$ values when approximating the data to a polynomial of degree $m=5$. The confidence intervals are shown in Figure \ref{fig:betaconfidence}.
 They range between 0.23 and 35 in width, while the calculated $\beta_i$ values range between approximately -50 and 50.
 \begin{figure}[htbp]
 	\centering
@@ -32,7 +32,7 @@ Applying the same analisys to the $R^2$-score \eqref{eq:r2} of the two cases, we
 \end{figure}
 
 \subsubsection{Bias-Variance-tradeoff}
-Sticking to the bootstrap method for resampling, and using $n=20$ with $\sigma = 0.1$ we also compute the bias and variance of the model as discussed in the theory. Plotting the variance, bias and MSE together results in Figure \ref{fig:biasvarianceOLS}.
+Sticking to the bootstrap method for resampling, and using $n=20$ with $\sigma = 0.1$ we also compute the bias and variance of the model as discussed in the Theory and Methods section. Plotting the variance, bias and MSE together results in Figure \ref{fig:biasvarianceOLS}.
 
 \begin{figure}[htbp]
 	\centering
@@ -41,7 +41,7 @@ Sticking to the bootstrap method for resampling, and using $n=20$ with $\sigma =
 	\label{fig:biasvarianceOLS}
 \end{figure}
 
-\subsubsection{Resampling with Ridge-regression}
+\subsubsection{Resampling with Ridge regression}
 In order to find the parameters that will give the least MSE for the Ridge regression method, we need to tune both the degree $m$ of the polynomial that we fit, and the optimal $\lambda$-value. This is obtained by doing Ridge regression on the data set with bootstrap, for both different values of $m$ and different values of $\lambda$ as shown in Figure \ref{fig:lambdavsdegreesRIDGE}.
 
 \begin{figure}[htbp]
@@ -51,8 +51,8 @@ In order to find the parameters that will give the least MSE for the Ridge regre
 	\label{fig:lambdavsdegreesRIDGE}
 \end{figure}
 
-\subsubsection{Resampling with Lasso-regression}
-The same analisys, with various $\lambda$ and $m$-values is done for Lasso-regression (Figure \ref{fig:lambdavsdegreesLASSO}).
+\subsubsection{Resampling with Lasso regression}
+The same analysis, with various $\lambda$ and $m$-values is done for Lasso regression (Figure \ref{fig:lambdavsdegreesLASSO}).
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{lambdavsdegreesLASSO}
