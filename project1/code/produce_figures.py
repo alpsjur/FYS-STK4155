@@ -5,7 +5,7 @@ import plottingfunctions as plf
 import seaborn as sns
 
 #for reprodusability
-#np.random.seed(2019)
+np.random.seed(2019)
 
 figdir = "../figures/"
 sns.set()
@@ -37,7 +37,6 @@ y = y_grid.flatten()
 z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0,noise,x_grid.shape)
 z = z_grid.flatten()
 
-'''
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
 
@@ -85,6 +84,7 @@ hyperparams.insert(0, 0)
 
 fig4 = plt.figure()
 ax4 = fig4.add_subplot(1,1,1)
+reg = pf.ridge_regression
 
 min_RIDGE = plf.plot_test_vs_degree_multiple_lambda(ax4, x, y, z, reg, max_degree, hyperparams,return_minimum)
 
@@ -124,16 +124,15 @@ plt.savefig(figdir+"lambdavsdegreesLASSO.pdf")
 
 plt.show()
 
+print([min_LASSO[0],min_LASSO[1],min_LASSO[2]])
 if return_minimum:
 
     data = [[min_OLS[0], min_RIDGE[0],min_LASSO[0]],
             [min_OLS[1], min_RIDGE[1],min_LASSO[1]],
             [0, min_RIDGE[2],min_LASSO[2]]]
     np.save("../data/minimas.npy",np.array(data))
-
+    print(data)
     vheader = ["OLS","Ridge","Lasso"]
     hheader = ["Reg. method","min. MSE", "degree" , "\lambda"]
-    tableString = pf.produce_table(data, hheader, vheader)
-    print(tableString)
-
-'''
+    #tableString = pf.produce_table(data, hheader, vheader)
+    #print(tableString)
