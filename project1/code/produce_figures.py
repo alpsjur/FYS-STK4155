@@ -3,6 +3,13 @@ import matplotlib.pyplot as plt
 import projectfunctions as pf
 import plottingfunctions as plf
 import seaborn as sns
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+
+import projectfunctions as pf
+
+import seaborn as sns
 
 #for reprodusability
 np.random.seed(2019)
@@ -37,6 +44,7 @@ y = y_grid.flatten()
 z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0,noise,x_grid.shape)
 z = z_grid.flatten()
 
+'''
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
 
@@ -136,3 +144,52 @@ if return_minimum:
     hheader = ["Reg. method","min. MSE", "degree" , "\lambda"]
     #tableString = pf.produce_table(data, hheader, vheader)
     #print(tableString)
+'''
+
+
+
+'''
+"""
+plot 3D plot
+"""
+fig = plt.figure()
+ax = fig.gca(projection="3d")
+z_true = z_grid.flatten()
+
+X = pf.generate_design_2Dpolynomial(x, y, degree=5)
+
+beta = pf.least_squares(X, z_true)
+z_model = X @ beta
+
+surf = ax.plot_surface(x_grid, y_grid, np.reshape(z_model,(n,n)),
+                        cmap=cm.Blues,
+                        linewidth=0,
+                        antialiased=False,
+                        alpha = 0.5,
+                        )
+
+ax.scatter(x, y, z_true,
+                        #cmap=cm.coolwarm,
+                        linewidth=0,
+                        antialiased=False,
+                        marker = 'o',
+                        s = 1,
+                        label="data",
+                        c='k'
+                        )
+
+# Customize the z axis.
+ax.set_zlim(-0.10, 1.40)
+ax.zaxis.set_major_locator(LinearLocator(10))
+ax.zaxis.set_major_formatter(FormatStrFormatter("%.02f"))
+# Add a color bar which maps values to colors.
+fig.colorbar(surf,
+            shrink=0.5,
+            aspect=5,
+            label="model"
+            )
+
+ax.legend()
+plt.savefig('../figures/franke_visual.pdf')
+plt.show()
+'''
