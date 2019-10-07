@@ -1,5 +1,5 @@
 # Using linear regression for fitting terrain data
-### Project 1 for FYS-STK4150 at University of Oslo, Fall 2019
+### Project 1 for FYS-STK4155 at University of Oslo, Fall 2019
 
 The files *Project1* and *rapportstruktur* are instructions on how to complete the project.
 
