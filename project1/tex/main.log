@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  7 OCT 2019 21:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.27)  7 OCT 2019 18:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -539,11 +539,11 @@ Package: floatflt 1997/07/16 v. 1.31
 Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 )
 (/usr/share/texlive/texmf-dist/tex/latex/physics/physics.sty
-Package: physics 
+Package: physics
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2016/01/19 v6377 L3 programming layer (loader) 
+Package: expl3 2018/02/21 L3 programming layer (loader)
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
 Package: expl3 2016/01/19 v6377 L3 programming layer (code)
@@ -665,879 +665,958 @@ Package: xparse 2016/01/19 v6377 L3 Experimental document command parser
 )
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \vnabla with sig. '' on line 25.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \varE with sig. '' on line 29.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \ordersymbol with sig. '' on line 30.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \lparen with sig. '' on line 31.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \rparen with sig. '' on line 32.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \quantity with sig. '' on line 35.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \@quantity with sig. ' t\big t\Big t\bigg t\Bigg g o d()
 . d|| ' on line 62.
 .................................................
+
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\big ' for the command '\@quantity' should be a single
+* character.
+*************************************************
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\Big ' for the command '\@quantity' should be a single
+* character.
+*************************************************
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\bigg ' for the command '\@quantity' should be a single
+* character.
+*************************************************
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\Bigg ' for the command '\@quantity' should be a single
+* character.
+*************************************************
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qty with sig. '' on line 63.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \pqty with sig. ' l m ' on line 64.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \bqty with sig. ' l m ' on line 65.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \Bqty with sig. ' l m ' on line 66.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \vqty with sig. ' l m ' on line 67.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \pmqty with sig. 'm' on line 70.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \Pmqty with sig. 'm' on line 71.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \bmqty with sig. 'm' on line 72.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \vmqty with sig. 'm' on line 73.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \matrixquantity with sig. '' on line 74.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \@matrixquantity with sig. ' s g o d() d|| ' on line 100.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \mqty with sig. '' on line 101.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \matrixdeterminant with sig. 'm' on line 102.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \mdet with sig. '' on line 103.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \spmqty with sig. 'm' on line 105.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \sPmqty with sig. 'm' on line 106.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \sbmqty with sig. 'm' on line 107.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \svmqty with sig. 'm' on line 108.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \smallmatrixquantity with sig. ' s g o d() d|| ' on line
 . 133.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \smqty with sig. '' on line 134.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \smallmatrixdeterminant with sig. 'm' on line 135.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \smdet with sig. '' on line 136.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \argopen with sig. 's' on line 138.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \argclose with sig. 's' on line 139.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \braces with sig. '' on line 141.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \@braces with sig. ' s t\big t\Big t\bigg t\Bigg m m m ' on
 . line 156.
 .................................................
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\big ' for the command '\@braces' should be a single
+* character.
+*************************************************
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\Big ' for the command '\@braces' should be a single
+* character.
+*************************************************
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\bigg ' for the command '\@braces' should be a single
+* character.
+*************************************************
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\Bigg ' for the command '\@braces' should be a single
+* character.
+*************************************************
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \fbraces with sig. ' s t\big t\Big t\bigg t\Bigg m m m m '
 . on line 174.
 .................................................
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\big ' for the command '\fbraces' should be a single
+* character.
+*************************************************
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\Big ' for the command '\fbraces' should be a single
+* character.
+*************************************************
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\bigg ' for the command '\fbraces' should be a single
+* character.
+*************************************************
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\Bigg ' for the command '\fbraces' should be a single
+* character.
+*************************************************
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \absolutevalue with sig. ' l m ' on line 176.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \abs with sig. '' on line 177.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \norm with sig. ' l m ' on line 178.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \order with sig. ' l m ' on line 179.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \evaluated with sig. ' s g d[| d(| ' on line 194.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \eval with sig. '' on line 195.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \poissonbracket with sig. ' l m m ' on line 197.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \pb with sig. '' on line 198.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \commutator with sig. ' l m m ' on line 201.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \comm with sig. '' on line 202.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \anticommutator with sig. ' l m m ' on line 203.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \acommutator with sig. '' on line 204.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \acomm with sig. '' on line 205.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \vectorbold with sig. ' s m ' on line 208.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \vb with sig. '' on line 209.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \vectorarrow with sig. ' s m ' on line 211.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \va with sig. '' on line 212.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \vectorunit with sig. ' s m ' on line 214.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \vu with sig. '' on line 215.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \dotproduct with sig. '' on line 217.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \vdot with sig. '' on line 218.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \crossproduct with sig. '' on line 220.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \cross with sig. '' on line 221.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \cp with sig. '' on line 222.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \gradient with sig. ' g o d() ' on line 232.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \grad with sig. '' on line 233.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \divergence with sig. ' g o d() ' on line 243.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \div with sig. '' on line 246.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \curl with sig. ' g o d() ' on line 256.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \laplacian with sig. ' g o d() ' on line 266.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \principalvalue with sig. 'g' on line 274.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \pv with sig. '' on line 275.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \PV with sig. 'g' on line 276.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \Re with sig. 'g' on line 277.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \Im with sig. 'g' on line 278.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \opbraces with sig. ' m g o d() ' on line 299.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \trigbraces with sig. ' m o d() ' on line 305.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \sin with sig. '' on line 309.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \cos with sig. '' on line 310.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \tan with sig. '' on line 311.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \csc with sig. '' on line 312.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \sec with sig. '' on line 313.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \cot with sig. '' on line 314.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \arcsin with sig. '' on line 316.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \arccos with sig. '' on line 317.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \arctan with sig. '' on line 318.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \arccsc with sig. '' on line 320.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \arcsec with sig. '' on line 322.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \arccot with sig. '' on line 324.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \asin with sig. '' on line 327.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \acos with sig. '' on line 329.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \atan with sig. '' on line 331.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \acsc with sig. '' on line 333.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \asec with sig. '' on line 335.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \acot with sig. '' on line 337.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \sinh with sig. '' on line 339.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \cosh with sig. '' on line 340.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \tanh with sig. '' on line 341.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \csch with sig. '' on line 343.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \sech with sig. '' on line 345.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \coth with sig. '' on line 346.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \exp with sig. '' on line 348.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \log with sig. '' on line 349.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \ln with sig. '' on line 350.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \det with sig. '' on line 351.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
-. 
+.
 . Redefining command \Pr with sig. '' on line 352.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \tr with sig. '' on line 353.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \Tr with sig. '' on line 354.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \Res with sig. '' on line 355.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qqtext with sig. ' s m ' on line 377.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qq with sig. '' on line 378.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qcomma with sig. '' on line 380.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qc with sig. '' on line 381.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qif with sig. 's' on line 383.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qthen with sig. 's' on line 384.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qelse with sig. 's' on line 385.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qotherwise with sig. 's' on line 386.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qunless with sig. 's' on line 387.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qgiven with sig. 's' on line 388.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qusing with sig. 's' on line 389.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qassume with sig. 's' on line 390.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qsince with sig. 's' on line 391.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qlet with sig. 's' on line 392.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qfor with sig. 's' on line 393.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qall with sig. 's' on line 394.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qeven with sig. 's' on line 395.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qodd with sig. 's' on line 396.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qinteger with sig. 's' on line 397.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qand with sig. 's' on line 398.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qor with sig. 's' on line 399.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qas with sig. 's' on line 400.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qin with sig. 's' on line 401.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \qcc with sig. 's' on line 402.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \differential with sig. ' o g d() ' on line 415.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \dd with sig. '' on line 416.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \derivative with sig. ' s o m g d() ' on line 435.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \dv with sig. '' on line 436.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \partialderivative with sig. ' s o m g g d() ' on line 460.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \pderivative with sig. '' on line 461.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \pdv with sig. '' on line 462.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \variation with sig. ' o g d() ' on line 474.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \var with sig. '' on line 475.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \functionalderivative with sig. ' s o m g d() ' on line
 . 494.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \fderivative with sig. '' on line 495.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \fdv with sig. '' on line 496.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \bra with sig. ' s m t\ket s g ' on line 526.
 .................................................
+*************************************************
+* LaTeX warning: "xparse/not-single-char"
+*
+* Argument delimiter '\ket ' for the command '\bra' should be a single
+* character.
+*************************************************
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \ket with sig. ' s m ' on line 533.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \innerproduct with sig. ' s m g ' on line 548.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \braket with sig. '' on line 549.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \ip with sig. '' on line 550.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \outerproduct with sig. ' s m g ' on line 565.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \dyad with sig. '' on line 566.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \op with sig. '' on line 567.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \ketbra with sig. '' on line 568.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \expectationvalue with sig. ' s s m g ' on line 587.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \expval with sig. '' on line 588.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \ev with sig. '' on line 589.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \vev with sig. ' m ' on line 590.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \matrixelement with sig. ' s s m m m ' on line 601.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \matrixel with sig. '' on line 602.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \mel with sig. '' on line 603.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \identitymatrix with sig. 'm' on line 633.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \imat with sig. '' on line 634.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \xmatrix with sig. ' s m m m ' on line 659.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \xmat with sig. '' on line 660.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \zeromatrix with sig. ' m g ' on line 662.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \zmat with sig. '' on line 663.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \paulixmatrix with sig. '' on line 665.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \pauliymatrix with sig. '' on line 666.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \paulizmatrix with sig. '' on line 667.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \paulimatrix with sig. 'm' on line 678.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \pmat with sig. '' on line 679.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \diagonalmatrix with sig. 'O{} >{\SplitList {,}}m ' on line
 . 681.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \@dmat with sig. 'mmggggggg' on line 714.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \dmat with sig. '' on line 715.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \antidiagonalmatrix with sig. 'O{} >{\SplitList {,}}m ' on
 . line 717.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \@admat with sig. 'mmggggggg' on line 750.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \admat with sig. '' on line 751.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \flatfrac with sig. ' m m ' on line 754.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \homework with sig. '' on line 764.
 .................................................
 )
@@ -1552,9 +1631,9 @@ File: babel.def 2016/02/24 3.9q Babel common definitions
 \babel@savecnt=\count143
 \U@D=\dimen168
 )
-\l@canadian = a dialect from \language\l@american 
-\l@australian = a dialect from \language\l@british 
-\l@newzealand = a dialect from \language\l@british 
+\l@canadian = a dialect from \language\l@american
+\l@australian = a dialect from \language\l@british
+\l@newzealand = a dialect from \language\l@british
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
@@ -1813,8 +1892,7 @@ Underfull \hbox (badness 2617) in paragraph at lines 171--172
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 180--180
-[][][][][]$\OT1/cmtt/m/n/9 https : / / github . com / janadr / FYS-[]STK4155 / 
-tree /
+[][][]\OT1/cmr/m/n/9 https://github.com/janadr/FYS-
  []
 
 ) (./results.tex
@@ -1830,15 +1908,15 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 5.
 
-<../figures/betaconfidence.pdf, id=191, 462.52798pt x 346.89601pt>
+<../figures/betaconfidence.pdf, id=190, 462.52798pt x 346.89601pt>
 File: ../figures/betaconfidence.pdf Graphic file (type pdf)
 
 <use ../figures/betaconfidence.pdf>
 Package pdftex.def Info: ../figures/betaconfidence.pdf used on input line 10.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 10--11
- [][] 
+Overfull \hbox (5.0pt too wide) in paragraph at lines 18--19
+ [][]
  []
 
 
@@ -1854,41 +1932,41 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 15.
 
 [5 <../figures/betaconfidence.pdf>]
-<../figures/mseVSdegreeOLS.pdf, id=228, 462.52798pt x 346.89601pt>
+<../figures/mseVSdegreeOLS.pdf, id=226, 462.52798pt x 346.89601pt>
 File: ../figures/mseVSdegreeOLS.pdf Graphic file (type pdf)
 
 <use ../figures/mseVSdegreeOLS.pdf>
 Package pdftex.def Info: ../figures/mseVSdegreeOLS.pdf used on input line 21.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 21--22
- [][] 
+Overfull \hbox (5.0pt too wide) in paragraph at lines 29--30
+ [][]
  []
 
-<../figures/r2VSdegreeOLS.pdf, id=232, 462.52798pt x 346.89601pt>
+<../figures/r2VSdegreeOLS.pdf, id=230, 462.52798pt x 346.89601pt>
 File: ../figures/r2VSdegreeOLS.pdf Graphic file (type pdf)
 
 <use ../figures/r2VSdegreeOLS.pdf>
 Package pdftex.def Info: ../figures/r2VSdegreeOLS.pdf used on input line 29.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 29--30
- [][] 
+Overfull \hbox (5.0pt too wide) in paragraph at lines 37--38
+ [][]
  []
 
 [6 <../figures/mseVSdegreeOLS.pdf> <../figures/r2VSdegreeOLS.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ../figures/r2VSdegreeOLS.pdf): PDF incl
 usion: multiple pdfs with page group included in a single page
->] <../figures/biasvarianceOLS.pdf, id=265, 462.52798pt x 346.89601pt>
+>] <../figures/biasvarianceOLS.pdf, id=263, 462.52798pt x 346.89601pt>
 File: ../figures/biasvarianceOLS.pdf Graphic file (type pdf)
 
 <use ../figures/biasvarianceOLS.pdf>
 Package pdftex.def Info: ../figures/biasvarianceOLS.pdf used on input line 39.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 39--40
- [][] 
+Overfull \hbox (5.0pt too wide) in paragraph at lines 47--48
+ [][]
  []
 
 
@@ -1896,7 +1974,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--44
 []\OT1/cmr/bx/n/10.95 Resampling with Ridge-
  []
 
-<../figures/lambdavsdegreesRIDGE.pdf, id=267, 462.52798pt x 346.89601pt>
+<../figures/lambdavsdegreesRIDGE.pdf, id=214, 462.52798pt x 346.89601pt>
 File: ../figures/lambdavsdegreesRIDGE.pdf Graphic file (type pdf)
 
 <use ../figures/lambdavsdegreesRIDGE.pdf>
@@ -1904,8 +1982,8 @@ Package pdftex.def Info: ../figures/lambdavsdegreesRIDGE.pdf used on input line
  49.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 49--50
- [][] 
+Overfull \hbox (5.0pt too wide) in paragraph at lines 57--58
+ [][]
  []
 
 
@@ -1913,7 +1991,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 54--54
 []\OT1/cmr/bx/n/10.95 Resampling with Lasso-
  []
 
-<../figures/lambdavsdegreesLASSO.pdf, id=269, 462.52798pt x 346.89601pt>
+<../figures/lambdavsdegreesLASSO.pdf, id=267, 462.52798pt x 346.89601pt>
 File: ../figures/lambdavsdegreesLASSO.pdf Graphic file (type pdf)
 
 <use ../figures/lambdavsdegreesLASSO.pdf>
@@ -1921,19 +1999,11 @@ Package pdftex.def Info: ../figures/lambdavsdegreesLASSO.pdf used on input line
  58.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 58--59
- [][] 
+Overfull \hbox (5.0pt too wide) in paragraph at lines 66--67
+ [][]
  []
 
-[7 <../figures/biasvarianceOLS.pdf> <../figures/lambdavsdegreesRIDGE.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/lambdavsdegreesRIDGE.pdf): P
-DF inclusion: multiple pdfs with page group included in a single page
-> <../figures/lambdavsdegreesLASSO.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/lambdavsdegreesLASSO.pdf): P
-DF inclusion: multiple pdfs with page group included in a single page
->] <../figures/mseVSdegreeOLS_terrain.pdf, id=320, 462.52798pt x 346.89601pt>
+<../figures/mseVSdegreeOLS_terrain.pdf, id=218, 462.52798pt x 346.89601pt>
 File: ../figures/mseVSdegreeOLS_terrain.pdf Graphic file (type pdf)
 
 <use ../figures/mseVSdegreeOLS_terrain.pdf>
@@ -1941,11 +2011,11 @@ Package pdftex.def Info: ../figures/mseVSdegreeOLS_terrain.pdf used on input li
 ne 83.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 83--84
- [][] 
+Overfull \hbox (5.0pt too wide) in paragraph at lines 91--92
+ [][]
  []
 
-<../figures/ridge_multilambda_mse.pdf, id=323, 462.52798pt x 346.89601pt>
+<../figures/ridge_multilambda_mse.pdf, id=219, 462.52798pt x 346.89601pt>
 File: ../figures/ridge_multilambda_mse.pdf Graphic file (type pdf)
 
 <use ../figures/ridge_multilambda_mse.pdf>
@@ -1953,11 +2023,11 @@ Package pdftex.def Info: ../figures/ridge_multilambda_mse.pdf used on input lin
 e 92.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 92--93
- [][] 
+Overfull \hbox (5.0pt too wide) in paragraph at lines 98--99
+ [][]
  []
 
-<../figures/lasso_multilambda_mse.pdf, id=324, 462.52798pt x 346.89601pt>
+<../figures/lasso_multilambda_mse.pdf, id=220, 462.52798pt x 346.89601pt>
 File: ../figures/lasso_multilambda_mse.pdf Graphic file (type pdf)
 
 <use ../figures/lasso_multilambda_mse.pdf>
@@ -1965,35 +2035,53 @@ Package pdftex.def Info: ../figures/lasso_multilambda_mse.pdf used on input lin
 e 99.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 99--100
- [][] 
+Overfull \hbox (5.0pt too wide) in paragraph at lines 105--106
+ [][]
  []
 
-[8 <../figures/mseVSdegreeOLS_terrain.pdf> <../figures/ridge_multilambda_mse.pd
-f
+[6 <../figures/betaconfidence.pdf> <../figures/mseVSdegreeOLS.pdf
 
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/ridge_multilambda_mse.pdf): 
-PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: pdflatex (file ../figures/mseVSdegreeOLS.pdf): PDF inclusion: m
+ultiple pdfs with page group included in a single page
+>] [7 <../figures/r2VSdegreeOLS.pdf> <../figures/biasvarianceOLS.pdf
+
+pdfTeX warning: pdflatex (file ../figures/biasvarianceOLS.pdf): PDF inclusion:
+multiple pdfs with page group included in a single page
+> <../figures/lambdavsdegreesRIDGE.pdf
+
+pdfTeX warning: pdflatex (file ../figures/lambdavsdegreesRIDGE.pdf): PDF inclus
+ion: multiple pdfs with page group included in a single page
+>] [8 <../figures/lambdavsdegreesLASSO.pdf> <../figures/mseVSdegreeOLS_terrain.
+pdf
+
+pdfTeX warning: pdflatex (file ../figures/mseVSdegreeOLS_terrain.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+> <../figures/ridge_multilambda_mse.pdf
+
+pdfTeX warning: pdflatex (file ../figures/ridge_multilambda_mse.pdf): PDF inclu
+sion: multiple pdfs with page group included in a single page
+> <../figures/lasso_multilambda_mse.pdf
+
+pdfTeX warning: pdflatex (file ../figures/lasso_multilambda_mse.pdf): PDF inclu
+sion: multiple pdfs with page group included in a single page
 >]) (./discussion.tex
 Underfull \hbox (badness 1199) in paragraph at lines 5--5
 [][]\OT1/cmr/bx/n/10.95 Behaviour of the dif-fer-ent re-gres-sion
  []
 
-[9 <../figures/lasso_multilambda_mse.pdf>]) (./conclusion.tex) [10] (./main.bbl
-) [11
+[9]) (./conclusion.tex) (./main.bbl [10]) [11
 
 ]
 \openout2 = `appendix.aux'.
 
  (./appendix.tex
-<../figures/terrainpicture.pdf, id=400, 462.52798pt x 346.89601pt>
+<../figures/terrainpicture.pdf, id=393, 462.52798pt x 346.89601pt>
 File: ../figures/terrainpicture.pdf Graphic file (type pdf)
 
 <use ../figures/terrainpicture.pdf>
 Package pdftex.def Info: ../figures/terrainpicture.pdf used on input line 38.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
-
-<../figures/terrainpicture_reduced.pdf, id=401, 462.52798pt x 346.89601pt>
+<../figures/terrainpicture_reduced.pdf, id=394, 462.52798pt x 346.89601pt>
 File: ../figures/terrainpicture_reduced.pdf Graphic file (type pdf)
 
 <use ../figures/terrainpicture_reduced.pdf>
@@ -2016,13 +2104,13 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 65.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: A82564FDF42544617476917837B26D86;1765.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 65.
- ) 
+ )
 Here is how much of TeX's memory you used:
- 16475 strings out of 493029
- 281116 string characters out of 6136234
- 368066 words of memory out of 5000000
- 19747 multiletter control sequences out of 15000+600000
- 15769 words of font info for 61 fonts, out of 8000000 for 9000
+ 18176 strings out of 492982
+ 317227 string characters out of 6134896
+ 412332 words of memory out of 5000000
+ 21472 multiletter control sequences out of 15000+600000
+ 542234 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,21n,42p,10407b,526s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
@@ -2038,16 +2126,15 @@ lic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/doublestroke/dsrom10.pfb>
-Output written on main.pdf (13 pages, 511088 bytes).
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/doublestroke/dsrom10.pfb>
+Output written on main.pdf (13 pages, 511024 bytes).
 PDF statistics:
- 509 PDF objects out of 1000 (max. 8388607)
- 453 compressed objects within 5 object streams
+ 502 PDF objects out of 1000 (max. 8388607)
+ 446 compressed objects within 5 object streams
  76 named destinations out of 1000 (max. 500000)
  248 words of extra memory for PDF output out of 10000 (max. 10000000)
-
