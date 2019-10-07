@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  7 OCT 2019 19:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  7 OCT 2019 20:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1817,194 +1817,182 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--180
  []
 
 ) (./results.tex
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 5.
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 5.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 13.
+(hyperref)                removing `\beta' on input line 5.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\beta' on input line 13.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 13.
+(hyperref)                removing `math shift' on input line 5.
 
 <../figures/betaconfidence.pdf, id=190, 462.52798pt x 346.89601pt>
 File: ../figures/betaconfidence.pdf Graphic file (type pdf)
 
 <use ../figures/betaconfidence.pdf>
-Package pdftex.def Info: ../figures/betaconfidence.pdf used on input line 18.
+Package pdftex.def Info: ../figures/betaconfidence.pdf used on input line 10.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 18--19
+Overfull \hbox (5.0pt too wide) in paragraph at lines 10--11
  [][] 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 23.
+(hyperref)                removing `math shift' on input line 15.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 23.
+(hyperref)                removing `superscript' on input line 15.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 23.
+(hyperref)                removing `math shift' on input line 15.
 
-<../figures/mseVSdegreeOLS.pdf, id=194, 462.52798pt x 346.89601pt>
+[5 <../figures/betaconfidence.pdf>]
+<../figures/mseVSdegreeOLS.pdf, id=226, 462.52798pt x 346.89601pt>
 File: ../figures/mseVSdegreeOLS.pdf Graphic file (type pdf)
 
 <use ../figures/mseVSdegreeOLS.pdf>
-Package pdftex.def Info: ../figures/mseVSdegreeOLS.pdf used on input line 29.
+Package pdftex.def Info: ../figures/mseVSdegreeOLS.pdf used on input line 21.
+(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 21--22
+ [][] 
+ []
+
+<../figures/r2VSdegreeOLS.pdf, id=230, 462.52798pt x 346.89601pt>
+File: ../figures/r2VSdegreeOLS.pdf Graphic file (type pdf)
+
+<use ../figures/r2VSdegreeOLS.pdf>
+Package pdftex.def Info: ../figures/r2VSdegreeOLS.pdf used on input line 29.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
 Overfull \hbox (5.0pt too wide) in paragraph at lines 29--30
  [][] 
  []
 
-[5] <../figures/r2VSdegreeOLS.pdf, id=210, 462.52798pt x 346.89601pt>
-File: ../figures/r2VSdegreeOLS.pdf Graphic file (type pdf)
+[6 <../figures/mseVSdegreeOLS.pdf> <../figures/r2VSdegreeOLS.pdf
 
-<use ../figures/r2VSdegreeOLS.pdf>
-Package pdftex.def Info: ../figures/r2VSdegreeOLS.pdf used on input line 37.
-(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 37--38
- [][] 
- []
-
-<../figures/biasvarianceOLS.pdf, id=212, 462.52798pt x 346.89601pt>
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/r2VSdegreeOLS.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+>] <../figures/biasvarianceOLS.pdf, id=263, 462.52798pt x 346.89601pt>
 File: ../figures/biasvarianceOLS.pdf Graphic file (type pdf)
 
 <use ../figures/biasvarianceOLS.pdf>
-Package pdftex.def Info: ../figures/biasvarianceOLS.pdf used on input line 47.
+Package pdftex.def Info: ../figures/biasvarianceOLS.pdf used on input line 39.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 47--48
+Overfull \hbox (5.0pt too wide) in paragraph at lines 39--40
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--52
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
 []\OT1/cmr/bx/n/10.95 Resampling with Ridge-
  []
 
-<../figures/lambdavsdegreesRIDGE.pdf, id=214, 462.52798pt x 346.89601pt>
+<../figures/lambdavsdegreesRIDGE.pdf, id=265, 462.52798pt x 346.89601pt>
 File: ../figures/lambdavsdegreesRIDGE.pdf Graphic file (type pdf)
 
 <use ../figures/lambdavsdegreesRIDGE.pdf>
 Package pdftex.def Info: ../figures/lambdavsdegreesRIDGE.pdf used on input line
- 57.
+ 49.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 57--58
+Overfull \hbox (5.0pt too wide) in paragraph at lines 49--50
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--62
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
 []\OT1/cmr/bx/n/10.95 Resampling with Lasso-
  []
 
-<../figures/lambdavsdegreesLASSO.pdf, id=216, 462.52798pt x 346.89601pt>
+<../figures/lambdavsdegreesLASSO.pdf, id=267, 462.52798pt x 346.89601pt>
 File: ../figures/lambdavsdegreesLASSO.pdf Graphic file (type pdf)
 
 <use ../figures/lambdavsdegreesLASSO.pdf>
 Package pdftex.def Info: ../figures/lambdavsdegreesLASSO.pdf used on input line
- 66.
+ 58.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 66--67
+Overfull \hbox (5.0pt too wide) in paragraph at lines 58--59
  [][] 
  []
 
-[6 <../figures/betaconfidence.pdf> <../figures/mseVSdegreeOLS.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/mseVSdegreeOLS.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
->] [7 <../figures/r2VSdegreeOLS.pdf> <../figures/biasvarianceOLS.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/biasvarianceOLS.pdf): PDF in
-clusion: multiple pdfs with page group included in a single page
-> <../figures/lambdavsdegreesRIDGE.pdf
+[7 <../figures/biasvarianceOLS.pdf> <../figures/lambdavsdegreesRIDGE.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ../figures/lambdavsdegreesRIDGE.pdf): P
 DF inclusion: multiple pdfs with page group included in a single page
->] <../figures/mseVSdegreeOLS_terrain.pdf, id=302, 462.52798pt x 346.89601pt>
+> <../figures/lambdavsdegreesLASSO.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/lambdavsdegreesLASSO.pdf): P
+DF inclusion: multiple pdfs with page group included in a single page
+>] <../figures/mseVSdegreeOLS_terrain.pdf, id=318, 462.52798pt x 346.89601pt>
 File: ../figures/mseVSdegreeOLS_terrain.pdf Graphic file (type pdf)
 
 <use ../figures/mseVSdegreeOLS_terrain.pdf>
 Package pdftex.def Info: ../figures/mseVSdegreeOLS_terrain.pdf used on input li
-ne 91.
+ne 83.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 91--92
+Overfull \hbox (5.0pt too wide) in paragraph at lines 83--84
  [][] 
  []
 
-<../figures/ridge_multilambda_mse.pdf, id=303, 462.52798pt x 346.89601pt>
+<../figures/ridge_multilambda_mse.pdf, id=321, 462.52798pt x 346.89601pt>
 File: ../figures/ridge_multilambda_mse.pdf Graphic file (type pdf)
 
 <use ../figures/ridge_multilambda_mse.pdf>
 Package pdftex.def Info: ../figures/ridge_multilambda_mse.pdf used on input lin
-e 98.
+e 92.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 98--99
+Overfull \hbox (5.0pt too wide) in paragraph at lines 92--93
  [][] 
  []
 
-<../figures/lasso_multilambda_mse.pdf, id=304, 462.52798pt x 346.89601pt>
+<../figures/lasso_multilambda_mse.pdf, id=322, 462.52798pt x 346.89601pt>
 File: ../figures/lasso_multilambda_mse.pdf Graphic file (type pdf)
 
 <use ../figures/lasso_multilambda_mse.pdf>
 Package pdftex.def Info: ../figures/lasso_multilambda_mse.pdf used on input lin
-e 105.
+e 99.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 105--106
+Overfull \hbox (5.0pt too wide) in paragraph at lines 99--100
  [][] 
  []
 
-[8 <../figures/lambdavsdegreesLASSO.pdf> <../figures/mseVSdegreeOLS_terrain.pdf
+[8 <../figures/mseVSdegreeOLS_terrain.pdf> <../figures/ridge_multilambda_mse.pd
+f
 
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/mseVSdegreeOLS_terrain.pdf):
- PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/ridge_multilambda_mse.pdf): 
+PDF inclusion: multiple pdfs with page group included in a single page
 >]) (./discussion.tex
 Underfull \hbox (badness 1199) in paragraph at lines 5--5
 [][]\OT1/cmr/bx/n/10.95 Behaviour of the dif-fer-ent re-gres-sion
  []
 
-[9 <../figures/ridge_multilambda_mse.pdf> <../figures/lasso_multilambda_mse.pdf
+[9 <../figures/lasso_multilambda_mse.pdf>]) (./conclusion.tex) [10] (./main.bbl
+) [11
 
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/lasso_multilambda_mse.pdf): 
-PDF inclusion: multiple pdfs with page group included in a single page
->]) (./conclusion.tex [10]) (./main.bbl
-Underfull \vbox (badness 7326) has occurred while \output is active []
-
-) [11]
+]
 \openout2 = `appendix.aux'.
 
-
-(./appendix.tex
-<../figures/terrainpicture.pdf, id=394, 462.52798pt x 346.89601pt>
+ (./appendix.tex
+<../figures/terrainpicture.pdf, id=398, 462.52798pt x 346.89601pt>
 File: ../figures/terrainpicture.pdf Graphic file (type pdf)
 
 <use ../figures/terrainpicture.pdf>
 Package pdftex.def Info: ../figures/terrainpicture.pdf used on input line 38.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-<../figures/terrainpicture_reduced.pdf, id=395, 462.52798pt x 346.89601pt>
+<../figures/terrainpicture_reduced.pdf, id=399, 462.52798pt x 346.89601pt>
 File: ../figures/terrainpicture_reduced.pdf Graphic file (type pdf)
 
 <use ../figures/terrainpicture_reduced.pdf>
@@ -2029,10 +2017,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 65.
  ) 
 Here is how much of TeX's memory you used:
- 16490 strings out of 493029
- 281392 string characters out of 6136234
- 368946 words of memory out of 5000000
- 19760 multiletter control sequences out of 15000+600000
+ 16473 strings out of 493029
+ 281097 string characters out of 6136234
+ 368066 words of memory out of 5000000
+ 19746 multiletter control sequences out of 15000+600000
  15602 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,21n,42p,10407b,526s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2055,10 +2043,10 @@ e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/doublestroke/dsrom10.pfb>
-Output written on main.pdf (13 pages, 512607 bytes).
+Output written on main.pdf (13 pages, 513056 bytes).
 PDF statistics:
- 503 PDF objects out of 1000 (max. 8388607)
- 447 compressed objects within 5 object streams
+ 507 PDF objects out of 1000 (max. 8388607)
+ 451 compressed objects within 5 object streams
  76 named destinations out of 1000 (max. 500000)
  248 words of extra memory for PDF output out of 10000 (max. 10000000)
 
