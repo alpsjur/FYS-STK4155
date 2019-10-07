@@ -1,22 +1,14 @@
 \section{Results}
 \label{sec:results}
-Resultater vi mangler
-\begin{itemize}
-\item Franke - Bias varianse for Ridge og Lasso
-\item Terrengdata - OLS
-\item Terrengdata - Ridge
-\item Terrengdata - Lasso
-\item tabell minste feil for de ulike metodene (hvilken deg og $\lambda$)
-\end{itemize}
 \subsection{Regression on Franke's function}
 The {''}terrain'' data $z$ in this part was produced by applying Franke's function to a $n\cross n$ evenly spaced $xy$ grid, with $x_i,y_i\in [0,1]$, and for each point added a normally distributed noise with $\mu = 0$ and $\sigma = 0.1$.
 \subsubsection{$\beta$-values confidence interval}
 Before applying any resampling methods we used the regular \emph{ordinary least squares} method \eqref{eq:ols} to our data and had a look at the confidence interval of the $\beta$ values when approximating the data to a polynomial of degree $m=5$. The confidence intervals are shown in Figure \ref{fig:betaconfidence}.
-They range between 0.23 and 35 in width.
+They range between 0.23 and 35 in width, while the calculated $\beta_i$ values range between approximately -50 and 50.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{betaconfidence}
-	\caption{The $\beta$-values and their 95\% confidence interval with $m=5$ and $\sigma=0.1$ for OLS.}
+	\caption{The $\beta$-values and their 95\% confidence interval with $m=5$ and $\sigma=0.1$ for OLS used on data generated with Franke's function.}
 	\label{fig:betaconfidence}
 \end{figure}
 
@@ -27,7 +19,7 @@ To study the mean squared error \eqref{eq:mse} as a function of the model comple
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{mseVSdegreeOLS}
-	\caption{MSE of the model as a function of degree $m$, with n=20, noise $\sigma$ = 0.1. In the case where no resampling is done (MSE-train), the MSE flattens out at a low value. When applying the bootstrap method (MSE-test) for resampling however, the MSE begins to rise after reaching a certain model complexity, creating a minimum point where the error is the lowest.}
+	\caption{MSE of the model as a function of degree $m$. The model is trained on data generated with Franke's function, with n=20, noise $\sigma$ = 0.1. In the case where no resampling is done (MSE-train), the MSE flattens out at a low value. When applying the bootstrap method (MSE-test) for resampling however, the MSE begins to rise after reaching a certain model complexity, creating a minimum point where the error is the lowest.}
 	\label{fig:mseVSdegreeOLS}
 \end{figure}
 
@@ -35,7 +27,7 @@ Applying the same analisys to the $R^2$-score \eqref{eq:r2} of the two cases, we
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{r2VSdegreeOLS}
-	\caption{$R^2$-score of the model as a function of degree $m$, with n=20, noise $\sigma$ = 0.1. In the case where no resampling is done (R2-train), the $R^2$ increases and then flattens out. When applying the k-fold cross validation method (R2-test) for resampling however, the $R^2$ begins to decrease after reaching a certain model complexity, creating a maximum point where the $R^2$-score is closest to 1 (the optimal value).}
+	\caption{$R^2$-score of the model as a function of degree $m$. The model is trained on data generated with Franke's function, with n=20, noise $\sigma$ = 0.1. In the case where no resampling is done (R2-train), the $R^2$ increases and then flattens out. When applying the k-fold cross validation method (R2-test) for resampling however, the $R^2$ begins to decrease after reaching a certain model complexity, creating a maximum point where the $R^2$-score is closest to 1 (the optimal value).}
 	\label{fig:r2VSdegreeOLS}
 \end{figure}
 
@@ -45,7 +37,7 @@ Sticking to the bootstrap method for resampling, and using $n=20$ with $\sigma =
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{biasvarianceOLS}
-	\caption{Bias, variance and MSE for the ordinary least square method on the data set with $n=20$ and noise $\sigma=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The bias starts of high and decreases as the model complexity increases, whilst the variance grows with the model complexity.}
+	\caption{Bias, variance and MSE for the ordinary least square method on the Franke's function data set with $n=20$ and noise $\sigma=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The bias starts of high and decreases as the model complexity increases, whilst the variance grows with the model complexity.}
 	\label{fig:biasvarianceOLS}
 \end{figure}
 
@@ -55,7 +47,7 @@ In order to find the parameters that will give the least MSE for the Ridge regre
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{lambdavsdegreesRIDGE}
-	\caption{MSE for the Ridge regression method on the data set with $n=20$ and noise $\sigma=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda$. When $\lambda=0$ it is equivalent to the OLS-method.}
+	\caption{MSE for the Ridge regression method on the Franke's function data set with $n=20$ and noise $\sigma=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda$. When $\lambda=0$ it is equivalent to the OLS-method.}
 	\label{fig:lambdavsdegreesRIDGE}
 \end{figure}
 
@@ -64,14 +56,14 @@ The same analisys, with various $\lambda$ and $m$-values is done for Lasso-regre
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{lambdavsdegreesLASSO}
-	\caption{MSE for the Lasso regression method on the data set with $n=20$ and noise $\sigma=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda$}
+	\caption{MSE for the Lasso regression method on the Franke's function data set with $n=20$ and noise $\sigma=0.1$, resampled with the bootstrap method, as a function of model complexity/polynomial degree. The different lines in the plot represent different values of the hyperparameter $\lambda$}
 	\label{fig:lambdavsdegreesLASSO}
 \end{figure}
 
 \subsubsection{Comparing MSE of the different regression methods}
 A different, and less visual way of finding the method that gives the best approximation, that is, the smallest MSE, is to store all the MSE data for all hyperparameters and degrees, make the computer find the smallest value, and the corresponding parameters which is presented in table \ref{tab:minerrorFRANKE}.
 \begin{table}[htbp]
-\caption{The smalles MSE for the different regressions methods, and the hyperparameter $\lambda$ and the degree $m$ that results the MSE in question. Produced using the bootstrap resampling method.}
+\caption{The smalles MSE for the different regressions methods used on the Franke's function dataset, and the hyperparameter $\lambda$ and the degree $m$ that results the MSE in question. Produced using the bootstrap resampling method.}
 \centering
 \begin{tabular}[width=0.5\textwidth]{lccc}
 \hline
@@ -85,7 +77,7 @@ A different, and less visual way of finding the method that gives the best appro
 \end{table}
 
 \subsubsection{Terrain data}
-
+Some of the same figures were produced for real terrain data as for data generated with Franke's function. MSE as a function of degree for the OLS regression method can be seen in Figure \ref{fig:mseVSdegreeOLSterrain}. The MSE starts off at about 14500 for $m=0$, and decreases to about 2000 as the degree approaches 35. 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{mseVSdegreeOLS_terrain}
@@ -93,17 +85,19 @@ A different, and less visual way of finding the method that gives the best appro
 	\label{fig:mseVSdegreeOLSterrain}
 \end{figure}
 
+Figure \ref{fig:mseVSdegreeRIDGEterrain} and \ref{fig:mseVSdegreeLASSOterrain} shows the same plot, but for Ridge and Lasso regression. Note that the degree here only goes up to 20 for Ridge and 15 for Lasso. Similar as for the results for Franke's function, each figure shows MSE for multiple $\lambda$. 
+
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{ridge_multilambda_mse}
-	\caption{MSE for the Ridge regression method on the reduced terrain data set.}
+	\caption{MSE for the Ridge regression method on the reduced terrain data set. Different colours represents different hyperparameters $\lambda$. The MSE decreases as the degree increases. The minimum MSE decreases as $\lambda$ decreases.}
 	\label{fig:mseVSdegreeLASSOterrain}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{lasso_multilambda_mse}
-	\caption{MSE for the Lasso regression method on the reduced terrain data set.}
+	\caption{MSE for the Lasso regression method on the reduced terrain data set. Different colours represents different hyperparameters $\lambda$. The MSE decreases as the degree increases. The minimum MSE decreases as $\lambda$ decreases.}
 	\label{fig:mseVSdegreeRIDGEterrain}
 \end{figure}
 
