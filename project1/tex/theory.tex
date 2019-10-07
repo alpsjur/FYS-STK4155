@@ -59,7 +59,7 @@ Minimizing this results in model parameters on the form
 \begin{equation}\label{eq:ridge}
 \boldsymbol{\beta}=\left(\boldsymbol{X}^T\boldsymbol{X}+\boldsymbol{\lambda}\boldsymbol{I}\right)^{-1}\boldsymbol{X}^T\boldsymbol{y}
 \end{equation}
-Here, $\boldsymbol{I}$ is the identity matrix.. The parameter $\lambda$ then has to be tuned, for example by the use of cross-validation.
+Here, $\boldsymbol{I}$ is the identity matrix.. The hyperparameter $\lambda$ then has to be tuned, for example by the use of cross-validation.
 One can see that by setting $\lambda = 0$, (\ref{eq:ridge}) simplifies to the OLS solution in (\ref{eq:ols}).
 
 \subsection{Lasso regression}
@@ -98,9 +98,9 @@ Here, the mean value $\overline{y}$ is given as
 \end{equation*}
 
 \subsection{k-fold cross validation}
-There are several methods for estimating the skill of a machine learning model. One such method is the $k$-fold cross-validation procedure, which can be used when working with a limited data sample. The idea is to divide the data sample into $k$ groups or folds, and then retain one of the folds to use as a test set after fitting a model to the remaining data. This is done for all folds. Algorithm \ref{alg:k-fold} outlines the different steps in the procedure.
+There are several methods for estimating the skill of a machine learning model. One such method is the k-fold cross-validation procedure, which can be used when working with a limited data sample. The idea is to divide the data sample into $k$ groups or folds, and then retain one of the folds to use as a test set after fitting a model to the remaining data. This is done for all folds. Algorithm \ref{alg:k-fold} outlines the different steps in the procedure.
 
-\begin{algorithm}[htbp]\caption{The $k$-fold cross-validation algorithm.}\label{alg:k-fold}
+\begin{algorithm}[htbp]\caption{The k-fold cross-validation algorithm.}\label{alg:k-fold}
 	\SetAlgoLined
 	\BlankLine
 	\BlankLine
