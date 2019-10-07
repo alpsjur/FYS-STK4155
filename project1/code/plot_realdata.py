@@ -19,7 +19,7 @@ plt.rc('font', family='serif')
 
 
 def read_pandas(datadir, lambdamin, lambdamax):
-    genericFilename = "realData_boot_lambda1e-0"
+    genericFilename = "realData_boot_smallerTOL_lambda1e-0"
     dfs = []
     keys = []
     for i in range(lambdamin, lambdamax+1):
@@ -49,7 +49,7 @@ datadir_lasso = "../data/lasso/"
 datadir_ridge = "../data/ridge/"
 
 df_lasso = read_pandas(datadir_lasso, 1, 6)
-df_ridge = read_pandas(datadir_ridge, 2, 9)
+#df_ridge = read_pandas(datadir_ridge, 2, 9)
 
 
 figdir = "../figures/"
@@ -59,9 +59,10 @@ plot_all_lambdas(ax1, df_lasso, 1, 6, "mse")
 ax1.set_ylim(0, 16000)
 plt.savefig(figdir + "lasso_multilambda_mse.pdf")
 
+"""
 fig2, ax2 = plt.subplots(1, 1)
 plot_all_lambdas(ax2, df_ridge, 2, 9, "mse")
 ax2.set_ylim(0, 16000)
 plt.savefig(figdir + "ridge_multilambda_mse.pdf")
-
+"""
 plt.show()
