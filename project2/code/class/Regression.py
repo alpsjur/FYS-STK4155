@@ -11,34 +11,9 @@ class Regression:
         self.model = None
         return
 
-    def OLS(self):
-        designMatrix = self.designMatrix
-        self.beta = np.linalg.pinv(designMatrix.T.dot(designMatrix)).dot(designMatrix.T).dot(self.data)
-        self.betas.append(self.beta)
-        return
-
-    def ridge(self, hyperparameter):
-        designMatrix = self.designMatrix
-        p = len(designMatrix[0, :])
-        self.beta = np.linalg.pinv(designMatrix.T.dot(designMatrix)
-                + hyperparameter*np.identity(p)).dot(designMatrix.T).dot(self.data)
-        self.betas.append(self.beta)
-        return
-
-    def lasso(self, hyperparameter, **kwargs):
-        reg = linear_model.Lasso(alpha=hyperparameter, **kwargs)
-        reg.fit(self.designMatrix, self.data)
-        self.beta = reg.coef_
-        self.betas.append(self.beta)
-        return
-
-    def logistic(self):
-        #self.beta =
-        return
-
-    def construct_model(self):
+    def fit(self):
         self.model = self.designMatrix @ self.beta
-        return
+        return self.model
 
     def clear_betas(self):
         self.betas = []
@@ -74,6 +49,38 @@ class Regression:
         error = mse(self.model, np.mean(self.model))
         return error
 
+class OLS(Regression):
+    def construct_model(self):
+        designMatrix = self.designMatrix
+        self.beta = np.linalg.pinv(designMatrix.T.dot(designMatrix)).dot(designMatrix.T).dot(self.data)
+        self.betas.append(self.beta)
+        return
+
+class Ridge(Regression):
+    def __init__(self, designMatrix, data, hyperparameter):
+        self.hyperparameter = hyperparameter
+        super().__init__(designMatrix, data)
+
+    def construct_model(self):
+        designMatrix = self.designMatrix
+        p = len(designMatrix[0, :])
+        self.beta = np.linalg.pinv(designMatrix.T.dot(designMatrix)
+                + self.hyperparameter*np.identity(p)).dot(designMatrix.T).dot(self.data)
+        self.betas.append(self.beta)
+        return
+
+class Lasso(Ridge):
+    def __init__(self, designMatrix, data, hyperparameter, **kwargs):
+        self.kwargs = kwargs
+        super().__init__(designMatrix, data, hyperparameter)
+
+    def constuct_model(self):
+        reg = linear_model.Lasso(alpha=self.hyperparameter, **self.kwargs)
+        reg.fit(self.designMatrix, self.data)
+        self.beta = reg.coef_
+        self.betas.append(self.beta)
+        return
+
 
 if __name__ == "__main__":
     import projectfunctions as pf
@@ -97,15 +104,16 @@ if __name__ == "__main__":
 
     X = pf.generate_design_2Dpolynomial(x, y)
 
-    linreg = LinearRegression(X, z)
-    linreg.OLS()
+    linreg = Lasso(X, z, 1e-5, tol=1e3, max_iter=1e5)
     linreg.construct_model()
+    model = linreg.fit()
+    print(linreg.r2())
 
     fig = plt.figure()
     ax = fig.gca(projection="3d")
 
     # Plot the surface.
-    surf = ax.plot_surface(x_grid, y_grid, linreg.model.reshape(x_grid.shape),
+    surf = ax.plot_surface(x_grid, y_grid, model.reshape(x_grid.shape),
                             cmap=cm.coolwarm,
                             linewidth=0,
                             antialiased=False,
