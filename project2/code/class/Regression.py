@@ -81,6 +81,24 @@ class Lasso(Ridge):
         self.betas.append(self.beta)
         return
 
+class Logistic(Ridge):
+    def __init__(self, designMatrix, data, hyperparameter, learning_rates):
+        self.learning_rates = learning_rates
+        super().__init__(designMatrix, data, hyperparameter)
+
+    def sigmoid(self, x):
+        f = np.exp(x)/(np.exp(x) + 1)
+        return f
+
+    def calculate_gradient(self):
+        gradient = 2*self.designMatrix.T.dot(self.designMatrix.dot(self.beta) - sigmoid(self.data))
+        return gradient
+
+    def gradient_descent(self, tol=1e-8, max_iter=1e4):
+        k = 0
+        while gradC > tol and k <= max_iter:
+            pass
+
 
 if __name__ == "__main__":
     import projectfunctions as pf
