@@ -3,7 +3,6 @@ from sklearn.utils import shuffle
 from sklearn import linear_model
 from sklearn.utils import resample
 
-
 def generate_design_polynomial(x, degree=1):
     """
     Creates a design matrix for a 1d polynomial of degree p
@@ -84,6 +83,24 @@ def variance(model):
     n = len(model)
     error = mse(model, np.mean(model))
     return error
+
+def SGD(training_data, cost_gradient, parameters, n_epochs, mini_batch_size, learning_rate):
+    """
+    Stochastic gradient descent for computing the parameters that minimize the cost function.
+        training_data = array containing the data point on the form [[[x11,x12,...],y1],[[x21,x22,...],y2],...]
+        cost_gradient = function for computing the gradient of the cost function
+        parameters = array containing the parameters to be updated. Ex [beta1, beta2, ...] for linear regression
+        n_epochs = number of epochs
+        mini_batch_size = number of data points in each mini batch
+        learning_rate = the learning rate, often denoted eta  
+    """
+    n = len(training_data)
+    for epoch in range(n_epochs):
+        np.random.shuffle(training_data)
+        mini_batches = [training_data[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
+        for mini_batch in mini_batches:
+            gradients = cost_gradient(mini_batch, parameters)
+            parameters = parameters - learning_rate*gradients
 
 def bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, \
               reg, degree=5, hyperparam=0, n_bootstraps=200):
