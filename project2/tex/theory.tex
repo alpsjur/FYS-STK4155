@@ -1,7 +1,79 @@
 \section{Theory}
 \label{sec:theory}
 
+\subsection{Logistic Regression}
+% Alt dette er henta fra lecture notes om logistisk regresjon, har bare ikke funnet riktig måte å referere ennå
+Classification problems aim to predict the behaviour of a given object, and look for patterns based on discrete variables (i.e categories). Logistic regression can be used to solve such problems, commonly by the use of variables with binary outcomes such as true/false, positive/negative, success/failiure etc.
+
+As opposed to linear regression, the equation one gets as a result of minimization of of the cost function by $\hat{\beta}$ using logistic regression, is non-linear, and is solved using minimization algorithms called \emph{gradient descent methods}. \\
+
+When predicting the the output classes in which an object belongs, the prediction is based on the design matrix $\mathbf{\hat{X}} \in \mathbb{R}^{n\cross p}$ that contain $n$ samples that each carry $p$ features.
+
+A distinction is made between \textit{hard classification} - deterministically determine the variable to a cathegory, and \textit{soft classification} - determines the probability that a given variable belongs in a certain cathegory. The latter is favorable in many cases, and logistic regression is the most used example og this type of classifier.
+
+When using logistic regression, the probability that a given data point $x_i$ belongs in a cathegory $y_i$ is given by the Sigmoid-function (or logistic function):
+\begin{equation}
+\begin{split}
+    & p(t) = \frac{1}{1 + e^{-t}} = \frac{e^t}{1+e^t} \\
+    & 1-p(t) = p(-t)
+\end{split}
+  \label{eq:sigmoid}
+\end{equation}
+
+Assuming a binary classification problem, i.e. $y_i$ can be either 0 or 1, and a set of predictors $\hat{\beta}$ the Sigmoid function \eqref{eq:sigmoid} gives the probabilities with relation:
+\begin{equation*}
+  p(y_i = 0|x_i,\hat{\beta})  = 1 - p(y_i = 1|x_i,\hat{\beta})
+  \label{eq:prob_relation}
+\end{equation*}
+
+The total likelihood for all possible outcomes $\mathcal{D}=\{(y_i,x_i)\}$ is used in the Maximum Likelihood Estimation (MLE), aiming at maximizing the log/likelihood funciton \eqref{eq:log_p}. The likelihood function can be expressed with $\mathcal{D}$:
+\begin{equation*}
+\begin{split}
+    &\qquad P(\mathcal{D}|\hat{\beta}) = \\
+    &\prod_{i=1}^n \qty[p(y_i = 1|x_i,\hat{\beta}) ]^{y_i}  \qty[1 - p(y_i = 0|x_i,\hat{\beta})]^{1-y_i}
+\end{split}
+\end{equation*}
+
+And the log/likelihood function is then:
+\begin{equation}
+\begin{split}
+    &P_{\log}(\hat{\beta}) = \\
+    &\sum_{i=1}^n \Big(y_i \log \qty[p(y_i = 1|x_i,\hat{\beta})] \\
+    &\quad+ (1-y_i) \log [1 - p(y_i = 0|x_i,\hat{\beta})]\Big)
+\end{split}
+\label{eq:log_p}
+\end{equation}
+
+The cost/error-function $\mathcal{C}$ (also called cross-entropy in statistics) is the negative of the log/likelihood. Maximizing $P_{\log}$ is thus the same as minimizing the cost function. The cost funciton is:
+\begin{equation}
+  \begin{split}
+    &\mathcal{C}(\hat{\beta}) = - P_{\log}(\hat{\beta}) =  \\
+    -&\sum_{i=1}^n \Big(y_i \log \qty[p(y_i = 1|x_i,\hat{\beta})] \\
+    &\quad+ (1-y_i) \log [1 - p(y_i = 0|x_i,\hat{\beta})]\Big)
+  \end{split}
+\end{equation}
+
+Finding the parameters $\hat{\beta}$ that minimize the cost function is then done through derivation.
+Defining the vector $\hat{y}$ containing $n$ elements $y_i$, the $n \cross p$ matrix $\hat{X}$ containing the $x_i$ elements, and the vector $\hat{p}$ that is the fittet probabilities $p(y_i|x_i,\hat{\beta})$, the first derivative of $\mathcal{C}$ is
+\begin{equation}
+  \pdv{\mathcal{C}(\hat{\beta})}{\hat{beta}} = - \hat{X}^T (\hat{y}-\hat{p})
+  \label{eq:cost_d}
+\end{equation}
+
+And by introduction of a diagonal matrix $\hat{W}$ with diagonal elements $p(y_i|x_i,\hat{\beta})\cdot(1-p(y_i|x_i,\hat{\beta}))$ the second derivative is:
+\begin{equation}
+ \pdv[2]{\mathcal{C}(\hat{\beta})}{\hat{\beta}}{\hat{\beta}^T} = \hat{X}^T\hat{W}\hat{X}
+ \label{eq:cost_dd}
+\end{equation}
+
+With $\hat{x} = [1, x_1,x_2,...,x_p]$ and $p$ predictors $\hat{\beta} = [\beta_0,\beta_1,\beta_2,...,\beta_p]$ the ration between likelihoods of outcome is:
+\begin{equation}
+  \log \frac{p(\hat{\beta}\hat{x})}{1-p(\hat{\beta}\hat{x})} = \beta_0 + \beta_1x_1 + ... + \beta_px_p
+  \label{eq:prob_ratio}
+\end{equation}
 % Eksempel for store matriser
+\\--------------------------------------------- \\
+Matrise-eksempel
 \[A =
 \mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\
 a_1 & b_2 & c_2 & 0 & \hdots & 0 \\
