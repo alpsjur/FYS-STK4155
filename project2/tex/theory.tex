@@ -56,11 +56,11 @@ The cost/error-function $\mathcal{C}$ (also called cross-entropy in statistics) 
 Finding the parameters $\hat{\beta}$ that minimize the cost function is then done through derivation.
 Defining the vector $\hat{y}$ containing $n$ elements $y_i$, the $n \cross p$ matrix $\hat{X}$ containing the $x_i$ elements, and the vector $\hat{p}$ that is the fittet probabilities $p(y_i|x_i,\hat{\beta})$, the first derivative of $\mathcal{C}$ is
 \begin{equation}
-  \pdv{\mathcal{C}(\hat{\beta})}{\hat{beta}} = - \hat{X}^T (\hat{y}-\hat{p})
+  \pdv{\mathcal{C}(\hat{\beta})}{\hat{\beta}} = - \hat{X}^T (\hat{y}-\hat{p})
   \label{eq:cost_d}
 \end{equation}
-
-And by introduction of a diagonal matrix $\hat{W}$ with diagonal elements $p(y_i|x_i,\hat{\beta})\cdot(1-p(y_i|x_i,\hat{\beta}))$ the second derivative is:
+This gives rise to set of linear equations, where the aim is to solve the system for $\hat{\beta}$.
+By introduction of a diagonal matrix $\hat{W}$ with diagonal elements $p(y_i|x_i,\hat{\beta})\cdot(1-p(y_i|x_i,\hat{\beta}))$ the second derivative is:
 \begin{equation}
  \pdv[2]{\mathcal{C}(\hat{\beta})}{\hat{\beta}}{\hat{\beta}^T} = \hat{X}^T\hat{W}\hat{X}
  \label{eq:cost_dd}
@@ -71,8 +71,15 @@ With $\hat{x} = [1, x_1,x_2,...,x_p]$ and $p$ predictors $\hat{\beta} = [\beta_0
   \log \frac{p(\hat{\beta}\hat{x})}{1-p(\hat{\beta}\hat{x})} = \beta_0 + \beta_1x_1 + ... + \beta_px_p
   \label{eq:prob_ratio}
 \end{equation}
+
+\noindent and $p(\hat{\beta}\hat{x})$ defined by:
+\begin{equation}
+  p(\hat{\beta}\hat{x}) = \frac{e^{\beta_0 + \beta_1x_1 + ... + \beta_px_p}}{1+e^{\beta_0 + \beta_1x_1 + ... + \beta_px_p}}
+  \label{eq:pBx}
+\end{equation}
+
 % Eksempel for store matriser
-\\--------------------------------------------- \\
+--------------------------------------------- \\
 Matrise-eksempel
 \[A =
 \mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\
