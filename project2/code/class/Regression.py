@@ -84,7 +84,6 @@ class Lasso(Ridge):
 class Logistic(Regression):
     def __init__(self, designMatrix, labels, learning_rate):
         self.learning_rate = learning_rate
-        self.probabilities = None
         self.cost_gradient = None
         super().__init__(designMatrix, labels)
         self.beta = np.random.randn(len(self.designMatrix[0, :]))
@@ -93,12 +92,9 @@ class Logistic(Regression):
         f = np.exp(x)/(np.exp(x) + 1)
         return f
 
-    def calculate_probabilities(self, designMatrix):
-        self.probabilities = np.exp(designMatrix.dot(self.beta))/(1 + np.exp(designMatrix.dot(self.beta)))
-        return
-
     def calculate_cost_gradient(self, labels, designMatrix):
-        self.cost_gradient = designMatrix.T.dot((labels - self.probabilities))
+        probabilities = np.exp(designMatrix.dot(self.beta))/(1 + np.exp(designMatrix.dot(self.beta)))
+        self.cost_gradient = designMatrix.T.dot((labels - probabilities))
         return
 
     def construct_model(self, n_epochs, mini_batch_size):
@@ -119,8 +115,7 @@ class Logistic(Regression):
             labels_mini_batches = [self.labels[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
             designMatrix_mini_batches = [self.designMatrix[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
             for labels_mini_batch, designMatrix_mini_batch in zip(labels_mini_batches, designMatrix_mini_batches):
-                self.calculate_probabilities()
-                self.calculate_cost_gradient()
+                self.calculate_cost_gradient(labels_mini_batch, designMatrix_mini_batch)
                 self.beta = self.beta - self.learning_rate*self.cost_gradient
             self.betas.append(self.beta)
         return
