@@ -3,9 +3,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+
 import sys
 sys.path.append("class/")
 from Regression import Logistic
+
+#np.random.seed(42)
 
 
 sns.set()
@@ -21,14 +27,26 @@ df = pd.read_pickle(filepath + filename + "_clean.pkl")
 data = df.to_numpy()
 labels = data[:, -1]
 
-designMatrix_nointercept = data[:, :-1]
-n, m = np.shape(designMatrix_nointercept)
-intercept = np.ones((n, 1))
-designMatrix = np.hstack((intercept, designMatrix_nointercept))
+designMatrix = data[:, :-1]
+
+# Train-test split
+trainingShare = 0.5
+seed  = 42
+designMatrix_train, designMatrix_test, labels_train, labels_test = train_test_split(
+                                                                designMatrix,
+                                                                labels,
+                                                                train_size=trainingShare,
+                                                                test_size = 1-trainingShare,
+                                                                random_state=seed
+                                                                )
+# Input Scaling
+sc = StandardScaler()
+designMatrix_train = sc.fit_transform(designMatrix_train)
 
 learning_rate = 1e-4
 
-logreg = Logistic(designMatrix, labels)
-logreg.construct_model(10, 5, learning_rate)
+logreg = Logistic(designMatrix_train, labels_train)
+logreg.construct_model(100, 1000, learning_rate)
 model = logreg.fit()
-print(model)
+accuracy = logreg.accuracy()
+print(accuracy)
