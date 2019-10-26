@@ -25,11 +25,10 @@ designMatrix_nointercept = data[:, :-1]
 n, m = np.shape(designMatrix_nointercept)
 intercept = np.ones((n, 1))
 designMatrix = np.hstack((intercept, designMatrix_nointercept))
-print(designMatrix)
 
 learning_rate = 1e-4
 
 logreg = Logistic(designMatrix, labels, learning_rate)
-logreg.construct_model(10, 5)
+logreg.construct_model(50, 10)
 model = logreg.fit()
 print(model)
