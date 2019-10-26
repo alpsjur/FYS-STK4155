@@ -92,7 +92,7 @@ def SGD(training_data, cost_gradient, parameters, n_epochs, mini_batch_size, lea
         parameters = array containing the parameters to be updated. Ex [beta1, beta2, ...] for linear regression
         n_epochs = number of epochs
         mini_batch_size = number of data points in each mini batch
-        learning_rate = the learning rate, often denoted eta  
+        learning_rate = the learning rate, often denoted eta
     """
     n = len(training_data)
     for epoch in range(n_epochs):

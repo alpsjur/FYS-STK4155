@@ -3,9 +3,9 @@ from sklearn import linear_model
 
 
 class Regression:
-    def __init__(self, designMatrix, data):
+    def __init__(self, designMatrix, labels):
         self.designMatrix = designMatrix
-        self.data = data
+        self.labels = labels
         self.beta = None
         self.betas = []
         self.model = None
@@ -23,22 +23,22 @@ class Regression:
         """
         Calculates the mean square error between data and model.
         """
-        n = len(self.data)
-        error = np.sum((self.data - self.model)**2)/n
+        n = len(self.labels)
+        error = np.sum((self.labels - self.model)**2)/n
         return error
 
     def r2(self):
         """
         Calculates the R2-value of the model.
         """
-        n = len(self.data)
-        error = 1 - np.sum((self.data - self.model)**2)/np.sum((self.data - np.mean(self.data))**2)
+        n = len(self.labels)
+        error = 1 - np.sum((self.labels - self.model)**2)/np.sum((self.labels - np.mean(self.labels))**2)
         return error
 
     def bias(self):
         """caluclate bias from k expectation values and data of length n"""
-        n = len(self.data)
-        error = mse(self.data, np.mean(self.model))
+        n = len(self.labels)
+        error = mse(self.labels, np.mean(self.model))
         return error
 
     def variance(self):
@@ -52,41 +52,41 @@ class Regression:
 class OLS(Regression):
     def construct_model(self):
         designMatrix = self.designMatrix
-        self.beta = np.linalg.pinv(designMatrix.T.dot(designMatrix)).dot(designMatrix.T).dot(self.data)
+        self.beta = np.linalg.pinv(designMatrix.T.dot(designMatrix)).dot(designMatrix.T).dot(self.labels)
         self.betas.append(self.beta)
         return
 
 class Ridge(Regression):
-    def __init__(self, designMatrix, data, hyperparameter):
+    def __init__(self, designMatrix, labels, hyperparameter):
         self.hyperparameter = hyperparameter
-        super().__init__(designMatrix, data)
+        super().__init__(designMatrix, labels)
 
     def construct_model(self):
         designMatrix = self.designMatrix
         p = len(designMatrix[0, :])
         self.beta = np.linalg.pinv(designMatrix.T.dot(designMatrix)
-                + self.hyperparameter*np.identity(p)).dot(designMatrix.T).dot(self.data)
+                + self.hyperparameter*np.identity(p)).dot(designMatrix.T).dot(self.labels)
         self.betas.append(self.beta)
         return
 
 class Lasso(Ridge):
-    def __init__(self, designMatrix, data, hyperparameter, **kwargs):
+    def __init__(self, designMatrix, labels, hyperparameter, **kwargs):
         self.kwargs = kwargs
-        super().__init__(designMatrix, data, hyperparameter)
+        super().__init__(designMatrix, labels, hyperparameter)
 
     def constuct_model(self):
         reg = linear_model.Lasso(alpha=self.hyperparameter, **self.kwargs)
-        reg.fit(self.designMatrix, self.data)
+        reg.fit(self.designMatrix, self.labels)
         self.beta = reg.coef_
         self.betas.append(self.beta)
         return
 
 class Logistic(Regression):
-    def __init__(self, designMatrix, data, learning_rates):
-        self.learning_rates = learning_rates
+    def __init__(self, designMatrix, labels, learning_rate):
+        self.learning_rate = learning_rate
         self.probabilities = None
         self.cost_gradient = None
-        super().__init__(designMatrix, data)
+        super().__init__(designMatrix, labels)
 
     def sigmoid(self, x):
         f = np.exp(x)/(np.exp(x) + 1)
@@ -97,7 +97,7 @@ class Logistic(Regression):
         return
 
     def calculate_cost_gradient(self):
-        self.cost_gradient = self.designMatrix.T*(self.data[:, -1] - self.probabilities)
+        self.cost_gradient = self.designMatrix.T*(self.labels - self.probabilities)
         return
 
     def SGD(self, n_epochs, mini_batch_size):
@@ -110,10 +110,10 @@ class Logistic(Regression):
             mini_batch_size = number of data points in each mini batch
             learning_rate = the learning rate, often denoted eta
         """
-        n = len(self.data)
+        n = len(self.labels)
         for epoch in range(n_epochs):
-            np.random.shuffle(self.data)
-            mini_batches = [self.data[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
+            np.random.shuffle(self.labels)
+            mini_batches = [self.labels[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
             for mini_batch in mini_batches:
                 calculate_probabilities()
                 calculate_cost_gradient()
