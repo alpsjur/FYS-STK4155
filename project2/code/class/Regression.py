@@ -93,12 +93,12 @@ class Logistic(Regression):
         f = np.exp(x)/(np.exp(x) + 1)
         return f
 
-    def calculate_probabilities(self):
-        self.probabilities = np.exp(self.designMatrix.dot(self.beta))/(1 + np.exp(self.designMatrix.dot(self.beta)))
+    def calculate_probabilities(self, designMatrix):
+        self.probabilities = np.exp(designMatrix.dot(self.beta))/(1 + np.exp(designMatrix.dot(self.beta)))
         return
 
-    def calculate_cost_gradient(self):
-        self.cost_gradient = self.designMatrix.T.dot((self.labels - self.probabilities))
+    def calculate_cost_gradient(self, labels, designMatrix):
+        self.cost_gradient = designMatrix.T.dot((labels - self.probabilities))
         return
 
     def construct_model(self, n_epochs, mini_batch_size):
@@ -116,8 +116,9 @@ class Logistic(Regression):
             np.random.shuffle(idx)
             self.labels = self.labels[idx]
             self.designMatrix = self.designMatrix[idx]
-            mini_batches = [self.labels[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
-            for mini_batch in mini_batches:
+            labels_mini_batches = [self.labels[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
+            designMatrix_mini_batches = [self.designMatrix[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
+            for labels_mini_batch, designMatrix_mini_batch in zip(labels_mini_batches, designMatrix_mini_batches):
                 self.calculate_probabilities()
                 self.calculate_cost_gradient()
                 self.beta = self.beta - self.learning_rate*self.cost_gradient
