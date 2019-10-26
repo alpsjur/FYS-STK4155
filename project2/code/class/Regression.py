@@ -87,20 +87,21 @@ class Logistic(Regression):
         self.probabilities = None
         self.cost_gradient = None
         super().__init__(designMatrix, labels)
+        self.beta = np.random.randn(len(self.designMatrix[0, :]))
 
     def sigmoid(self, x):
         f = np.exp(x)/(np.exp(x) + 1)
         return f
 
     def calculate_probabilities(self):
-        self.probabilies = np.exp(self.designMatrix*self.betas)/(1 + np.exp(self.designMatrix*self.betas))
+        self.probabilities = np.exp(self.designMatrix.dot(self.beta))/(1 + np.exp(self.designMatrix.dot(self.beta)))
         return
 
     def calculate_cost_gradient(self):
-        self.cost_gradient = self.designMatrix.T*(self.labels - self.probabilities)
+        self.cost_gradient = self.designMatrix.T.dot((self.labels - self.probabilities))
         return
 
-    def SGD(self, n_epochs, mini_batch_size):
+    def construct_model(self, n_epochs, mini_batch_size):
         """
         Stochastic gradient descent for computing the parameters that minimize the cost function.
             cost_gradient = function for computing the gradient of the cost function
@@ -117,8 +118,8 @@ class Logistic(Regression):
             self.designMatrix = self.designMatrix[idx]
             mini_batches = [self.labels[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
             for mini_batch in mini_batches:
-                calculate_probabilities()
-                calculate_cost_gradient()
+                self.calculate_probabilities()
+                self.calculate_cost_gradient()
                 self.beta = self.beta - self.learning_rate*self.cost_gradient
             self.betas.append(self.beta)
         return
