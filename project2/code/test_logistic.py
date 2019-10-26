@@ -28,7 +28,7 @@ designMatrix = np.hstack((intercept, designMatrix_nointercept))
 
 learning_rate = 1e-4
 
-logreg = Logistic(designMatrix, labels, learning_rate)
-logreg.construct_model(50, 10)
+logreg = Logistic(designMatrix, labels)
+logreg.construct_model(10, 5, learning_rate)
 model = logreg.fit()
 print(model)
