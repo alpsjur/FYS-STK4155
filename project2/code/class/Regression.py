@@ -103,7 +103,6 @@ class Logistic(Regression):
     def SGD(self, n_epochs, mini_batch_size):
         """
         Stochastic gradient descent for computing the parameters that minimize the cost function.
-            training_data = array containing the data point on the form [[[x11,x12,...],y1],[[x21,x22,...],y2],...]
             cost_gradient = function for computing the gradient of the cost function
             parameters = array containing the parameters to be updated. Ex [beta1, beta2, ...] for linear regression
             n_epochs = number of epochs
@@ -112,7 +111,10 @@ class Logistic(Regression):
         """
         n = len(self.labels)
         for epoch in range(n_epochs):
-            np.random.shuffle(self.labels)
+            idx = np.arange(self.labels.shape[0])
+            np.random.shuffle(idx)
+            self.labels = self.labels[idx]
+            self.designMatrix = self.designMatrix[idx]
             mini_batches = [self.labels[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
             for mini_batch in mini_batches:
                 calculate_probabilities()
