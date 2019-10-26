@@ -81,28 +81,51 @@ class Lasso(Ridge):
         self.betas.append(self.beta)
         return
 
-class Logistic(Ridge):
-    def __init__(self, designMatrix, data, hyperparameter, learning_rates):
+class Logistic(Regression):
+    def __init__(self, designMatrix, data, learning_rates):
         self.learning_rates = learning_rates
-        super().__init__(designMatrix, data, hyperparameter)
+        self.probabilities = None
+        self.cost_gradient = None
+        super().__init__(designMatrix, data)
 
     def sigmoid(self, x):
         f = np.exp(x)/(np.exp(x) + 1)
         return f
 
-    def calculate_gradient(self):
-        gradient = 2*self.designMatrix.T.dot(self.designMatrix.dot(self.beta) - sigmoid(self.data))
-        return gradient
+    def calculate_probabilities(self):
+        self.probabilies = np.exp(self.designMatrix*self.betas)/(1 + np.exp(self.designMatrix*self.betas))
+        return
 
-    def gradient_descent(self, tol=1e-8, max_iter=1e4):
-        k = 0
-        while gradC > tol and k <= max_iter:
-            pass
+    def calculate_cost_gradient(self):
+        self.cost_gradient = self.designMatrix.T*(self.data[:, -1] - self.probabilities)
+        return
+
+    def SGD(self, n_epochs, mini_batch_size):
+        """
+        Stochastic gradient descent for computing the parameters that minimize the cost function.
+            training_data = array containing the data point on the form [[[x11,x12,...],y1],[[x21,x22,...],y2],...]
+            cost_gradient = function for computing the gradient of the cost function
+            parameters = array containing the parameters to be updated. Ex [beta1, beta2, ...] for linear regression
+            n_epochs = number of epochs
+            mini_batch_size = number of data points in each mini batch
+            learning_rate = the learning rate, often denoted eta
+        """
+        n = len(self.data)
+        for epoch in range(n_epochs):
+            np.random.shuffle(self.data)
+            mini_batches = [self.data[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
+            for mini_batch in mini_batches:
+                calculate_probabilities()
+                calculate_cost_gradient()
+                self.beta = self.beta - self.learning_rate*self.cost_gradient
+            self.betas.append(self.beta)
+        return
 
 
 if __name__ == "__main__":
     import projectfunctions as pf
     import matplotlib.pyplot as plt
+    import numpy as np
     from mpl_toolkits.mplot3d import Axes3D
     from matplotlib import cm
 
@@ -116,7 +139,7 @@ if __name__ == "__main__":
     x = x_grid.flatten()
     y = y_grid.flatten()
 
-    #compute z and flatten it
+    # compute z and flatten it
     z_grid = pf.frankefunction(x_grid, y_grid) + np.random.normal(0, noise, x_grid.shape)
     z = z_grid.flatten()
 
