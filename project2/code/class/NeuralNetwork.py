@@ -67,8 +67,23 @@ class NeuralNetwork:
             self.biases[-layer] -= self.learning_rate*self.biases_gradient[-layer]
             self.weights[-layer] -= self.learning_rate*self.weights_gradient[-layer]
 
-    def train(self):
+    def train(self, training_input, training_labels ,n_epochs, batch_size, learning_rate):
         #kode for stochastic gradient decent
+        n = len(training_input)
+        for epoch in range(n_epochs):
+            idx = np.arange(n)
+            np.random.shuffle(idx)
+            training_input = training_input[idx]
+            training_labels = training_labels[idx]
+            labels_mini_batches = [training_labels[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
+            input_mini_batches = [training_input[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
+            for labels_mini_batch, input_mini_batch in zip(labels_mini_batches, input_mini_batches):
+                backpropagation(input_mini_batch, labels_mini_batch)
+
+        #if test_data:
+        #    print('Epoch {}: {}/{}'.format(j, self.evaluate(test_data), n_test))
+        #else:
+        #    print('Epoch {} complete'.format(j))
 
     def predict(self, input):
         """
@@ -86,7 +101,7 @@ class NeuralNetwork:
         Function for applying the network on (new) input.
             input = array of inputs to the first layer
         Returns the full output of the last layer as an array, i.e. the
-        porbability for each class   
+        porbability for each class
         """
 
     def sigmoid(z):
