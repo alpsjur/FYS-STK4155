@@ -86,6 +86,7 @@ class Logistic(Regression):
         self.cost_gradient = None
         super().__init__(designMatrix, labels)
         self.beta = np.random.randn(len(self.designMatrix[0, :]))
+        #self.beta = [np.random.randn(1) for i in range(len(designMatrix[0, :]))]
         self.targets = np.zeros(len(self.labels))
 
     def sigmoid(self, x):
@@ -121,6 +122,7 @@ class Logistic(Regression):
                 self.calculate_cost_gradient(labels_mini_batch, designMatrix_mini_batch)
                 self.beta = self.beta - learning_rate*self.cost_gradient
             self.betas.append(self.beta)
+            print(abs(np.mean(self.cost_gradient)))
         return
 
     def calculate_targets(self):
@@ -139,12 +141,10 @@ class Logistic(Regression):
 
     def accuracy(self):
         self.calculate_targets()
-        print(self.targets)
         n = len(self.labels)
         counter = 0
         for i in range(n):
-            if self.indicator(self.targets[i], self.labels[i]):
-                counter += 1
+            counter += self.indicator(self.targets[i], self.labels[i])
         return counter/n
 
 
