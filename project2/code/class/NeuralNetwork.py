@@ -74,7 +74,7 @@ class NeuralNetwork:
         """
         Function for applying the network on (new) input.
             input = array of inputs to the first layer
-        Returns the index of the   
+        Returns the index of the  output neuron with highest value
         """
         probabilities = self.feedforward(input)
         return np.argmax(probabilities)
@@ -82,6 +82,12 @@ class NeuralNetwork:
     def predict_probabilities(self, input):
         probabilities = self.feed_forward(input)
         return probabilities
+        """
+        Function for applying the network on (new) input.
+            input = array of inputs to the first layer
+        Returns the full output of the last layer as an array, i.e. the
+        porbability for each class   
+        """
 
     def sigmoid(z):
         return np.exp(z)/(1-np.exp(z))
