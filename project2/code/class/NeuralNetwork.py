@@ -19,12 +19,27 @@ class NeuralNetwork:
 
 
     def feedforward(self, input):
+        """
+        Function for feeding the input through the Network
+            input = array with inputs to the first layer of the network
+            returns array with resulting output from the last layer
+        """
         for layer in range(self.n_layers-1):
             z = np.dot(self.weights[layer], input) + self.biases[layer]
             input = self.sigmoid(z)
         return input
 
     def backpropagation(self, input, labels):
+        """
+        Function for calculationg the backwards propagating correction of the
+        weights and biases, given a learning rate, using gradient descent
+            input = array with the inputs to the first layer of the network
+            labels = array with the output matching the correct labeling of
+            the input.
+            In the case of binary output:
+            If correct label is 1, labels = [0,1]
+            If correct label is 0, labels = [1,0]
+        """
         self.biases_gradient = [np.zeros(bias.shape) for bias in self.biases]
         self.weights_gradient = [np.zeros(weight.shape) for weight in self.weights]
 
@@ -53,9 +68,14 @@ class NeuralNetwork:
             self.weights[-layer] -= self.learning_rate*self.weights_gradient[-layer]
 
     def train(self):
-        #kode for stochastic gradient decent 
+        #kode for stochastic gradient decent
 
     def predict(self, input):
+        """
+        Function for applying the network on (new) input.
+            input = array of inputs to the first layer
+        Returns the index of the   
+        """
         probabilities = self.feedforward(input)
         return np.argmax(probabilities)
 
