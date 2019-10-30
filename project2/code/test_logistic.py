@@ -6,12 +6,14 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn import linear_model
+from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 
 import sys
 sys.path.append("class/")
 from Regression import Logistic
 
-#np.random.seed(42)
+np.random.seed(42)
 
 
 sns.set()
@@ -28,17 +30,9 @@ data = df.to_numpy()
 labels = data[:, -1]
 
 designMatrix = data[:, :-1]
-print(designMatrix)
-
-
-onehotencoder = OneHotEncoder(categories="auto")
-designMatrix = ColumnTransformer(
-    [("", onehotencoder, [2, 3])],
-    remainder="passthrough"
-).fit_transform(designMatrix)
 
 # Train-test split
-trainingShare = 0.7
+trainingShare = 0.5
 seed  = 42
 designMatrix_train, designMatrix_test, labels_train, labels_test = train_test_split(
                                                                 designMatrix,
@@ -51,14 +45,16 @@ designMatrix_train, designMatrix_test, labels_train, labels_test = train_test_sp
 sc = StandardScaler()
 designMatrix_train = sc.fit_transform(designMatrix_train)
 
-labels_train_onehot = onehotencoder.fit_transform(labels_train.reshape(-1, 1))
-print(labels_train_onehot)
-labels_test_onehot = onehotencoder.fit_transform(labels_test.reshape(-1, 1))
-
 learning_rate = 1e-4
 
+# %% Our code
 logreg = Logistic(designMatrix_train, labels_train)
-logreg.construct_model(50, 1000, learning_rate)
-model = logreg.fit()
+logreg.construct_model(500, 1000, learning_rate)
+model = logreg.fit(designMatrix_test)
 accuracy = logreg.accuracy()
 print(accuracy)
+
+# %% Scikit learn
+reg = linear_model.LogisticRegression()
+reg.fit(designMatrix_train, labels_train)
+print(reg.score(designMatrix_test, labels_test))

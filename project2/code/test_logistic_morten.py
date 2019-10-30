@@ -37,7 +37,7 @@ print(X)
 onehotencoder = OneHotEncoder(categories="auto")
 
 X = ColumnTransformer(
-    [("", onehotencoder, [3]),],
+    [("", onehotencoder, [2, 3]),],
     remainder="passthrough"
 ).fit_transform(X)
 
