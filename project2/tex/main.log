@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.27)  24 OCT 2019 12:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.27)  24 OCT 2019 13:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1816,8 +1816,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-]) (./results.tex)
-(./discussion.tex) (./conclusion.tex) (./main.bbl
+]
+Underfull \vbox (badness 1454) has occurred while \output is active []
+
+)
+(./results.tex) (./discussion.tex) (./conclusion.tex) (./main.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 8.
 
@@ -1825,7 +1828,7 @@ Package natbib Warning: Empty `thebibliography' environment on input line 8.
 Here is how much of TeX's memory you used:
  14698 strings out of 492982
  261336 string characters out of 6134896
- 332456 words of memory out of 5000000
+ 329456 words of memory out of 5000000
  18108 multiletter control sequences out of 15000+600000
  541100 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1846,7 +1849,7 @@ onts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10
 .pfb>
-Output written on main.pdf (2 pages, 154412 bytes).
+Output written on main.pdf (2 pages, 155802 bytes).
 PDF statistics:
  75 PDF objects out of 1000 (max. 8388607)
  54 compressed objects within 1 object stream
