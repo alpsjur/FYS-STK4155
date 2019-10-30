@@ -13,12 +13,12 @@ from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 
 import sys
 sys.path.append("class/")
-from Regression import Logistic
+from Regression import LogisticRegression
 
 # Trying to set the seed
-np.random.seed(0)
+#np.random.seed(0)
 import random
-random.seed(0)
+#random.seed(0)
 
 # Reading file into data frame
 filepath = "../data/input/"
@@ -34,12 +34,14 @@ y = df.loc[:, df.columns == 'defaultPaymentNextMonth'].values
 print(X)
 
 # Categorical variables to one-hot's
+"""
 onehotencoder = OneHotEncoder(categories="auto")
 
 X = ColumnTransformer(
     [("", onehotencoder, [2, 3]),],
     remainder="passthrough"
 ).fit_transform(X)
+"""
 
 
 # Train-test split
@@ -55,7 +57,7 @@ XTrain = sc.fit_transform(XTrain)
 XTest = sc.transform(XTest)
 
 # One-hot's of the target vector
-Y_train_onehot, Y_test_onehot = onehotencoder.fit_transform(yTrain), onehotencoder.fit_transform(yTest)
+#Y_train_onehot, Y_test_onehot = onehotencoder.fit_transform(yTrain), onehotencoder.fit_transform(yTest)
 
 # Remove instances with zeros only for past bill statements or paid amounts
 df = df.drop(df[(df.BILL_AMT1 == 0) &
@@ -88,8 +90,12 @@ df = df.drop(df[(df.PAY_AMT1 == 0) &
 
 learning_rate = 1e-4
 
-logreg = Logistic(XTrain, yTrain)
-logreg.construct_model(100, 20, learning_rate)
-model = logreg.fit()
-accuracy = logreg.accuracy()
+logreg = LogisticRegression()
+logreg.train(XTrain, yTrain,
+            n_epochs=100,
+            minibatch_size=32,
+            learning_rate=1e-4
+            )
+model = logreg.fit(XTrain)
+accuracy = logreg.accuracy(XTest, yTest)
 print(accuracy)

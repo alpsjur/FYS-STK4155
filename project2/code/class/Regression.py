@@ -168,13 +168,26 @@ class LogisticRegression(Regression):
         f = np.exp(x)/(np.exp(x) + 1)
         return f
 
-    def calculate_cost_gradient(self, labels, designMatrix):
+    def calculate_cost_gradient(self, designMatrix, labels):
         m = designMatrix.shape[0]
-        probabilities = self.sigmoid(designMatrix.dot(self.beta))
-        cost_gradient = designMatrix.T.dot((labels - probabilities))/m
+        probabilities = self.fit(designMatrix)
+        cost_gradient = -designMatrix.T.dot((labels - probabilities))
         return cost_gradient
 
-    def train(self, designMatrix, labels, learning_rate=1e-4, n_epochs=50, mini_batch_size=100):
+    def make_minibatches(self, designMatrix, labels, minibatch_size):
+        n = labels.shape[0]
+        idx = np.arange(n)
+        np.random.shuffle(idx)
+        labels_shuffled = labels[idx]
+        designMatrix_shuffled = designMatrix[idx]
+        minibatches = [(designMatrix_shuffled[i:i+minibatch_size,:],\
+                        labels_shuffled[i:i+minibatch_size]) for i in range(0, n, minibatch_size)]
+        return minibatches
+
+    def step_length(self, t, t0, t1):
+        return t0/(t+t1)
+
+    def train(self, designMatrix, labels, learning_rate=1e-4, n_epochs=50, minibatch_size=100):
         """
         Stochastic gradient descent for computing the parameters that minimize the cost function.
             n_epochs = number of epochs
@@ -184,16 +197,21 @@ class LogisticRegression(Regression):
         n = labels.shape[0]
         self.beta = np.random.randn(len(designMatrix[0, :]))
         #self.beta = [np.random.randn(1) for i in range(len(designMatrix[0, :]))]
+        t0 = 1
+        t1 = 10
         for epoch in range(n_epochs):
-            idx = np.arange(n)
-            np.random.shuffle(idx)
-            labels = labels[idx]
-            designMatrix = designMatrix[idx]
-            labels_mini_batches = [labels[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
-            designMatrix_mini_batches = [designMatrix[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
-            for labels_mini_batch, designMatrix_mini_batch in zip(labels_mini_batches, designMatrix_mini_batches):
-                cost_gradient = self.calculate_cost_gradient(labels_mini_batch, designMatrix_mini_batch)
+            minibatches = self.make_minibatches(designMatrix, labels, minibatch_size)
+            i=0
+            for minibatch in minibatches:
+                designMatrix_mini, labels_mini = minibatch
+                cost_gradient = self.calculate_cost_gradient(designMatrix_mini, labels_mini)
                 self.beta = self.beta - learning_rate*cost_gradient
+                if np.sqrt(np.sum(cost_gradient**2)) < 1e-3:
+                    print("it is small")
+                    break
+                t = epoch*len(minibatches)+i
+                learning_rate = self.step_length(t, t0, t1)
+                i += 1
             self.betas.append(self.beta)
         return self.beta
 
@@ -235,18 +253,20 @@ if __name__ == "__main__":
     from sklearn import linear_model
     from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 
+    """
     import sys
     sys.path.append("class/")
     from Regression import Logistic
+    """
 
-    np.random.seed(42)
+    #np.random.seed(42)
 
 
     sns.set()
     sns.set_style("whitegrid")
     sns.set_palette("husl")
 
-    filepath = "../data/input/"
+    filepath = "../../data/input/"
     filename = "default_of_credit_card_clients"
 
     df = pd.read_pickle(filepath + filename + "_clean.pkl")
@@ -268,20 +288,20 @@ if __name__ == "__main__":
                                                                     random_state=seed
                                                                     )
     # Input Scaling
-    sc = StandardScaler()
-    designMatrix_train = sc.fit_transform(designMatrix_train)
+    scaler = StandardScaler()
+    designMatrix_train = scaler.fit_transform(designMatrix_train)
+    designMatrix_test = scaler.fit_transform(designMatrix_test)
 
-    learning_rate = 1e-4
+    learning_rate = 1e-7
 
     # %% Our code
     logreg = LogisticRegression()
     logreg.train(designMatrix_train, labels_train,
-            learning_rate=1e-4,
-            n_epochs=500,
-            mini_batch_size=1000
+            learning_rate=learning_rate,
+            n_epochs=100,
+            minibatch_size=32
             )
     #model = logreg.fit(designMatrix_test)
-    print(designMatrix_test)
     print(logreg.accuracy(designMatrix_test, labels_test))
 
     # %% Scikit learn
