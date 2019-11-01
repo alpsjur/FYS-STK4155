@@ -245,20 +245,8 @@ if __name__ == "__main__":
     from sklearn import linear_model
     from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 
-    """
-    import sys
-    sys.path.append("class/")
-    from Regression import Logistic
-    """
-
     def learning_schedule(t, t0, t1):
         return t0/(t+t1)
-
-    def fit_intercept(designMatrix):
-        n, m = designMatrix.shape
-        intercept = np.ones((n, 1))
-        designMatrix = np.hstack((intercept, designMatrix))
-        return designMatrix
 
     np.random.seed(42)
 
@@ -270,17 +258,6 @@ if __name__ == "__main__":
 
     filepath = "../../data/input/"
     filename = "default_of_credit_card_clients"
-
-    """
-    nanDict = {}
-    df = pd.read_excel(filepath + filename, header=1, skiprows=0, index_col=0, na_values=nanDict)
-
-    df.rename(index=str, columns={"default payment next month": "defaultPaymentNextMonth"}, inplace=True)
-
-    # Features and targets
-    designMatrix = df.loc[:, df.columns != 'defaultPaymentNextMonth'].to_numpy()
-    labels = df.loc[:, df.columns == 'defaultPaymentNextMonth'].to_numpy().ravel()
-    """
 
     df = pd.read_pickle(filepath + filename + "_clean.pkl")
     print(df.head())
@@ -295,10 +272,12 @@ if __name__ == "__main__":
     design_pipeline = ColumnTransformer([
                                         ("scaler", StandardScaler(), num_attributes),
                                         ("onehot", OneHotEncoder(categories="auto"), cat_attributes)
-                                        ])
+                                        ],
+                                        remainder="passthrough"
+                                        )
     designMatrix_prepared = design_pipeline.fit_transform(designMatrix)
 
-    # readying labels by one hot encoding
+    # exporting labels to a numpy array
     labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel()
 
     # Train-test split
@@ -346,16 +325,3 @@ if __name__ == "__main__":
     print(f"BIAS               {bias}")
     print(f"VAR                {variance}")
     print(f"GUESS RATE         {guess_rate}")
-
-    # %% our code bootstrap
-    mse, r2, bias, variance = logreg.bootstrap(designMatrix_train, designMatrix_test,
-                                                labels_train, labels_test,
-                                                learning_schedule=learning_schedule,
-                                                n_epochs=100,
-                                                minibatch_size=32
-                                                )
-    print("\nBOOTSTRAP")
-    print(f"MSE                {mse}")
-    print(f"R2                 {r2}")
-    print(f"BIAS               {bias}")
-    print(f"VAR                {variance}")

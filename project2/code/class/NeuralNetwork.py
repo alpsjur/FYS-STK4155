@@ -118,7 +118,7 @@ class NeuralNetwork:
         return output_activations-labels
 
     def sigmoid(self, z):
-        return np.exp(z)/(1-np.exp(z))
+        return np.exp(z)/(1+np.exp(z))
 
     def sigmoid_derivative(self, z):
-        return self.sigmoid(z)*(1-self.sigmoid(z))
+        return np.exp(z)/(1 + np.exp(z))**2
