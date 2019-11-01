@@ -42,17 +42,23 @@ class NeuralNetwork:
 
         delta = self.cost_derivative(activations[-1],labels)*self.sigmoid_derivative(zs[-1])
         biases_gradient[-1] = delta
-        weights_gradient[-1] = np.matmul(np.vstack(activations[-2]),delta)
+        #add new axis so that python handles matrix multiplication
+        activation2D = activations[-2][np.newaxis]
+        weights_gradient[-1] = np.matmul(delta, activation2D)
 
         for layer in range(2, self.n_layers):
             z = zs[-layer]
             delta = np.dot(self.weights[-layer+1].transpose(), delta)*self.sigmoid_derivative(z)
             biases_gradient[-layer] = delta
-            weights_gradient[-layer] = np.matmul(np.vstack(activations[-layer-1]),delta)
+            #add new axis so that python handles matrix multiplication
+            activation2D = activations[-layer-1][np.newaxis]
+            delta2D = delta[np.newaxis].transpose()
+            weights_gradient[-layer] = np.matmul(delta2D, activation2D)
         return biases_gradient, weights_gradient
 
 
-    def train(self, training_input, training_labels ,n_epochs, batch_size, learning_rate):
+    def train(self, training_input, training_labels ,n_epochs, batch_size, \
+              learning_rate, test_input=None, test_labels=None, test=False):
         #kode for stochastic gradient decent
         n = len(training_labels)
         for epoch in range(n_epochs):
@@ -72,10 +78,10 @@ class NeuralNetwork:
                 self.biases = [b - learning_rate*bg for b, bg in zip(self.biases, biases_gradient)]
                 self.weights = [w - learning_rate*wg for w, wg in zip(self.weights, weights_gradient)]
 
-        #if test_data:
-        #    print('Epoch {}: {}/{}'.format(j, self.evaluate(test_data), n_test))
-        #else:
-        #    print('Epoch {} complete'.format(j))
+            if test:
+                print('Epoch {}: {}/{}'.format(epoch, self.evaluate(test_input, test_labels), len(test_labels)))
+            else:
+                print('Epoch {} complete'.format(epoch))
 
     def predict(self, input):
         """
@@ -90,6 +96,14 @@ class NeuralNetwork:
             else:
                 probabilities[i] = 0
         return probabilities
+
+    def evaluate(self, test_data, test_labels):
+        predictions = [self.predict(input) for input in test_data]
+        count = 0
+        for prediction, target in zip(predictions, test_labels):
+            if prediction == target:
+                count += 0
+        return count
 
     def predict_probabilities(self, input):
         """
