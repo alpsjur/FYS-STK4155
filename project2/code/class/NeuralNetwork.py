@@ -1,22 +1,15 @@
 import numpy as np
 
 class NeuralNetwork:
-    def __init__(self,
-                layer_sizes,
-                #epochs=10,
-                #batch_size=100,
-                #eta=0.1,
-                #lmbd=0.0
-                ):
+    def __init__(self, layer_sizes):
 
         self.layer_sizes = layer_sizes
         self.n_layers = len(layer_sizes)
 
         #initialize weights and biases with random numbers
         self.biases = [np.random.randn(size) for size in layer_sizes[1:]]
-        self.weights = [np.random.randn(size, size_prew) for size, size_prew \
-                        in zip(layer_sizes[1:], layer_sizes[:-1])]
-
+        self.weights = [np.random.randn(size, size_prew) for size_prew, size \
+                        in zip(layer_sizes[:-1], layer_sizes[1:])]
 
     def feedforward(self, input):
         """
@@ -33,57 +26,62 @@ class NeuralNetwork:
         """
         Function for calculationg the backwards propagating correction of the
         weights and biases, given a learning rate, using gradient descent
-            input = array with the inputs to the first layer of the network
-            labels = array with the output matching the correct labeling of
-            the input.
-            In the case of binary output:
-            If correct label is 1, labels = [0,1]
-            If correct label is 0, labels = [1,0]
         """
-        self.biases_gradient = [np.zeros(bias.shape) for bias in self.biases]
-        self.weights_gradient = [np.zeros(weight.shape) for weight in self.weights]
-
+        biases_gradient = [np.zeros(bias.shape) for bias in self.biases]
+        weights_gradient = [np.zeros(weight.shape) for weight in self.weights]
         activation = input
+        #activation = activation[:,np.newaxis]
         activations = [activation]
         zs = []
+
         for layer in range(self.n_layers-1):
             z = np.dot(self.weights[layer], activation) + self.biases[layer]
             zs.append(z)
             activation = self.sigmoid(z)
             activations.append(activation)
-        delta = (activations[-1]-labels)*sigmoid_derivative(zs[-1])
-        self.biases_gradient[-1] = delta
-        self.weights_gradient[-1] = np.dot(delta, activations[-2].transpose())
 
-        self.biases[-1] -= self.learning_rate*self.biases_gradient[-1]
-        self.weights[-1] -= self.learning_rate*self.weights_gradient[-1]
+        delta = self.cost_derivative(activations[-1],labels)*self.sigmoid_derivative(zs[-1])
+        biases_gradient[-1] = delta
+        #add new axis so that python handles matrix multiplication
+        activation2D = activations[-2][np.newaxis]
+        weights_gradient[-1] = np.matmul(delta, activation2D)
 
         for layer in range(2, self.n_layers):
             z = zs[-layer]
             delta = np.dot(self.weights[-layer+1].transpose(), delta)*self.sigmoid_derivative(z)
-            self.biases_gradient[-layer] = delta
-            self.weights_gradient[-layer] = np.dot(delta, activations[-layer-1].transpose())
+            biases_gradient[-layer] = delta
+            #add new axis so that python handles matrix multiplication
+            activation2D = activations[-layer-1][np.newaxis]
+            delta2D = delta[np.newaxis].transpose()
+            weights_gradient[-layer] = np.matmul(delta2D, activation2D)
+        return biases_gradient, weights_gradient
 
-            self.biases[-layer] -= self.learning_rate*self.biases_gradient[-layer]
-            self.weights[-layer] -= self.learning_rate*self.weights_gradient[-layer]
 
-    def train(self, training_input, training_labels ,n_epochs, batch_size, learning_rate):
+    def train(self, training_input, training_labels ,n_epochs, batch_size, \
+              learning_rate, test_input=None, test_labels=None, test=False):
         #kode for stochastic gradient decent
-        n = len(training_input)
+        n = len(training_labels)
         for epoch in range(n_epochs):
             idx = np.arange(n)
             np.random.shuffle(idx)
             training_input = training_input[idx]
             training_labels = training_labels[idx]
-            labels_mini_batches = [training_labels[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
-            input_mini_batches = [training_input[i:i+mini_batch_size] for i in range(0, n, mini_batch_size)]
+            labels_mini_batches = [training_labels[i:i+batch_size] for i in range(0, n, batch_size)]
+            input_mini_batches = [training_input[i:i+batch_size] for i in range(0, n, batch_size)]
             for labels_mini_batch, input_mini_batch in zip(labels_mini_batches, input_mini_batches):
-                backpropagation(input_mini_batch, labels_mini_batch)
+                biases_gradient = [np.zeros(bias.shape) for bias in self.biases]
+                weights_gradient = [np.zeros(weight.shape) for weight in self.weights]
+                for label, input in zip(labels_mini_batch, input_mini_batch):
+                    delta_bias_gradient, delta_weight_gradient= self.backpropagation(input, label)
+                    biases_gradient = [bg + dbg for  bg, dbg in zip(biases_gradient, delta_bias_gradient)]
+                    weights_gradient = [wg + dwg for  wg, dwg in zip(weights_gradient, delta_weight_gradient)]
+                self.biases = [b - learning_rate*bg for b, bg in zip(self.biases, biases_gradient)]
+                self.weights = [w - learning_rate*wg for w, wg in zip(self.weights, weights_gradient)]
 
-        #if test_data:
-        #    print('Epoch {}: {}/{}'.format(j, self.evaluate(test_data), n_test))
-        #else:
-        #    print('Epoch {} complete'.format(j))
+            if test:
+                print('Epoch {}: {}/{}'.format(epoch, self.evaluate(test_input, test_labels), len(test_labels)))
+            else:
+                print('Epoch {} complete'.format(epoch))
 
     def predict(self, input):
         """
@@ -92,20 +90,35 @@ class NeuralNetwork:
         Returns the index of the  output neuron with highest value
         """
         probabilities = self.feedforward(input)
-        return np.argmax(probabilities)
+        for i in range(len(probabilities)):
+            if probabilities[i] > 0.5:
+                probabilities[i] = 1
+            else:
+                probabilities[i] = 0
+        return probabilities
+
+    def evaluate(self, test_data, test_labels):
+        predictions = [self.predict(input) for input in test_data]
+        count = 0
+        for prediction, target in zip(predictions, test_labels):
+            if prediction == target:
+                count += 0
+        return count
 
     def predict_probabilities(self, input):
-        probabilities = self.feed_forward(input)
-        return probabilities
         """
         Function for applying the network on (new) input.
             input = array of inputs to the first layer
-        Returns the full output of the last layer as an array, i.e. the
-        porbability for each class
+        Returns the probability output
         """
+        probabilities = self.feed_forward(input)
+        return probabilities
 
-    def sigmoid(z):
-        return np.exp(z)/(1-np.exp(z))
+    def cost_derivative(self, output_activations, labels):
+        return output_activations-labels
+
+    def sigmoid(self, z):
+        return np.exp(z)/(1+np.exp(z))
 
     def sigmoid_derivative(self, z):
-        return self.sigmoid(z)*(1-self.sigmoid(z))
+        return np.exp(z)/(1 + np.exp(z))**2
