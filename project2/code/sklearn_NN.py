@@ -23,10 +23,13 @@ filename = "default_of_credit_card_clients"
 
 df = pd.read_pickle(filepath + filename + "_clean.pkl")
 
+
 # preparing designmatrix by scaling and using one hot encoding for cat data
 input = df.loc[:, df.columns != 'default payment next month']
-num_attributes = list(input.drop(["SEX", "EDUCATION", "MARRIAGE"], axis=1))
-cat_attributes = list(input.iloc[:, 1:4])
+num_attributes = list(input.drop(["SEX", "EDUCATION", "MARRIAGE",'PAY_0', 'PAY_2', 'PAY_3', 'PAY_4', 'PAY_5', 'PAY_6'], axis=1))
+cat_attributes = list(input.iloc[:, 1:4]) + list(input.iloc[:,5:11])
+print(num_attributes)
+print(cat_attributes)
 
 """HVIS JEG HAR MED ONEHOT VIL MATRISEN FAA 6 EKSTRA KOLONNER, SOM KODEN IKKE HAANDTERER"""
 input_pipeline = ColumnTransformer([
@@ -36,6 +39,7 @@ input_pipeline = ColumnTransformer([
                                     remainder="passthrough"
                                     )
 input_prepared = input_pipeline.fit_transform(input)
+print(input_prepared)
 
 # exporting labels to a numpy array
 labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel()
@@ -53,11 +57,11 @@ training_input, test_input, training_labels, test_labels = train_test_split(
 reg = sklearn.neural_network.MLPRegressor(
     hidden_layer_sizes=(30,30),
     activation='logistic',
-    batch_size=100,
+    batch_size=1000,
     learning_rate="adaptive",
-    learning_rate_init=0.1,
-    max_iter=200,
-    tol=1e-5,
+    learning_rate_init=0.02,
+    max_iter=1000,
+    tol=1e-7,
     verbose=True,
 )
 
@@ -66,17 +70,17 @@ right_count = 0
 # See some statistics
 pred = reg.predict(test_input)
 for i in range(len(pred)):
-    if pred[i] <= 0.5:
+    if pred[i] <= 0.4:
         pred[i] = 0
     else:
         pred[i] = 1
 
     if pred[i] == test_labels[i]:
         right_count += 1
-        print('\033[92m' + f"person {i:4.0f} | guess:  {pred[i]:.0f}     true : {test_labels[i]}" + '\033[0m')
+        #print('\033[92m' + f"person {i:4.0f} | guess:  {pred[i]:.0f}     true : {test_labels[i]}" + '\033[0m')
     else:
         pass
-        print('\033[91m' + f"person {i:4.0f} | guess:  {pred[i]:.0f}     true : {test_labels[i]}" + '\033[0m')
+        #print('\033[91m' + f"person {i:4.0f} | guess:  {pred[i]:.0f}     true : {test_labels[i]}" + '\033[0m')
 print(f"MSe = {sklearn.metrics.mean_squared_error(test_labels,pred)}")
 print(f"R2 = {reg.score(test_input,test_labels)}")
 print(f"Success rate: {right_count/len(pred)*100} %")
