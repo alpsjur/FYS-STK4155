@@ -31,7 +31,7 @@ cat_attributes = list(input.iloc[:, 1:4])
 """HVIS JEG HAR MED ONEHOT VIL MATRISEN FAA 6 EKSTRA KOLONNER, SOM KODEN IKKE HAANDTERER"""
 input_pipeline = ColumnTransformer([
                                     ("scaler", StandardScaler(), num_attributes),
-                                    #("onehot", OneHotEncoder(categories="auto"), cat_attributes)
+                                    ("onehot", OneHotEncoder(categories="auto"), cat_attributes)
                                     ],
                                     remainder="passthrough"
                                     )
@@ -39,11 +39,6 @@ input_prepared = input_pipeline.fit_transform(input)
 
 # exporting labels to a numpy array
 labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel()
-
-layers = [23, 30, 30, 1]
-n_epochs = 10
-batch_size = 100
-learning_rate = 0.1
 
 trainingShare = 0.8
 seed  = 42
@@ -61,20 +56,27 @@ reg = sklearn.neural_network.MLPRegressor(
     batch_size=100,
     learning_rate="adaptive",
     learning_rate_init=0.1,
-    max_iter=10,
-    tol=1e-4,
+    max_iter=200,
+    tol=1e-5,
     verbose=True,
 )
 
 reg = reg.fit(training_input, training_labels)
-
+right_count = 0
 # See some statistics
 pred = reg.predict(test_input)
 for i in range(len(pred)):
     if pred[i] <= 0.5:
-        print(f"person {i:4.0f}  : non-risk  (0)")
+        pred[i] = 0
     else:
-        print(f"person {i:4.0f}  : risk      (1)")
+        pred[i] = 1
 
+    if pred[i] == test_labels[i]:
+        right_count += 1
+        print('\033[92m' + f"person {i:4.0f} | guess:  {pred[i]:.0f}     true : {test_labels[i]}" + '\033[0m')
+    else:
+        pass
+        print('\033[91m' + f"person {i:4.0f} | guess:  {pred[i]:.0f}     true : {test_labels[i]}" + '\033[0m')
 print(f"MSe = {sklearn.metrics.mean_squared_error(test_labels,pred)}")
 print(f"R2 = {reg.score(test_input,test_labels)}")
+print(f"Success rate: {right_count/len(pred)*100} %")
