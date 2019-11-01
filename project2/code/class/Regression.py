@@ -14,7 +14,7 @@ class Regression:
         return model
 
     def train(self, designMatrix, labels, *args, **kwargs):
-        #
+        # dummy function
         return self.beta
 
     def clear_betas(self):
@@ -77,7 +77,7 @@ class Regression:
         labels_test = np.reshape(labels_test,(len(labels_test),1))
         #evaluate predictions
         mse = self.mse(labels_pred, labels_test, axis=1, keepdims=True)
-        r2 = self.r2(labels_pred, labels_test, axis=1, keepdims=True)
+        r2 = self.r2(labels_pred, labels_test, axis=0, keepdims=True)
         bias = self.bias(labels_pred, labels_test, axis=1, keepdims=True)
         variance = self.variance(labels_pred, axis=1, keepdims=True)
         return [mse, r2, bias, variance]
@@ -184,10 +184,7 @@ class LogisticRegression(Regression):
                         labels_shuffled[i:i+minibatch_size]) for i in range(0, n, minibatch_size)]
         return minibatches
 
-    def step_length(self, t, t0, t1):
-        return t0/(t+t1)
-
-    def train(self, designMatrix, labels, learning_rate=1e-4, n_epochs=50, minibatch_size=100):
+    def train(self, designMatrix, labels, learning_schedule, t0=1, t1=10, n_epochs=50, minibatch_size=100):
         """
         Stochastic gradient descent for computing the parameters that minimize the cost function.
             n_epochs = number of epochs
@@ -197,21 +194,15 @@ class LogisticRegression(Regression):
         n = labels.shape[0]
         self.beta = np.random.randn(len(designMatrix[0, :]))
         #self.beta = [np.random.randn(1) for i in range(len(designMatrix[0, :]))]
-        t0 = 1
-        t1 = 10
         for epoch in range(n_epochs):
             minibatches = self.make_minibatches(designMatrix, labels, minibatch_size)
-            i=0
-            for minibatch in minibatches:
-                designMatrix_mini, labels_mini = minibatch
+            n_minibatches = len(minibatches)
+            for i in range(n_minibatches):
+                designMatrix_mini, labels_mini = minibatches[i]
                 cost_gradient = self.calculate_cost_gradient(designMatrix_mini, labels_mini)
+                t = epoch*n_minibatches+i
+                learning_rate = learning_schedule(t, t0, t1)
                 self.beta = self.beta - learning_rate*cost_gradient
-                if np.sqrt(np.sum(cost_gradient**2)) < 1e-3:
-                    print("it is small")
-                    break
-                t = epoch*len(minibatches)+i
-                learning_rate = self.step_length(t, t0, t1)
-                i += 1
             self.betas.append(self.beta)
         return self.beta
 
@@ -248,6 +239,7 @@ if __name__ == "__main__":
     import seaborn as sns
 
     from sklearn.model_selection import train_test_split
+    from sklearn.pipeline import Pipeline
     from sklearn.compose import ColumnTransformer
     from sklearn.preprocessing import StandardScaler, OneHotEncoder
     from sklearn import linear_model
@@ -259,52 +251,111 @@ if __name__ == "__main__":
     from Regression import Logistic
     """
 
-    #np.random.seed(42)
+    def learning_schedule(t, t0, t1):
+        return t0/(t+t1)
+
+    def fit_intercept(designMatrix):
+        n, m = designMatrix.shape
+        intercept = np.ones((n, 1))
+        designMatrix = np.hstack((intercept, designMatrix))
+        return designMatrix
+
+    np.random.seed(42)
 
 
     sns.set()
     sns.set_style("whitegrid")
     sns.set_palette("husl")
 
+
     filepath = "../../data/input/"
     filename = "default_of_credit_card_clients"
 
+    """
+    nanDict = {}
+    df = pd.read_excel(filepath + filename, header=1, skiprows=0, index_col=0, na_values=nanDict)
+
+    df.rename(index=str, columns={"default payment next month": "defaultPaymentNextMonth"}, inplace=True)
+
+    # Features and targets
+    designMatrix = df.loc[:, df.columns != 'defaultPaymentNextMonth'].to_numpy()
+    labels = df.loc[:, df.columns == 'defaultPaymentNextMonth'].to_numpy().ravel()
+    """
+
     df = pd.read_pickle(filepath + filename + "_clean.pkl")
-    #print(df.head())
+    print(df.head())
 
-    data = df.to_numpy()
-    labels = data[:, -1]
+    # preparing designmatrix by scaling and using one hot encoding for cat data
+    designMatrix = df.loc[:, df.columns != 'default payment next month']
+    designMatrix_num = designMatrix.drop(["SEX", "EDUCATION", "MARRIAGE"], axis=1)
+    designMatrix_cat = designMatrix.iloc[:, 1:4]
 
-    designMatrix = data[:, :-1]
+    num_attributes = list(designMatrix_num)
+    cat_attributes = list(designMatrix_cat)
+    design_pipeline = ColumnTransformer([
+                                        ("scaler", StandardScaler(), num_attributes),
+                                        ("onehot", OneHotEncoder(categories="auto"), cat_attributes)
+                                        ])
+    designMatrix_prepared = design_pipeline.fit_transform(designMatrix)
+
+    # readying labels by one hot encoding
+    labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel()
 
     # Train-test split
-    trainingShare = 0.5
+    trainingShare = 0.8
     seed  = 42
     designMatrix_train, designMatrix_test, labels_train, labels_test = train_test_split(
-                                                                    designMatrix,
+                                                                    designMatrix_prepared,
                                                                     labels,
                                                                     train_size=trainingShare,
                                                                     test_size = 1-trainingShare,
                                                                     random_state=seed
                                                                     )
-    # Input Scaling
-    scaler = StandardScaler()
-    designMatrix_train = scaler.fit_transform(designMatrix_train)
-    designMatrix_test = scaler.fit_transform(designMatrix_test)
-
-    learning_rate = 1e-7
 
     # %% Our code
     logreg = LogisticRegression()
+
     logreg.train(designMatrix_train, labels_train,
-            learning_rate=learning_rate,
+            learning_schedule=learning_schedule,
             n_epochs=100,
-            minibatch_size=32
+            minibatch_size=32,
+            t0=1,
+            t1=10
             )
-    #model = logreg.fit(designMatrix_test)
-    print(logreg.accuracy(designMatrix_test, labels_test))
+
+    model = logreg.fit(designMatrix_test)
 
     # %% Scikit learn
-    reg = linear_model.LogisticRegression(solver="lbfgs")
+    reg = linear_model.LogisticRegression(solver="lbfgs", max_iter=2e2)
     reg.fit(designMatrix_train, labels_train)
-    print(reg.score(designMatrix_test, labels_test))
+
+    accuracy = logreg.accuracy(designMatrix_test, labels_test)
+    accuracy_sklearn = reg.score(designMatrix_test, labels_test)
+    mse = logreg.mse(model, labels_test)
+    r2 = logreg.r2(model, labels_test)
+    bias = logreg.bias(model, labels_test)
+    variance = logreg.variance(model)
+    predictions = logreg.predict(designMatrix_test)
+    guess_rate = np.mean(predictions)
+
+    print("TEST")
+    print(f"ACCURACY           {accuracy}")
+    print(f"ACCURACY (SKLEARN) {accuracy_sklearn}")
+    print(f"MSE                {mse}")
+    print(f"R2                 {r2}")
+    print(f"BIAS               {bias}")
+    print(f"VAR                {variance}")
+    print(f"GUESS RATE         {guess_rate}")
+
+    # %% our code bootstrap
+    mse, r2, bias, variance = logreg.bootstrap(designMatrix_train, designMatrix_test,
+                                                labels_train, labels_test,
+                                                learning_schedule=learning_schedule,
+                                                n_epochs=100,
+                                                minibatch_size=32
+                                                )
+    print("\nBOOTSTRAP")
+    print(f"MSE                {mse}")
+    print(f"R2                 {r2}")
+    print(f"BIAS               {bias}")
+    print(f"VAR                {variance}")
