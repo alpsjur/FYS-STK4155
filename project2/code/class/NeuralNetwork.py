@@ -18,9 +18,10 @@ class NeuralNetwork:
             returns array with resulting output from the last layer
         """
         for layer in range(self.n_layers-1):
-            z = np.dot(self.weights[layer], input) + self.biases[layer]
+            bias2D = self.biases[layer][np.newaxis]
+            z = np.matmul(input,self.weights[layer].transpose()) + bias2D
             input = self.sigmoid(z)
-        return input
+        return input.transpose()[0]
 
     def backpropagation(self, input, labels):
         """
@@ -79,7 +80,7 @@ class NeuralNetwork:
                 self.weights = [w - learning_rate*wg for w, wg in zip(self.weights, weights_gradient)]
 
             if test:
-                print('Epoch {}: {}/{}'.format(epoch, self.evaluate(test_input, test_labels), len(test_labels)))
+                print('Epoch {}: {:.3f} correct'.format(epoch, self.evaluate(test_input, test_labels)))
             else:
                 print('Epoch {} complete'.format(epoch))
 
@@ -87,23 +88,22 @@ class NeuralNetwork:
         """
         Function for applying the network on (new) input.
             input = array of inputs to the first layer
-        Returns the index of the  output neuron with highest value
+        Returns arrays with predictions
         """
         probabilities = self.feedforward(input)
+        probabilities_array = np.zeros(len(probabilities),dtype=np.uint)
         for i in range(len(probabilities)):
             if probabilities[i] > 0.5:
-                probabilities[i] = 1
-            else:
-                probabilities[i] = 0
-        return probabilities
+                probabilities_array[i] += 1
+        return probabilities_array
 
-    def evaluate(self, test_data, test_labels):
-        predictions = [self.predict(input) for input in test_data]
+    def evaluate(self, input, labels):
+        predictions = self.predict(input)
         count = 0
-        for prediction, target in zip(predictions, test_labels):
+        for prediction, target in zip(predictions, labels):
             if prediction == target:
-                count += 0
-        return count
+                count += 1
+        return count/len(labels)
 
     def predict_probabilities(self, input):
         """
@@ -111,7 +111,7 @@ class NeuralNetwork:
             input = array of inputs to the first layer
         Returns the probability output
         """
-        probabilities = self.feed_forward(input)
+        probabilities = self.feedforward(input)
         return probabilities
 
     def cost_derivative(self, output_activations, labels):
