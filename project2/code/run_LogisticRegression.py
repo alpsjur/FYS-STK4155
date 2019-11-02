@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from numpy import linalg
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -8,7 +9,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn import linear_model
-from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
+from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, r2_score
 
 
 import sys
@@ -25,6 +26,18 @@ def fit_intercept(designMatrix):
     designMatrix = np.hstack((intercept, designMatrix))
     return designMatrix
 
+def pca(designMatrix):
+    designMatrix_centered = designMatrix - designMatrix.mean()
+    correlation_matrix = designMatrix_centered.corr().to_numpy()
+    eigenvalues, eigenvectors = linalg.eig(correlation_matrix)
+    threshold = np.max(eigenvalues)*1e-1
+
+    column_indices = []
+    for index in range(len(eigenvalues)):
+        if eigenvalues[index] >= threshold:
+            column_indices.append(index)
+    return column_indices
+
 np.random.seed(42)
 
 
@@ -37,10 +50,13 @@ filepath = "../data/input/"
 filename = "default_of_credit_card_clients_clean.pkl"
 
 df = pd.read_pickle(filepath + filename)
-print(df.head())
 
 # preparing designmatrix by scaling and using one hot encoding for cat data
 designMatrix = df.loc[:, df.columns != 'default payment next month']
+column_indices = pca(designMatrix)
+print(column_indices)
+designMatrix = designMatrix.iloc[:, column_indices]
+
 designMatrix_num = designMatrix.drop(["SEX", "EDUCATION", "MARRIAGE"], axis=1)
 designMatrix_cat = designMatrix.iloc[:, 1:4]
 
@@ -89,6 +105,7 @@ accuracy = logreg.accuracy(designMatrix_test, labels_test)
 accuracy_sklearn = reg.score(designMatrix_test, labels_test)
 mse = logreg.mse(model, labels_test)
 r2 = logreg.r2(model, labels_test)
+r2_sklearn = r2_score(labels_test, model)
 bias = logreg.bias(model, labels_test)
 variance = logreg.variance(model)
 predictions = logreg.predict(designMatrix_test)
@@ -99,12 +116,13 @@ print(f"ACCURACY           {accuracy}")
 print(f"ACCURACY (SKLEARN) {accuracy_sklearn}")
 print(f"MSE                {mse}")
 print(f"R2                 {r2}")
+print(f"R2 (SKLEARN)       {r2_sklearn}")
 print(f"BIAS               {bias}")
 print(f"VAR                {variance}")
 print(f"GUESS RATE         {guess_rate}")
 
 # %% our code bootstrap
-mse, r2, bias, variance = logreg.bootstrap(designMatrix_train, designMatrix_test,
+mse, r2, bias, variance = logreg.train_bootstrap(designMatrix_train, designMatrix_test,
                                             labels_train, labels_test,
                                             learning_schedule=learning_schedule,
                                             n_epochs=100,
