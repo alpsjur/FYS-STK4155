@@ -26,6 +26,24 @@ def generate_design_2Dpolynomial(x, y, degree=5):
             p += 1
     return X
 
+def fit_intercept(designMatrix):
+    n, m = designMatrix.shape
+    intercept = np.ones((n, 1))
+    designMatrix = np.hstack((intercept, designMatrix))
+    return designMatrix
+
+def pca(designMatrix):
+    designMatrix_centered = designMatrix - designMatrix.mean()
+    correlation_matrix = designMatrix_centered.corr().to_numpy()
+    eigenvalues, eigenvectors = np.linalg.eig(correlation_matrix)
+    threshold = np.max(eigenvalues)*1e-1
+
+    column_indices = []
+    for index in range(len(eigenvalues)):
+        if eigenvalues[index] >= threshold:
+            column_indices.append(index)
+    return column_indices
+
 def least_squares(X, data, hyperparam=0):
     """
     Least squares solved using matrix inversion
