@@ -31,12 +31,11 @@ class NeuralNetwork:
         biases_gradient = [np.zeros(bias.shape) for bias in self.biases]
         weights_gradient = [np.zeros(weight.shape) for weight in self.weights]
         activation = input
-        #activation = activation[:,np.newaxis]
         activations = [activation]
         zs = []
 
         for layer in range(self.n_layers-1):
-            z = np.dot(self.weights[layer], activation) + self.biases[layer]
+            z = np.matmul(self.weights[layer], activation) + self.biases[layer]
             zs.append(z)
             activation = self.sigmoid(z)
             activations.append(activation)
@@ -91,10 +90,12 @@ class NeuralNetwork:
         Returns arrays with predictions
         """
         probabilities = self.feedforward(input)
-        probabilities_array = np.zeros(len(probabilities),dtype=np.uint)
+        probabilities_array = np.empty(len(probabilities),dtype=np.uint)
         for i in range(len(probabilities)):
             if probabilities[i] > 0.5:
-                probabilities_array[i] += 1
+                probabilities_array[i] = 1
+            if probabilities[i] <= 0.5:
+                probabilities_array[i] = 0
         return probabilities_array
 
     def evaluate(self, input, labels):

@@ -79,14 +79,106 @@ With $\hat{x} = [1, x_1,x_2,...,x_p]$ and $p$ predictors $\hat{\beta} = [\beta_0
 \end{equation}
 
 \subsection{Gradient Descent Methods}
-% Eksempel for store matriser
---------------------------------------------- \\
-Matrise-eksempel
-\[A =
-\mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\
-a_1 & b_2 & c_2 & 0 & \hdots & 0 \\
-0 & a_2 & b_3 & c_3 & \hdots & 0 \\
-\vdots & \ddots & \ddots & \ddots & \ddots & \vdots \\
-0 & \hdots & \ddots & a_{n-2} & b_{n-1} & c_{n-1} \\
-0 & \hdots & \hdots & 0 & a_{n-1} & b_n],
-\]
+
+\subsection{Neural networks}
+\subsubsection*{The structure of a network}
+Neural networks, as the name suggests, are inspired by our understanding of how networks of neurons function in the brain. As can be seen in the example network in Figure \ref{fig:NNstructure}, neurons are structured in layers. We always have a input and an output layer, in addition to a varying number of hidden layers. The input layer has as many neurons as there are input variables, while the output layer has one neuron for each output. How many neurons you have in the output layer depends on the specific problem. The number of neurons in each hidden layer, on the other hand, is not directly related to inputs or outputs, and must be decided in some other way. 
+
+As the diagram in Figure \ref{fig:NNstructure} suggests, the neurons in each layer are not connected with each other, but takes in inputs from the previous layer and passes on an output to the neurons in the next layer, as illustrated with arrows. This way, the inputs are fed through the network and processed, resulting in an output.  
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[
+	plain/.style={
+		draw=none,
+		fill=none,
+	},
+	net/.style={
+		matrix of nodes,
+		nodes={
+			draw,
+			circle,
+			inner sep=8pt
+		},
+		nodes in empty cells,
+		column sep=0cm,
+		row sep=-9pt
+	},
+	>=latex
+	]
+	\matrix[net] (mat)
+	{
+		|[plain]| \parbox{0.8cm}{\centering Input\\layer} & |[plain]| \parbox{0.8cm}{\centering Hidden\\layer} & |[plain]| \parbox{0.8cm}{\centering Output\\layer} \\
+		& |[plain]| \\
+		|[plain]| & \\
+		& |[plain]| \\
+		|[plain]| & |[plain]| \\
+		& & \\
+		|[plain]| & |[plain]| \\
+		& |[plain]| \\
+		|[plain]| & \\
+		& |[plain]| \\    };
+	\foreach \ai [count=\mi ]in {2,4,...,10}
+	\draw[<-] (mat-\ai-1) -- node[above] {Input \mi} +(-1.9cm,0);
+	\foreach \ai in {2,4,...,10}
+	{\foreach \aii in {3,6,9}
+		\draw[->] (mat-\ai-1) -- (mat-\aii-2);
+	}
+	\foreach \ai in {3,6,9}
+	\draw[->] (mat-\ai-2) -- (mat-6-3);
+	\draw[->] (mat-6-3) -- node[above] {Output} +(1.9cm,0);
+	\label{fig:NNstructure}
+	\end{tikzpicture}
+	\caption{Schematic diagram of a neural network with five input neurons in the input layer, one hidden layer with tree neurons and a single output neuron in the output layer.}
+	\label{fig:NNstructure}
+\end{figure}
+
+\subsubsection*{Forward feeding}
+Each neuron has one or multiple inputs, as illustrated with arrows in Figure \ref{fig:NNstructure}. Each of these inputs has a weight associated with it. To clarify the notation used, let's take a look at the $j$th neuron in the $l$th layer. The weight associated with the input coming from the $k$th neuron in the previous layer is denoted as $w^l_{jk}$. In addition, each neuron has a bias associated with it, for the neuron in question denoted as $b^l_j$. Summing the weighted inputs and the bias, and feeding this to a function $\sigma$, gives the activation $a^l_j$: 
+\begin{equation*}
+	a^l_j = \sigma\left(\left(\sum_{k}w^l_{jk}a^{l-1}_k\right) + b^l_j\right)
+\end{equation*}
+This activation is then fed forward as input to all the neuron in the next layer. 
+
+In matrix notation, the activation for the whole layer $l$ can be written as
+\begin{equation}\label{eq:forward}
+	\boldsymbol{a}^l = \sigma\left(\boldsymbol{w}^l\boldsymbol{a^{l-1}}+\boldsymbol{b}^l\right)
+\end{equation}
+Here, $\boldsymbol{a}^l$ and $\boldsymbol{b}^l$ are vertical vectors containing the activations and biases of the $l$th layer, while $\boldsymbol{w}^l$ is a matrix with elements $w^l_{jk}$, i.e. the $j$th row contains the weights of the inputs reaching the $j$th neuron.  
+
+Let's look at the activation function in Eq. (\ref{eq:forward}) denoted with a $\sigma$. The use of $\sigma$ as notation is not arbitrary, since the sigmoid function stated in Eq. (\ref{eq:sigmoid}) is often used.
+
+The algorithm for forward feeding is given in Algorithm \ref{alg:forward}. Here $L$ is the total number of layers. 
+\begin{algorithm}[htbp]\caption{The forward feeding algorithm.}\label{alg:forward}
+	\SetAlgoLined
+	\BlankLine
+	\BlankLine
+	Set activation $\boldsymbol{a}$ = input\;
+	\ForEach{l=1:L}{
+		Compute $\boldsymbol{z}^l = \boldsymbol{w}^l\boldsymbol{a}+\boldsymbol{b}^l$\;
+		Compute  $\boldsymbol{a}=\sigma\left(\boldsymbol{z}\right)$\;
+	}
+	Return the activation $\boldsymbol{a}$\;
+	\BlankLine
+	\BlankLine
+\end{algorithm}  
+
+\subsubsection*{Training the network} 
+
+\subsubsection*{Backpropagation}
+
+\begin{algorithm}[htbp]\caption{The backpropagation algorithm.}\label{alg:backprop}
+	\SetAlgoLined
+	\BlankLine
+	\BlankLine
+	Compute $\delta=\nabla_aC\odot\sigma'(z^L)$\;
+	\ForEach{l=L-1:2}{
+		Compute $\delta^l=((\boldsymbol{w}^{l+1})^T\delta^{l+1})\odot\sigma'(\boldsymbol{z}^l)$\;
+	}
+	Return \;
+	\BlankLine
+	\BlankLine
+	\end{algorithm}
+
+\subsubsection*{Implementation}
+
+
