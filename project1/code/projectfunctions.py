@@ -126,7 +126,6 @@ def bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, \
 
     return [mse, r2, bias, variance]
 
-
 def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):
     """
     k-fold CV calculating evaluation scores: MSE, R2, Bias, variance for

@@ -26,6 +26,24 @@ def generate_design_2Dpolynomial(x, y, degree=5):
             p += 1
     return X
 
+def fit_intercept(designMatrix):
+    n, m = designMatrix.shape
+    intercept = np.ones((n, 1))
+    designMatrix = np.hstack((intercept, designMatrix))
+    return designMatrix
+
+def pca(designMatrix):
+    designMatrix_centered = designMatrix - designMatrix.mean()
+    correlation_matrix = designMatrix_centered.corr().to_numpy()
+    eigenvalues, eigenvectors = np.linalg.eig(correlation_matrix)
+    threshold = np.max(eigenvalues)*1e-1
+
+    column_indices = []
+    for index in range(len(eigenvalues)):
+        if eigenvalues[index] >= threshold:
+            column_indices.append(index)
+    return column_indices
+
 def least_squares(X, data, hyperparam=0):
     """
     Least squares solved using matrix inversion
@@ -142,6 +160,62 @@ def bootstrap(x_train, x_test, y_train, y_test, z_train, z_test, \
     variance = np.mean( np.var(z_pred, axis=1, keepdims=True) )
 
     return [mse, r2, bias, variance]
+
+""" UNTESTED! DO NOT USE! """
+def k_fold_cross_validation(designMatrix, labels, *args, k=5, **kwargs):
+    """
+    k-fold CV calculating evaluation scores: MSE, R2, Bias, variance for
+    data trained on k folds. Returns MSE, R2 Bias, variance, and a matrix of beta
+    values for all the folds.
+    arguments:
+        x, y = coordinates (will generalise for arbitrary number of parameters)
+        z = data
+        reg = regression function reg(X, data, hyperparam)
+        degree = degree of polynomial
+        hyperparam = hyperparameter for calibrating model
+        k = number of folds for cross validation
+    """
+    from sklearn.utils import shuffle
+    #p = int(0.5*(degree + 2)*(degree + 1))
+    MSE = np.zeros(k)
+    R2 = np.zeros(k)
+    BIAS = np.zeros(k)
+    VAR = np.zeros(k)
+    #betas = np.zeros((p,k))
+
+    #shuffle the data
+    designMatrix_shuffle = shuffle(designMatrix)
+    labels_shuffle = shuffle(labels)
+
+    #split the data into k folds
+    designMatrix_split = np.array_split(designMatrix, k)
+    labels_split = np.array_split(labels, k)
+
+    #loop through the folds
+    for i in range(k):
+        #pick out the test fold from data
+        designMatrix_test = designMatrix_split[i]
+        labels_test = labels_split[i]
+
+        # pick out the remaining data as training data
+        # concatenate joins a sequence of arrays into a array
+        # ravel flattens the resulting array
+
+        designMatrix_train = np.delete(designMatrix_split, i, axis=0)
+        labels_train = np.delete(labels_split, i, axis=0).ravel()
+
+        #fit a model to the training set
+        self.train(designMatrix_train, labels_train, *args, *kwargs)
+
+        #evaluate the model on the test set
+        model = self.fit(designMatrix_test)
+
+        #betas[:,i] = beta
+        MSE[i] = self.mse(model, labels_test, axis=1, keepdims=True) #mse
+        R2[i] = self.r2(model, labels_test, axis=1, keepdims=True) #r2
+        BIAS[i] = self.bias(labels_test, model, axis=1, keepdims=True)
+        VAR[i]= self.variance(model, axis=1, keepdims=True)
+    return [np.mean(MSE), np.mean(R2), np.mean(BIAS), np.mean(VAR)]
 
 
 def k_fold_cross_validation(x, y, z, reg, degree=5, hyperparam=0, k=5):

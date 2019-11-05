@@ -12,6 +12,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 import sys
 sys.path.append("class/")
 from NeuralNetwork import NeuralNetwork
+import projectfunctions as pf
 
 sns.set()
 sns.set_style("whitegrid")
@@ -35,6 +36,9 @@ input = sc.fit_transform(input)
 
 # preparing designmatrix by scaling and using one hot encoding for cat data
 input = df.loc[:, df.columns != 'default payment next month']
+column_indices = pf.pca(input)
+print(column_indices)
+input = input.iloc[:, column_indices]
 num_attributes = list(input.drop(["SEX", "EDUCATION", "MARRIAGE"], axis=1))
 cat_attributes = list(input.iloc[:, 1:4])
 #num_attributes = list(input.drop(["SEX", "EDUCATION", "MARRIAGE",'PAY_0', 'PAY_2', 'PAY_3', 'PAY_4', 'PAY_5', 'PAY_6'], axis=1))
