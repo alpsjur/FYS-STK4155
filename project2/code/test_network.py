@@ -37,9 +37,9 @@ input = sc.fit_transform(input)
 input = df.loc[:, df.columns != 'default payment next month']
 num_attributes = list(input.drop(["SEX", "EDUCATION", "MARRIAGE"], axis=1))
 cat_attributes = list(input.iloc[:, 1:4])
+#num_attributes = list(input.drop(["SEX", "EDUCATION", "MARRIAGE",'PAY_0', 'PAY_2', 'PAY_3', 'PAY_4', 'PAY_5', 'PAY_6'], axis=1))
+#cat_attributes = list(input.iloc[:, 1:4]) + list(input.iloc[:,5:11])
 
-"""HVIS JEG HAR MED ONEHOT VIL MATRISEN FAA 6 EKSTRA KOLONNER, SOM KODEN IKKE HAANDTERER
-dette skjedde fordi man da må endre neuroner i input layer"""
 input_pipeline = ColumnTransformer([
                                     ("scaler", StandardScaler(), num_attributes),
                                     ("onehot", OneHotEncoder(categories="auto"), cat_attributes)
@@ -51,8 +51,9 @@ input_prepared = input_pipeline.fit_transform(input)
 # exporting labels to a numpy array
 labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel()
 
-layers = [29, 20, 20, 1]
-n_epochs = 10
+first_layer = input_prepared.shape[1]
+layers = [first_layer, 20, 20, 1]
+n_epochs = 5
 batch_size = 100
 learning_rate = 0.1
 
