@@ -36,8 +36,7 @@ input = sc.fit_transform(input)
 
 # preparing designmatrix by scaling and using one hot encoding for cat data
 input = df.loc[:, df.columns != 'default payment next month']
-column_indices = pf.pca(input)
-print(column_indices)
+column_indices = pf.pca(input, thresholdscaler=1e-1)
 input = input.iloc[:, column_indices]
 num_attributes = list(input.drop(["SEX", "EDUCATION", "MARRIAGE"], axis=1))
 cat_attributes = list(input.iloc[:, 1:4])

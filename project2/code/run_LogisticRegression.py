@@ -15,28 +15,11 @@ from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, r2_
 import sys
 sys.path.append("class/")
 from Regression import LogisticRegression
+import projectfunctions as pf
 
 
 def learning_schedule(t, t0, t1):
     return t0/(t+t1)
-
-def fit_intercept(designMatrix):
-    n, m = designMatrix.shape
-    intercept = np.ones((n, 1))
-    designMatrix = np.hstack((intercept, designMatrix))
-    return designMatrix
-
-def pca(designMatrix):
-    designMatrix_centered = designMatrix - designMatrix.mean()
-    correlation_matrix = designMatrix_centered.corr().to_numpy()
-    eigenvalues, eigenvectors = linalg.eig(correlation_matrix)
-    threshold = np.max(eigenvalues)*1e-1
-
-    column_indices = []
-    for index in range(len(eigenvalues)):
-        if eigenvalues[index] >= threshold:
-            column_indices.append(index)
-    return column_indices
 
 np.random.seed(42)
 
@@ -53,14 +36,14 @@ df = pd.read_pickle(filepath + filename)
 
 # preparing designmatrix by scaling and using one hot encoding for cat data
 designMatrix = df.loc[:, df.columns != 'default payment next month']
-column_indices = pca(designMatrix)
-print(column_indices)
+column_indices = pf.pca(designMatrix, 1e-1)
+print(designMatrix.columns[column_indices])
 designMatrix = designMatrix.iloc[:, column_indices]
 
 designMatrix_num = designMatrix.drop(["SEX", "EDUCATION", "MARRIAGE"], axis=1)
 designMatrix_cat = designMatrix.iloc[:, 1:4]
 
-num_attributes = list(designMatrix_num)
+num_attributes = list(designMatrix)
 cat_attributes = list(designMatrix_cat)
 design_pipeline = ColumnTransformer([
                                     ("scaler", StandardScaler(), num_attributes),

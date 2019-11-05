@@ -32,11 +32,11 @@ def fit_intercept(designMatrix):
     designMatrix = np.hstack((intercept, designMatrix))
     return designMatrix
 
-def pca(designMatrix):
+def pca(designMatrix, thresholdscaler):
     designMatrix_centered = designMatrix - designMatrix.mean()
     correlation_matrix = designMatrix_centered.corr().to_numpy()
     eigenvalues, eigenvectors = np.linalg.eig(correlation_matrix)
-    threshold = np.max(eigenvalues)*1e-1
+    threshold = np.max(eigenvalues)*thresholdscaler
 
     column_indices = []
     for index in range(len(eigenvalues)):
