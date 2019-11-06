@@ -42,8 +42,8 @@ def generate_data(n, noise):
     X = np.array([x,y]).transpose()
     return X, z, x_grid, y_grid, z_grid
 
-n = 30
-noise = 0.1
+n = 40
+noise = 0#.1
 
 
 X, z, x_grid, y_grid, z_grid = generate_data(n, noise)
@@ -59,15 +59,15 @@ X_train, X_test, z_train, z_test = train_test_split(
                                                     )
 
 input_neurons = X.shape[1]
-layers = [input_neurons, 100, 20, 1]
-n_epochs = 250
-batch_size = 100
+layers = [input_neurons, 100, 50, 20, 1]
+n_epochs = 150
+batch_size = 20
 learning_rate = 0.01
 
 network = NeuralNetwork(layers, regression=True)
 
 network.train(X_train, z_train, learning_rate, n_epochs, batch_size, \
-              X_test, z_test, learning_schedule=False, test=True)
+              X_test, z_test, test=True)
 
 z_pred = network.predict_probabilities(X)
 z_pred = z_pred.reshape(n,n)

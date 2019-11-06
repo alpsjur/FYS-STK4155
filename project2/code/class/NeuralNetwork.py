@@ -66,9 +66,7 @@ class NeuralNetwork:
 
 
     def train(self, training_input, training_labels, learning_rate, n_epochs, batch_size, \
-              test_input=None, test_labels=None, test=False, \
-              learning_schedule=False, learning_scaler=2):
-        #code for stochastic gradient decent
+              test_input=None, test_labels=None, test=False):
         n = len(training_labels)
         for epoch in range(n_epochs):
             idx = np.arange(n)
@@ -77,7 +75,6 @@ class NeuralNetwork:
             training_labels = training_labels[idx]
             labels_mini_batches = [training_labels[i:i+batch_size] for i in range(0, n, batch_size)]
             input_mini_batches = [training_input[i:i+batch_size] for i in range(0, n, batch_size)]
-            t = epoch*len(input_mini_batches)
             for labels_mini_batch, input_mini_batch in zip(labels_mini_batches, input_mini_batches):
                 biases_gradient = [np.zeros(bias.shape) for bias in self.biases]
                 weights_gradient = [np.zeros(weight.shape) for weight in self.weights]
@@ -85,9 +82,6 @@ class NeuralNetwork:
                     delta_bias_gradient, delta_weight_gradient= self.backpropagation(input, label)
                     biases_gradient = [bg + dbg for  bg, dbg in zip(biases_gradient, delta_bias_gradient)]
                     weights_gradient = [wg + dwg for  wg, dwg in zip(weights_gradient, delta_weight_gradient)]
-                if learning_schedule:
-                    t += 1
-                    learning_rate = self.learning_schedule(t, learning_rate, learning_scaler)
 
                 self.biases = [b - learning_rate*bg for b, bg in zip(self.biases, biases_gradient)]
                 self.weights = [w - learning_rate*wg for w, wg in zip(self.weights, weights_gradient)]

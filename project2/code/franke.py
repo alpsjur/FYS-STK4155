@@ -48,7 +48,7 @@ See MPLRegressor documentation: https://scikit-learn.org/stable/modules/generate
 
 reg = sklearn.neural_network.MLPRegressor(
     hidden_layer_sizes=(100,20),
-    learning_rate="adaptive",
+    learning_rate='constant',#"adaptive",
     learning_rate_init=0.01,
     max_iter=1000,
     tol=1e-7,
