@@ -1,3 +1,4 @@
+import os
 import numpy as np
 from sklearn.utils import shuffle
 from sklearn import linear_model
@@ -53,7 +54,6 @@ def tune_hyperparameter(designMatrix, labels, method, seed, hyperparameters, *ar
     import pandas as pd
 
     trainingShare = 0.8
-    seed  = 42
     designMatrix_train, designMatrix_test, labels_train, labels_test = train_test_split(
                                                                     designMatrix,
                                                                     labels,
@@ -324,6 +324,11 @@ def frankefunction(x, y):
     term3 = 0.5*np.exp(-(9*x - 7)**2/4.0 - 0.25*((9*y - 3)**2))
     term4 = -0.2*np.exp(-(9*x - 4)**2 - (9*y - 7)**2)
     return term1 + term2 + term3 + term4
+
+def create_directories(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    return
 
 def produce_table(data, hheader=None, vheader=None):
     """

@@ -59,18 +59,21 @@ labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel(
 seed = 42
 logreg = LogisticRegression()
 
-start = 30
-stop = 40
-hyperparam_name = "minibatch_size"  # which parameter to tune
+start = 1
+stop = 100
+hyperparam_name = "t1"  # which parameter to tune
 """ Important to define type, i.e. dtype=int"""
 hyperparam_range = np.linspace(start, stop, stop-start+1, dtype=int)
 
 df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, logreg, seed,
                                 [hyperparam_name, hyperparam_range],
                                 learning_schedule,
-                                n_epochs=100,
-                                t0=1,
-                                t1=10
+                                minibatch_size=34,
+                                n_epochs=18,
+                                t0=1
                                 )
-
+datadir = "../data/output/LogisticRegression/"
+pf.create_directories(datadir)
+filename = hyperparam_name + f"_{start}_{stop}.csv"
+df_tuned.to_csv(datadir + filename)
 print(df_tuned.head())

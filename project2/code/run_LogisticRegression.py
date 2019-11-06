@@ -72,16 +72,16 @@ logreg = LogisticRegression()
 
 logreg.train(designMatrix_train, labels_train,
         learning_schedule=learning_schedule,
-        n_epochs=100,
-        minibatch_size=32,
+        n_epochs=18,
+        minibatch_size=34,
         t0=1,
-        t1=10
+        t1=9
         )
 
 model = logreg.fit(designMatrix_test)
 
 # %% Scikit learn
-reg = linear_model.LogisticRegression(solver="lbfgs", max_iter=2e2)
+reg = linear_model.LogisticRegression(solver="lbfgs", max_iter=4e2)
 reg.fit(designMatrix_train, labels_train)
 
 accuracy = logreg.accuracy(designMatrix_test, labels_test)
