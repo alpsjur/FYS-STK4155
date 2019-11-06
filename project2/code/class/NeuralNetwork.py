@@ -1,10 +1,12 @@
 import numpy as np
 
 class NeuralNetwork:
-    def __init__(self, layer_sizes):
+    def __init__(self, layer_sizes, regression=False):
 
         self.layer_sizes = layer_sizes
         self.n_layers = len(layer_sizes)
+
+        self.regression = regression
 
         #initialize weights and biases with random numbers
         self.biases = [np.random.randn(size) for size in layer_sizes[1:]]
@@ -21,7 +23,10 @@ class NeuralNetwork:
             bias2D = self.biases[layer][np.newaxis]
             z = np.matmul(input,self.weights[layer].transpose()) + bias2D
             input = self.sigmoid(z)
-        return input.transpose()[0]
+        if self.regression:
+            return z.transpose()[0]
+        else:
+            return input.transpose()[0]
 
     def backpropagation(self, input, labels):
         """
@@ -40,7 +45,10 @@ class NeuralNetwork:
             activation = self.sigmoid(z)
             activations.append(activation)
 
-        delta = self.cost_derivative(activations[-1],labels)*self.sigmoid_derivative(zs[-1])
+        if self.regression:
+            delta = self.cost_derivative(zs[-1],labels)
+        else:
+            delta = self.cost_derivative(activations[-1],labels)*self.sigmoid_derivative(zs[-1])
         biases_gradient[-1] = delta
         #add new axis so that python handles matrix multiplication
         activation2D = activations[-2][np.newaxis]
@@ -59,7 +67,7 @@ class NeuralNetwork:
 
     def train(self, training_input, training_labels ,n_epochs, batch_size, \
               learning_rate, test_input=None, test_labels=None, test=False):
-        #kode for stochastic gradient decent
+        #code for stochastic gradient decent
         n = len(training_labels)
         for epoch in range(n_epochs):
             idx = np.arange(n)
@@ -79,7 +87,10 @@ class NeuralNetwork:
                 self.weights = [w - learning_rate*wg for w, wg in zip(self.weights, weights_gradient)]
 
             if test:
-                print('Epoch {}: {:.3f} correct'.format(epoch, self.evaluate(test_input, test_labels)))
+                if self.regression:
+                    print('Epoch {} mse: {:.3f}'.format(epoch, self.evaluate(test_input, test_labels)))
+                else:
+                    print('Epoch {}: {:.3f} correct'.format(epoch, self.evaluate(test_input, test_labels)))
             else:
                 print('Epoch {} complete'.format(epoch))
 
@@ -99,14 +110,20 @@ class NeuralNetwork:
         return probabilities_array
 
     def evaluate(self, input, labels):
-        predictions = self.predict(input)
-        count = 0
-        for prediction, target in zip(predictions, labels):
-            if prediction == target:
-                count += 1
-        return count/len(labels)
+        if self.regression:
+            predictions = self.predict_regression(input)
+            n = len(labels)
+            error = np.sum((predictions - labels)**2)/n
+            return error
+        else:
+            predictions = self.predict(input)
+            count = 0
+            for prediction, target in zip(predictions, labels):
+                if prediction == target:
+                    count += 1
+            return count/len(labels)
 
-    def predict_probabilities(self, input):
+    def predict_probabilitie(self, input):
         """
         Function for applying the network on (new) input.
             input = array of inputs to the first layer
@@ -114,6 +131,10 @@ class NeuralNetwork:
         """
         probabilities = self.feedforward(input)
         return probabilities
+
+    def predict_regression(self, input):
+        prediction = self.feedforward(input)
+        return prediction
 
     def cost_derivative(self, output_activations, labels):
         return output_activations-labels
