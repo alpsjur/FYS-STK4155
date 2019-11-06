@@ -65,8 +65,9 @@ class NeuralNetwork:
         return biases_gradient, weights_gradient
 
 
-    def train(self, training_input, training_labels ,n_epochs, batch_size, \
-              learning_rate, test_input=None, test_labels=None, test=False):
+    def train(self, training_input, training_labels, learning_rate, n_epochs, batch_size, \
+              test_input=None, test_labels=None, test=False, \
+              learning_schedule=False, learning_scaler=2):
         #code for stochastic gradient decent
         n = len(training_labels)
         for epoch in range(n_epochs):
@@ -76,6 +77,7 @@ class NeuralNetwork:
             training_labels = training_labels[idx]
             labels_mini_batches = [training_labels[i:i+batch_size] for i in range(0, n, batch_size)]
             input_mini_batches = [training_input[i:i+batch_size] for i in range(0, n, batch_size)]
+            t = epoch*len(input_mini_batches)
             for labels_mini_batch, input_mini_batch in zip(labels_mini_batches, input_mini_batches):
                 biases_gradient = [np.zeros(bias.shape) for bias in self.biases]
                 weights_gradient = [np.zeros(weight.shape) for weight in self.weights]
@@ -83,6 +85,10 @@ class NeuralNetwork:
                     delta_bias_gradient, delta_weight_gradient= self.backpropagation(input, label)
                     biases_gradient = [bg + dbg for  bg, dbg in zip(biases_gradient, delta_bias_gradient)]
                     weights_gradient = [wg + dwg for  wg, dwg in zip(weights_gradient, delta_weight_gradient)]
+                if learning_schedule:
+                    t += 1
+                    learning_rate = self.learning_schedule(t, learning_rate, learning_scaler)
+
                 self.biases = [b - learning_rate*bg for b, bg in zip(self.biases, biases_gradient)]
                 self.weights = [w - learning_rate*wg for w, wg in zip(self.weights, weights_gradient)]
 
@@ -90,7 +96,7 @@ class NeuralNetwork:
                 if self.regression:
                     print('Epoch {} mse: {:.3f}'.format(epoch, self.evaluate(test_input, test_labels)))
                 else:
-                    print('Epoch {}: {:.3f} correct'.format(epoch, self.evaluate(test_input, test_labels)))
+                    print('Epoch {}: {:.3f} accuracy'.format(epoch, self.evaluate(test_input, test_labels)))
             else:
                 print('Epoch {} complete'.format(epoch))
 
@@ -101,17 +107,20 @@ class NeuralNetwork:
         Returns arrays with predictions
         """
         probabilities = self.feedforward(input)
-        probabilities_array = np.empty(len(probabilities),dtype=np.uint)
-        for i in range(len(probabilities)):
-            if probabilities[i] > 0.5:
-                probabilities_array[i] = 1
-            if probabilities[i] <= 0.5:
-                probabilities_array[i] = 0
-        return probabilities_array
+        if self.regression:
+            return probabilities
+        else:
+            probabilities_array = np.empty(len(probabilities),dtype=np.uint)
+            for i in range(len(probabilities)):
+                if probabilities[i] > 0.5:
+                    probabilities_array[i] = 1
+                else:
+                    probabilities_array[i] = 0
+            return probabilities_array
 
     def evaluate(self, input, labels):
         if self.regression:
-            predictions = self.predict_regression(input)
+            predictions = self.predict(input)
             n = len(labels)
             error = np.sum((predictions - labels)**2)/n
             return error
@@ -123,7 +132,7 @@ class NeuralNetwork:
                     count += 1
             return count/len(labels)
 
-    def predict_probabilitie(self, input):
+    def predict_probabilities(self, input):
         """
         Function for applying the network on (new) input.
             input = array of inputs to the first layer
@@ -132,9 +141,6 @@ class NeuralNetwork:
         probabilities = self.feedforward(input)
         return probabilities
 
-    def predict_regression(self, input):
-        prediction = self.feedforward(input)
-        return prediction
 
     def cost_derivative(self, output_activations, labels):
         return output_activations-labels
@@ -144,3 +150,7 @@ class NeuralNetwork:
 
     def sigmoid_derivative(self, z):
         return np.exp(z)/(1 + np.exp(z))**2
+        #return 1/(np.exp(-z)+2+np.exp(z))
+
+    def learning_schedule(self, t, t0, t1):
+        return t0/(t+t1)

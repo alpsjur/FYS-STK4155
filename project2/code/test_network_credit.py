@@ -71,8 +71,8 @@ training_input, test_input, training_labels, test_labels = train_test_split(
                                                                 )
 
 network = NeuralNetwork(layers)
-network.train(training_input, training_labels ,n_epochs, batch_size, \
-                learning_rate, test_input, test_labels, test=True)
+network.train(training_input, training_labels, learning_rate, n_epochs, batch_size, \
+            test_input, test_labels, test=True)
 
 output = network.predict_probabilities(test_input)
 
