@@ -59,7 +59,7 @@ reg = sklearn.neural_network.MLPRegressor(
     activation='logistic',
     batch_size=1000,
     learning_rate="adaptive",
-    learning_rate_init=0.02,
+    learning_rate_init=0.01,
     max_iter=1000,
     tol=1e-7,
     verbose=True,
@@ -70,7 +70,7 @@ right_count = 0
 # See some statistics
 pred = reg.predict(test_input)
 for i in range(len(pred)):
-    if pred[i] <= 0.4:
+    if pred[i] <= 0.5:
         pred[i] = 0
     else:
         pred[i] = 1

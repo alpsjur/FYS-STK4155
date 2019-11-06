@@ -44,6 +44,47 @@ def pca(designMatrix, thresholdscaler):
             column_indices.append(index)
     return column_indices
 
+def tune_hyperparameter(designMatrix, labels, method, seed, hyperparameters, *args, **kwargs):
+    """
+    Function training a model for different values of a certain hyperparameter.
+    Syntax mimicking ColumnTransformer for hyperparameter input.
+    """
+    from sklearn.model_selection import train_test_split
+    import pandas as pd
+
+    trainingShare = 0.8
+    seed  = 42
+    designMatrix_train, designMatrix_test, labels_train, labels_test = train_test_split(
+                                                                    designMatrix,
+                                                                    labels,
+                                                                    train_size=trainingShare,
+                                                                    test_size = 1-trainingShare,
+                                                                    random_state=seed
+                                                                    )
+
+    # %% Our code
+    parameters = np.zeros((len(hyperparameters[1]), 6))
+    parameters[:, 0] = hyperparameters[1]
+    header = [hyperparameters[0]] + ["accuracy", "mse", "r2", "bias", "variance"]
+    for i in range(len(hyperparameters[1])):
+        exec(f"""method.train(designMatrix_train, labels_train,
+                *args,
+                {hyperparameters[0]}={hyperparameters[1][i]},
+                **kwargs
+                )"""
+                )
+        model = method.fit(designMatrix_test)
+        parameters[i, 1] = method.accuracy(designMatrix_test, labels_test)
+        parameters[i, 2] = method.mse(model, labels_test)
+        parameters[i, 3] = method.r2(model, labels_test)
+        parameters[i, 4] = method.bias(model, labels_test)
+        parameters[i, 5] = method.variance(model)
+    df = pd.DataFrame(parameters, columns=header)
+    df.set_index(hyperparameters[0], inplace=True)
+    return df
+
+
+
 def least_squares(X, data, hyperparam=0):
     """
     Least squares solved using matrix inversion
