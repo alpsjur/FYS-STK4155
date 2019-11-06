@@ -29,19 +29,19 @@ class Regression:
         """
         Calculates the mean square error between data and model.
         """
-        error = np.mean( np.mean((labels - model)**2, **kwargs) )
+        error = np.mean( np.mean((labels - model)**2, **kwargs), **kwargs)
         return error
 
     def bias(self, model, labels, **kwargs):
         """caluclate bias from k expectation values and data of length n"""
-        error = self.mse(labels, np.mean(model), **kwargs)
+        error = self.mse(labels, np.mean(model, **kwargs), **kwargs)
         return error
 
     def variance(self, model, **kwargs):
         """
         Calculating the variance of the model: Var[model]
         """
-        error = self.mse(model, np.mean(model), **kwargs)
+        error = self.mse(model, np.mean(model, **kwargs), **kwargs)
         return error
 
     def r2(self, model, labels, **kwargs):
@@ -82,10 +82,10 @@ class Regression:
             labels_pred[:, i] = labels_pred_temp.ravel()
         labels_test = np.reshape(labels_test,(len(labels_test),1))
         #evaluate predictions
-        mse = self.mse(labels_pred, labels_test, axis=1, keepdims=True)
+        mse = np.mean(self.mse(labels_pred, labels_test, axis=1, keepdims=True))
         r2 = np.mean(self.r2(labels_pred, labels_test, axis=0, keepdims=True))
-        bias = self.bias(labels_pred, labels_test, axis=1, keepdims=True)
-        variance = self.variance(labels_pred, axis=1, keepdims=True)
+        bias = np.mean(self.bias(labels_pred, labels_test, axis=1, keepdims=True))
+        variance = np.mean(self.variance(labels_pred, axis=1, keepdims=True))
         return [mse, r2, bias, variance]
 
 class LinearRegression(Regression):

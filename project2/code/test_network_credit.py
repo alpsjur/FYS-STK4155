@@ -56,7 +56,7 @@ labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel(
 
 first_layer = input_prepared.shape[1]
 layers = [first_layer, 20, 20, 1]
-n_epochs = 5
+n_epochs = 50
 batch_size = 100
 learning_rate = 0.1
 
