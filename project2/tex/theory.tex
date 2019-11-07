@@ -80,7 +80,8 @@ With $\hat{x} = [1, x_1,x_2,...,x_p]$ and $p$ predictors $\hat{\beta} = [\beta_0
 
 \subsection{Gradient Descent Methods}
 
-\subsection{Neural networks}
+\subsection{Neural networks} 
+In this section, the equations used are based off the book by \cite{Nielsen}.
 \subsubsection*{The structure of a network}
 Neural networks, as the name suggests, are inspired by our understanding of how networks of neurons function in the brain. As can be seen in the example network in Figure \ref{fig:NNstructure}, neurons are structured in layers. We always have a input and an output layer, in addition to a varying number of hidden layers. The input layer has as many neurons as there are input variables, while the output layer has one neuron for each output. How many neurons you have in the output layer depends on the specific problem. The number of neurons in each hidden layer, on the other hand, is not directly related to inputs or outputs, and must be decided in some other way. 
 
@@ -141,43 +142,62 @@ This activation is then fed forward as input to all the neuron in the next layer
 
 In matrix notation, the activation for the whole layer $l$ can be written as
 \begin{equation}\label{eq:forward}
-	\boldsymbol{a}^l = \sigma\left(\boldsymbol{w}^l\boldsymbol{a^{l-1}}+\boldsymbol{b}^l\right)
+	\boldsymbol{a}^l = \sigma\left(\boldsymbol{w}^l\boldsymbol{a}^{l-1}+\boldsymbol{b}^l\right)
 \end{equation}
-Here, $\boldsymbol{a}^l$ and $\boldsymbol{b}^l$ are vertical vectors containing the activations and biases of the $l$th layer, while $\boldsymbol{w}^l$ is a matrix with elements $w^l_{jk}$, i.e. the $j$th row contains the weights of the inputs reaching the $j$th neuron.  
+Here, $\boldsymbol{a}^l$ and $\boldsymbol{b}^l$ are vertical vectors containing the activations and biases of the $l$th layer, while $\boldsymbol{w}^l$ is a matrix with elements $w^l_{jk}$, i.e. the $j$th column contains the weights of the inputs reaching the $j$th neuron.  
 
-Let's look at the activation function in Eq. (\ref{eq:forward}) denoted with a $\sigma$. The use of $\sigma$ as notation is not arbitrary, since the sigmoid function stated in Eq. (\ref{eq:sigmoid}) is often used.
+Let's look at the activation function in Eq. (\ref{eq:forward}) denoted with a $\sigma$. The use of $\sigma$ as notation is not arbitrary, since the sigmoid function stated in Eq. (\ref{eq:sigmoid}) is often used. As we will see in the backpropagation algorithm, the sigmoid is a good choice for activation function, since a small change in the output can be propagated backwards, resulting in small changes in the weights and biases through the network.
 
-The algorithm for forward feeding is given in Algorithm \ref{alg:forward}. Here $L$ is the total number of layers. 
+With a basis in Eq. (\ref{eq:forward}), the algorithm for forward feeding is given in Algorithm \ref{alg:forward}. Here $L$ is the total number of layers. 
 \begin{algorithm}[htbp]\caption{The forward feeding algorithm.}\label{alg:forward}
 	\SetAlgoLined
 	\BlankLine
 	\BlankLine
-	Set activation $\boldsymbol{a}$ = input\;
-	\ForEach{l=1:L}{
-		Compute $\boldsymbol{z}^l = \boldsymbol{w}^l\boldsymbol{a}+\boldsymbol{b}^l$\;
-		Compute  $\boldsymbol{a}=\sigma\left(\boldsymbol{z}\right)$\;
-	}
-	Return the activation $\boldsymbol{a}$\;
+	Set $\boldsymbol{a}^1$ = input\;
+	\ForEach{l=2:L}{
+		Compute  $\boldsymbol{a}^l$\;}
+	Set output to $\boldsymbol{a}^L$\;
 	\BlankLine
 	\BlankLine
 \end{algorithm}  
 
-\subsubsection*{Training the network} 
-
 \subsubsection*{Backpropagation}
+When training the network, the goal is to find the weights and biases that minimize the cost function $C$. For a classification problem, the cost function is often given as
+
+\begin{equation}\label{eq:costNN}
+	C = \frac{1}{2}\sum_{i}\left(a^L_i-y_i\right)^2
+\end{equation}  
+To minimize Eq.(\ref{eq:costNN}), one can use Stochastic Gradient Decent, as described previously. But in order to use SGD, the derivatives of $C$ must be computed, and it is here that backpropagation comes in. It can be shown that the derivatives are given as in Eq. (\ref{eq:backprop}). For a derivation of these expressions see APPENDIX?!?!?!. 
+
+\begin{equation}\label{eq:backprop}
+\begin{aligned}
+	\delta^L &= \nabla_aC\odot\sigma'(z^L)\delta^l \\ 
+	\delta^l &= ((\boldsymbol{w}^{l+1})^T\delta^{l+1})\odot\sigma'(\boldsymbol{z}^l) \\
+	\frac{\partial C}{\partial b^l_j} &= \delta_j^l \\
+	\frac{\partial C}{\partial w_{jk}^l} &= a_k^{l-1}\delta^l_j
+\end{aligned}
+\end{equation}
+
 
 \begin{algorithm}[htbp]\caption{The backpropagation algorithm.}\label{alg:backprop}
 	\SetAlgoLined
 	\BlankLine
 	\BlankLine
-	Compute $\delta=\nabla_aC\odot\sigma'(z^L)$\;
+	Compute $\{ \boldsymbol{a}^l\}_{l=1}^L$ with feed forward\;
+	Compute $\delta^L$\;
+	Set $\frac{\partial C}{\partial \boldsymbol{b}^L} = \delta^L$\;
+	Compute $\frac{\partial C}{\partial \boldsymbol{w}^L} = \delta^L(\boldsymbol{a}^{L-1})^T$\;
 	\ForEach{l=L-1:2}{
-		Compute $\delta^l=((\boldsymbol{w}^{l+1})^T\delta^{l+1})\odot\sigma'(\boldsymbol{z}^l)$\;
+		Compute $\delta^l$\;
+		Set $\frac{\partial C}{\partial \boldsymbol{b}^l} = \delta^l$\;
+		Compute $\frac{\partial C}{\partial \boldsymbol{w}^l} = \delta^l(\boldsymbol{a}^{l-1})^T$\;
 	}
-	Return \;
 	\BlankLine
 	\BlankLine
 	\end{algorithm}
+	
+\subsubsection*{Adapting neural networks to regression}
+In order to adapt the network to regression, some changes must be made in Algorithm \ref{alg:forward} and \ref{alg:backprop}.  
 
 \subsubsection*{Implementation}
 
