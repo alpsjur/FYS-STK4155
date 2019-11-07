@@ -1,4 +1,4 @@
-\section{Theory}
+\section{Theory and methods}
 \label{sec:theory}
 
 \subsection{Logistic Regression}
@@ -80,7 +80,7 @@ With $\hat{x} = [1, x_1,x_2,...,x_p]$ and $p$ predictors $\hat{\beta} = [\beta_0
 \end{equation}
 
 \subsection{Gradient Descent Methods}
-\subsubsection{The General Idea}
+\subsubsection*{The General Idea}
 With the gradient of $\mathcal{C}$ defined as in \eqref{eq:cost_d}, we use this to find the minimum of the cost function. The basic idea is that by moving in the direction of the negative gradient of a function, we can move towards the value (in this case the $\beta$) that minimizes the function (in this case $\mathcal{C}(\beta)$)
 
 This is done by repeating the algorithm
@@ -90,7 +90,7 @@ This is done by repeating the algorithm
 \end{equation}
 When a minimum is approached, $\nabla_\beta \mathcal{C}(\beta) \rightarrow$ 0, and thus we can set a limit when $\beta_{k+1} \approx \beta_k$ given a certain tolerance, and the $\beta$ which minimizes the cost funciton is found. $\gamma$ is in this case called the \textit{learning rate}, and is a parameter that must be tuned to each specific case in order to optimize the regression.
 
-\subsubsection{Stochastic Gradient Descent}
+\subsubsection*{Stochastic Gradient Descent}
 In this project we use a stochastic version of gradient descent, which is an improvement upon the regular gradient descent (HOW??). This is done by expression the cost function (and thus also its gradient) as a sum
 \begin{equation}
     \nabla_\beta \mathcal{C}(\beta) = \sum_i^n     \nabla_\beta c_i(\boldsymbol{x_i},\beta) ,
@@ -174,19 +174,12 @@ In matrix notation, the activation for the whole layer $l$ can be written as
 \begin{equation}\label{eq:forward}
 	\boldsymbol{a}^l = \sigma\left(\boldsymbol{w}^l\boldsymbol{a}^{l-1}+\boldsymbol{b}^l\right)
 \end{equation}
-<<<<<<< HEAD
 Here, $\boldsymbol{a}^l$ and $\boldsymbol{b}^l$ are vertical vectors containing the activations and biases of the $l$th layer, while $\boldsymbol{w}^l$ is a matrix with elements $w^l_{jk}$, i.e. the $j$th column contains the weights of the inputs reaching the $j$th neuron.  
-=======
-Here, $\boldsymbol{a}^l$ and $\boldsymbol{b}^l$ are vertical vectors containing the activations and biases of the $l$th layer, while $\boldsymbol{w}^l$ is a matrix with elements $w^l_{jk}$, i.e. the $j$th row contains the weights of the inputs reaching the $j$th neuron.
->>>>>>> 70ddd85ad7edfe0b60ff373a2b19e4217d6cb274
 
 Let's look at the activation function in Eq. (\ref{eq:forward}) denoted with a $\sigma$. The use of $\sigma$ as notation is not arbitrary, since the sigmoid function stated in Eq. (\ref{eq:sigmoid}) is often used. As we will see in the backpropagation algorithm, the sigmoid is a good choice for activation function, since a small change in the output can be propagated backwards, resulting in small changes in the weights and biases through the network.
 
-<<<<<<< HEAD
+
 With a basis in Eq. (\ref{eq:forward}), the algorithm for forward feeding is given in Algorithm \ref{alg:forward}. Here $L$ is the total number of layers. 
-=======
-The algorithm for forward feeding is given in Algorithm \ref{alg:forward}. Here $L$ is the total number of layers.
->>>>>>> 70ddd85ad7edfe0b60ff373a2b19e4217d6cb274
 \begin{algorithm}[htbp]\caption{The forward feeding algorithm.}\label{alg:forward}
 	\SetAlgoLined
 	\BlankLine
@@ -199,11 +192,8 @@ The algorithm for forward feeding is given in Algorithm \ref{alg:forward}. Here 
 	\BlankLine
 \end{algorithm}
 
-<<<<<<< HEAD
-=======
-\subsubsection*{Training the network}
+Note that the output will have values between 0 and 1, when the sigmoid function is used to compute the activations of all the layers. In a classification problem, this corresponds to the likelihood of an outcome. For example, in a classification problem with five classes, the network would have five output neurons, each representing a class. The final classification of an input would then be the class with the highest probability. 
 
->>>>>>> 70ddd85ad7edfe0b60ff373a2b19e4217d6cb274
 \subsubsection*{Backpropagation}
 When training the network, the goal is to find the weights and biases that minimize the cost function $C$. For a classification problem, the cost function is often given as
 
@@ -220,8 +210,7 @@ To minimize Eq.(\ref{eq:costNN}), one can use Stochastic Gradient Decent, as des
 	\frac{\partial C}{\partial w_{jk}^l} &= a_k^{l-1}\delta^l_j
 \end{aligned}
 \end{equation}
-
-
+These equation are the basis for the backpropagating algorithm, described in Algorithm \ref{alg:backprop}. 
 \begin{algorithm}[htbp]\caption{The backpropagation algorithm.}\label{alg:backprop}
 	\SetAlgoLined
 	\BlankLine
@@ -243,3 +232,9 @@ To minimize Eq.(\ref{eq:costNN}), one can use Stochastic Gradient Decent, as des
 In order to adapt the network to regression, some changes must be made in Algorithm \ref{alg:forward} and \ref{alg:backprop}.  
 
 \subsubsection*{Implementation}
+
+
+\subsection{Data sets}
+In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, a second reduced data set was constructed, where OGSÅ HVA VI GJORDE
+
+In addition the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Frnake's function, see \cite{prosjekt1}. 

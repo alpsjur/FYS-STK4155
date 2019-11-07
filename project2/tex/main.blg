@@ -1,46 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: plainnat.bst
 Database file #1: ourbib.bib
-You've used 1 entry,
+Warning--empty note in prosjekt1
+You've used 3 entries,
             2773 wiz_defined-function locations,
-            598 strings with 4964 characters,
-and the built_in function-call counts, 325 in all, are:
-= -- 22
-> -- 10
-< -- 1
-+ -- 4
-- -- 3
-* -- 17
-:= -- 58
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 3
-chr.to.int$ -- 1
-cite$ -- 2
-duplicate$ -- 20
-empty$ -- 33
-format.name$ -- 4
-if$ -- 62
+            611 strings with 5398 characters,
+and the built_in function-call counts, 1169 in all, are:
+= -- 100
+> -- 61
+< -- 2
++ -- 21
+- -- 18
+* -- 90
+:= -- 192
+add.period$ -- 9
+call.type$ -- 3
+change.case$ -- 14
+chr.to.int$ -- 3
+cite$ -- 7
+duplicate$ -- 54
+empty$ -- 95
+format.name$ -- 23
+if$ -- 232
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 2
-newline$ -- 13
-num.names$ -- 4
-pop$ -- 12
+missing$ -- 3
+newline$ -- 23
+num.names$ -- 12
+pop$ -- 28
 preamble$ -- 1
-purify$ -- 3
+purify$ -- 12
 quote$ -- 0
-skip$ -- 13
+skip$ -- 42
 stack$ -- 0
-substring$ -- 2
-swap$ -- 1
+substring$ -- 37
+swap$ -- 2
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 6
-warning$ -- 0
-while$ -- 3
+type$ -- 28
+warning$ -- 1
+while$ -- 11
 width$ -- 0
-write$ -- 19
+write$ -- 43
+(There was 1 warning)
