@@ -51,12 +51,13 @@ The cost/error-function $\mathcal{C}$ (also called cross-entropy in statistics) 
     -&\sum_{i=1}^n \Big(y_i \log \qty[p(y_i = 1|x_i,\hat{\beta})] \\
     &\quad+ (1-y_i) \log [1 - p(y_i = 0|x_i,\hat{\beta})]\Big)
   \end{split}
+  \label{eq:cost_function}
 \end{equation}
 
 Finding the parameters $\hat{\beta}$ that minimize the cost function is then done through derivation.
 Defining the vector $\hat{y}$ containing $n$ elements $y_i$, the $n \cross p$ matrix $\hat{X}$ containing the $x_i$ elements, and the vector $\hat{p}$ that is the fittet probabilities $p(y_i|x_i,\hat{\beta})$, the first derivative of $\mathcal{C}$ is
 \begin{equation}
-  \pdv{\mathcal{C}(\hat{\beta})}{\hat{\beta}} = - \hat{X}^T (\hat{y}-\hat{p})
+  \nabla_\beta \mathcal{C} = \pdv{\mathcal{C}(\hat{\beta})}{\hat{\beta}} = - \hat{X}^T (\hat{y}-\hat{p})
   \label{eq:cost_d}
 \end{equation}
 This gives rise to set of linear equations, where the aim is to solve the system for $\hat{\beta}$.
@@ -79,13 +80,42 @@ With $\hat{x} = [1, x_1,x_2,...,x_p]$ and $p$ predictors $\hat{\beta} = [\beta_0
 \end{equation}
 
 \subsection{Gradient Descent Methods}
+\subsubsection{The General Idea}
+With the gradient of $\mathcal{C}$ defined as in \eqref{eq:cost_d}, we use this to find the minimum of the cost function. The basic idea is that by moving in the direction of the negative gradient of a function, we can move towards the value (in this case the $\beta$) that minimizes the function (in this case $\mathcal{C}(\beta)$)
+
+This is done by repeating the algorithm
+\begin{equation}
+    \beta_{j+1} = \beta_j - \gamma \nabla_\beta \mathcal{C}(\beta) \quad j = 0,1,2,...
+    \label{eq:gradient_decent}
+\end{equation}
+When a minimum is approached, $\nabla_\beta \mathcal{C}(\beta) \rightarrow$ 0, and thus we can set a limit when $\beta_{k+1} \approx \beta_k$ given a certain tolerance, and the $\beta$ which minimizes the cost funciton is found. $\gamma$ is in this case called the \textit{learning rate}, and is a parameter that must be tuned to each specific case in order to optimize the regression.
+
+\subsubsection{Stochastic Gradient Descent}
+In this project we use a stochastic version of gradient descent, which is an improvement upon the regular gradient descent (HOW??). This is done by expression the cost function (and thus also its gradient) as a sum
+\begin{equation}
+    \nabla_\beta \mathcal{C}(\beta) = \sum_i^n     \nabla_\beta c_i(\boldsymbol{x_i},\beta) ,
+    \label{eq:gradient_sum}
+\end{equation}
+and by only taking calculating the gradient of a subset of the data at the time. These subsets, called \textit{minibatches} are of size $\boldsymbol{M}$ , and the total amount is $\frac{n}{\boldsymbol{M}}$ where $n$ is the amount of data points. The minibatches are denoted $\boldsymbol{B}_k$, with k = 1,2,...,$\frac{n}{\boldsymbol{M}}$.
+
+Instead of a sum over all the the data points $i \in [1,n]$ we now in each step, sum over all the data points in the given minibatch $i \in \boldsymbol{B}_k$ where $k$ is picked randomly with uniform proabaility from $[1, \frac{n}{\boldsymbol{M}}]$.
+
+The stochastic and final version of \eqref{eq:gradient_decent} is therefore given by the algorithm
+
+\begin{equation}
+    \beta_{j+1} = \beta_j - \gamma_j \sum_{i \in \boldsymbol{B}_k}\nabla_\beta c_i(\boldsymbol{x_i},\beta)
+    \label{eq:stochstic_gradient_descent}
+\end{equation}
+An iteration over the total number of minibatches is commonly refered to as an \textit{epoch.}\\
+
+By using the stochastic gradient descent method \eqref{eq:stochstic_gradient_descent} to minimize the cost function \eqref{eq:cost_function} we can this find the $\beta$ values that give the most accurate classification, by doing \textit{logistic regression}.
 
 \subsection{Neural networks} 
 In this section, the equations used are based off the book by \cite{Nielsen}.
 \subsubsection*{The structure of a network}
-Neural networks, as the name suggests, are inspired by our understanding of how networks of neurons function in the brain. As can be seen in the example network in Figure \ref{fig:NNstructure}, neurons are structured in layers. We always have a input and an output layer, in addition to a varying number of hidden layers. The input layer has as many neurons as there are input variables, while the output layer has one neuron for each output. How many neurons you have in the output layer depends on the specific problem. The number of neurons in each hidden layer, on the other hand, is not directly related to inputs or outputs, and must be decided in some other way. 
+Neural networks, as the name suggests, are inspired by our understanding of how networks of neurons function in the brain. As can be seen in the example network in Figure \ref{fig:NNstructure}, neurons are structured in layers. We always have a input and an output layer, in addition to a varying number of hidden layers. The input layer has as many neurons as there are input variables, while the output layer has one neuron for each output. How many neurons you have in the output layer depends on the specific problem. The number of neurons in each hidden layer, on the other hand, is not directly related to inputs or outputs, and must be decided in some other way.
 
-As the diagram in Figure \ref{fig:NNstructure} suggests, the neurons in each layer are not connected with each other, but takes in inputs from the previous layer and passes on an output to the neurons in the next layer, as illustrated with arrows. This way, the inputs are fed through the network and processed, resulting in an output.  
+As the diagram in Figure \ref{fig:NNstructure} suggests, the neurons in each layer are not connected with each other, but takes in inputs from the previous layer and passes on an output to the neurons in the next layer, as illustrated with arrows. This way, the inputs are fed through the network and processed, resulting in an output.
 \begin{figure}[htbp]
 	\centering
 	\begin{tikzpicture}[
@@ -134,21 +164,29 @@ As the diagram in Figure \ref{fig:NNstructure} suggests, the neurons in each lay
 \end{figure}
 
 \subsubsection*{Forward feeding}
-Each neuron has one or multiple inputs, as illustrated with arrows in Figure \ref{fig:NNstructure}. Each of these inputs has a weight associated with it. To clarify the notation used, let's take a look at the $j$th neuron in the $l$th layer. The weight associated with the input coming from the $k$th neuron in the previous layer is denoted as $w^l_{jk}$. In addition, each neuron has a bias associated with it, for the neuron in question denoted as $b^l_j$. Summing the weighted inputs and the bias, and feeding this to a function $\sigma$, gives the activation $a^l_j$: 
+Each neuron has one or multiple inputs, as illustrated with arrows in Figure \ref{fig:NNstructure}. Each of these inputs has a weight associated with it. To clarify the notation used, let's take a look at the $j$th neuron in the $l$th layer. The weight associated with the input coming from the $k$th neuron in the previous layer is denoted as $w^l_{jk}$. In addition, each neuron has a bias associated with it, for the neuron in question denoted as $b^l_j$. Summing the weighted inputs and the bias, and feeding this to a function $\sigma$, gives the activation $a^l_j$:
 \begin{equation*}
 	a^l_j = \sigma\left(\left(\sum_{k}w^l_{jk}a^{l-1}_k\right) + b^l_j\right)
 \end{equation*}
-This activation is then fed forward as input to all the neuron in the next layer. 
+This activation is then fed forward as input to all the neuron in the next layer.
 
 In matrix notation, the activation for the whole layer $l$ can be written as
 \begin{equation}\label{eq:forward}
 	\boldsymbol{a}^l = \sigma\left(\boldsymbol{w}^l\boldsymbol{a}^{l-1}+\boldsymbol{b}^l\right)
 \end{equation}
+<<<<<<< HEAD
 Here, $\boldsymbol{a}^l$ and $\boldsymbol{b}^l$ are vertical vectors containing the activations and biases of the $l$th layer, while $\boldsymbol{w}^l$ is a matrix with elements $w^l_{jk}$, i.e. the $j$th column contains the weights of the inputs reaching the $j$th neuron.  
+=======
+Here, $\boldsymbol{a}^l$ and $\boldsymbol{b}^l$ are vertical vectors containing the activations and biases of the $l$th layer, while $\boldsymbol{w}^l$ is a matrix with elements $w^l_{jk}$, i.e. the $j$th row contains the weights of the inputs reaching the $j$th neuron.
+>>>>>>> 70ddd85ad7edfe0b60ff373a2b19e4217d6cb274
 
 Let's look at the activation function in Eq. (\ref{eq:forward}) denoted with a $\sigma$. The use of $\sigma$ as notation is not arbitrary, since the sigmoid function stated in Eq. (\ref{eq:sigmoid}) is often used. As we will see in the backpropagation algorithm, the sigmoid is a good choice for activation function, since a small change in the output can be propagated backwards, resulting in small changes in the weights and biases through the network.
 
+<<<<<<< HEAD
 With a basis in Eq. (\ref{eq:forward}), the algorithm for forward feeding is given in Algorithm \ref{alg:forward}. Here $L$ is the total number of layers. 
+=======
+The algorithm for forward feeding is given in Algorithm \ref{alg:forward}. Here $L$ is the total number of layers.
+>>>>>>> 70ddd85ad7edfe0b60ff373a2b19e4217d6cb274
 \begin{algorithm}[htbp]\caption{The forward feeding algorithm.}\label{alg:forward}
 	\SetAlgoLined
 	\BlankLine
@@ -159,8 +197,13 @@ With a basis in Eq. (\ref{eq:forward}), the algorithm for forward feeding is giv
 	Set output to $\boldsymbol{a}^L$\;
 	\BlankLine
 	\BlankLine
-\end{algorithm}  
+\end{algorithm}
 
+<<<<<<< HEAD
+=======
+\subsubsection*{Training the network}
+
+>>>>>>> 70ddd85ad7edfe0b60ff373a2b19e4217d6cb274
 \subsubsection*{Backpropagation}
 When training the network, the goal is to find the weights and biases that minimize the cost function $C$. For a classification problem, the cost function is often given as
 
@@ -200,5 +243,3 @@ To minimize Eq.(\ref{eq:costNN}), one can use Stochastic Gradient Decent, as des
 In order to adapt the network to regression, some changes must be made in Algorithm \ref{alg:forward} and \ref{alg:backprop}.  
 
 \subsubsection*{Implementation}
-
-
