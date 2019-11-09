@@ -56,10 +56,11 @@ labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel(
 
 
 first_layer = input_prepared.shape[1]
-layers = [first_layer, 20, 20, 1]
-n_epochs = 20
-batch_size = 100
-learning_rate = 1
+layers = [first_layer, 10, 1]           # 20, 20, 1
+n_epochs = 100                               # 20
+batch_size = 10                            # 100
+learning_rate = 1                           # 1
+regularisation = 0.6
 
 trainingShare = 0.8
 seed  = 42
@@ -73,7 +74,7 @@ training_input, test_input, training_labels, test_labels = train_test_split(
 
 network = NeuralNetwork(layers)
 network.train(training_input, training_labels, learning_rate, n_epochs, batch_size, \
-            test_input, test_labels, test=True)
+            test_input, test_labels, test=True, regularisation=regularisation)
 
 output = network.predict_probabilities(test_input)
 

@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from numpy import vectorize
 import matplotlib.pyplot as plt
 import seaborn as sns
 from mpl_toolkits.mplot3d import Axes3D
@@ -14,14 +15,34 @@ from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 
 import sys
 sys.path.append("class/")
-from NeuralNetwork import NeuralNetwork
+from NeuralNetwork_general import NeuralNetwork
 import projectfunctions as pf
 
 sns.set()
 sns.set_style("whitegrid")
 sns.set_palette("husl")
 
-#Setting up data
+class Activation:
+    def __init__(self):
+        return
+
+    @staticmethod
+    @vectorize
+    def __call__(z):
+        a = 0.01
+        if z <= 0:
+            return a*z
+        else:
+            return z
+
+    @staticmethod
+    @vectorize
+    def derivative(z):
+        a = 0.01
+        if z <= 0:
+            return a
+        else:
+            return 1
 
 #testing NN on Franke's Function
 def generate_data(n, noise):
@@ -42,8 +63,8 @@ def generate_data(n, noise):
     X = np.array([x,y]).transpose()
     return X, z, x_grid, y_grid, z_grid
 
-n = 100
-noise = 0#.1
+n = 20
+noise = 0.1
 
 
 X, z, x_grid, y_grid, z_grid = generate_data(n, noise)
@@ -60,14 +81,15 @@ X_train, X_test, z_train, z_test = train_test_split(
 
 input_neurons = X.shape[1]
 layers = [input_neurons, 100, 20, 1]
-n_epochs = 100
-batch_size = 200
+n_epochs = 500
+batch_size = 20
 learning_rate = 0.1
+regularisation = 0.0001
 
-network = NeuralNetwork(layers, regression=True)
+network = NeuralNetwork(layers, Activation())
 
 network.train(X_train, z_train, learning_rate, n_epochs, batch_size, \
-              X_test, z_test, test=True)
+              X_test, z_test, test=True, regularisation=regularisation)
 
 z_pred = network.predict_probabilities(X)
 z_pred = z_pred.reshape(n,n)

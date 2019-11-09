@@ -30,10 +30,13 @@ ax = fig.add_subplot(111, projection="3d")
 ax.plot_surface(X, Y, Z)
 ax.set_title("Franke's function")
 
-plt.show()
+#plt.show()
 
 X_d = np.c_[X.ravel()[:, np.newaxis], Y.ravel()[:, np.newaxis]]
 y_d = Z.ravel()[:, np.newaxis]
+noise = np.random.normal(0, 0.1, len(y_d))
+for y, n in zip(y_d, noise):
+    y += n
 
 X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(
     X_d, y_d, test_size=0.2
@@ -47,11 +50,13 @@ See MPLRegressor documentation: https://scikit-learn.org/stable/modules/generate
 
 
 reg = sklearn.neural_network.MLPRegressor(
+    activation="relu",
     hidden_layer_sizes=(100,20),
+    solver="sgd",
     learning_rate='constant',#"adaptive",
-    learning_rate_init=0.01,
-    max_iter=1000,
-    tol=1e-7,
+    learning_rate_init=0.1,
+    max_iter=500,
+    tol=1e-6,
     verbose=True,
 )
 reg = reg.fit(X_train, y_train)

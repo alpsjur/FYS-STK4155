@@ -1,5 +1,3 @@
-import projectfunctions as pf
-from Regression import LogisticRegression
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,6 +14,7 @@ import sklearn.metrics
 
 import sys
 sys.path.append("class/")
+import projectfunctions as pf
 
 sns.set()
 sns.set_style("whitegrid")
@@ -57,14 +56,17 @@ training_input, test_input, training_labels, test_labels = train_test_split(
 )
 
 reg = sklearn.neural_network.MLPRegressor(
-    hidden_layer_sizes=(20, 20),
+    hidden_layer_sizes=(20),
     activation='logistic',
-    batch_size=2000,
+    solver="adam",
+    alpha=0.05,
+    batch_size=1000,
     learning_rate="constant",
-    learning_rate_init=0.02,
+    learning_rate_init=0.001,
     max_iter=200,
     tol=1e-4,
     verbose=True,
+    random_state=seed
 )
 
 reg = reg.fit(training_input, training_labels)
