@@ -1,8 +1,42 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{5}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Hjort-Jensen(2019{\natexlab{a}})]{GDLectures}
+Morten Hjort-Jensen.
+\newblock
+  \href{https://compphysics.github.io/MachineLearning/doc/pub/Splines/pdf/Splines-minted.pdf}{Data
+  Analysis and Machine Learning Lectures: Optimization and Gradient Methods}.
+\newblock 2019{\natexlab{a}}.
+
+\bibitem[Hjort-Jensen(2019{\natexlab{b}})]{LogRegLectures}
+Morten Hjort-Jensen.
+\newblock
+  \href{https://compphysics.github.io/MachineLearning/doc/pub/LogReg/pdf/LogReg-minted.pdf}{Data
+  Analysis and Machine Learning: Logistic Regression}.
+\newblock 2019{\natexlab{b}}.
+
+\bibitem[Jørgensen et~al.(2019)Jørgensen, Sjur, and Kallmyr]{prosjekt1}
+Eina~B. Jørgensen, Anna Lina~P. Sjur, and Jan-Adrian~H. Kallmyr.
+\newblock
+  \href{https://github.com/janadr/FYS-STK4155/tree/master/project1/tex/main.pdf}{Using
+  linear regression for fitting terrain data}.
+\newblock 2019.
+
+\bibitem[Nielsen(2015)]{Nielsen}
+Michael~A. Nielsen.
+\newblock \emph{\href{http://neuralnetworksanddeeplearning.com/}{Newral
+  Networks and Deep Learning}}.
+\newblock Determination Press, 2015.
+
+\bibitem[Yeh and Lien(2009)]{yeh2009UCI}
+I-Cheng Yeh and Che-hui Lien.
+\newblock The comparisons of data mining techniques for the predictive accuracy
+  of probability of default of credit card clients.
+\newblock \emph{Expert Systems with Applications}, 36\penalty0 (2):\penalty0
+  2473--2480, 2009.
 
 \end{thebibliography}

@@ -1,3 +1,5 @@
+import projectfunctions as pf
+from Regression import LogisticRegression
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -14,8 +16,6 @@ import sklearn.metrics
 
 import sys
 sys.path.append("class/")
-from NeuralNetwork import NeuralNetwork
-import projectfunctions as pf
 
 sns.set()
 sns.set_style("whitegrid")
@@ -36,28 +36,28 @@ num_attributes = list(input.drop(["SEX", "EDUCATION", "MARRIAGE"], axis=1))
 cat_attributes = list(input.iloc[:, 1:4])
 
 input_pipeline = ColumnTransformer([
-                                    ("scaler", StandardScaler(), num_attributes),
-                                    ("onehot", OneHotEncoder(categories="auto"), cat_attributes)
-                                    ],
-                                    remainder="passthrough"
-                                    )
+    ("scaler", StandardScaler(), num_attributes),
+    ("onehot", OneHotEncoder(categories="auto"), cat_attributes)
+],
+    remainder="passthrough"
+)
 input_prepared = input_pipeline.fit_transform(input)
 
 # exporting labels to a numpy array
 labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel()
 
 trainingShare = 0.8
-seed  = 42
+seed = 42
 training_input, test_input, training_labels, test_labels = train_test_split(
-                                                                input_prepared,
-                                                                labels,
-                                                                train_size=trainingShare,
-                                                                test_size = 1-trainingShare,
-                                                                random_state=seed
+    input_prepared,
+    labels,
+    train_size=trainingShare,
+    test_size=(1 - trainingShare),
+    random_state=seed
 )
 
 reg = sklearn.neural_network.MLPRegressor(
-    hidden_layer_sizes=(20,20),
+    hidden_layer_sizes=(20, 20),
     activation='logistic',
     batch_size=2000,
     learning_rate="constant",
@@ -80,10 +80,12 @@ for i in range(len(pred)):
 
     if pred[i] == test_labels[i]:
         right_count += 1
-        #print('\033[92m' + f"person {i:4.0f} | guess:  {pred[i]:.0f}     true : {test_labels[i]}" + '\033[0m')
+        # print('\033[92m' + f"person {i:4.0f} | guess:  {pred[i]:.0f}    \
+        # true : {test_labels[i]}" + '\033[0m')
     else:
         pass
-        #print('\033[91m' + f"person {i:4.0f} | guess:  {pred[i]:.0f}     true : {test_labels[i]}" + '\033[0m')
+        # print('\033[91m' + f"person {i:4.0f} | guess:  {pred[i]:.0f}     \
+        # true : {test_labels[i]}" + '\033[0m')
 
 print(f"MSE = {sklearn.metrics.mean_squared_error(test_labels,pred)}")
 print(f"Success rate: {right_count/len(pred)*100} %")
