@@ -36,8 +36,8 @@ input = sc.fit_transform(input)
 
 # preparing designmatrix by scaling and using one hot encoding for cat data
 input = df.loc[:, df.columns != 'default payment next month']
-column_indices = pf.pca(input, thresholdscaler=1e-1)
-input = input.iloc[:, column_indices]
+#column_indices = pf.pca(input, thresholdscaler=1e-1)
+#input = input.iloc[:, column_indices]
 num_attributes = list(input.drop(["SEX", "EDUCATION", "MARRIAGE"], axis=1))
 cat_attributes = list(input.iloc[:, 1:4])
 #num_attributes = list(input.drop(["SEX", "EDUCATION", "MARRIAGE",'PAY_0', 'PAY_2', 'PAY_3', 'PAY_4', 'PAY_5', 'PAY_6'], axis=1))
@@ -54,11 +54,12 @@ input_prepared = input_pipeline.fit_transform(input)
 # exporting labels to a numpy array
 labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel()
 
+
 first_layer = input_prepared.shape[1]
 layers = [first_layer, 20, 20, 1]
-n_epochs = 50
+n_epochs = 20
 batch_size = 100
-learning_rate = 0.1
+learning_rate = 1
 
 trainingShare = 0.8
 seed  = 42
