@@ -30,7 +30,7 @@ sns.set_palette("husl")
 
 
 filepath = "../data/input/"
-filename = "default_of_credit_card_clients_clean.pkl"
+filename = "default_of_credit_card_clients_partial_clean.pkl"
 
 df = pd.read_pickle(filepath + filename)
 

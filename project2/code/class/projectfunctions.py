@@ -45,6 +45,21 @@ def pca(designMatrix, thresholdscaler):
             column_indices.append(index)
     return column_indices
 
+def train_mean(designMatrix_train, designMatrix_test, labels_train, labels_test,
+                method, n_runs, seed, *args, **kwargs):
+    parameters = np.zeros(5)
+    for i in range(n_runs):
+        method.train(designMatrix, labels, *args, **kwargs)
+        model = method.fit(designMatrix_test)
+        parameters[0] += method.accuracy(designMatrix_test, labels_test)
+        parameters[1] += method.mse(model, labels_test)
+        parameters[2] += method.r2(model, labels_test)
+        parameters[3] += method.bias(model, labels_test)
+        parameters[4] += method.variance(model)
+    parameters /= n_runs
+    return parameters
+
+
 def tune_hyperparameter(designMatrix, labels, method, seed, hyperparameters, *args, **kwargs):
     """
     Function training a model for different values of a certain hyperparameter.
