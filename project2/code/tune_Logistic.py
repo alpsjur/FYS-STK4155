@@ -64,7 +64,7 @@ labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel(
 seed = 42
 logreg = LogisticRegression()
 
-rate_range = np.logspace(0.01, 1, 50, dtype=float)
+rate_range = np.logspace(-3, 0, 50, dtype=float)
 batch_range = np.linspace(50, 2000, 50, dtype=int)
 
 #run tune hyperparameter funcition
