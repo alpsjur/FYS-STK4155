@@ -99,15 +99,18 @@ pred = network.predict(test_input)
 figurepath = '../figures/'
 
 #compute confusion matrix
-cm = confusion_matrix(test_labels, pred)
+true_negative, false_positive, false_negative, true_positive = confusion_matrix(test_labels, pred).ravel()
 #normalize
-cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+n_negative = true_negative+false_negative
+true_negative /= n_negative
+false_negative /= n_negative
 
-df_cm = pd.DataFrame(cm, index = ['not default', 'default'],
-                  columns = ['not default', 'default'])
-plt.figure()
-sns.heatmap(df_cm, annot=True, cbar=False, center=0.5, cmap='Blues')
-plt.savefig(figurepath+'confusion_NN_credit.pdf')
+n_positive = true_positive+false_positive
+true_positive /= n_positive
+false_positive /= n_positive
+
+print('true positive: ',true_positive)
+print('true_negative: ', true_negative)
 
 plt.figure()
 plt.hist(pred_prob)
