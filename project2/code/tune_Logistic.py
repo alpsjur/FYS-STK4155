@@ -1,3 +1,8 @@
+"""
+Use the tune_hyperparameter function from projectfunctions to run the logistic
+regression for different values of learning rate and minibatch size.
+"""
+
 import pandas as pd
 import numpy as np
 from numpy import linalg
@@ -59,16 +64,18 @@ labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel(
 seed = 42
 logreg = LogisticRegression()
 
-rate_range = np.linspace(0.01, 1, 100, dtype=float)
+rate_range = np.logspace(-3, 0, 50, dtype=float)
 batch_range = np.linspace(50, 2000, 50, dtype=int)
 
-
+#run tune hyperparameter funcition
 df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, logreg, seed,
                                 rate_range,
                                 batch_range,
                                 learning_schedule,
                                 n_epochs=20,
                                 )
+
+#store results
 datadir = "../data/output/LogisticRegression/"
 pf.create_directories(datadir)
 filename = "logistic_test.csv"
