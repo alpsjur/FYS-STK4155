@@ -43,7 +43,7 @@ class NeuralNetwork:
             zs.append(z)
             activation = self.activation_function(z)
             activations.append(activation)
-        delta = self.cost_derivative(activation[-1], labels)*self.activation_function.derivative(zs[-1])
+        delta = self.cost_derivative(activation[-1], labels)#*self.activation_function.derivative(zs[-1])
         biases_gradient[-1] = np.sum(delta, axis=1)
         weights_gradient[-1] = np.matmul(delta,activations[-2].transpose())
 

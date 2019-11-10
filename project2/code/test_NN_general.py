@@ -22,7 +22,7 @@ sns.set()
 sns.set_style("whitegrid")
 sns.set_palette("husl")
 
-class Activation:
+class ReLU:
     def __init__(self):
         return
 
@@ -86,7 +86,7 @@ batch_size = 20
 learning_rate = 0.1
 regularisation = 0.0001
 
-network = NeuralNetwork(layers, Activation())
+network = NeuralNetwork(layers, ReLU())
 
 network.train(X_train, z_train, learning_rate, n_epochs, batch_size, \
               X_test, z_test, test=True, regularisation=regularisation)

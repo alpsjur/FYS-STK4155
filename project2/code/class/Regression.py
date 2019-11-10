@@ -135,7 +135,7 @@ class LogisticRegression(Regression):
                         labels_shuffled[i:i+minibatch_size]) for i in range(0, n, minibatch_size)]
         return minibatches
 
-    def train(self, designMatrix, labels, learning_schedule, t0=1, t1=10, n_epochs=50, minibatch_size=100, update_beta=False):
+    def train(self, designMatrix, labels, learning_schedule, learning_rate_init=0.1, n_epochs=50, minibatch_size=100, update_beta=False):
         """
         Stochastic gradient descent for computing the parameters that minimize the cost function.
             n_epochs = number of epochs
@@ -151,8 +151,8 @@ class LogisticRegression(Regression):
             for i in range(n_minibatches):
                 designMatrix_mini, labels_mini = minibatches[i]
                 cost_gradient = self.calculate_cost_gradient(designMatrix_mini, labels_mini)
-                t = epoch*n_minibatches+i
-                learning_rate = learning_schedule(t, t0, t1)
+                decreaser = epoch*n_minibatches+i
+                learning_rate = learning_schedule(decreaser, learning_rate_init=learning_rate_init)
                 self.beta = self.beta - learning_rate*cost_gradient
             self.betas.append(self.beta)
         return self.beta
