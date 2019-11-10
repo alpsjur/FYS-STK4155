@@ -18,8 +18,8 @@ from Regression import LogisticRegression
 import projectfunctions as pf
 
 
-def learning_schedule(t, t0, t1):
-    return t0/(t+t1)
+def learning_schedule(decreaser, learning_rate_init=0.1):
+    return learning_rate_init/(decreaser + 1)
 
 np.random.seed(42)
 
@@ -30,7 +30,7 @@ sns.set_palette("husl")
 
 
 filepath = "../data/input/"
-filename = "default_of_credit_card_clients_clean.pkl"
+filename = "default_of_credit_card_clients_partial_clean.pkl"
 
 df = pd.read_pickle(filepath + filename)
 
@@ -59,18 +59,17 @@ labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel(
 seed = 42
 logreg = LogisticRegression()
 
-start = 1
-stop = 100
-hyperparam_name = "t1"  # which parameter to tune
+start = 0.01
+stop = 5
+hyperparam_name = "learning_rate_init"  # which parameter to tune
 """ Important to define type, i.e. dtype=int"""
-hyperparam_range = np.linspace(start, stop, stop-start+1, dtype=int)
+hyperparam_range = np.linspace(start, stop, 100, dtype=float)
 
 df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, logreg, seed,
                                 [hyperparam_name, hyperparam_range],
                                 learning_schedule,
                                 minibatch_size=34,
                                 n_epochs=18,
-                                t0=1
                                 )
 datadir = "../data/output/LogisticRegression/"
 pf.create_directories(datadir)

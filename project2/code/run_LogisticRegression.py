@@ -18,8 +18,8 @@ from Regression import LogisticRegression
 import projectfunctions as pf
 
 
-def learning_schedule(t, t0, t1):
-    return t0/(t+t1)
+def learning_schedule(decreaser, learning_rate_init=0.1):
+    return learning_rate_init/(decreaser + 10)
 
 np.random.seed(42)
 
@@ -72,10 +72,9 @@ logreg = LogisticRegression()
 
 logreg.train(designMatrix_train, labels_train,
         learning_schedule=learning_schedule,
-        n_epochs=18,
+        n_epochs=20,
         minibatch_size=34,
-        t0=1,
-        t1=9
+        learning_rate_init=1
         )
 
 model = logreg.fit(designMatrix_test)
@@ -104,6 +103,7 @@ print(f"BIAS               {bias}")
 print(f"VAR                {variance}")
 print(f"GUESS RATE         {guess_rate}")
 
+"""
 # %% our code bootstrap
 mse, r2, bias, variance = logreg.train_bootstrap(designMatrix_train, designMatrix_test,
                                             labels_train, labels_test,
@@ -116,3 +116,4 @@ print(f"MSE                {mse}")
 print(f"R2                 {r2}")
 print(f"BIAS               {bias}")
 print(f"VAR                {variance}")
+"""
