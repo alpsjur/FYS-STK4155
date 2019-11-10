@@ -60,11 +60,6 @@ Defining the vector $\hat{y}$ containing $n$ elements $y_i$, the $n \cross p$ ma
   \label{eq:cost_d}
 \end{equation}
 This gives rise to set of linear equations, where the aim is to solve the system for $\hat{\beta}$.
-By introduction of a diagonal matrix $\hat{W}$ with diagonal elements $p(y_i|x_i,\hat{\beta})\cdot(1-p(y_i|x_i,\hat{\beta}))$ the second derivative is:
-\begin{equation}
- \pdv[2]{\mathcal{C}(\hat{\beta})}{\hat{\beta}}{\hat{\beta}^T} = \hat{X}^T\hat{W}\hat{X}
- \label{eq:cost_dd}
-\end{equation}
 
 With $\hat{x} = [1, x_1,x_2,...,x_p]$ and $p$ predictors $\hat{\beta} = [\beta_0,\beta_1,\beta_2,...,\beta_p]$ the ration between likelihoods of outcome is:
 \begin{equation}
@@ -228,12 +223,16 @@ These equation are the basis for the backpropagating algorithm, described in Alg
 	\end{algorithm}
 
 \subsubsection*{Adapting neural networks to regression}
-In order to adapt the network to regression, some changes must be made in Algorithm \ref{alg:forward} and \ref{alg:backprop}.
-
-\subsubsection*{Implementation}
+In order to adapt the network to regression, some changes must be made in Algorithm \ref{alg:forward} and \ref{alg:backprop}. (HER!)
 
 
 \subsection{Data sets}
-In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, a second reduced data set was constructed, where OGSÅ HVA VI GJORDE
+In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, a second reduced data set was constructed, where (OGSÅ HVA VI GJORDE <---- HER!)
 
 In addition the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Franke's function, see \cite{prosjekt1}.
+
+\subsubsection*{Reduction of Dimention}
+(HER!)
+
+\subsection{Quality of Measurements}
+(HER!)
