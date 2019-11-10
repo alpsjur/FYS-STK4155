@@ -6,7 +6,7 @@ class NeuralNetwork:
         self.layer_sizes = layer_sizes
         self.n_layers = len(layer_sizes)
 
-        self.activation_function = activation_function
+        self.activation_function = activation_function()
 
         #initialize weights and biases with random numbers
         self.biases = [np.random.randn(size,1) for size in self.layer_sizes[1:]]
@@ -43,8 +43,11 @@ class NeuralNetwork:
             zs.append(z)
             activation = self.activation_function(z)
             activations.append(activation)
+
         delta = self.cost_derivative(activation[-1], labels)[np.newaxis]#*self.activation_function.derivative(zs[-1])
         biases_gradient[-1] = np.sum(delta,axis=1)
+        #delta = self.cost_derivative(activation[-1], labels)#*self.activation_function.derivative(zs[-1])
+        #biases_gradient[-1] = np.sum(delta, axis=1)
         weights_gradient[-1] = np.matmul(delta,activations[-2].transpose())
 
         for layer in range(2, self.n_layers):
@@ -56,7 +59,7 @@ class NeuralNetwork:
 
 
     def train(self, training_input, training_labels, learning_rate, n_epochs, batch_size, \
-              test_input=None, test_labels=None, test=False, regularisation = 0.1):
+              test_input=None, test_labels=None, test='accuracy', regularisation = 0.1):
         n = len(training_labels)
         for epoch in range(n_epochs):
             idx = np.arange(n)
@@ -74,9 +77,10 @@ class NeuralNetwork:
                 weights_gradient = [wg + dwg for  wg, dwg in zip(weights_gradient, delta_weight_gradient)]
                 self.weights = [(1-learning_rate*(regularisation/n))*w-(learning_rate/length_mini_batch)*wg for w, wg in zip(self.weights, weights_gradient)]
                 self.biases = [b-(learning_rate/length_mini_batch)*bg for b, bg in zip(self.biases, biases_gradient)]
-            if test:
+            if test=='mse':
                 print('Epoch {} mse: {:.7f}'.format(epoch, self.mse(test_input, test_labels)))
-                #print('Epoch {}: {:.3f} accuracy'.format(epoch, self.accuracy(test_input, test_labels)))
+            elif test=='accuracy':
+                print('Epoch {}: {:.3f} accuracy'.format(epoch, self.accuracy(test_input, test_labels)))
             else:
                 print('Epoch {} complete'.format(epoch))
 
@@ -121,13 +125,6 @@ class NeuralNetwork:
 
     def cost_derivative(self, output_activations, labels):
         return output_activations-labels
-
-    def sigmoid(self, z):
-        return np.exp(z)/(1+np.exp(z))
-
-    def sigmoid_derivative(self, z):
-        return np.exp(z)/(1 + np.exp(z))**2
-        #return 1/(np.exp(-z)+2+np.exp(z))
 
     def learning_schedule(self, t, t0, t1):
         return t0/(t+t1)

@@ -2,11 +2,8 @@
 \label{sec:results}
 
 \subsubsection{Tuning Learning Rate and Minibatch Size}
-\subsubsubsection*{Logistic Regression}
 
-\subsubsubsection*{Neural Network}
-
-\subsubsubsection*{Optimal Parameters and Associated Results}
+\subsubsection*{Optimal Parameters and Associated Results}
 
 \subsubsection{Verification by Comparison to Scikit-Learn}
 
@@ -14,6 +11,22 @@
 
 
 % Eksempel for figurer
+\begin{table}[htbp]
+\caption{Percentage of true and false negatives and positives for Neural network (NN), Logistic regression (LR) and SciKitLearn's neural network (SKL)}
+	\begin{tabular}{l  l  r  r  r} 
+		 & & \textbf{NN} & \textbf{LR} & \textbf{SKL} \\
+		 \hline
+		Positive & True & & & \\ 
+		%\cline{2-5}
+		 & False & & & \\ 
+		 \hline
+		Negative & True & & & \\ 
+		%\cline{2-5}
+		& False &  & & \\
+	\end{tabular}
+\label{tab:confusion}
+\end{table}
+
 \begin{figure}[htbp]
 	\centering
 	%\includegraphics[width=0.5\textwidth]{}
