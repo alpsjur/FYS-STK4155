@@ -60,7 +60,7 @@ def train_mean(designMatrix_train, designMatrix_test, labels_train, labels_test,
     return parameters
 
 
-def tune_hyperparameter(designMatrix, labels, method, seed, hyperparameters, *args, **kwargs):
+def tune_hyperparameter_old(designMatrix, labels, method, seed, hyperparameters, *args, **kwargs):
     """
     Function training a model for different values of a certain hyperparameter.
     Syntax mimicking ColumnTransformer for hyperparameter input.
@@ -99,7 +99,41 @@ def tune_hyperparameter(designMatrix, labels, method, seed, hyperparameters, *ar
     return df
 
 
+def tune_hyperparameter(designMatrix, labels, method, seed, rate_range, batch_range, *args, **kwargs):
+    from sklearn.model_selection import train_test_split
+    import pandas as pd
 
+    trainingShare = 0.8
+    designMatrix_train, designMatrix_test, labels_train, labels_test = train_test_split(
+                                                                    designMatrix,
+                                                                    labels,
+                                                                    train_size=trainingShare,
+                                                                    test_size = 1-trainingShare,
+                                                                    random_state=seed
+                                                                    )
+
+
+    parameters = np.zeros((len(rate_range)*len(batch_range),3))
+    header = ["learning_rate_init", "minibatch_size", "accuracy"]
+    count = 0
+    for i in rate_range:
+        for j in batch_range:
+            method.train(designMatrix_train, labels_train,
+                    *args,
+                    learning_rate_init=i,
+                    minibatch_size=j,
+                    **kwargs
+                        )
+            model = method.fit(designMatrix_test)
+            parameters[count, 0] = i
+            parameters[count, 1] = j
+            parameters[count, 2] = method.accuracy(designMatrix_test, labels_test)
+            count += 1
+            print(count)
+
+    df = pd.DataFrame(parameters, columns=header)
+    df.set_index("accuracy", inplace=True)
+    return df
 
 
 def least_squares(X, data, hyperparam=0):
