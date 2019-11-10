@@ -1,17 +1,19 @@
 import numpy as np
 
 class NeuralNetwork:
-    def __init__(self, layer_sizes, regression=False):
+    def __init__(self, layer_sizes, activation_function):
 
         self.layer_sizes = layer_sizes
         self.n_layers = len(layer_sizes)
 
-        self.regression = regression
+        self.activation_function = activation_function
 
         #initialize weights and biases with random numbers
         self.biases = [np.random.randn(size,1) for size in self.layer_sizes[1:]]
         self.weights = [np.random.randn(y, x)/np.sqrt(x)
                         for x, y in zip(self.layer_sizes[:-1], self.layer_sizes[1:])]
+        return
+
 
     def feedforward(self, input):
         """
@@ -22,11 +24,8 @@ class NeuralNetwork:
         input = input.transpose()
         for layer in range(self.n_layers-1):
             z = np.matmul(self.weights[layer],input) + self.biases[layer]
-            input = self.sigmoid(z)
-        if self.regression:
-            return z[0]
-        else:
-            return input[0]
+            input = self.activation_function(z)
+        return input[0]
 
     def backpropagation(self, input, labels):
         """
@@ -42,18 +41,15 @@ class NeuralNetwork:
         for layer in range(self.n_layers-1):
             z = np.matmul(self.weights[layer],activation) + self.biases[layer]
             zs.append(z)
-            activation = self.sigmoid(z)
+            activation = self.activation_function(z)
             activations.append(activation)
-        if self.regression:
-            delta = self.cost_derivative(zs[-1],labels)
-        else:
-            delta = self.cost_derivative(activations[-1],labels)*self.sigmoid_derivative(zs[-1])
-        biases_gradient[-1] = np.sum(delta, axis=1)
+        delta = self.cost_derivative(activation[-1], labels)[np.newaxis]#*self.activation_function.derivative(zs[-1])
+        biases_gradient[-1] = np.sum(delta,axis=1)
         weights_gradient[-1] = np.matmul(delta,activations[-2].transpose())
 
         for layer in range(2, self.n_layers):
             z = zs[-layer]
-            delta = np.matmul(self.weights[-layer+1].transpose(), delta)*self.sigmoid_derivative(z)
+            delta = np.matmul(self.weights[-layer+1].transpose(), delta)*self.activation_function.derivative(z)
             biases_gradient[-layer] = np.sum(delta, axis=1)[np.newaxis].transpose()
             weights_gradient[-layer] = np.matmul(delta,activations[-layer-1].transpose())
         return biases_gradient, weights_gradient
@@ -79,10 +75,8 @@ class NeuralNetwork:
                 self.weights = [(1-learning_rate*(regularisation/n))*w-(learning_rate/length_mini_batch)*wg for w, wg in zip(self.weights, weights_gradient)]
                 self.biases = [b-(learning_rate/length_mini_batch)*bg for b, bg in zip(self.biases, biases_gradient)]
             if test:
-                if self.regression:
-                    print('Epoch {} mse: {:.3f}'.format(epoch, self.evaluate(test_input, test_labels)))
-                else:
-                    print('Epoch {}: {:.3f} accuracy'.format(epoch, self.evaluate(test_input, test_labels)))
+                print('Epoch {} mse: {:.7f}'.format(epoch, self.mse(test_input, test_labels)))
+                #print('Epoch {}: {:.3f} accuracy'.format(epoch, self.accuracy(test_input, test_labels)))
             else:
                 print('Epoch {} complete'.format(epoch))
 
@@ -93,30 +87,27 @@ class NeuralNetwork:
         Returns arrays with predictions
         """
         probabilities = self.feedforward(input)
-        if self.regression:
-            return probabilities
-        else:
-            probabilities_array = np.empty(len(probabilities),dtype=np.uint)
-            for i in range(len(probabilities)):
-                if probabilities[i] > 0.5:
-                    probabilities_array[i] = 1
-                else:
-                    probabilities_array[i] = 0
-            return probabilities_array
+        probabilities_array = np.empty(len(probabilities),dtype=np.uint)
+        for i in range(len(probabilities)):
+            if probabilities[i] > 0.5:
+                probabilities_array[i] = 1
+            else:
+                probabilities_array[i] = 0
+        return probabilities_array
 
-    def evaluate(self, input, labels):
-        if self.regression:
-            predictions = self.predict(input)
-            n = len(labels)
-            error = np.sum((predictions - labels)**2)/n
-            return error
-        else:
-            predictions = self.predict(input)
-            count = 0
-            for prediction, target in zip(predictions, labels):
-                if prediction == target:
-                    count += 1
-            return count/len(labels)
+    def mse(self, input, labels):
+        n = len(labels)
+        probabilities = self.feedforward(input)
+        error = np.sum((probabilities - labels)**2)/n
+        return error
+
+    def accuracy(self, input, labels):
+        predictions = self.predict(input)
+        count = 0
+        for prediction, target in zip(predictions, labels):
+            if prediction == target:
+                count += 1
+        return count/len(labels)
 
     def predict_probabilities(self, input):
         """
