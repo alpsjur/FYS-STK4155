@@ -44,6 +44,20 @@ class ReLU:
         else:
             return 1
 
+class Sigmoid:
+    def __init__(self):
+        return
+
+    @staticmethod
+    @vectorize
+    def __call__(z):
+        return np.exp(z)/(1+np.exp(z))
+
+    @staticmethod
+    @vectorize
+    def derivative(z):
+        return np.exp(z)/(1 + np.exp(z))**2 
+
 #testing NN on Franke's Function
 def generate_data(n, noise):
     x = np.linspace(0,1,n)
