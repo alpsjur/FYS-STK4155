@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  10 NOV 2019 15:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  10 NOV 2019 16:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2138,10 +2138,11 @@ Package xcolor Warning: Incompatible color definition on input line 78.
 
 Package xcolor Warning: Incompatible color definition on input line 78.
 
+[2]
 
 Package xcolor Warning: Incompatible color definition on input line 97.
 
-[2]
+
 Underfull \hbox (badness 10000) in paragraph at lines 102--104
 
  []
@@ -2196,6 +2197,10 @@ Package xcolor Warning: Incompatible color definition on input line 176.
 Package xcolor Warning: Incompatible color definition on input line 176.
 
 
+Underfull \vbox (badness 2173) has occurred while \output is active []
+
+
+
 Package xcolor Warning: Incompatible color definition on input line 197.
 
 
@@ -2210,22 +2215,22 @@ Package xcolor Warning: Incompatible color definition on input line 226.
 
 Package xcolor Warning: Incompatible color definition on input line 226.
 
-
-Package xcolor Warning: Incompatible color definition on input line 230.
-
-
-Package xcolor Warning: Incompatible color definition on input line 230.
-
-
-Package xcolor Warning: Incompatible color definition on input line 230.
-
-
-Package xcolor Warning: Incompatible color definition on input line 230.
-
-
-Package xcolor Warning: Incompatible color definition on input line 230.
-
 [4]
+
+Package xcolor Warning: Incompatible color definition on input line 230.
+
+
+Package xcolor Warning: Incompatible color definition on input line 230.
+
+
+Package xcolor Warning: Incompatible color definition on input line 230.
+
+
+Package xcolor Warning: Incompatible color definition on input line 230.
+
+
+Package xcolor Warning: Incompatible color definition on input line 230.
+
 
 Package xcolor Warning: Incompatible color definition on input line 232.
 
@@ -2243,7 +2248,7 @@ Underfull \hbox (badness 1688) in paragraph at lines 8--8
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 3930) has occurred while \output is active []
 
 )
 (./discussion.tex) (./conclusion.tex) (./main.bbl
@@ -2279,7 +2284,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 66.
 Here is how much of TeX's memory you used:
  27708 strings out of 493029
  528566 string characters out of 6136234
- 576576 words of memory out of 5000000
+ 575574 words of memory out of 5000000
  30786 multiletter control sequences out of 15000+600000
  14468 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2302,7 +2307,7 @@ share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (6 pages, 225895 bytes).
+Output written on main.pdf (6 pages, 226330 bytes).
 PDF statistics:
  254 PDF objects out of 1000 (max. 8388607)
  224 compressed objects within 3 object streams
