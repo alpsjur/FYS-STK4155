@@ -36,9 +36,13 @@ df = pd.read_pickle(filepath + filename)
 
 # preparing designmatrix by scaling and using one hot encoding for cat data
 designMatrix = df.loc[:, df.columns != 'default payment next month']
+designMatrix.replace(to_replace=-1, value=0, inplace=True)
+designMatrix.replace(to_replace=-2, value=0, inplace=True)
+
 column_indices = pf.pca(designMatrix, 1e-1)
 print(designMatrix.columns[column_indices])
 designMatrix = designMatrix.iloc[:, column_indices]
+
 
 designMatrix_num = designMatrix.drop(["SEX", "EDUCATION", "MARRIAGE"], axis=1)
 designMatrix_cat = designMatrix.iloc[:, 1:4]
