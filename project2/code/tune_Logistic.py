@@ -19,12 +19,13 @@ from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, r2_
 
 import sys
 sys.path.append("class/")
-from Regression import LogisticRegression
 import projectfunctions as pf
+from Regression import LogisticRegression
 
 
 def learning_schedule(decreaser, learning_rate_init=0.1):
     return learning_rate_init/(decreaser + 1)
+
 
 np.random.seed(42)
 
@@ -35,7 +36,7 @@ sns.set_palette("husl")
 
 
 filepath = "../data/input/"
-filename = "default_of_credit_card_clients_partial_clean.pkl"
+filename = "default_of_credit_card_clients_altered_clean.pkl"
 
 df = pd.read_pickle(filepath + filename)
 
@@ -64,20 +65,20 @@ labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel(
 seed = 42
 logreg = LogisticRegression()
 
-rate_range = np.logspace(-3, 0, 50, dtype=float)
-batch_range = np.linspace(50, 2000, 50, dtype=int)
+rate_range = 0.5*np.logspace(-3, -0, 30, dtype=float)
+batch_range = 5*np.logspace(1, 3 ,30, dtype=int)
 
-#run tune hyperparameter funcition
+# run tune hyperparameter funcition
 df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, logreg, seed,
-                                rate_range,
-                                batch_range,
-                                learning_schedule,
-                                n_epochs=20,
-                                )
+                                  rate_range,
+                                  batch_range,
+                                  learning_schedule,
+                                  n_epochs=10,
+                                  )
 
-#store results
+# store results
 datadir = "../data/output/LogisticRegression/"
 pf.create_directories(datadir)
-filename = "logistic_test.csv"
+filename = "logistic_acc_auc_run.csv"
 df_tuned.to_csv(datadir + filename)
 print(df_tuned.head())
