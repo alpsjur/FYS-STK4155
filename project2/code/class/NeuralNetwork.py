@@ -47,7 +47,6 @@ class NeuralNetwork:
         delta = self.cost_derivative(activation[-1], labels)[np.newaxis]#*self.activation_function.derivative(zs[-1])
         biases_gradient[-1] = np.sum(delta,axis=1)
         #delta = self.cost_derivative(activation[-1], labels)#*self.activation_function.derivative(zs[-1])
-        #biases_gradient[-1] = np.sum(delta, axis=1)
         weights_gradient[-1] = np.matmul(delta,activations[-2].transpose())
 
         for layer in range(2, self.n_layers):
@@ -124,7 +123,7 @@ class NeuralNetwork:
 
 
     def cost_derivative(self, output_activations, labels):
-        return output_activations-labels
+        return (output_activations-labels)#/(output_activations*(1-output_activations))
 
     def learning_schedule(self, t, t0, t1):
         return t0/(t+t1)

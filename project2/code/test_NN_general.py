@@ -15,7 +15,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 
 import sys
 sys.path.append("class/")
-from NeuralNetwork_general import NeuralNetwork
+from NeuralNetwork import NeuralNetwork
 import projectfunctions as pf
 
 sns.set()
@@ -56,7 +56,7 @@ class Sigmoid:
     @staticmethod
     @vectorize
     def derivative(z):
-        return np.exp(z)/(1 + np.exp(z))**2 
+        return np.exp(z)/(1 + np.exp(z))**2
 
 #testing NN on Franke's Function
 def generate_data(n, noise):
@@ -78,7 +78,7 @@ def generate_data(n, noise):
     return X, z, x_grid, y_grid, z_grid
 
 n = 20
-noise = 0.1
+noise = 0#.1
 
 
 X, z, x_grid, y_grid, z_grid = generate_data(n, noise)
@@ -100,10 +100,10 @@ batch_size = 20
 learning_rate = 0.1
 regularisation = 0.0001
 
-network = NeuralNetwork(layers, ReLU())
+network = NeuralNetwork(layers, ReLU)
 
 network.train(X_train, z_train, learning_rate, n_epochs, batch_size, \
-              X_test, z_test, test=True, regularisation=regularisation)
+              X_test, z_test, test='mse', regularisation=regularisation)
 
 z_pred = network.predict_probabilities(X)
 z_pred = z_pred.reshape(n,n)
