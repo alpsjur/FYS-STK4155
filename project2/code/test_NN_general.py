@@ -78,7 +78,7 @@ def generate_data(n, noise):
     return X, z, x_grid, y_grid, z_grid
 
 n = 20
-noise = 0#.1
+noise = 0.1
 
 
 X, z, x_grid, y_grid, z_grid = generate_data(n, noise)
