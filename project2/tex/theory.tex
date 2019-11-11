@@ -206,12 +206,12 @@ When training the network, the goal is to find the weights and biases that minim
 Here, we are summing over $n$ points of training data, where $a_i^L$ is the output with the corresponding correct value $y_i$.
 
 In the regression case, the quadratic cost function, given as
-\begin{equation}
+\begin{equation}\label{quadratic cost}
   C = \frac{1}{2}\sum_{i=1}^n||y_i-a_i^L||^2
 \end{equation}
 is used.
 
-To find the weights and biases that minimize Eq.(\ref{eq:cross-entropy}) and (\ref{quadratic cost}), one can use Stochastic Gradient Decent, as described previously. But in order to use SGD, the derivatives of $C$ with respect to all the weights and biases must be computed, and it is here that backpropagation comes in. It can be shown that the derivatives are given as in Eq. (\ref{eq:backprop}).
+To find the weights and biases that minimize Eq.(\ref{eq:cross-entropy}) and (\ref{quadratic cost}), one can use Stochastic Gradient Decent, as described previously. But in order to use SGD, the derivatives of $C$ with respect to all the weights and biases must be computed, and it is here that backpropagation comes in. It can be shown, by repeating the chain rule, that the derivatives are given as in Eq. (\ref{eq:backprop}).
 \begin{equation}\label{eq:backprop}
 \begin{aligned}
 	\delta^L &= \nabla_aC\odot f'(z^L)\\
@@ -241,14 +241,36 @@ Equation (\ref{eq:backprop}) are the basis for the backpropagating algorithm, de
 	\BlankLine
 	\end{algorithm}
 
+\subsubsection*{Overfitting and Regularization}
+A problem that can arise when fitting a regression model, as discussed in \cite{prosjekt1}, is overfitting to data. This is a major problem also in neural networks, where the network can fit too heavily to outliers in the training set, especially when you have a large number of neurons. Apart from increasing the training data set and decreasing the number of neurons, a third approach is to use a regularization technique. Here, we will use the weight decay or L2 regularization technique.
+The idea is to add a term to the cost function. For both cross-entropy and quadratic cost, the new cost function can be written as
+\begin{equation*}
+  C = C_0 + \frac{\lambda}{2n}\sum_w w^2
+\end{equation*}
+where $C_0$ is the original cost function and $\lambda>0$ is the regularization parameter.
+The algorithm for updating the weights, when using stochastic gradient descent, then becomes
+\begin{equation}\label{eq:w_update}
+  w \rightarrow \left(1-\frac{\gamma\lambda}{n}\right)w -  \frac{\gamma}{m}\sum_{i \in \boldsymbol{B}_k}\frac{\partial C_i}{\partial w}
+\end{equation}
+Here, $m$ is the mini batch size. The algorithm for updating the biases are unchanged:
+\begin{equation}\label{eq:b_update}
+  b \rightarrow b -  \frac{\gamma}{m}\sum_{i \in \boldsymbol{B}_k}\frac{\partial C_i}{\partial b}
+\end{equation}
+
+Note the factor $m^{-1}$ in Eq. (\ref{eq:w_update}) and (\ref{eq:b_update}) when comparing to Eq. (\ref{eq:stochstic_gradient_descent}). This is just a scaling of the learning rate $\gamma$, which in this project is applied in the neural network case.
 
 \subsection{Data sets}
 In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, a second reduced data set was constructed, where (OGSÅ HVA VI GJORDE <---- HER!)
 
-In addition the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Franke's function, see \cite{prosjekt1}.
+In addition to the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Franke's function, see \cite{prosjekt1}.
 
 \subsubsection*{Reduction of Dimention}
 (HER!)
 
 \subsection{Quality of Measurements}
-(HER!)
+To measure how good the different methods were at classifying the credit card data, the data was split into a training set and a test set. After training the model on the test set, it was applied on the training set, and a performance score was calculated. Both accuracy, given in Eq. (\ref{eq:acc}) and area ratio, as described by \cite{yeh2009UCI}, was applied.
+\begin{equation}\label{eq:acc}
+  \text{Accuracy} = \frac{\text{Correct classifications}}{\text{Total \# of classifications}}
+\end{equation}
+
+For data generated with Franke's function, the same test-train-split was made, and the mean squared error was calculated, as in \cite{project1}.
