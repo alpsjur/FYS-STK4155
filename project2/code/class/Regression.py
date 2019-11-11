@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn import linear_model
 from sklearn.utils import resample
+from sklearn import metrics
 
 
 class Regression:
@@ -181,3 +182,8 @@ class LogisticRegression(Regression):
         for i in range(n):
             counter += self.indicator(targets[i], labels[i])
         return counter/n
+
+    def auc(self,designMatrix,labels):
+        targets = self.predict(designMatrix)
+        score = metrics.roc_auc_score(targets,labels)
+        return score
