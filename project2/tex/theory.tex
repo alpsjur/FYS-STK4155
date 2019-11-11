@@ -105,7 +105,7 @@ An iteration over the total number of minibatches is commonly refered to as an \
 By using the stochastic gradient descent method \eqref{eq:stochstic_gradient_descent} to minimize the cost function \eqref{eq:cost_function} we can this find the $\beta$ values that give the most accurate classification, by doing \textit{logistic regression}.
 
 \subsection{Neural networks}
-In this section, the equations used are based off the book by \cite{Nielsen}.
+In this section, the equations used are based off the book by \cite{Nielsen}, unless otherwise specified.
 \subsubsection*{The structure of a network}
 Neural networks, as the name suggests, are inspired by our understanding of how networks of neurons function in the brain. As can be seen in the example network in Figure \ref{fig:NNstructure}, neurons are structured in layers. We always have a input and an output layer, in addition to a varying number of hidden layers. The input layer has as many neurons as there are input variables, while the output layer has one neuron for each output. How many neurons you have in the output layer depends on the specific problem. The number of neurons in each hidden layer, on the other hand, is not directly related to inputs or outputs, and must be decided in some other way.
 
@@ -158,20 +158,21 @@ As the diagram in Figure \ref{fig:NNstructure} suggests, the neurons in each lay
 \end{figure}
 
 \subsubsection*{Forward feeding}
-Each neuron has one or multiple inputs, as illustrated with arrows in Figure \ref{fig:NNstructure}. Each of these inputs has a weight associated with it. To clarify the notation used, let's take a look at the $j$th neuron in the $l$th layer. The weight associated with the input coming from the $k$th neuron in the previous layer is denoted as $w^l_{jk}$. In addition, each neuron has a bias associated with it, for the neuron in question denoted as $b^l_j$. Summing the weighted inputs and the bias, and feeding this to a function $\sigma$, gives the activation $a^l_j$:
+Each neuron has one or multiple inputs, as illustrated with arrows in Figure \ref{fig:NNstructure}. Each of these inputs has a weight associated with it. To clarify the notation used, let's take a look at the $j$th neuron in the $l$th layer. The weight associated with the input coming from the $k$th neuron in the previous layer is denoted as $w^l_{jk}$. In addition, each neuron has a bias associated with it, for the neuron in question denoted as $b^l_j$. Summing the weighted inputs and the bias, and feeding this to a function $f(z)$, gives the activation $a^l_j$:
 \begin{equation*}
-	a^l_j = \sigma\left(\left(\sum_{k}w^l_{jk}a^{l-1}_k\right) + b^l_j\right)
+	a^l_j = f\left(\left(\sum_{k}w^l_{jk}a^{l-1}_k\right) + b^l_j\right)
 \end{equation*}
 This activation is then fed forward as input to all the neuron in the next layer.
 
 In matrix notation, the activation for the whole layer $l$ can be written as
 \begin{equation}\label{eq:forward}
-	\boldsymbol{a}^l = \sigma\left(\boldsymbol{w}^l\boldsymbol{a}^{l-1}+\boldsymbol{b}^l\right)
+	\boldsymbol{a}^l = f\left(\boldsymbol{w}^l\boldsymbol{a}^{l-1}+\boldsymbol{b}^l\right)
 \end{equation}
 Here, $\boldsymbol{a}^l$ and $\boldsymbol{b}^l$ are vertical vectors containing the activations and biases of the $l$th layer, while $\boldsymbol{w}^l$ is a matrix with elements $w^l_{jk}$, i.e. the $j$th column contains the weights of the inputs reaching the $j$th neuron.
 
-Let's look at the activation function in Eq. (\ref{eq:forward}) denoted with a $\sigma$. The use of $\sigma$ as notation is not arbitrary, since the sigmoid function stated in Eq. (\ref{eq:sigmoid}) is often used. As we will see in the backpropagation algorithm, the sigmoid is a good choice for activation function, since a small change in the output can be propagated backwards, resulting in small changes in the weights and biases through the network.
+Let's look at the activation function in Eq. (\ref{eq:forward}) denoted with a $f$. In the case of classification, the sigmoid function stated in Eq. (\ref{eq:sigmoid}) is often used. As we will see in the backpropagation algorithm, the sigmoid is a good choice for activation function, since a small change in the output can be propagated backwards, resulting in small changes in the weights and biases through the network.
 
+Another activation function is the so-called ReLU function, given as $f(z)=\max{0,z}$. 
 
 With a basis in Eq. (\ref{eq:forward}), the algorithm for forward feeding is given in Algorithm \ref{alg:forward}. Here $L$ is the total number of layers.
 \begin{algorithm}[htbp]\caption{The forward feeding algorithm.}\label{alg:forward}
