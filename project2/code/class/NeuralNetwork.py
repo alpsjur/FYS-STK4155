@@ -6,7 +6,7 @@ class NeuralNetwork:
         self.layer_sizes = layer_sizes
         self.n_layers = len(layer_sizes)
 
-        self.activation_function = activation_function()
+        self.activation_function = activation_function
 
         #initialize weights and biases with random numbers
         self.biases = [np.random.randn(size,1) for size in self.layer_sizes[1:]]
@@ -21,10 +21,11 @@ class NeuralNetwork:
             input = array with inputs to the first layer of the network
             returns array with resulting output from the last layer
         """
+        activation_function = self.activation_function
         input = input.transpose()
         for layer in range(self.n_layers-1):
             z = np.matmul(self.weights[layer],input) + self.biases[layer]
-            input = self.activation_function(z)
+            input = activation_function(z)
         return input[0]
 
     def backpropagation(self, input, labels):
@@ -37,11 +38,11 @@ class NeuralNetwork:
         activation = input.transpose()
         activations = [activation]
         zs = []
-
+        activation_function = self.activation_function
         for layer in range(self.n_layers-1):
             z = np.matmul(self.weights[layer],activation) + self.biases[layer]
             zs.append(z)
-            activation = self.activation_function(z)
+            activation = activation_function(z)
             activations.append(activation)
 
         delta = self.cost_derivative(activation[-1], labels)[np.newaxis]#*self.activation_function.derivative(zs[-1])
@@ -52,7 +53,7 @@ class NeuralNetwork:
 
         for layer in range(2, self.n_layers):
             z = zs[-layer]
-            delta = np.matmul(self.weights[-layer+1].transpose(), delta)*self.activation_function.derivative(z)
+            delta = np.matmul(self.weights[-layer+1].transpose(), delta)*activation_function.derivative(z)
             biases_gradient[-layer] = np.sum(delta, axis=1)[np.newaxis].transpose()
             weights_gradient[-layer] = np.matmul(delta,activations[-layer-1].transpose())
         return biases_gradient, weights_gradient
