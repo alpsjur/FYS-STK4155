@@ -73,7 +73,7 @@ df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, logreg, seed,
                                   rate_range,
                                   batch_range,
                                   learning_schedule,
-                                  n_epochs=10,
+                                  n_epochs=40,
                                   )
 
 # store results
