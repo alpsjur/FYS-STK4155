@@ -123,14 +123,15 @@ def tune_hyperparameter(designMatrix, labels, method, seed, rate_range, batch_ra
                     minibatch_size=j,
                     **kwargs
                         )
-            model = method.fit(designMatrix_test)
             parameters[count, 0] = i
             parameters[count, 1] = j
             parameters[count, 2] = method.accuracy(designMatrix_test, labels_test)
             try:
                 parameters[count, 3] = method.auc(designMatrix_test, labels_test)
             except:
-                parameters[count, 3] = 0
+                parameters[count, 3] = np.nan
+                parameters[count, 2] = np.nan
+
 
             count += 1
             print(count)
