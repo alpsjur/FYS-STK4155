@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn import metrics
 
 class NeuralNetwork:
     def __init__(self, layer_sizes, activation_function):
@@ -57,7 +58,7 @@ class NeuralNetwork:
         return biases_gradient, weights_gradient
 
 
-    def train(self, training_input, training_labels, learning_rate, n_epochs, batch_size, \
+    def train(self, training_input, training_labels, learning_rate_init=1, n_epochs=20, minibatch_size=100, \
               test_input=None, test_labels=None, test='accuracy', regularisation = 0.1):
         n = len(training_labels)
         for epoch in range(n_epochs):
@@ -65,8 +66,8 @@ class NeuralNetwork:
             np.random.shuffle(idx)
             training_input = training_input[idx]
             training_labels = training_labels[idx]
-            labels_mini_batches = [training_labels[i:i+batch_size] for i in range(0, n, batch_size)]
-            input_mini_batches = [training_input[i:i+batch_size] for i in range(0, n, batch_size)]
+            labels_mini_batches = [training_labels[i:i+minibatch_size] for i in range(0, n, minibatch_size)]
+            input_mini_batches = [training_input[i:i+minibatch_size] for i in range(0, n, minibatch_size)]
             for labels_mini_batch, input_mini_batch in zip(labels_mini_batches, input_mini_batches):
                 length_mini_batch = len(labels_mini_batch)
                 biases_gradient = [np.zeros(bias.shape) for bias in self.biases]
@@ -74,8 +75,8 @@ class NeuralNetwork:
                 delta_bias_gradient, delta_weight_gradient= self.backpropagation(input_mini_batch, labels_mini_batch)
                 biases_gradient = [bg + dbg for  bg, dbg in zip(biases_gradient, delta_bias_gradient)]
                 weights_gradient = [wg + dwg for  wg, dwg in zip(weights_gradient, delta_weight_gradient)]
-                self.weights = [(1-learning_rate*(regularisation/n))*w-(learning_rate/length_mini_batch)*wg for w, wg in zip(self.weights, weights_gradient)]
-                self.biases = [b-(learning_rate/length_mini_batch)*bg for b, bg in zip(self.biases, biases_gradient)]
+                self.weights = [(1-learning_rate_init*(regularisation/n))*w-(learning_rate_init/length_mini_batch)*wg for w, wg in zip(self.weights, weights_gradient)]
+                self.biases = [b-(learning_rate_init/length_mini_batch)*bg for b, bg in zip(self.biases, biases_gradient)]
             if test=='mse':
                 print('Epoch {} mse: {:.7f}'.format(epoch, self.mse(test_input, test_labels)))
             elif test=='accuracy':
@@ -127,3 +128,8 @@ class NeuralNetwork:
 
     def learning_schedule(self, t, t0, t1):
         return t0/(t+t1)
+
+    def auc(self,designMatrix,labels):
+        targets = self.predict(designMatrix)
+        score = metrics.roc_auc_score(targets,labels)
+        return score
