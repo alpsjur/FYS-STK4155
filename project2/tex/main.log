@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  12 NOV 2019 18:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  12 NOV 2019 18:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2315,16 +2315,6 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 19--20
  [][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-[]\OT1/cmr/m/n/10.95 Logistic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-\OT1/cmr/m/n/10.95 re-gres-
- []
-
 ) (./discussion.tex) (./conclusion.tex) (./main.bbl
 
 Package xcolor Warning: Incompatible color definition on input line 12.
@@ -2359,7 +2349,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 66.
 Here is how much of TeX's memory you used:
  27741 strings out of 493029
  529251 string characters out of 6136234
- 576190 words of memory out of 5000000
+ 576219 words of memory out of 5000000
  30804 multiletter control sequences out of 15000+600000
  14468 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2384,7 +2374,7 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (7 pages, 395850 bytes).
+Output written on main.pdf (7 pages, 395006 bytes).
 PDF statistics:
  348 PDF objects out of 1000 (max. 8388607)
  310 compressed objects within 4 object streams
