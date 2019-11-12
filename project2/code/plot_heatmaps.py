@@ -31,11 +31,14 @@ heatmap_LogReg_AUC = pd.pivot_table(df_LogReg, values='AUC',
 #sns.heatmap(heatmap_LogReg_AUC, ax=ax)
 #plt.show()
 
+x_dim = 30
+y_dim = 30
+
 data_LogReg = df_LogReg.values
-accuracy = data_LogReg[:,0].reshape(30,30)
-learning_rate_init = data_LogReg[:,1].reshape(30,30)
-mini_batch_size = data_LogReg[:,2].reshape(30,30)
-auc = data_LogReg[:,3].reshape(30,30)
+accuracy = data_LogReg[:,0].reshape(x_dim,y_dim)
+learning_rate_init = data_LogReg[:,1].reshape(x_dim,y_dim)
+mini_batch_size = data_LogReg[:,2].reshape(x_dim,y_dim)
+auc = data_LogReg[:,3].reshape(x_dim,y_dim)
 #auc[auc == 0] = np.nan
 
 
