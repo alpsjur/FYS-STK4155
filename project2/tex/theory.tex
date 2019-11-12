@@ -1,6 +1,12 @@
 \section{Theory and methods}
 \label{sec:theory}
 
+\subsection{Data sets}
+\label{sec:datasets}
+In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, a second reduced data set was constructed, where (OGSÅ HVA VI GJORDE <---- HER!)
+
+In addition to the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Franke's function, see \cite{prosjekt1}.
+
 \subsection{Logistic Regression}
 Classification problems aim to predict the behaviour of a given object, and look for patterns based on discrete variables (i.e categories). Logistic regression can be used to solve such problems, commonly by the use of variables with binary outcomes such as true/false, positive/negative, success/failiure etc., or in the specific credit card case: \textit{risky/non-risky} \cite{LogRegLectures}
 
@@ -53,7 +59,7 @@ The cost/error-function $\mathcal{C}$ (also called cross-entropy in statistics) 
   \label{eq:cost_function}
 \end{equation}
 
-Finding the parameters $\hat{\beta}$ that minimize the cost function is then done through derivation.
+Finding the parameters $\hat{\beta}$ that minimize the cost function is then done through differentiation.
 Defining the vector $\hat{y}$ containing $n$ elements $y_i$, the $n \cross p$ matrix $\hat{X}$ containing the $x_i$ elements, and the vector $\hat{p}$ that is the fittet probabilities $p(y_i|x_i,\hat{\beta})$, the first derivative of $\mathcal{C}$ is
 \begin{equation}
   \nabla_\beta \mathcal{C} = \pdv{\mathcal{C}(\hat{\beta})}{\hat{\beta}} = - \hat{X}^T (\hat{y}-\hat{p})
@@ -257,15 +263,7 @@ Here, $m$ is the mini batch size. The algorithm for updating the biases are unch
   b \rightarrow b -  \frac{\gamma}{m}\sum_{i \in \boldsymbol{B}_k}\frac{\partial C_i}{\partial b}
 \end{equation}
 
-Note the factor $m^{-1}$ in Eq. (\ref{eq:w_update}) and (\ref{eq:b_update}) when comparing to Eq. (\ref{eq:stochstic_gradient_descent}). This factor can be understood as taking the mean of all the gradients, instead of the sum. In this project, the sum was used for logistic regression, while the mean was used in the neural network. In practise, this corresponds to a scaling of the learning rate. 
-
-\subsection{Data sets}
-In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks in classification. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, a second reduced data set was constructed, where (OGSÅ HVA VI GJORDE <---- HER!)
-
-In addition to the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Franke's function, see \cite{prosjekt1}.
-
-\subsubsection*{Reduction of Dimention}
-(HER!)
+Note the factor $m^{-1}$ in Eq. (\ref{eq:w_update}) and (\ref{eq:b_update}) when comparing to Eq. (\ref{eq:stochstic_gradient_descent}). This factor can be understood as taking the mean of all the gradients, instead of the sum. In this project, the sum was used for logistic regression, while the mean was used in the neural network. In practise, this corresponds to a scaling of the learning rate.
 
 \subsection{Quality of Measurements}
 To measure how good the different methods were at classifying the credit card data, the data was split into a training set and a test set. After training the model on the test set, it was applied on the training set, and a performance score was calculated. Both accuracy, given in Eq. (\ref{eq:acc}) and area ratio, as described by \cite{yeh2009UCI}, was applied.
