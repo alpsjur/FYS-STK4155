@@ -110,6 +110,18 @@ An iteration over the total number of minibatches is commonly refered to as an \
 
 By using the stochastic gradient descent method \eqref{eq:stochstic_gradient_descent} to minimize the cost function \eqref{eq:cost_function} we can this find the $\beta$ values that give the most accurate classification, by doing \textit{logistic regression}.
 
+\subsubsection*{Dynamic learning rate}
+Convergence rate might be slow, and a possible solution to this is changing learning rate as
+the gradient descent gets closer to a local minima. Instead of a static learning rate, we have a learning schedule. As we expect convergence as iterations increase, it is natural that the learning schedule
+be a function of epochs and minibatches. Specifically, the learning rate should decrease as it approaches a minima.
+A possible function for the learning rate is then
+  \begin{equation}
+    \label{eq:learning_schedule}
+    \Gamma_{i} = \frac{\Gamma_0}{nN+i},
+  \end{equation}
+where $\Gamma_{0}$ is the initial learning rate, n the current epoch, i the current minibatch,
+and N the minibatch size.
+
 \subsection{Neural networks}
 In this section, the equations used are based off the book by \cite{Nielsen}, unless otherwise specified.
 \subsubsection*{The structure of a network}
