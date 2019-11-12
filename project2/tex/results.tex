@@ -22,6 +22,21 @@ Figure \ref{fig:TuneLogReg_accuracy} is similar to Figure \ref{fig:TuneLogReg_au
 \end{figure}
 
 \subsubsection*{Neural network}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{NNTune_auc}
+	\caption{Heatmap showing the AUC of the Neural Network for different
+		values of the minibatch sizes and learning rates.}
+	\label{fig:TuneNN_auc}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{NNTune_accuracy}
+	\caption{Heatmap showing the accuracy of the Neural Network for different
+		values of the minibatch sizes and learning rates.}
+	\label{fig:TuneNN_accuracy}
+\end{figure}
 
 \subsection*{Optimal Parameters and Associated Results}
 
@@ -34,26 +49,17 @@ Figure \ref{fig:TuneLogReg_accuracy} is similar to Figure \ref{fig:TuneLogReg_au
 \begin{table}[htbp]
 \renewcommand{\arraystretch}{1.2}
 \caption{Fraction of true and false negatives and positives for Logistic regression, Neural network, and SciKit Learn applied on the classification problem.}
-	\begin{tabular}{p{20mm} l l l l}
+	\begin{tabular}{p{18mm} l l l l}
 		\toprule
 		Method & \multicolumn{2}{l}{Positive} & \multicolumn{2}{l}{Negative} \\
 		\cline{2-3} \cline{4-5}
 		& True & False & True & False \\
 		\midrule
 		Logistic \newline regression & 0.67 & 0.33 & 0.84 & 0.16 \\
+		Neural \newline network & TBA & TBA & TBA & TBA \\
 		\bottomrule
 	\end{tabular}
 \label{tab:confusion}
 \end{table}
 
-\begin{table}
 
-\end{table}
-
-
-\begin{figure}[htbp]
-	\centering
-	%\includegraphics[width=0.5\textwidth]{}
-	\caption{}
-	\label{fig:}
-\end{figure}

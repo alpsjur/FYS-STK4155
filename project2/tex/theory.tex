@@ -3,7 +3,7 @@
 
 \subsection{Data sets}
 \label{sec:datasets}
-In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, a second reduced data set was constructed, where (OGSÅ HVA VI GJORDE <---- HER!)
+In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks for classification. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, two additional data sets were constructed. In one, all the invalid PAY values were kept. These invalid values were some $-2$s, but mostly $0$s. In the second additional set, all $-2$s, $-1$s and $0$s were set to $0$, since these were assumed to all represent duly payments. Both sets contained 26908 data points. The last set gave best results on initial runs, and was used for the rest of the project. For a more in-depth inspection of the data set, see the Jupyter notebook \texttt{inspect\_data.ipynb} in the \href{https://github.com/janadr/FYS-STK4155/tree/master/project2}{GitHub repository} of janadr.
 
 In addition to the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Franke's function, see \cite{prosjekt1}.
 
@@ -109,6 +109,18 @@ The stochastic and final version of \eqref{eq:gradient_decent} is therefore give
 An iteration over the total number of minibatches is commonly refered to as an \textit{epoch.}\\
 
 By using the stochastic gradient descent method \eqref{eq:stochstic_gradient_descent} to minimize the cost function \eqref{eq:cost_function} we can this find the $\beta$ values that give the most accurate classification, by doing \textit{logistic regression}.
+
+\subsubsection*{Dynamic learning rate}
+Convergence rate might be slow, and a possible solution to this is changing learning rate as
+the gradient descent gets closer to a local minima. Instead of a static learning rate, we have a learning schedule. As we expect convergence as iterations increase, it is natural that the learning schedule
+be a function of epochs and minibatches. Specifically, the learning rate should decrease as it approaches a minima.
+A possible function for the learning rate is then
+  \begin{equation}
+    \label{eq:learning_schedule}
+    \Gamma_{i} = \frac{\Gamma_0}{nN+i},
+  \end{equation}
+where $\Gamma_{0}$ is the initial learning rate, n the current epoch, i the current minibatch,
+and N the minibatch size.
 
 \subsection{Neural networks}
 In this section, the equations used are based off the book by \cite{Nielsen}, unless otherwise specified.
