@@ -38,7 +38,7 @@ class Sigmoid:
     def derivative(z):
         return np.exp(z)/(1 + np.exp(z))**2
 
-df = pd.read_pickle(filepath + filename + "_partial_clean.pkl")
+df = pd.read_pickle(filepath + filename + "_altered_clean.pkl")
 #print(df.head())
 
 """
