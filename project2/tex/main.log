@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.10.28)  12 NOV 2019 18:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  12 NOV 2019 18:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -189,9 +189,9 @@ Package: floatflt 1997/07/16 v. 1.31
 \fltitemwidth=\dimen129
 \outputpretest=\toks24
 ) (/usr/share/texlive/texmf-dist/tex/latex/physics/physics.sty
-Package: physics 
+Package: physics
  (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2019-07-01 L3 programming layer (loader) 
+Package: expl3 2019-07-01 L3 programming layer (loader)
  (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
 Package: expl3 2019-07-01 L3 programming layer (code)
 \c_max_int=\count113
@@ -369,9 +369,9 @@ File: babel.def 2019/06/03 3.32 Babel common definitions
  (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@dirlevel=\count273
 )
-\l@canadian = a dialect from \language\l@american 
-\l@australian = a dialect from \language\l@british 
-\l@newzealand = a dialect from \language\l@british 
+\l@canadian = a dialect from \language\l@american
+\l@australian = a dialect from \language\l@british
+\l@newzealand = a dialect from \language\l@british
 )) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \heavyrulewidth=\dimen163
@@ -896,17 +896,17 @@ Package xcolor Warning: Incompatible color definition on input line 112.
 
 
 Overfull \hbox (3.70026pt too wide) in paragraph at lines 135--135
- []\OT1/cmr/m/n/10.95 Input 
+ []\OT1/cmr/m/n/10.95 Input
  []
 
 
 Overfull \hbox (11.6086pt too wide) in paragraph at lines 135--135
- []\OT1/cmr/m/n/10.95 Hidden 
+ []\OT1/cmr/m/n/10.95 Hidden
  []
 
 
 Overfull \hbox (12.52113pt too wide) in paragraph at lines 135--135
- []\OT1/cmr/m/n/10.95 Output 
+ []\OT1/cmr/m/n/10.95 Output
  []
 
 
@@ -1009,37 +1009,57 @@ Underfull \hbox (badness 1184) in paragraph at lines 276--52
 
 (./results.tex
 
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 4.
+Package xcolor Warning: Incompatible color definition on input line 7.
 
-<../figures/LogRegTune_auc.pdf, id=184, 462.52798pt x 346.89601pt>
+<../figures/LogRegTune_auc.pdf, id=180, 462.52798pt x 346.89601pt>
 File: ../figures/LogRegTune_auc.pdf Graphic file (type pdf)
 <use ../figures/LogRegTune_auc.pdf>
-Package pdftex.def Info: ../figures/LogRegTune_auc.pdf  used on input line 8.
+Package pdftex.def Info: ../figures/LogRegTune_auc.pdf used on input line 10.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 8--10
- [][] 
+Overfull \hbox (5.0pt too wide) in paragraph at lines 10--12
+ [][]
  []
 
-<../figures/LogRegTune_accuracy.pdf, id=185, 462.52798pt x 346.89601pt>
+
+Underfull \vbox (badness 3019) has occurred while \output is active []
+
+
+
+Package xcolor Warning: Incompatible color definition on input line 16.
+
+
+Package xcolor Warning: Incompatible color definition on input line 16.
+
+<../figures/LogRegTune_accuracy.pdf, id=183, 462.52798pt x 346.89601pt>
 File: ../figures/LogRegTune_accuracy.pdf Graphic file (type pdf)
 <use ../figures/LogRegTune_accuracy.pdf>
-Package pdftex.def Info: ../figures/LogRegTune_accuracy.pdf  used on input line 16.
+Package pdftex.def Info: ../figures/LogRegTune_accuracy.pdf used on input line
+19.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 16--17
- [][] 
+Overfull \hbox (5.0pt too wide) in paragraph at lines 19--20
+ [][]
  []
 
 [6 <../figures/LogRegTune_auc.pdf>]) (./discussion.tex) (./conclusion.tex) (./main.bbl
 
-Package xcolor Warning: Incompatible color definition on input line 12.
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+[]\OT1/cmr/m/n/10.95 Logistic
+ []
 
 
-Underfull \vbox (badness 5388) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+\OT1/cmr/m/n/10.95 re-gres-
+ []
+
+) (./discussion.tex) (./conclusion.tex) (./main.bbl
 
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <../figures/LogRegTune_auc.pdf>]
 
 Package xcolor Warning: Incompatible color definition on input line 19.
 
@@ -1056,7 +1076,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 66.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 66.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 66.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: BB3DDBD5AC21F9D21EDCEE7CE515D332;855.
+(rerunfilecheck)             Checksum: 86D74EE40DCDBE40188351FF4876AD8A;850.
 
 
 LaTeX Warning: There were undefined references.
@@ -1065,21 +1085,38 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 66.
- ) 
+ )
 Here is how much of TeX's memory you used:
- 31341 strings out of 492609
- 598243 string characters out of 6131461
- 659113 words of memory out of 5000000
- 34788 multiletter control sequences out of 15000+600000
- 543166 words of font info for 63 fonts, out of 8000000 for 9000
+ 27741 strings out of 493029
+ 529251 string characters out of 6136234
+ 576190 words of memory out of 5000000
+ 30804 multiletter control sequences out of 15000+600000
+ 14468 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,19n,69p,917b,1045s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (7 pages, 396682 bytes).
+ 55i,19n,70p,10407b,983s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (7 pages, 395850 bytes).
 PDF statistics:
- 350 PDF objects out of 1000 (max. 8388607)
- 312 compressed objects within 4 object streams
- 65 named destinations out of 1000 (max. 500000)
+ 348 PDF objects out of 1000 (max. 8388607)
+ 310 compressed objects within 4 object streams
+ 67 named destinations out of 1000 (max. 500000)
  127 words of extra memory for PDF output out of 10000 (max. 10000000)
-

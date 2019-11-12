@@ -121,6 +121,8 @@ def tune_hyperparameter(designMatrix, labels, method, seed, rate_range, batch_ra
                     *args,
                     learning_rate_init=i,
                     minibatch_size=j,
+                    #test_input = designMatrix_test,
+                    #test_labels = labels_test,
                     **kwargs
                         )
             parameters[count, 0] = i

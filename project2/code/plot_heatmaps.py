@@ -15,7 +15,7 @@ plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
 
-df_LogReg = pd.read_csv("../data/output/LogisticRegression/logistic_acc_auc.csv")
+df_LogReg = pd.read_csv("../data/output/NeuralNetwork/neural_acc_auc_2.csv")
 df_LogReg.rename(columns = {'learning_rate_init':'Initial learning rate', 'minibatch_size':'Mini batch size'}, inplace = True)
 print("max accuracy:")
 print(df_LogReg.loc[df_LogReg['accuracy'].idxmax()])
@@ -27,12 +27,10 @@ heatmap_LogReg_AUC = pd.pivot_table(df_LogReg, values='AUC',
                      index=['Initial learning rate'],
                      columns='Mini batch size')
 
-#fig, ax = plt.subplots()
-#sns.heatmap(heatmap_LogReg_AUC, ax=ax)
-#plt.show()
 
-x_dim = 30
-y_dim = 30
+
+x_dim = 20
+y_dim = 5
 
 data_LogReg = df_LogReg.values
 accuracy = data_LogReg[:,0].reshape(x_dim,y_dim)
@@ -45,7 +43,7 @@ auc = data_LogReg[:,3].reshape(x_dim,y_dim)
 fig, ax = plt.subplots()
 
 
-c = ax.pcolormesh(mini_batch_size, learning_rate_init,accuracy
+c = ax.pcolormesh(mini_batch_size[0:17,:], learning_rate_init[0:17,:],accuracy[0:17,:]
                 ,cmap = 'gnuplot'#'viridis'#'plasma'
                 #,vmin = 0.2
                 #,vmax = 0.9
@@ -63,7 +61,7 @@ plt.show()
 
 fig, ax = plt.subplots()
 
-c = ax.pcolormesh(mini_batch_size, learning_rate_init,auc
+c = ax.pcolormesh(mini_batch_size[0:17,:], learning_rate_init[0:17,:],auc[0:17,:]
                   ,cmap = 'gnuplot'#'viridis'#'plasma'
                   #,vmin = 0.3
                   #,vmax = 0.8

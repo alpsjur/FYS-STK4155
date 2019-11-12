@@ -205,7 +205,7 @@ Note that the output will have values between 0 and 1, when the sigmoid function
 In the regression case, we see that when using the leaky ReLU activation function from Eq. (\ref{leakyReLU}), the output can be any positive value (strictly also negative values, due to the leakage, but this would call for large negative $z$-values).
 
 \subsubsection*{Backpropagation}
-When training the network, the goal is to find the weights and biases that minimize the cost function $C$. In this project, the cross-entropy cost function was used for classification. For a single neuron, this is given as
+When training the network, the goal is to find the weights and biases that minimize the cost function $C$. In this project, the cross-entropy cost function was used for classification. This is given as
 \begin{equation}\label{eq:cross-entropy}
 	C = -\sum_{i=1}^n\left[y_i\ln a^L_i + (1-y_i)\ln(1-a^L_i)\right]
 \end{equation}
@@ -263,7 +263,7 @@ Here, $m$ is the mini batch size. The algorithm for updating the biases are unch
   b \rightarrow b -  \frac{\gamma}{m}\sum_{i \in \boldsymbol{B}_k}\frac{\partial C_i}{\partial b}
 \end{equation}
 
-Note the factor $m^{-1}$ in Eq. (\ref{eq:w_update}) and (\ref{eq:b_update}) when comparing to Eq. (\ref{eq:stochstic_gradient_descent}). This is just a scaling of the learning rate $\gamma$, which in this project is applied in the neural network case.
+Note the factor $m^{-1}$ in Eq. (\ref{eq:w_update}) and (\ref{eq:b_update}) when comparing to Eq. (\ref{eq:stochstic_gradient_descent}). This factor can be understood as taking the mean of all the gradients, instead of the sum. In this project, the sum was used for logistic regression, while the mean was used in the neural network. In practise, this corresponds to a scaling of the learning rate.
 
 \subsection{Quality of Measurements}
 To measure how good the different methods were at classifying the credit card data, the data was split into a training set and a test set. After training the model on the test set, it was applied on the training set, and a performance score was calculated. Both accuracy, given in Eq. (\ref{eq:acc}) and area ratio, as described by \cite{yeh2009UCI}, was applied.
