@@ -84,16 +84,16 @@ layers = [input_neurons, 20, 20, 1]
 
 network = NeuralNetwork(layers, ReLU)
 
-rate_range = np.logspace(-2, 0.5, 15, dtype=float)
-batch_range = np.logspace(1, 4 ,15, dtype=int)
+rate_range = np.logspace(-4, -0.5, 20, dtype=float)
+batch_range = np.logspace(0, 3 ,5, dtype=int)
 
 
 # run tune hyperparameter funcition
 df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, network, seed,
                                   rate_range,
                                   batch_range,
-                                  n_epochs=5,
-                                  test=None
+                                  n_epochs=10,
+                                  test="accuracy"
                                   )
 
 
