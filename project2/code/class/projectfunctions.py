@@ -112,9 +112,8 @@ def tune_hyperparameter(designMatrix, labels, method, seed, rate_range, batch_ra
                                                                     random_state=seed
                                                                     )
 
-
-    parameters = np.zeros((len(rate_range)*len(batch_range),3))
-    header = ["learning_rate_init", "minibatch_size", "accuracy"]
+    parameters = np.zeros((len(rate_range)*len(batch_range),4))
+    header = ["learning_rate_init", "minibatch_size", "accuracy","AUC"]
     count = 0
     for i in rate_range:
         for j in batch_range:
@@ -124,10 +123,16 @@ def tune_hyperparameter(designMatrix, labels, method, seed, rate_range, batch_ra
                     minibatch_size=j,
                     **kwargs
                         )
-            model = method.fit(designMatrix_test)
             parameters[count, 0] = i
             parameters[count, 1] = j
             parameters[count, 2] = method.accuracy(designMatrix_test, labels_test)
+            try:
+                parameters[count, 3] = method.auc(designMatrix_test, labels_test)
+            except:
+                parameters[count, 3] = np.nan
+                parameters[count, 2] = np.nan
+
+
             count += 1
             print(count)
 

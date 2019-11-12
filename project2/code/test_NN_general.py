@@ -100,10 +100,10 @@ batch_size = 20
 learning_rate = 0.1
 regularisation = 0.0001
 
-network = NeuralNetwork(layers, ReLU())
+network = NeuralNetwork(layers, ReLU)
 
 network.train(X_train, z_train, learning_rate, n_epochs, batch_size, \
-              X_test, z_test, test=True, regularisation=regularisation)
+              X_test, z_test, test='mse', regularisation=regularisation)
 
 z_pred = network.predict_probabilities(X)
 z_pred = z_pred.reshape(n,n)

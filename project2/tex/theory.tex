@@ -105,7 +105,7 @@ An iteration over the total number of minibatches is commonly refered to as an \
 By using the stochastic gradient descent method \eqref{eq:stochstic_gradient_descent} to minimize the cost function \eqref{eq:cost_function} we can this find the $\beta$ values that give the most accurate classification, by doing \textit{logistic regression}.
 
 \subsection{Neural networks}
-In this section, the equations used are based off the book by \cite{Nielsen}.
+In this section, the equations used are based off the book by \cite{Nielsen}, unless otherwise specified.
 \subsubsection*{The structure of a network}
 Neural networks, as the name suggests, are inspired by our understanding of how networks of neurons function in the brain. As can be seen in the example network in Figure \ref{fig:NNstructure}, neurons are structured in layers. We always have a input and an output layer, in addition to a varying number of hidden layers. The input layer has as many neurons as there are input variables, while the output layer has one neuron for each output. How many neurons you have in the output layer depends on the specific problem. The number of neurons in each hidden layer, on the other hand, is not directly related to inputs or outputs, and must be decided in some other way.
 
@@ -158,20 +158,28 @@ As the diagram in Figure \ref{fig:NNstructure} suggests, the neurons in each lay
 \end{figure}
 
 \subsubsection*{Forward feeding}
-Each neuron has one or multiple inputs, as illustrated with arrows in Figure \ref{fig:NNstructure}. Each of these inputs has a weight associated with it. To clarify the notation used, let's take a look at the $j$th neuron in the $l$th layer. The weight associated with the input coming from the $k$th neuron in the previous layer is denoted as $w^l_{jk}$. In addition, each neuron has a bias associated with it, for the neuron in question denoted as $b^l_j$. Summing the weighted inputs and the bias, and feeding this to a function $\sigma$, gives the activation $a^l_j$:
+Each neuron has one or multiple inputs, as illustrated with arrows in Figure \ref{fig:NNstructure}. Each of these inputs has a weight associated with it. To clarify the notation used, let's take a look at the $j$th neuron in the $l$th layer. The weight associated with the input coming from the $k$th neuron in the previous layer is denoted as $w^l_{jk}$. In addition, each neuron has a bias associated with it, for the neuron in question denoted as $b^l_j$. Summing the weighted inputs and the bias, and feeding this to a function $f$, gives the activation $a^l_j$:
 \begin{equation*}
-	a^l_j = \sigma\left(\left(\sum_{k}w^l_{jk}a^{l-1}_k\right) + b^l_j\right)
+	a^l_j = f\left(\left(\sum_{k}w^l_{jk}a^{l-1}_k\right) + b^l_j\right)
 \end{equation*}
 This activation is then fed forward as input to all the neuron in the next layer.
 
 In matrix notation, the activation for the whole layer $l$ can be written as
 \begin{equation}\label{eq:forward}
-	\boldsymbol{a}^l = \sigma\left(\boldsymbol{w}^l\boldsymbol{a}^{l-1}+\boldsymbol{b}^l\right)
+	\boldsymbol{a}^l = f\left(\boldsymbol{w}^l\boldsymbol{a}^{l-1}+\boldsymbol{b}^l\right)
 \end{equation}
 Here, $\boldsymbol{a}^l$ and $\boldsymbol{b}^l$ are vertical vectors containing the activations and biases of the $l$th layer, while $\boldsymbol{w}^l$ is a matrix with elements $w^l_{jk}$, i.e. the $j$th column contains the weights of the inputs reaching the $j$th neuron.
 
-Let's look at the activation function in Eq. (\ref{eq:forward}) denoted with a $\sigma$. The use of $\sigma$ as notation is not arbitrary, since the sigmoid function stated in Eq. (\ref{eq:sigmoid}) is often used. As we will see in the backpropagation algorithm, the sigmoid is a good choice for activation function, since a small change in the output can be propagated backwards, resulting in small changes in the weights and biases through the network.
+Let's look at the activation function in Eq. (\ref{eq:forward}) denoted with a $f$. In the case of classification, the sigmoid function stated in Eq. (\ref{eq:sigmoid}) is often used in introductory texts. As we will see in the backpropagation algorithm, the sigmoid is a good choice for activation function, since a small change in the output can be propagated backwards, resulting in small changes in the weights and biases through the network.
 
+Another activation function is the so-called rectified linear unit (ReLU) function, given as $f(z)=\max{\left(0,z\right)}$ This gives an activation function which only fires when $z$ is positive. In the case of regression, a variant of ReLU, called leaky ReLU, was used in this project. This function is given as
+\begin{equation}\label{leakyReLU}
+  f(z) = \begin{cases}
+            z &z\geq 0 \\
+            0.01z &z<0 \\
+         \end{cases}
+\end{equation}
+This form of ReLU has a small positive gradient for negative values, which allows for gradient based learning even when the $z$-value is negative \citep{wang2018classification}.
 
 With a basis in Eq. (\ref{eq:forward}), the algorithm for forward feeding is given in Algorithm \ref{alg:forward}. Here $L$ is the total number of layers.
 \begin{algorithm}[htbp]\caption{The forward feeding algorithm.}\label{alg:forward}
@@ -180,31 +188,42 @@ With a basis in Eq. (\ref{eq:forward}), the algorithm for forward feeding is giv
 	\BlankLine
 	Set $\boldsymbol{a}^1$ = input\;
 	\ForEach{l=2:L}{
-		Compute  $\boldsymbol{a}^l$\;}
+    Compute $\boldsymbol{z}=\boldsymbol{w}^l\boldsymbol{a}^{l-1}+\boldsymbol{b}^l$\;
+		Compute  $\boldsymbol{a}^l=f(\boldsymbol{z})$\;}
 	Set output to $\boldsymbol{a}^L$\;
 	\BlankLine
 	\BlankLine
 \end{algorithm}
 
 Note that the output will have values between 0 and 1, when the sigmoid function is used to compute the activations of all the layers. In a classification problem, this corresponds to the likelihood of an outcome. For example, in a classification problem with five classes, the network would have five output neurons, each representing a class. The final classification of an input would then be the class with the highest probability.
+In the regression case, we see that when using the leaky ReLU activation function from Eq. (\ref{leakyReLU}), the output can be any positive value (strictly also negative values, due to the leakage, but this would call for large negative $z$-values).
 
 \subsubsection*{Backpropagation}
-When training the network, the goal is to find the weights and biases that minimize the cost function $C$. For a classification problem, the cost function is often given as
-
-\begin{equation}\label{eq:costNN}
-	C = \frac{1}{2}\sum_{i}\left(a^L_i-y_i\right)^2
+When training the network, the goal is to find the weights and biases that minimize the cost function $C$. In this project, the cross-entropy cost function was used for classification. For a single neuron, this is given as
+\begin{equation}\label{eq:cross-entropy}
+	C = -\sum_{i=1}^n\left[y_i\ln a^L_i + (1-y_i)\ln(1-a^L_i)\right]
 \end{equation}
-To minimize Eq.(\ref{eq:costNN}), one can use Stochastic Gradient Decent, as described previously. But in order to use SGD, the derivatives of $C$ must be computed, and it is here that backpropagation comes in. It can be shown that the derivatives are given as in Eq. (\ref{eq:backprop}). For a derivation of these expressions see APPENDIX?!?!?!.
+Here, we are summing over $n$ points of training data, where $a_i^L$ is the output with the corresponding correct value $y_i$.
 
+In the regression case, the quadratic cost function, given as
+\begin{equation}\label{quadratic cost}
+  C = \frac{1}{2}\sum_{i=1}^n||y_i-a_i^L||^2
+\end{equation}
+is used.
+
+To find the weights and biases that minimize Eq.(\ref{eq:cross-entropy}) and (\ref{quadratic cost}), one can use Stochastic Gradient Decent, as described previously. But in order to use SGD, the derivatives of $C$ with respect to all the weights and biases must be computed, and it is here that backpropagation comes in. It can be shown, by repeating the chain rule, that the derivatives are given as in Eq. (\ref{eq:backprop}).
 \begin{equation}\label{eq:backprop}
 \begin{aligned}
-	\delta^L &= \nabla_aC\odot\sigma'(z^L)\delta^l \\
-	\delta^l &= ((\boldsymbol{w}^{l+1})^T\delta^{l+1})\odot\sigma'(\boldsymbol{z}^l) \\
+	\delta^L &= \nabla_aC\odot f'(z^L)\\
+	\delta^l &= ((\boldsymbol{w}^{l+1})^T\delta^{l+1})\odot f'(\boldsymbol{z}^l) \\
 	\frac{\partial C}{\partial b^l_j} &= \delta_j^l \\
 	\frac{\partial C}{\partial w_{jk}^l} &= a_k^{l-1}\delta^l_j
 \end{aligned}
 \end{equation}
-These equation are the basis for the backpropagating algorithm, described in Algorithm \ref{alg:backprop}.
+
+Taking a look at the expression for $\delta^L$, one can show that this reduces to $\delta^L = \boldsymbol{a}-\boldsymbol{y}$, when the cross-entropy cost function is combined with the sigmoid activation function, and similarly for the quadratic cost and ReLU when we have positive output values.
+
+Equation (\ref{eq:backprop}) are the basis for the backpropagating algorithm, described in Algorithm \ref{alg:backprop}.
 \begin{algorithm}[htbp]\caption{The backpropagation algorithm.}\label{alg:backprop}
 	\SetAlgoLined
 	\BlankLine
@@ -222,17 +241,36 @@ These equation are the basis for the backpropagating algorithm, described in Alg
 	\BlankLine
 	\end{algorithm}
 
-\subsubsection*{Adapting neural networks to regression}
-In order to adapt the network to regression, some changes must be made in Algorithm \ref{alg:forward} and \ref{alg:backprop}. (HER!)
+\subsubsection*{Overfitting and Regularization}
+A problem that can arise when fitting a regression model, as discussed in \cite{prosjekt1}, is overfitting to data. This is a major problem also in neural networks, where the network can fit too heavily to outliers in the training set, especially when you have a large number of neurons. Apart from increasing the training data set and decreasing the number of neurons, a third approach is to use a regularization technique. Here, we will use the weight decay or L2 regularization technique.
+The idea is to add a term to the cost function. For both cross-entropy and quadratic cost, the new cost function can be written as
+\begin{equation*}
+  C = C_0 + \frac{\lambda}{2n}\sum_w w^2
+\end{equation*}
+where $C_0$ is the original cost function and $\lambda>0$ is the regularization parameter.
+The algorithm for updating the weights, when using stochastic gradient descent, then becomes
+\begin{equation}\label{eq:w_update}
+  w \rightarrow \left(1-\frac{\gamma\lambda}{n}\right)w -  \frac{\gamma}{m}\sum_{i \in \boldsymbol{B}_k}\frac{\partial C_i}{\partial w}
+\end{equation}
+Here, $m$ is the mini batch size. The algorithm for updating the biases are unchanged:
+\begin{equation}\label{eq:b_update}
+  b \rightarrow b -  \frac{\gamma}{m}\sum_{i \in \boldsymbol{B}_k}\frac{\partial C_i}{\partial b}
+\end{equation}
 
+Note the factor $m^{-1}$ in Eq. (\ref{eq:w_update}) and (\ref{eq:b_update}) when comparing to Eq. (\ref{eq:stochstic_gradient_descent}). This is just a scaling of the learning rate $\gamma$, which in this project is applied in the neural network case.
 
 \subsection{Data sets}
 In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, a second reduced data set was constructed, where (OGSÅ HVA VI GJORDE <---- HER!)
 
-In addition the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Franke's function, see \cite{prosjekt1}.
+In addition to the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Franke's function, see \cite{prosjekt1}.
 
 \subsubsection*{Reduction of Dimention}
 (HER!)
 
 \subsection{Quality of Measurements}
-(HER!)
+To measure how good the different methods were at classifying the credit card data, the data was split into a training set and a test set. After training the model on the test set, it was applied on the training set, and a performance score was calculated. Both accuracy, given in Eq. (\ref{eq:acc}) and area ratio, as described by \cite{yeh2009UCI}, was applied.
+\begin{equation}\label{eq:acc}
+  \text{Accuracy} = \frac{\text{Correct classifications}}{\text{Total \# of classifications}}
+\end{equation}
+
+For data generated with Franke's function, the same test-train-split was made, and the mean squared error was calculated, as in \cite{prosjekt1}.

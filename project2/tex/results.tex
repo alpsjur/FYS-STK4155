@@ -2,27 +2,44 @@
 \label{sec:results}
 
 \subsubsection{Tuning Learning Rate and Minibatch Size}
+\subsubsection*{Logistic Regression}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{LogRegTune_auc}
+	\caption{Heatmap showing the AUC of the Logistic Regression for different
+    values of the minibatch sizes and initial learning rates.}
+	\label{fig:TuneLogReg_auc}
+\end{figure}
 
-\subsubsection*{Optimal Parameters and Associated Results}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{LogRegTune_accuracy}
+	\caption{Heatmap showing the accuracy of the Logistic Regression for different values of the minibatch sizes and initial learning rates.}
+	\label{fig:TuneLogReg_accuracy}
+\end{figure}
 
-\subsubsection{Verification by Comparison to Scikit-Learn}
 
-\subsubsection{Neural Networks for Regression on Franke's Function}
+\subsection*{Optimal Parameters and Associated Results}
+
+\subsection{Verification by Comparison to Scikit-Learn}
+
+\subsection{Neural Networks for Regression on Franke's Function}
 
 
 % Eksempel for figurer
 \begin{table}[htbp]
-\caption{Percentage of true and false negatives and positives for Neural network (NN), Logistic regression (LR) and SciKitLearn's neural network (SKL)}
-	\begin{tabular}{l  l  r  r  r} 
-		 & & \textbf{NN} & \textbf{LR} & \textbf{SKL} \\
+
+\caption{Fraction of true and false negatives and positives for Neural network (NN), Logistic regression (LR) and SciKitLearn's neural network (SKL)}
+	\begin{tabular}{l  l  r  r  r}
+		 & & \textbf{LR} & \textbf{NN} & \textbf{SKL} \\
 		 \hline
-		Positive & True & & & \\ 
+		Positive & True & & & \\
 		%\cline{2-5}
-		 & False & & & \\ 
+		 & False &  & & \\
 		 \hline
-		Negative & True & & & \\ 
+		Negative & True & &  & \\
 		%\cline{2-5}
-		& False &  & & \\
+		& False & & & \\
 	\end{tabular}
 \label{tab:confusion}
 \end{table}

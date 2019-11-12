@@ -77,8 +77,8 @@ logreg = LogisticRegression()
 logreg.train(designMatrix_train, labels_train,
         learning_schedule=learning_schedule,
         n_epochs=20,
-        minibatch_size=34,
-        learning_rate_init=1
+        minibatch_size=1200,
+        learning_rate_init=0.05
         )
 
 model = logreg.fit(designMatrix_test)
@@ -96,6 +96,22 @@ bias = logreg.bias(model, labels_test)
 variance = logreg.variance(model)
 predictions = logreg.predict(designMatrix_test)
 guess_rate = np.mean(predictions)
+
+#compute confusion matrix
+true_negative, false_positive, false_negative, true_positive = confusion_matrix(labels_test, predictions).ravel()
+#normalize
+n_negative = true_negative+false_negative
+true_negative /= n_negative
+false_negative /= n_negative
+
+n_positive = true_positive+false_positive
+true_positive /= n_positive
+false_positive /= n_positive
+
+print('true positive: ',true_positive)
+print('false positive: ',false_positive)
+print('true_negative: ', true_negative)
+print('false_negative: ', false_negative)
 
 print("TEST")
 print(f"ACCURACY           {accuracy}")
