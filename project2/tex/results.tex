@@ -32,32 +32,22 @@ Figure \ref{fig:TuneLogReg_accuracy} is similar to Figure \ref{fig:TuneLogReg_au
 
 % Eksempel for figurer
 \begin{table}[htbp]
-
-\caption{Fraction of true and false negatives and positives for Logistic regression (LR) and SciKitLearn's neural network (SKL)}
-	\begin{tabular}{l  l  r  r  r}
-		 & & \textbf{LR} & \textbf{NN} & \textbf{SKL} \\
-		 \hline
-		Positive & True & 0.67 & & \\
-		%\cline{2-5}
-		 & False & 0.33 & & \\
-		 \hline
-		Negative & True & 0.84 &  & \\
-		%\cline{2-5}
-		& False & 0.16 & & \\
-	\end{tabular}
-\label{tab:confusion}
-\end{table}
-
-\begin{table}
-	\begin{tabular}{p{15mm} l l l l}
+\renewcommand{\arraystretch}{1.2}
+\caption{Fraction of true and false negatives and positives for Logistic regression, Neural network, and SciKit Learn applied on the classification problem.}
+	\begin{tabular}{p{20mm} l l l l}
 		\toprule
 		Method & \multicolumn{2}{l}{Positive} & \multicolumn{2}{l}{Negative} \\
 		\cline{2-3} \cline{4-5}
 		& True & False & True & False \\
 		\midrule
-		Logistic regression & 0.67 & 0.33 & 0.84 & 0.16 \\
-	\bottomrule
+		Logistic \newline regression & 0.67 & 0.33 & 0.84 & 0.16 \\
+		\bottomrule
 	\end{tabular}
+\label{tab:confusion}
+\end{table}
+
+\begin{table}
+
 \end{table}
 
 
