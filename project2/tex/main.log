@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  12 NOV 2019 15:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  12 NOV 2019 18:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2280,43 +2280,59 @@ Underfull \hbox (badness 1184) in paragraph at lines 276--52
 
 (./results.tex
 
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 4.
+Package xcolor Warning: Incompatible color definition on input line 7.
 
-<../figures/LogRegTune_auc.pdf, id=179, 462.52798pt x 346.89601pt>
+<../figures/LogRegTune_auc.pdf, id=180, 462.52798pt x 346.89601pt>
 File: ../figures/LogRegTune_auc.pdf Graphic file (type pdf)
 
 <use ../figures/LogRegTune_auc.pdf>
-Package pdftex.def Info: ../figures/LogRegTune_auc.pdf used on input line 8.
+Package pdftex.def Info: ../figures/LogRegTune_auc.pdf used on input line 10.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 8--10
+Overfull \hbox (5.0pt too wide) in paragraph at lines 10--12
  [][] 
  []
 
-<../figures/LogRegTune_accuracy.pdf, id=180, 462.52798pt x 346.89601pt>
+
+Underfull \vbox (badness 3019) has occurred while \output is active []
+
+
+
+Package xcolor Warning: Incompatible color definition on input line 16.
+
+
+Package xcolor Warning: Incompatible color definition on input line 16.
+
+<../figures/LogRegTune_accuracy.pdf, id=183, 462.52798pt x 346.89601pt>
 File: ../figures/LogRegTune_accuracy.pdf Graphic file (type pdf)
 
 <use ../figures/LogRegTune_accuracy.pdf>
 Package pdftex.def Info: ../figures/LogRegTune_accuracy.pdf used on input line 
-16.
+19.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 16--17
+Overfull \hbox (5.0pt too wide) in paragraph at lines 19--20
  [][] 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+[]\OT1/cmr/m/n/10.95 Logistic
+ []
 
- [6 <../figures/LogRegTune_auc.pdf> <../figures/LogRegTune_accuracy.pdf
 
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/LogRegTune_accuracy.pdf): PD
-F inclusion: multiple pdfs with page group included in a single page
->]) (./discussion.tex) (./conclusion.tex) (./main.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+\OT1/cmr/m/n/10.95 re-gres-
+ []
+
+) (./discussion.tex) (./conclusion.tex) (./main.bbl
 
 Package xcolor Warning: Incompatible color definition on input line 12.
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <../figures/LogRegTune_auc.pdf>]
 
 Package xcolor Warning: Incompatible color definition on input line 19.
 
@@ -2326,14 +2342,14 @@ Package xcolor Warning: Incompatible color definition on input line 26.
 
 Package xcolor Warning: Incompatible color definition on input line 32.
 
-) [7]
+) [7 <../figures/LogRegTune_accuracy.pdf>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 66.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 66.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 66.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 66.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: BB3DDBD5AC21F9D21EDCEE7CE515D332;855.
+(rerunfilecheck)             Checksum: 86D74EE40DCDBE40188351FF4876AD8A;850.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2341,9 +2357,9 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 66.
  ) 
 Here is how much of TeX's memory you used:
- 27739 strings out of 493029
- 529234 string characters out of 6136234
- 576059 words of memory out of 5000000
+ 27741 strings out of 493029
+ 529251 string characters out of 6136234
+ 576190 words of memory out of 5000000
  30804 multiletter control sequences out of 15000+600000
  14468 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2368,10 +2384,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (7 pages, 395585 bytes).
+Output written on main.pdf (7 pages, 395850 bytes).
 PDF statistics:
- 341 PDF objects out of 1000 (max. 8388607)
- 303 compressed objects within 4 object streams
- 65 named destinations out of 1000 (max. 500000)
+ 348 PDF objects out of 1000 (max. 8388607)
+ 310 compressed objects within 4 object streams
+ 67 named destinations out of 1000 (max. 500000)
  127 words of extra memory for PDF output out of 10000 (max. 10000000)
 

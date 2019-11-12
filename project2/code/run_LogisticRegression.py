@@ -77,8 +77,8 @@ logreg = LogisticRegression()
 logreg.train(designMatrix_train, labels_train,
         learning_schedule=learning_schedule,
         n_epochs=20,
-        minibatch_size=1200,
-        learning_rate_init=0.05
+        minibatch_size=3000,
+        learning_rate_init=0.03
         )
 
 model = logreg.fit(designMatrix_test)

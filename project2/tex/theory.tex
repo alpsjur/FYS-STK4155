@@ -199,7 +199,7 @@ Note that the output will have values between 0 and 1, when the sigmoid function
 In the regression case, we see that when using the leaky ReLU activation function from Eq. (\ref{leakyReLU}), the output can be any positive value (strictly also negative values, due to the leakage, but this would call for large negative $z$-values).
 
 \subsubsection*{Backpropagation}
-When training the network, the goal is to find the weights and biases that minimize the cost function $C$. In this project, the cross-entropy cost function was used for classification. For a single neuron, this is given as
+When training the network, the goal is to find the weights and biases that minimize the cost function $C$. In this project, the cross-entropy cost function was used for classification. This is given as
 \begin{equation}\label{eq:cross-entropy}
 	C = -\sum_{i=1}^n\left[y_i\ln a^L_i + (1-y_i)\ln(1-a^L_i)\right]
 \end{equation}
@@ -257,10 +257,10 @@ Here, $m$ is the mini batch size. The algorithm for updating the biases are unch
   b \rightarrow b -  \frac{\gamma}{m}\sum_{i \in \boldsymbol{B}_k}\frac{\partial C_i}{\partial b}
 \end{equation}
 
-Note the factor $m^{-1}$ in Eq. (\ref{eq:w_update}) and (\ref{eq:b_update}) when comparing to Eq. (\ref{eq:stochstic_gradient_descent}). This is just a scaling of the learning rate $\gamma$, which in this project is applied in the neural network case.
+Note the factor $m^{-1}$ in Eq. (\ref{eq:w_update}) and (\ref{eq:b_update}) when comparing to Eq. (\ref{eq:stochstic_gradient_descent}). This factor can be understood as taking the mean of all the gradients, instead of the sum. In this project, the sum was used for logistic regression, while the mean was used in the neural network. In practise, this corresponds to a scaling of the learning rate. 
 
 \subsection{Data sets}
-In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, a second reduced data set was constructed, where (OGSÅ HVA VI GJORDE <---- HER!)
+In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks in classification. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, a second reduced data set was constructed, where (OGSÅ HVA VI GJORDE <---- HER!)
 
 In addition to the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Franke's function, see \cite{prosjekt1}.
 

@@ -1,16 +1,19 @@
 \section{Results}
 \label{sec:results}
 
-\subsubsection{Tuning Learning Rate and Minibatch Size}
+\subsection{Tuning Learning Rate and Minibatch Size}
+
 \subsubsection*{Logistic Regression}
+Figure \ref{fig:TuneLogReg_auc} shows a heatmap of the AUC of the Logistic Regression model used on the classification problem for different minibatch sizes and initial learning rates, where the variables are distributed logarithmically. The blank fields represents variables that gave overflow. 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{LogRegTune_auc}
 	\caption{Heatmap showing the AUC of the Logistic Regression for different
-    values of the minibatch sizes and initial learning rates.}
+		values of the minibatch sizes and initial learning rates.}
 	\label{fig:TuneLogReg_auc}
 \end{figure}
 
+Figure \ref{fig:TuneLogReg_accuracy} is similar to Figure \ref{fig:TuneLogReg_auc}, except that the heatmap shows the accuracy, and not the AUC, for the Logistic Regression. 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{LogRegTune_accuracy}
@@ -18,6 +21,7 @@
 	\label{fig:TuneLogReg_accuracy}
 \end{figure}
 
+\subsubsection*{Neural network}
 
 \subsection*{Optimal Parameters and Associated Results}
 
@@ -29,20 +33,33 @@
 % Eksempel for figurer
 \begin{table}[htbp]
 
-\caption{Fraction of true and false negatives and positives for Neural network (NN), Logistic regression (LR) and SciKitLearn's neural network (SKL)}
+\caption{Fraction of true and false negatives and positives for Logistic regression (LR) and SciKitLearn's neural network (SKL)}
 	\begin{tabular}{l  l  r  r  r}
 		 & & \textbf{LR} & \textbf{NN} & \textbf{SKL} \\
 		 \hline
-		Positive & True & & & \\
+		Positive & True & 0.67 & & \\
 		%\cline{2-5}
-		 & False &  & & \\
+		 & False & 0.33 & & \\
 		 \hline
-		Negative & True & &  & \\
+		Negative & True & 0.84 &  & \\
 		%\cline{2-5}
-		& False & & & \\
+		& False & 0.16 & & \\
 	\end{tabular}
 \label{tab:confusion}
 \end{table}
+
+\begin{table}
+	\begin{tabular}{p{15mm} l l l l}
+		\toprule
+		Method & \multicolumn{2}{l}{Positive} & \multicolumn{2}{l}{Negative} \\
+		\cline{2-3} \cline{4-5}
+		& True & False & True & False \\
+		\midrule
+		Logistic regression & 0.67 & 0.33 & 0.84 & 0.16 \\
+	\bottomrule
+	\end{tabular}
+\end{table}
+
 
 \begin{figure}[htbp]
 	\centering
