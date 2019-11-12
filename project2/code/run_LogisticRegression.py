@@ -122,6 +122,7 @@ print(f"R2 (SKLEARN)       {r2_sklearn}")
 print(f"BIAS               {bias}")
 print(f"VAR                {variance}")
 print(f"GUESS RATE         {guess_rate}")
+print(f"AREA RATIO         {roc_auc_score(labels_test, predictions)}")
 
 """
 # %% our code bootstrap
