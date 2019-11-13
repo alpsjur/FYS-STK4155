@@ -31,8 +31,11 @@ class NeuralNetwork:
 
     def backpropagation(self, input, labels):
         """
-        Function for calculationg the backwards propagating correction of the
-        weights and biases, given a learning rate, using gradient descent
+        Function for calculationg the gradients of the weights and biases,
+        by using the backpropagation algorithm for Neural Networks
+        inputs and labels are arrays.
+        Returns a list with arrays of bias gradients for each layers,
+        and a list with nested arrays of weight gradients for each layer
         """
         biases_gradient = [np.zeros(bias.shape) for bias in self.biases]
         weights_gradient = [np.zeros(weight.shape) for weight in self.weights]
@@ -40,17 +43,17 @@ class NeuralNetwork:
         activations = [activation]
         zs = []
         activation_function = self.activation_function
+        #calculating and storing activations for each layer
         for layer in range(self.n_layers-1):
             z = np.matmul(self.weights[layer],activation) + self.biases[layer]
             zs.append(z)
             activation = activation_function(z)
             activations.append(activation)
-
-        delta = self.cost_derivative(activation[-1], labels)[np.newaxis]#*self.activation_function.derivative(zs[-1])
+        #calculating gradient for the last layer
+        delta = self.cost_derivative(activation[-1], labels)[np.newaxis]
         biases_gradient[-1] = np.sum(delta,axis=1)
-        #delta = self.cost_derivative(activation[-1], labels)#*self.activation_function.derivative(zs[-1])
         weights_gradient[-1] = np.matmul(delta,activations[-2].transpose())
-
+        #itterating over rest of layers, from last to first
         for layer in range(2, self.n_layers):
             z = zs[-layer]
             delta = np.matmul(self.weights[-layer+1].transpose(), delta)*activation_function.derivative(z)
@@ -61,6 +64,13 @@ class NeuralNetwork:
 
     def train(self, training_input, training_labels, learning_rate_init=1, n_epochs=20, minibatch_size=100, \
               test_input=None, test_labels=None, test='accuracy', regularisation = 0.1):
+        """
+        Function for training the network, using stochastic gradient descent.
+            training_input, training_labels are arrays
+            test_input, test_labels are arrays, if testing, else None
+            test can be either 'accuracy', for clasification, or 'mse', for regression
+            learning_rate_init, n_epochs, minibatch_size and regularisation are scalars
+        """
         n = len(training_labels)
         for epoch in range(n_epochs):
             idx = np.arange(n)
@@ -89,7 +99,7 @@ class NeuralNetwork:
         """
         Function for applying the network on (new) input.
             input = array of inputs to the first layer
-        Returns arrays with predictions
+        Returns arrays with predictions of binary clasificaion
         """
         probabilities = self.feedforward(input)
         probabilities_array = np.empty(len(probabilities),dtype=np.uint)
@@ -101,12 +111,22 @@ class NeuralNetwork:
         return probabilities_array
 
     def mse(self, input, labels):
+        """
+        function for calculating the mean squared error,
+            input and labels are arrays
+        return mse
+        """
         n = len(labels)
         probabilities = self.feedforward(input)
         error = np.sum((probabilities - labels)**2)/n
         return error
 
     def accuracy(self, input, labels):
+        """
+        function for calculating the accuracy,
+            input and labels are arrays
+        return accuracy
+        """
         predictions = self.predict(input)
         count = 0
         for prediction, target in zip(predictions, labels):
@@ -114,23 +134,26 @@ class NeuralNetwork:
                 count += 1
         return count/len(labels)
 
+    def auc(self,input,labels):
+        """
+        Function for calculating the AUC
+            input and labels are arrays
+        returns AUC 
+        """
+        targets = self.predict_probabilities(input)
+        score = metrics.roc_auc_score(labels,targets)
+        return score
+
     def predict_probabilities(self, input):
         """
         Function for applying the network on (new) input.
             input = array of inputs to the first layer
-        Returns the probability output
+        Returns the probability output, or in the regression case, the
+        predicted function value
         """
         probabilities = self.feedforward(input)
         return probabilities
 
 
     def cost_derivative(self, output_activations, labels):
-        return (output_activations-labels)#/(output_activations*(1-output_activations))
-
-    def learning_schedule(self, t, t0, t1):
-        return t0/(t+t1)
-
-    def auc(self,designMatrix,labels):
-        targets = self.predict_probabilities(designMatrix)
-        score = metrics.roc_auc_score(labels,targets)
-        return score
+        return (output_activations-labels)

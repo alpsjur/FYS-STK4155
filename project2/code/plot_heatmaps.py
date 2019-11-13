@@ -15,8 +15,7 @@ plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
 
-#df_LogReg = pd.read_csv("../data/output/LogisticRegression/logistic_acc_auc_2.csv")
-df_LogReg = pd.read_csv("../data/output/NeuralNetwork/neural_acc_auc.csv")
+df_LogReg = pd.read_csv("../data/output/LogisticRegression/logistic_acc_auc_3.csv")
 df_LogReg.rename(columns = {'learning_rate_init':'Initial learning rate', 'minibatch_size':'Mini batch size'}, inplace = True)
 print("max accuracy:")
 print(df_LogReg.loc[df_LogReg['accuracy'].idxmax()])
@@ -24,14 +23,8 @@ print()
 print("max AUC:")
 print(df_LogReg.loc[df_LogReg['AUC'].idxmax()])
 
-heatmap_LogReg_AUC = pd.pivot_table(df_LogReg, values='AUC',
-                     index=['Initial learning rate'],
-                     columns='Mini batch size')
-
-
-
-x_dim = 25
-y_dim = 10
+x_dim = 30
+y_dim = 30
 
 data_LogReg = df_LogReg.values
 accuracy = data_LogReg[:,0].reshape(x_dim,y_dim)
@@ -43,9 +36,8 @@ auc = data_LogReg[:,3].reshape(x_dim,y_dim)
 
 fig, ax = plt.subplots()
 
-plot_max = x_dim-3
 
-c = ax.pcolormesh(mini_batch_size[0:plot_max,:], learning_rate_init[0:plot_max,:],accuracy[0:plot_max,:]
+c = ax.pcolormesh(mini_batch_size, learning_rate_init,accuracy
                 ,cmap = 'gnuplot'#'viridis'#'plasma'
                 #,vmin = 0.2
                 #,vmax = 0.9
@@ -62,7 +54,7 @@ fig.colorbar(c, ax=ax)
 
 fig, ax = plt.subplots()
 
-c = ax.pcolormesh(mini_batch_size[0:plot_max,:], learning_rate_init[0:plot_max,:],auc[0:plot_max,:]
+c = ax.pcolormesh(mini_batch_size, learning_rate_init,auc
                   ,cmap = 'gnuplot'#'viridis'#'plasma'
                   #,vmin = 0.3
                   #,vmax = 0.8
@@ -78,7 +70,7 @@ fig.colorbar(c, ax=ax)
 
 
 
-df_NN = pd.read_csv("../data/output/NeuralNetwork/neural_acc_auc_2.csv")
+df_NN = pd.read_csv("../data/output/NeuralNetwork/neural_acc_auc_3.csv")
 df_NN.rename(columns = {'learning_rate_init':'Initial learning rate', 'minibatch_size':'Mini batch size'}, inplace = True)
 print("max accuracy:")
 print(df_NN.loc[df_NN['accuracy'].idxmax()])
