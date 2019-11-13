@@ -185,5 +185,5 @@ class LogisticRegression(Regression):
 
     def auc(self,designMatrix,labels):
         targets = self.predict(designMatrix)
-        score = metrics.roc_auc_score(targets,labels)
+        score = metrics.roc_auc_score(labels,targets)
         return score
