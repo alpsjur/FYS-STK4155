@@ -60,6 +60,7 @@ designMatrix_prepared = design_pipeline.fit_transform(designMatrix)
 # exporting labels to a numpy array
 labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel()
 
+
 # Train-test split
 trainingShare = 0.8
 seed  = 42
@@ -70,6 +71,8 @@ designMatrix_train, designMatrix_test, labels_train, labels_test = train_test_sp
                                                                 test_size = 1-trainingShare,
                                                                 random_state=seed
                                                                 )
+
+#print('fraction zeros', 1-(np.sum(labels_train)+np.sum(labels_test))/(len(labels_train)+len(labels_test)))
 
 # %% Our code
 logreg = LogisticRegression()
@@ -100,6 +103,7 @@ guess_rate = np.mean(predictions)
 #compute confusion matrix
 true_negative, false_positive, false_negative, true_positive = confusion_matrix(labels_test, predictions).ravel()
 #normalize
+'''
 n_negative = true_negative+false_negative
 true_negative /= n_negative
 false_negative /= n_negative
@@ -107,6 +111,7 @@ false_negative /= n_negative
 n_positive = true_positive+false_positive
 true_positive /= n_positive
 false_positive /= n_positive
+'''
 
 print('true positive: ',true_positive)
 print('false positive: ',false_positive)

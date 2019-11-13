@@ -101,6 +101,7 @@ figurepath = '../figures/'
 #compute confusion matrix
 true_negative, false_positive, false_negative, true_positive = confusion_matrix(test_labels, pred).ravel()
 #normalize
+'''
 n_negative = true_negative+false_negative
 true_negative /= n_negative
 false_negative /= n_negative
@@ -108,9 +109,11 @@ false_negative /= n_negative
 n_positive = true_positive+false_positive
 true_positive /= n_positive
 false_positive /= n_positive
-
+'''
 print('true positive: ',true_positive)
+print('false positive: ',false_positive)
 print('true_negative: ', true_negative)
+print('false_negative: ', false_negative)
 
 plt.figure()
 plt.hist(pred_prob)
