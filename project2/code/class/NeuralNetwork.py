@@ -131,6 +131,6 @@ class NeuralNetwork:
         return t0/(t+t1)
 
     def auc(self,designMatrix,labels):
-        targets = self.predict(designMatrix)
+        targets = self.predict_probabilities(designMatrix)
         score = metrics.roc_auc_score(labels,targets)
         return score

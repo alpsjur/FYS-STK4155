@@ -101,6 +101,6 @@ df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, network, seed,
 # store results
 datadir = "../data/output/NeuralNetwork/"
 pf.create_directories(datadir)
-filename = "neural_acc_auc_run.csv"
+filename = "neural_acc_auc_run_3.csv"
 df_tuned.to_csv(datadir + filename)
 print(df_tuned.head())

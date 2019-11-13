@@ -169,6 +169,7 @@ class LogisticRegression(Regression):
                 targets[i] = 0
         return targets
 
+
     def indicator(self, target, label):
         if target == label:
             return 1
@@ -184,6 +185,6 @@ class LogisticRegression(Regression):
         return counter/n
 
     def auc(self,designMatrix,labels):
-        targets = self.predict(designMatrix)
+        targets = self.fit(designMatrix)
         score = metrics.roc_auc_score(labels,targets)
         return score
