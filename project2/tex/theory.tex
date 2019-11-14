@@ -8,15 +8,15 @@ In this report, the default of credit card clients data set \citep{yeh2009UCI} w
 In addition to the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Franke's function, see \cite{prosjekt1}.
 
 \subsection{Logistic Regression}
-Classification problems aim to predict the behaviour of a given object, and look for patterns based on discrete variables (i.e categories). Logistic regression can be used to solve such problems, commonly by the use of variables with binary outcomes such as true/false, positive/negative, success/failiure etc., or in the specific credit card case: \textit{risky/non-risky} \cite{LogRegLectures}
+Classification problems aim to predict the behaviour of a given object, and look for patterns based on discrete variables (i.e categories). Logistic Regression can be used to solve such problems, commonly by the use of variables with binary outcomes such as true/false, positive/negative, success/failure etc., or in the specific credit card case: \textit{risky/non-risky} \cite{LogRegLectures}
 
-As opposed to linear regression, the equation one gets as a result of minimization of of the cost function by $\hat{\beta}$ using logistic regression, is non-linear, and is solved using minimization algorithms called \emph{gradient descent methods}. \\
+As opposed to Linear Regression, the equation one gets as a result of minimization of of the cost function by $\hat{\beta}$ using Logistic Regression, is non-linear, and is solved using minimization algorithms called \emph{gradient descent methods}. \\
 
 When predicting the the output classes in which an object belongs, the prediction is based on the design matrix $\mathbf{\hat{X}} \in \mathbb{R}^{n\cross p}$ that contain $n$ samples that each carry $p$ features.
 
-A distinction is made between \textit{hard classification} - deterministically determine the variable to a cathegory, and \textit{soft classification} - determines the probability that a given variable belongs in a certain cathegory. The latter is favorable in many cases, and logistic regression is the most used example og this type of classifier.
+A distinction is made between \textit{hard classification} - deterministically determine the variable to a category, and \textit{soft classification} - determines the probability that a given variable belongs in a certain category. The latter is favourable in many cases, and logistic regression is the most used example og this type of classifier.
 
-When using logistic regression, the probability that a given data point $x_i$ belongs in a cathegory $y_i$ is given by the Sigmoid-function (or logistic function):
+When using Logistic Regression, the probability that a given data point $x_i$ belongs in a category $y_i$ is given by the Sigmoid-function (or logistic function):
 \begin{equation}
 \begin{split}
     & p(t) = \frac{1}{1 + e^{-t}} = \frac{e^t}{1+e^t} \\
@@ -31,7 +31,7 @@ Assuming a binary classification problem, i.e. $y_i$ can be either 0 or 1, and a
   \label{eq:prob_relation}
 \end{equation*}
 
-The total likelihood for all possible outcomes $\mathcal{D}=\{(y_i,x_i)\}$ is used in the Maximum Likelihood Estimation (MLE), aiming at maximizing the log/likelihood funciton \eqref{eq:log_p}. The likelihood function can be expressed with $\mathcal{D}$:
+The total likelihood for all possible outcomes $\mathcal{D}=\{(y_i,x_i)\}$ is used in the Maximum Likelihood Estimation (MLE), aiming at maximizing the log/likelihood function \eqref{eq:log_p}. The likelihood function can be expressed with $\mathcal{D}$:
 \begin{equation*}
 \begin{split}
     &\qquad P(\mathcal{D}|\hat{\beta}) = \\
@@ -49,7 +49,7 @@ And the log/likelihood function is then:
 \label{eq:log_p}
 \end{equation}
 
-The cost/error-function $\mathcal{C}$ (also called cross-entropy in statistics) is the negative of the log/likelihood. Maximizing $P_{\log}$ is thus the same as minimizing the cost function. The cost funciton is:
+The cost/error-function $\mathcal{C}$ (also called cross-entropy in statistics) is the negative of the log/likelihood. Maximizing $P_{\log}$ is thus the same as minimizing the cost function. The cost function is:
 \begin{equation}
   \begin{split}
     &\mathcal{C}(\hat{\beta}) = - P_{\log}(\hat{\beta}) =  \\
@@ -60,7 +60,7 @@ The cost/error-function $\mathcal{C}$ (also called cross-entropy in statistics) 
 \end{equation}
 
 Finding the parameters $\hat{\beta}$ that minimize the cost function is then done through differentiation.
-Defining the vector $\hat{y}$ containing $n$ elements $y_i$, the $n \cross p$ matrix $\hat{X}$ containing the $x_i$ elements, and the vector $\hat{p}$ that is the fittet probabilities $p(y_i|x_i,\hat{\beta})$, the first derivative of $\mathcal{C}$ is
+Defining the vector $\hat{y}$ containing $n$ elements $y_i$, the $n \cross p$ matrix $\hat{X}$ containing the $x_i$ elements, and the vector $\hat{p}$ that is the fitted probabilities $p(y_i|x_i,\hat{\beta})$, the first derivative of $\mathcal{C}$ is
 \begin{equation}
   \nabla_\beta \mathcal{C} = \pdv{\mathcal{C}(\hat{\beta})}{\hat{\beta}} = - \hat{X}^T (\hat{y}-\hat{p})
   \label{eq:cost_d}
@@ -88,7 +88,7 @@ This is done by repeating the algorithm
     \beta_{j+1} = \beta_j - \gamma \nabla_\beta \mathcal{C}(\beta) \quad j = 0,1,2,...
     \label{eq:gradient_decent}
 \end{equation}
-When a minimum is approached, $\nabla_\beta \mathcal{C}(\beta) \rightarrow$ 0, and thus we can set a limit when $\beta_{k+1} \approx \beta_k$ given a certain tolerance, and the $\beta$ which minimizes the cost funciton is found. $\gamma$ is in this case called the \textit{learning rate}, and is a parameter that must be tuned to each specific case in order to optimize the regression.
+When a minimum is approached, $\nabla_\beta \mathcal{C}(\beta) \rightarrow$ 0, and thus we can set a limit when $\beta_{k+1} \approx \beta_k$ given a certain tolerance, and the $\beta$ which minimizes the cost function is found. $\gamma$ is in this case called the \textit{learning rate}, and is a parameter that must be tuned to each specific case in order to optimize the regression.
 
 \subsubsection*{Stochastic Gradient Descent}
 In this project we use a stochastic version of gradient descent, which is an improvement upon the regular gradient descent. This is done by expression the cost function (and thus also its gradient) as a sum
@@ -98,7 +98,7 @@ In this project we use a stochastic version of gradient descent, which is an imp
 \end{equation}
 and by only taking calculating the gradient of a subset of the data at the time. These subsets, called \textit{minibatches} are of size $\boldsymbol{M}$ , and the total amount is $\frac{n}{\boldsymbol{M}}$ where $n$ is the amount of data points. The minibatches are denoted $\boldsymbol{B}_k$, with k = 1,2,...,$\frac{n}{\boldsymbol{M}}$.
 
-Instead of a sum over all the the data points $i \in [1,n]$ we now in each step, sum over all the data points in the given minibatch $i \in \boldsymbol{B}_k$ where $k$ is picked randomly with uniform proabaility from $[1, \frac{n}{\boldsymbol{M}}]$.
+Instead of a sum over all the the data points $i \in [1,n]$ we now in each step, sum over all the data points in the given minibatch $i \in \boldsymbol{B}_k$ where $k$ is picked randomly with uniform probability from $[1, \frac{n}{\boldsymbol{M}}]$.
 
 The stochastic and final version of \eqref{eq:gradient_decent} is therefore given by the algorithm
 
@@ -106,7 +106,7 @@ The stochastic and final version of \eqref{eq:gradient_decent} is therefore give
     \beta_{j+1} = \beta_j - \gamma_j \sum_{i \in \boldsymbol{B}_k}\nabla_\beta c_i(\boldsymbol{x_i},\beta)
     \label{eq:stochstic_gradient_descent}
 \end{equation}
-An iteration over the total number of minibatches is commonly refered to as an \textit{epoch.}\\
+An iteration over the total number of minibatches is commonly referred to as an \textit{epoch.}\\
 
 By using the stochastic gradient descent method \eqref{eq:stochstic_gradient_descent} to minimize the cost function \eqref{eq:cost_function} we can this find the $\beta$ values that give the most accurate classification, by doing \textit{logistic regression}.
 
@@ -122,10 +122,10 @@ A possible function for the learning rate is then
 where $\Gamma_{0}$ is the initial learning rate, n the current epoch, i the current minibatch,
 and N the minibatch size.
 
-\subsection{Neural networks}
+\subsection{Neural Networks}
 In this section, the equations used are based off the book by \cite{Nielsen}, unless otherwise specified.
 \subsubsection*{The structure of a network}
-Neural networks, as the name suggests, are inspired by our understanding of how networks of neurons function in the brain. As can be seen in the example network in Figure \ref{fig:NNstructure}, neurons are structured in layers. We always have a input and an output layer, in addition to a varying number of hidden layers. The input layer has as many neurons as there are input variables, while the output layer has one neuron for each output. How many neurons you have in the output layer depends on the specific problem. The number of neurons in each hidden layer, on the other hand, is not directly related to inputs or outputs, and must be decided in some other way.
+Neural Networks, as the name suggests, are inspired by our understanding of how networks of neurons function in the brain. As can be seen in the example network in Figure \ref{fig:NNstructure}, neurons are structured in layers. We always have a input and an output layer, in addition to a varying number of hidden layers. The input layer has as many neurons as there are input variables, while the output layer has one neuron for each output. How many neurons you have in the output layer depends on the specific problem. The number of neurons in each hidden layer, on the other hand, is not directly related to inputs or outputs, and must be decided in some other way.
 
 As the diagram in Figure \ref{fig:NNstructure} suggests, the neurons in each layer are not connected with each other, but takes in inputs from the previous layer and passes on an output to the neurons in the next layer, as illustrated with arrows. This way, the inputs are fed through the network and processed, resulting in an output.
 \begin{figure}[htbp]
