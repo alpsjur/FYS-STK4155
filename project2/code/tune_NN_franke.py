@@ -73,7 +73,7 @@ X, z, x_grid, y_grid, z_grid = generate_data(n, noise)
 input_neurons = X.shape[1]
 layers = [input_neurons, 100, 20, 1]
 
-network = NeuralNetwork(layers, ReLU)
+network = NeuralNetwork(layers, ReLU())
 
 rate_range = np.logspace(-4, 0, 25, dtype=float)
 batch_range = np.logspace(0, 3, 10, dtype=int)
@@ -83,7 +83,7 @@ batch_range = np.logspace(0, 3, 10, dtype=int)
 df_tuned = pf.tune_hyperparameter_franke(X, z, network, seed,
                                   rate_range,
                                   batch_range,
-                                  n_epochs=500,
+                                  n_epochs=100,
                                   test=None
                                   )
 
@@ -92,6 +92,6 @@ df_tuned = pf.tune_hyperparameter_franke(X, z, network, seed,
 # store results
 datadir = "../data/output/NeuralNetwork/"
 pf.create_directories(datadir)
-filename = "neural_franke_mse_epochs500.csv"
+filename = "neural_franke_mse_epochs100.csv"
 df_tuned.to_csv(datadir + filename)
 print(df_tuned.head())
