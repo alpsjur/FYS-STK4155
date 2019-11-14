@@ -79,6 +79,6 @@ df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, logreg, seed,
 # store results
 datadir = "../data/output/LogisticRegression/"
 pf.create_directories(datadir)
-filename = "logistic_acc_auc_run_3.csv"
+filename = "logistic_acc_auc_run_test.csv"
 df_tuned.to_csv(datadir + filename)
 print(df_tuned.head())
