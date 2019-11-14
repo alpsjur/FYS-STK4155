@@ -50,7 +50,7 @@ ax.tick_params(axis='both', labelsize=14)
 ax.set_yscale("log")
 ax.set_xscale("log")
 fig.colorbar(c, ax=ax)
-#plt.savefig("../figures/LogRegTune_accuracy.pdf")
+plt.savefig("../figures/LogRegTune_accuracy.pdf")
 
 
 fig, ax = plt.subplots()
@@ -67,7 +67,7 @@ ax.tick_params(axis='both', labelsize=14)
 ax.set_yscale("log")
 ax.set_xscale("log")
 fig.colorbar(c, ax=ax)
-#plt.savefig("../figures/LogRegTune_auc.pdf")
+plt.savefig("../figures/LogRegTune_auc.pdf")
 
 
 
@@ -93,8 +93,8 @@ auc = data_NN[:,3].reshape(x_dim,y_dim)
 fig, ax = plt.subplots()
 
 
-end = 25
-c = ax.pcolormesh(mini_batch_size[0:end,:], learning_rate[0:end,:],accuracy[0:end,:]
+cut_off = 1
+c = ax.pcolormesh(mini_batch_size[0:-cut_off-1,:], learning_rate[0:-cut_off-1,:],accuracy[0:-cut_off-1,:]
                 ,cmap = 'plasma'#'viridis'#'plasma'
                 #,vmin = 0.2
                 #,vmax = 0.9
@@ -106,12 +106,12 @@ ax.tick_params(axis='both', labelsize=14)
 ax.set_yscale("log")
 ax.set_xscale("log")
 fig.colorbar(c, ax=ax)
-#plt.savefig("../figures/NNTune_accuracy.pdf")
+plt.savefig("../figures/NNTune_accuracy.pdf")
 
 
 fig, ax = plt.subplots()
 
-c = ax.pcolormesh(mini_batch_size[0:end,:], learning_rate[0:end,:],auc[0:end,:]
+c = ax.pcolormesh(mini_batch_size[0:-cut_off-1,:], learning_rate[0:-cut_off-1,:],auc[0:-cut_off-1,:]
                   ,cmap = 'plasma'#'viridis'#'plasma'
                   #,vmin = 0.3
                   #,vmax = 0.8
@@ -123,7 +123,7 @@ ax.tick_params(axis='both', labelsize=14)
 ax.set_yscale("log")
 ax.set_xscale("log")
 fig.colorbar(c, ax=ax)
-#plt.savefig("../figures/NNTune_auc.pdf")
+plt.savefig("../figures/NNTune_auc.pdf")
 
 
 df_NN_franke = pd.read_csv("../data/output/NeuralNetwork/neural_franke_mse_epochs20.csv")

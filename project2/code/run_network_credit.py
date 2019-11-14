@@ -73,11 +73,11 @@ labels = df.loc[:, df.columns == 'default payment next month'].to_numpy().ravel(
 
 
 first_layer = input_prepared.shape[1]
-layers = [first_layer, 10, 1]           # 20, 20, 1
+layers = [first_layer, 20, 20, 1]           # 20, 20, 1
 n_epochs = 5                               # 20
 batch_size = 100                            # 100
-learning_rate = 1                           # 1
-regularisation = 0.6
+learning_rate = 0.4                          # 1
+#regularisation = 0.6
 
 trainingShare = 0.8
 seed  = 42
@@ -89,9 +89,9 @@ training_input, test_input, training_labels, test_labels = train_test_split(
                                                                 random_state=seed
                                                                 )
 
-network = NeuralNetwork(layers, Sigmoid)
+network = NeuralNetwork(layers, Sigmoid())
 network.train(training_input, training_labels, learning_rate, n_epochs, batch_size, \
-            test_input, test_labels, test='accuracy', regularisation=regularisation)
+            test_input, test_labels, test='accuracy')
 
 pred_prob = network.predict_probabilities(test_input)
 pred = network.predict(test_input)

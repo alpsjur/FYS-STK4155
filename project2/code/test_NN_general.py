@@ -90,15 +90,14 @@ X_train, X_test, z_train, z_test = train_test_split(
                                                     z,
                                                     train_size=trainingShare,
                                                     test_size = 1-trainingShare,
-                                                    random_state=seed
+                                                    #random_state=seed
                                                     )
 
 input_neurons = X.shape[1]
-layers = [input_neurons, 20, 20, 1]
+layers = [input_neurons, 100, 30, 1]
 n_epochs = 300
-batch_size = 4
-learning_rate = 0.05
-#regularisation = 0.1
+batch_size = 10
+learning_rate = 0.5
 
 network = NeuralNetwork(layers, ReLU)
 
