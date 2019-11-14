@@ -145,7 +145,7 @@ r2 = df_NN_franke["r2"].to_numpy().reshape(x_dim, y_dim)
 fig, ax = plt.subplots()
 
 c = ax.pcolormesh(mini_batch_size, learning_rate, mse
-                  ,cmap = 'plasma'#'viridis'#'plasma'
+                  ,cmap = 'plasma_r'#'viridis'#'plasma'
                   #,vmin = 0.3
                   #,vmax = 0.8
                   )
@@ -156,6 +156,6 @@ ax.tick_params(axis='both', labelsize=14)
 ax.set_yscale("log")
 ax.set_xscale("log")
 fig.colorbar(c, ax=ax)
-#plt.savefig("../figures/NNTune_franke_mse.pdf")
+plt.savefig("../figures/NNTune_franke_mse.pdf")
 
 plt.show()

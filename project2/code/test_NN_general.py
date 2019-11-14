@@ -84,26 +84,26 @@ noise = 0.1
 X, z, x_grid, y_grid, z_grid = generate_data(n, noise)
 
 trainingShare = 0.8
-#seed  = 42
+seed  = 42
 X_train, X_test, z_train, z_test = train_test_split(
                                                     X,
                                                     z,
                                                     train_size=trainingShare,
                                                     test_size = 1-trainingShare,
-                                                    #random_state=seed
+                                                    random_state=seed
                                                     )
 
 input_neurons = X.shape[1]
-layers = [input_neurons, 100, 20, 1]
-n_epochs = 500
-batch_size = 20
-learning_rate = 0.1
-regularisation = 0.0001
+layers = [input_neurons, 20, 20, 1]
+n_epochs = 300
+batch_size = 4
+learning_rate = 0.05
+#regularisation = 0.1
 
 network = NeuralNetwork(layers, ReLU)
 
 network.train(X_train, z_train, learning_rate, n_epochs, batch_size, \
-              X_test, z_test, test='mse', regularisation=regularisation)
+              X_test, z_test, test='mse')
 
 z_pred = network.predict_probabilities(X)
 z_pred = z_pred.reshape(n,n)

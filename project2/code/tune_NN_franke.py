@@ -71,7 +71,7 @@ seed=42
 X, z, x_grid, y_grid, z_grid = generate_data(n, noise)
 
 input_neurons = X.shape[1]
-layers = [input_neurons, 20, 20, 1]
+layers = [input_neurons, 100, 20, 1]
 
 network = NeuralNetwork(layers, ReLU())
 
