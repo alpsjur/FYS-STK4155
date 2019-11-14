@@ -49,8 +49,6 @@ class Regression:
         """
         Calculates the R2-value of the model.
         """
-        error = 1 - np.mean(np.sum((labels - model)**2, **kwargs)\
-                     /np.sum((labels - np.mean(labels))**2, **kwargs) )
         error = 1 - np.sum((labels - model)**2, **kwargs)\
                     /np.sum((labels - np.mean(labels, **kwargs))**2, **kwargs)
         return error

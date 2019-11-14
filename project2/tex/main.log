@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  13 NOV 2019 21:09
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.10.28)  13 NOV 2019 21:17
->>>>>>> d0ada0e9dcfc916b2c069baf0d03df21a9216cff
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  14 NOV 2019 14:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -527,7 +523,6 @@ Package: floatflt 1997/07/16 v. 1.31
 \floatfltwidth=\dimen128
 \fltitemwidth=\dimen129
 \outputpretest=\toks24
-<<<<<<< HEAD
 )
 (/usr/share/texlive/texmf-dist/tex/latex/physics/physics.sty
 Package: physics 
@@ -565,26 +560,6 @@ L3 Module: l3file 2015/12/03 v6317 L3 File and I/O operations
 \l__iow_current_word_int=\count121
 \l__iow_current_indentation_int=\count122
 L3 Module: l3skip 2016/01/05 v6366 L3 Dimensions and skips
-=======
-) (/usr/share/texlive/texmf-dist/tex/latex/physics/physics.sty
-Package: physics 
- (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2019-07-01 L3 programming layer (loader) 
- (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2019-07-01 L3 programming layer (code)
-\c_max_int=\count113
-\l_tmpa_int=\count114
-\l_tmpb_int=\count115
-\g_tmpa_int=\count116
-\g_tmpb_int=\count117
-\g__kernel_prg_map_int=\count118
-\c__ior_term_ior=\count119
-\c_log_iow=\count120
-\l_iow_line_count_int=\count121
-\l__iow_line_target_int=\count122
-\l__iow_one_indent_int=\count123
-\l__iow_indent_int=\count124
->>>>>>> d0ada0e9dcfc916b2c069baf0d03df21a9216cff
 \c_zero_dim=\dimen130
 \c_max_dim=\dimen131
 \l_tmpa_dim=\dimen132
@@ -1556,27 +1531,16 @@ Package: xparse 2016/01/19 v6377 L3 Experimental document command parser
 Package: babel 2016/02/24 3.9q The Babel package
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
-<<<<<<< HEAD
 Language: english 2012/08/20 v3.3p English support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2016/02/24 3.9q Babel common definitions
 \babel@savecnt=\count140
 \U@D=\dimen161
-=======
-Language: english 2017/06/06 v3.3r English support from the babel system
- (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2019/06/03 3.32 Babel common definitions
-\babel@savecnt=\count272
-\U@D=\dimen162
- (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
-\bbl@dirlevel=\count273
->>>>>>> d0ada0e9dcfc916b2c069baf0d03df21a9216cff
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
-<<<<<<< HEAD
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
@@ -1599,28 +1563,6 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@thisrulewidth=\dimen174
 )
 (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
-=======
-)) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
-Package: booktabs 2016/04/27 v1.618033 publication quality tables
-\heavyrulewidth=\dimen163
-\lightrulewidth=\dimen164
-\cmidrulewidth=\dimen165
-\belowrulesep=\dimen166
-\belowbottomsep=\dimen167
-\aboverulesep=\dimen168
-\abovetopsep=\dimen169
-\cmidrulesep=\dimen170
-\cmidrulekern=\dimen171
-\defaultaddspace=\dimen172
-\@cmidla=\count274
-\@cmidlb=\count275
-\@aboverulesep=\dimen173
-\@belowrulesep=\dimen174
-\@thisruleclass=\count276
-\@lastruleclass=\count277
-\@thisrulewidth=\dimen175
-) (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
->>>>>>> d0ada0e9dcfc916b2c069baf0d03df21a9216cff
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip70
 \bibsep=\skip71
@@ -2084,11 +2026,7 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 tex
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
 \arrowsize=\dimen295
-)) (./main.aux
-
-LaTeX Warning: Label `fig:NNstructure' multiply defined.
-
-)
+)) (./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -2105,7 +2043,8 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
- (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count177
 \scratchdimen=\dimen296
@@ -2289,89 +2228,90 @@ Overfull \hbox (12.52113pt too wide) in paragraph at lines 153--153
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 179.
+Package xcolor Warning: Incompatible color definition on input line 178.
 
 
 Underfull \vbox (badness 4479) has occurred while \output is active []
 
  [4]
 
-Package xcolor Warning: Incompatible color definition on input line 191.
+Package xcolor Warning: Incompatible color definition on input line 190.
 
 
-Package xcolor Warning: Incompatible color definition on input line 191.
+Package xcolor Warning: Incompatible color definition on input line 190.
 
 
-Package xcolor Warning: Incompatible color definition on input line 200.
+Package xcolor Warning: Incompatible color definition on input line 199.
 
 
-Package xcolor Warning: Incompatible color definition on input line 200.
+Package xcolor Warning: Incompatible color definition on input line 199.
 
 
-Package xcolor Warning: Incompatible color definition on input line 202.
+Package xcolor Warning: Incompatible color definition on input line 201.
 
 
-Package xcolor Warning: Incompatible color definition on input line 202.
+Package xcolor Warning: Incompatible color definition on input line 201.
 
 
-Package xcolor Warning: Incompatible color definition on input line 217.
+Package xcolor Warning: Incompatible color definition on input line 216.
 
 [5]
 
-Package xcolor Warning: Incompatible color definition on input line 232.
+Package xcolor Warning: Incompatible color definition on input line 231.
 
 
-Package xcolor Warning: Incompatible color definition on input line 232.
+Package xcolor Warning: Incompatible color definition on input line 231.
 
 
-Package xcolor Warning: Incompatible color definition on input line 232.
+Package xcolor Warning: Incompatible color definition on input line 231.
 
 
-Package xcolor Warning: Incompatible color definition on input line 244.
+Package xcolor Warning: Incompatible color definition on input line 243.
 
 
-Package xcolor Warning: Incompatible color definition on input line 244.
+Package xcolor Warning: Incompatible color definition on input line 243.
 
 
-Package xcolor Warning: Incompatible color definition on input line 263.
+Package xcolor Warning: Incompatible color definition on input line 262.
 
 
-Package xcolor Warning: Incompatible color definition on input line 263.
+Package xcolor Warning: Incompatible color definition on input line 262.
 
 
 Underfull \vbox (badness 3769) has occurred while \output is active []
 
 
 
-Package xcolor Warning: Incompatible color definition on input line 278.
+Package xcolor Warning: Incompatible color definition on input line 277.
 
 
-Package xcolor Warning: Incompatible color definition on input line 278.
+Package xcolor Warning: Incompatible color definition on input line 277.
 
 
-Package xcolor Warning: Incompatible color definition on input line 278.
+Package xcolor Warning: Incompatible color definition on input line 277.
 
 
-Package xcolor Warning: Incompatible color definition on input line 281.
+Package xcolor Warning: Incompatible color definition on input line 280.
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 284--286
+Underfull \hbox (badness 10000) in paragraph at lines 283--285
 \OT1/cmr/m/n/10.95 For cal-cu-la-tions of AUC,
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 284--286
-\OT1/cmtt/m/n/10.95 sklearn.metrics.roc[]auc[]score \OT1/cmr/m/n/10.95 was used.
+Underfull \hbox (badness 1221) in paragraph at lines 283--285
+\OT1/cmtt/m/n/10.95 sklearn.metrics.roc[]auc[]score \OT1/cmr/m/n/10.95 was used
+.
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 287.
+Package xcolor Warning: Incompatible color definition on input line 286.
 
 
-Package xcolor Warning: Incompatible color definition on input line 287.
+Package xcolor Warning: Incompatible color definition on input line 286.
 
 )
-Underfull \hbox (badness 1184) in paragraph at lines 287--52
+Underfull \hbox (badness 1184) in paragraph at lines 286--52
 \OT1/cmr/m/n/10.95 mean squared er-ror was cal-cu-lated, as in
  []
 
@@ -2408,55 +2348,99 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 19--20
  [][] 
  []
 
-<../figures/NNTune_auc.pdf, id=200, 462.52798pt x 346.89601pt>
+
+Package xcolor Warning: Incompatible color definition on input line 24.
+
+
+Package xcolor Warning: Incompatible color definition on input line 24.
+
+[7 <../figures/LogRegTune_auc.pdf> <../figures/LogRegTune_accuracy.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/LogRegTune_accuracy.pdf): PD
+F inclusion: multiple pdfs with page group included in a single page
+>]
+
+Package xcolor Warning: Incompatible color definition on input line 29.
+
+
+Package xcolor Warning: Incompatible color definition on input line 29.
+
+<../figures/NNTune_auc.pdf, id=268, 462.52798pt x 346.89601pt>
 File: ../figures/NNTune_auc.pdf Graphic file (type pdf)
 
 <use ../figures/NNTune_auc.pdf>
-Package pdftex.def Info: ../figures/NNTune_auc.pdf used on input line 27.
+Package pdftex.def Info: ../figures/NNTune_auc.pdf used on input line 32.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 27--29
+Overfull \hbox (5.0pt too wide) in paragraph at lines 32--34
  [][] 
  []
 
-<../figures/NNTune_accuracy.pdf, id=201, 462.52798pt x 346.89601pt>
+<../figures/NNTune_accuracy.pdf, id=269, 462.52798pt x 346.89601pt>
 File: ../figures/NNTune_accuracy.pdf Graphic file (type pdf)
 
 <use ../figures/NNTune_accuracy.pdf>
-Package pdftex.def Info: ../figures/NNTune_accuracy.pdf used on input line 35.
+Package pdftex.def Info: ../figures/NNTune_accuracy.pdf used on input line 40.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 35--37
+Overfull \hbox (5.0pt too wide) in paragraph at lines 40--42
  [][] 
  []
 
-<<<<<<< HEAD
 
-Underfull \vbox (badness 1178) has occurred while \output is active []
-=======
+Package xcolor Warning: Incompatible color definition on input line 47.
 
-Underfull \vbox (badness 1178) has occurred while \output is active []
 
- [7 <../figures/LogRegTune_auc.pdf> <../figures/LogRegTune_accuracy.pdf
+Package xcolor Warning: Incompatible color definition on input line 47.
 
-pdfTeX warning: pdflatex (file ../figures/LogRegTune_accuracy.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]) (./discussion.tex) (./conclusion.tex [8 <../figures/NNTune_auc.pdf> <../figures/NNTune_accuracy.pdf
->>>>>>> d0ada0e9dcfc916b2c069baf0d03df21a9216cff
 
-pdfTeX warning: pdflatex (file ../figures/NNTune_accuracy.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+Package xcolor Warning: Incompatible color definition on input line 47.
+
+
+Overfull \hbox (4.02592pt too wide) in paragraph at lines 51--61
+[][]
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Overfull \hbox (1.96396pt too wide) in paragraph at lines 72--72
+[]$\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 0069$| 
+ []
+
+
+Overfull \hbox (4.02592pt too wide) in paragraph at lines 68--78
+[][]
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 81.
+
+
+Package xcolor Warning: Incompatible color definition on input line 81.
+
+) (./discussion.tex) (./conclusion.tex
+Underfull \vbox (badness 4713) has occurred while \output is active []
+
+ [8 <../figures/NNTune_auc.pdf> <../figures/NNTune_accuracy.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/NNTune_accuracy.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
 >]) (./main.bbl
 
 Package xcolor Warning: Incompatible color definition on input line 12.
 
-<<<<<<< HEAD
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/LogRegTune_accuracy.pdf): PD
-F inclusion: multiple pdfs with page group included in a single page
->]) (./discussion.tex) (./conclusion.tex) (./main.bbl
 
-Package xcolor Warning: Incompatible color definition on input line 12.
+Underfull \vbox (badness 1033) has occurred while \output is active []
 
-=======
->>>>>>> d0ada0e9dcfc916b2c069baf0d03df21a9216cff
+
 
 Package xcolor Warning: Incompatible color definition on input line 19.
 
@@ -2466,9 +2450,7 @@ Package xcolor Warning: Incompatible color definition on input line 26.
 
 Package xcolor Warning: Incompatible color definition on input line 32.
 
-) [9
-
-]
+) [9]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 66.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 66.
  (./main.aux)
@@ -2476,58 +2458,42 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 66.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 66.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 972748103844663D874556453FB986E3;850.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 66.
  ) 
 Here is how much of TeX's memory you used:
-<<<<<<< HEAD
- 27760 strings out of 493029
- 529677 string characters out of 6136234
- 574562 words of memory out of 5000000
- 30817 multiletter control sequences out of 15000+600000
- 14636 words of font info for 54 fonts, out of 8000000 for 9000
+ 27766 strings out of 493029
+ 529754 string characters out of 6136234
+ 575022 words of memory out of 5000000
+ 30820 multiletter control sequences out of 15000+600000
+ 14995 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,19n,70p,10407b,983s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (9 pages, 417894 bytes).
-=======
- 31361 strings out of 492609
- 598721 string characters out of 6131461
- 655464 words of memory out of 5000000
- 34800 multiletter control sequences out of 15000+600000
- 543334 words of font info for 64 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 55i,19n,69p,1540b,1045s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (9 pages, 418704 bytes).
->>>>>>> d0ada0e9dcfc916b2c069baf0d03df21a9216cff
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (9 pages, 433680 bytes).
 PDF statistics:
- 412 PDF objects out of 1000 (max. 8388607)
- 367 compressed objects within 4 object streams
- 70 named destinations out of 1000 (max. 500000)
+ 430 PDF objects out of 1000 (max. 8388607)
+ 384 compressed objects within 4 object streams
+ 72 named destinations out of 1000 (max. 500000)
  137 words of extra memory for PDF output out of 10000 (max. 10000000)
 
