@@ -142,6 +142,44 @@ def tune_hyperparameter(designMatrix, labels, method, seed, rate_range, batch_ra
     df.set_index("accuracy", inplace=True)
     return df
 
+def tune_hyperparameter_franke(designMatrix, labels, method, seed, rate_range, batch_range, *args, **kwargs):
+    from sklearn.model_selection import train_test_split
+    import pandas as pd
+
+    trainingShare = 0.8
+    designMatrix_train, designMatrix_test, labels_train, labels_test = train_test_split(
+                                                                    designMatrix,
+                                                                    labels,
+                                                                    train_size=trainingShare,
+                                                                    test_size = 1-trainingShare,
+                                                                    random_state=seed
+                                                                    )
+
+    parameters = np.zeros((len(rate_range)*len(batch_range),4))
+    header = ["learning_rate_init", "minibatch_size", "mse", "r2"]
+    count = 0
+    for i in rate_range:
+        for j in batch_range:
+            method.train(designMatrix_train, labels_train,
+                    *args,
+                    learning_rate_init=i,
+                    minibatch_size=j,
+                    #test_input = designMatrix_test,
+                    #test_labels = labels_test,
+                    **kwargs
+                        )
+            parameters[count, 0] = i
+            parameters[count, 1] = j
+            parameters[count, 2] = method.mse(designMatrix_test, labels_test)
+            parameters[count, 3] = method.r2(designMatrix_test, labels_test)
+
+
+            count += 1
+            print(count)
+
+    df = pd.DataFrame(parameters, columns=header)
+    df.set_index("mse", inplace=True)
+    return df
 
 def least_squares(X, data, hyperparam=0):
     """

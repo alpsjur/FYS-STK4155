@@ -116,9 +116,17 @@ class NeuralNetwork:
             input and labels are arrays
         return mse
         """
-        n = len(labels)
         probabilities = self.feedforward(input)
-        error = np.sum((probabilities - labels)**2)/n
+        error = np.mean((probabilities - labels)**2)
+        return error
+
+    def r2(self, input, labels, **kwargs):
+        """
+        Calculates the R2-value of the model.
+        """
+        probabilities = self.feedforward(input)
+        error = 1 - np.sum((labels - probabilities)**2, **kwargs)\
+                /np.sum((labels - np.mean(labels, **kwargs))**2, **kwargs)
         return error
 
     def accuracy(self, input, labels):
@@ -138,7 +146,7 @@ class NeuralNetwork:
         """
         Function for calculating the AUC
             input and labels are arrays
-        returns AUC 
+        returns AUC
         """
         targets = self.predict_probabilities(input)
         score = metrics.roc_auc_score(labels,targets)
