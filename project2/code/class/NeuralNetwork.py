@@ -7,7 +7,7 @@ class NeuralNetwork:
         self.layer_sizes = layer_sizes
         self.n_layers = len(layer_sizes)
 
-        self.activation_function = activation_function
+        self.activation_function = activation_function()
 
         #initialize weights and biases with random numbers
         self.biases = [np.random.randn(size,1) for size in self.layer_sizes[1:]]
