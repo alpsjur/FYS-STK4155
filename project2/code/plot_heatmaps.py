@@ -50,7 +50,7 @@ ax.tick_params(axis='both', labelsize=14)
 ax.set_yscale("log")
 ax.set_xscale("log")
 fig.colorbar(c, ax=ax)
-#plt.savefig("../figures/LogRegTune_accuracy.pdf")
+plt.savefig("../figures/LogRegTune_accuracy.pdf")
 
 
 fig, ax = plt.subplots()
@@ -67,11 +67,11 @@ ax.tick_params(axis='both', labelsize=14)
 ax.set_yscale("log")
 ax.set_xscale("log")
 fig.colorbar(c, ax=ax)
-#plt.savefig("../figures/LogRegTune_auc.pdf")
+plt.savefig("../figures/LogRegTune_auc.pdf")
 
 
 
-df_NN = pd.read_csv("../data/output/NeuralNetwork/neural_acc_auc_3.csv")
+df_NN = pd.read_csv("../data/output/NeuralNetwork/neural_acc_auc_run.csv")
 df_NN.rename(columns = {'learning_rate_init':'Initial learning rate', 'minibatch_size':'Mini batch size'}, inplace = True)
 print("max accuracy NN:")
 print(df_NN.loc[df_NN['accuracy'].idxmax()])
@@ -106,7 +106,7 @@ ax.tick_params(axis='both', labelsize=14)
 ax.set_yscale("log")
 ax.set_xscale("log")
 fig.colorbar(c, ax=ax)
-#plt.savefig("../figures/NNTune_accuracy.pdf")
+plt.savefig("../figures/NNTune_accuracy.pdf")
 
 
 fig, ax = plt.subplots()
@@ -123,7 +123,7 @@ ax.tick_params(axis='both', labelsize=14)
 ax.set_yscale("log")
 ax.set_xscale("log")
 fig.colorbar(c, ax=ax)
-#plt.savefig("../figures/NNTune_auc.pdf")
+plt.savefig("../figures/NNTune_auc.pdf")
 
 
 df_NN_franke = pd.read_csv("../data/output/NeuralNetwork/neural_franke_mse_epochs20.csv")

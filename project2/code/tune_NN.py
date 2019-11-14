@@ -18,27 +18,20 @@ import projectfunctions as pf
 from NeuralNetwork import NeuralNetwork
 
 
-class ReLU:
+class Sigmoid:
     def __init__(self):
         return
 
     @staticmethod
     @vectorize
     def __call__(z):
-        a = 0.01
-        if z <= 0:
-            return a*z
-        else:
-            return z
+        return np.exp(z)/(1+np.exp(z))
 
     @staticmethod
     @vectorize
     def derivative(z):
-        a = 0.01
-        if z <= 0:
-            return a
-        else:
-            return 1
+        return np.exp(z)/(1 + np.exp(z))**2
+
 
 def learning_schedule(decreaser, learning_rate_init=0.1):
     return learning_rate_init/(decreaser + 1)
@@ -82,9 +75,9 @@ seed = 42
 input_neurons = designMatrix_prepared.shape[1]
 layers = [input_neurons, 20, 20, 1]
 
-network = NeuralNetwork(layers, ReLU())
+network = NeuralNetwork(layers, Sigmoid)
 
-rate_range = np.logspace(-4, -0.5, 25, dtype=float)
+rate_range = np.logspace(-3, -0.5, 25, dtype=float)
 batch_range = np.logspace(0, 3 ,10, dtype=int)
 
 
@@ -92,7 +85,7 @@ batch_range = np.logspace(0, 3 ,10, dtype=int)
 df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, network, seed,
                                   rate_range,
                                   batch_range,
-                                  n_epochs=10,
+                                  n_epochs=5,
                                   test=None
                                   )
 
@@ -101,6 +94,6 @@ df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, network, seed,
 # store results
 datadir = "../data/output/NeuralNetwork/"
 pf.create_directories(datadir)
-filename = "neural_acc_auc_run_3.csv"
+filename = "neural_acc_auc_run.csv"
 df_tuned.to_csv(datadir + filename)
 print(df_tuned.head())

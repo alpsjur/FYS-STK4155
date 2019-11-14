@@ -7,13 +7,15 @@ class NeuralNetwork:
         self.layer_sizes = layer_sizes
         self.n_layers = len(layer_sizes)
 
-        self.activation_function = activation_function()
+        self.activation_function = activation_function
 
+        return
+
+    def clear(self):
         #initialize weights and biases with random numbers
         self.biases = [np.random.randn(size,1) for size in self.layer_sizes[1:]]
         self.weights = [np.random.randn(y, x)/np.sqrt(x)
                         for x, y in zip(self.layer_sizes[:-1], self.layer_sizes[1:])]
-        return
 
 
     def feedforward(self, input):
@@ -71,6 +73,7 @@ class NeuralNetwork:
             test can be either 'accuracy', for clasification, or 'mse', for regression
             learning_rate_init, n_epochs, minibatch_size and regularisation are scalars
         """
+        self.clear()
         n = len(training_labels)
         for epoch in range(n_epochs):
             idx = np.arange(n)
