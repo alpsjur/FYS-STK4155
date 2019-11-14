@@ -14,10 +14,6 @@ class Regression:
         model = designMatrix @ self.beta
         return model
 
-    def _fit_cv(self, designMatrix, beta):
-        model = designMatrix @ beta
-        return model
-
     def train(self, designMatrix, labels, *args, **kwargs):
         # dummy function
         return self.beta
@@ -86,6 +82,11 @@ class Regression:
         bias = np.mean(self.bias(labels_pred, labels_test, axis=1, keepdims=True))
         variance = np.mean(self.variance(labels_pred, axis=1, keepdims=True))
         return [mse, r2, bias, variance]
+
+    def __str__(self):
+        docstring = "Parent class for various regression algorithms.\
+                    train(*args, **kwargs) method is constructed for each method."
+        return docstring
 
 class LinearRegression(Regression):
     def train(self, designMatrix, labels):
@@ -157,6 +158,9 @@ class LogisticRegression(Regression):
         return self.beta
 
     def predict(self, designMatrix):
+        """
+        Classifies either 1 or 0 depending on sett threshold.
+        """
         n = len(designMatrix[:, 0])
         targets = np.zeros(n)
         model = self.fit(designMatrix)
@@ -169,12 +173,18 @@ class LogisticRegression(Regression):
 
 
     def indicator(self, target, label):
+        """
+        True if target == label else false
+        """
         if target == label:
             return 1
         else:
             return 0
 
     def accuracy(self, designMatrix, labels):
+        """
+        Calculates how many labels were classified correctly.
+        """
         n = len(labels)
         counter = 0
         targets = self.predict(designMatrix)
@@ -182,7 +192,10 @@ class LogisticRegression(Regression):
             counter += self.indicator(targets[i], labels[i])
         return counter/n
 
-    def auc(self,designMatrix,labels):
+    def auc(self, designMatrix, labels):
+        """
+        Calls on scikit learn's roc_auc_score.
+        """
         targets = self.fit(designMatrix)
         score = metrics.roc_auc_score(labels,targets)
         return score
