@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  14 NOV 2019 13:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  14 NOV 2019 14:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2358,64 +2358,73 @@ Package xcolor Warning: Incompatible color definition on input line 24.
 
 pdfTeX warning: /usr/bin/pdflatex (file ../figures/LogRegTune_accuracy.pdf): PD
 F inclusion: multiple pdfs with page group included in a single page
->] <../figures/NNTune_auc.pdf, id=266, 462.52798pt x 346.89601pt>
+>]
+
+Package xcolor Warning: Incompatible color definition on input line 29.
+
+
+Package xcolor Warning: Incompatible color definition on input line 29.
+
+<../figures/NNTune_auc.pdf, id=268, 462.52798pt x 346.89601pt>
 File: ../figures/NNTune_auc.pdf Graphic file (type pdf)
 
 <use ../figures/NNTune_auc.pdf>
-Package pdftex.def Info: ../figures/NNTune_auc.pdf used on input line 31.
+Package pdftex.def Info: ../figures/NNTune_auc.pdf used on input line 32.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 31--33
+Overfull \hbox (5.0pt too wide) in paragraph at lines 32--34
  [][] 
  []
 
-<../figures/NNTune_accuracy.pdf, id=267, 462.52798pt x 346.89601pt>
+<../figures/NNTune_accuracy.pdf, id=269, 462.52798pt x 346.89601pt>
 File: ../figures/NNTune_accuracy.pdf Graphic file (type pdf)
 
 <use ../figures/NNTune_accuracy.pdf>
-Package pdftex.def Info: ../figures/NNTune_accuracy.pdf used on input line 39.
+Package pdftex.def Info: ../figures/NNTune_accuracy.pdf used on input line 40.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 39--41
+Overfull \hbox (5.0pt too wide) in paragraph at lines 40--42
  [][] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 46.
+Package xcolor Warning: Incompatible color definition on input line 47.
 
 
-Package xcolor Warning: Incompatible color definition on input line 46.
+Package xcolor Warning: Incompatible color definition on input line 47.
 
 
-Overfull \hbox (4.02592pt too wide) in paragraph at lines 50--60
+Package xcolor Warning: Incompatible color definition on input line 47.
+
+
+Overfull \hbox (4.02592pt too wide) in paragraph at lines 51--61
 [][]
  []
 
 
-Underfull \vbox (badness 1769) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 63.
 
 
-
-Package xcolor Warning: Incompatible color definition on input line 62.
-
-
-Package xcolor Warning: Incompatible color definition on input line 62.
+Package xcolor Warning: Incompatible color definition on input line 63.
 
 
-Overfull \hbox (1.96396pt too wide) in paragraph at lines 71--71
+Package xcolor Warning: Incompatible color definition on input line 63.
+
+
+Overfull \hbox (1.96396pt too wide) in paragraph at lines 72--72
 []$\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 0069$| 
  []
 
 
-Overfull \hbox (4.02592pt too wide) in paragraph at lines 67--77
+Overfull \hbox (4.02592pt too wide) in paragraph at lines 68--78
 [][]
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 80.
+Package xcolor Warning: Incompatible color definition on input line 81.
 
 
-Package xcolor Warning: Incompatible color definition on input line 80.
+Package xcolor Warning: Incompatible color definition on input line 81.
 
 ) (./discussion.tex) (./conclusion.tex
 Underfull \vbox (badness 4713) has occurred while \output is active []
@@ -2481,10 +2490,10 @@ fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (9 pages, 433650 bytes).
+Output written on main.pdf (9 pages, 433680 bytes).
 PDF statistics:
- 426 PDF objects out of 1000 (max. 8388607)
- 380 compressed objects within 4 object streams
+ 430 PDF objects out of 1000 (max. 8388607)
+ 384 compressed objects within 4 object streams
  72 named destinations out of 1000 (max. 500000)
  137 words of extra memory for PDF output out of 10000 (max. 10000000)
 

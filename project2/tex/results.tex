@@ -26,6 +26,7 @@ In both Figure \ref{fig:TuneLogReg_accuracy} and \ref{fig:TuneLogReg_auc}, the m
 We see that both AUC and accuracy are highest in a band spanning form relatively high initial learning rates and relatively small batch sizes to smaller initial learning rates and larger batch sizes.    
 
 \subsubsection*{Neural network}
+Figure \ref{fig:TuneNN_accuracy} and \ref{fig:TuneLogReg_auc} shows heatmaps of the accuracy and AUC of the Neural Network. 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{NNTune_auc}
@@ -43,7 +44,7 @@ We see that both AUC and accuracy are highest in a band spanning form relatively
 \end{figure}
 
 \subsection*{Optimal Parameters and Associated Results}
-Table \ref{tab:AUC} spells out the values that gave the highest AUC in Figure \ref{fig:TuneLogReg_auc}. 
+Table \ref{tab:AUC} spells out the values that gave the highest AUC in Figure \ref{fig:TuneLogReg_auc} and \ref{fig:TuneNN_auc}. 
 \begin{table}[htbp]
 	\renewcommand{\arraystretch}{1.2}
 	\caption{Table of parameters that gave the highest \textbf{AUC} in the classification problem. Learning rate $\gamma$, minibatch size m, accuracy acc and AUC is shown for Logistic regression, Neural Network and sklearn's neural network.}
@@ -59,7 +60,7 @@ Table \ref{tab:AUC} spells out the values that gave the highest AUC in Figure \r
 	\label{tab:AUC}
 \end{table}
 
-Similarly, Table \ref{tab:AUC} shows the parameters that gave the highest accuracy in Figure \ref{fig:TuneLogReg_accuracy}.
+Similarly, Table \ref{tab:acc} shows the parameters that gave the highest accuracy in Figure \ref{fig:TuneLogReg_accuracy} and \ref{fig:TuneNN_accuracy}.
  
 \begin{table}[htbp]
 	\renewcommand{\arraystretch}{1.2}
@@ -77,7 +78,7 @@ Similarly, Table \ref{tab:AUC} shows the parameters that gave the highest accura
 \end{table}
 
 
-In Table \ref{tab:confusion}, we can see the number of true and false positives and negatives, when the parameters stated in Table \ref{tab:AUC} are used, i.e. the parametres that gave the highest AUC. 
+In Table \ref{tab:confusion}, we can see the number of true and false positives and negatives, when the parameters stated in Table \ref{tab:AUC} are used, i.e. the parameters that gave the highest AUC. 
 \begin{table}[htbp]
 	\renewcommand{\arraystretch}{1.2}
 	\caption{Fraction of true and false negatives and positives for Logistic regression, Neural network, and SciKit Learn applied on the classification problem.}
