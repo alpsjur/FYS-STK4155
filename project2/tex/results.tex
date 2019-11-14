@@ -4,7 +4,7 @@
 \subsection{Tuning Learning Rate and Minibatch Size}
 
 \subsubsection*{Logistic Regression}
-Figure \ref{fig:TuneLogReg_auc} shows a heatmap of the AUC of the Logistic Regression model used on the classification problem for different minibatch sizes and initial learning rates, where the variables are distributed logarithmically. The blank fields represents variables that gave overflow. 
+Figure \ref{fig:TuneLogReg_auc} shows a heatmap of the AUC of the Logistic Regression model used on the classification problem for different minibatch sizes and initial learning rates, where the variables are distributed logarithmically. 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{LogRegTune_auc}
@@ -20,6 +20,10 @@ Figure \ref{fig:TuneLogReg_accuracy} is similar to Figure \ref{fig:TuneLogReg_au
 	\caption{Heatmap showing the accuracy of the Logistic Regression for different values of the minibatch sizes and initial learning rates.}
 	\label{fig:TuneLogReg_accuracy}
 \end{figure}
+
+In both Figure \ref{fig:TuneLogReg_accuracy} and \ref{fig:TuneLogReg_auc}, the monochromatic field to the top right represents parameters that gave overflow. 
+
+We see that both AUC and accuracy are highest in a band spanning form relatively high initial learning rates and relatively small batch sizes to smaller initial learning rates and larger batch sizes.    
 
 \subsubsection*{Neural network}
 \begin{figure}[htbp]
@@ -39,27 +43,61 @@ Figure \ref{fig:TuneLogReg_accuracy} is similar to Figure \ref{fig:TuneLogReg_au
 \end{figure}
 
 \subsection*{Optimal Parameters and Associated Results}
-
-\subsection{Verification by Comparison to Scikit-Learn}
-
-\subsection{Neural Networks for Regression on Franke's Function}
-
-
-% Eksempel for figurer
+Table \ref{tab:AUC} spells out the values that gave the highest AUC in Figure \ref{fig:TuneLogReg_auc}. 
 \begin{table}[htbp]
-\renewcommand{\arraystretch}{1.2}
-\caption{Fraction of true and false negatives and positives for Logistic regression, Neural network, and SciKit Learn applied on the classification problem.}
+	\renewcommand{\arraystretch}{1.2}
+	\caption{Table of parameters that gave the highest \textbf{AUC} in the classification problem. Learning rate $\gamma$, minibatch size m, accuracy acc and AUC is shown for Logistic regression, Neural Network and sklearn's neural network.}
+	\begin{tabular}{p{18mm} p{10mm} p{10mm} p{10mm} p{10mm}}
+		\toprule
+		Method & $\gamma$ & m & acc & AUC \\
+		\midrule
+		Logisitc \newline regression & 0.15 & 870 & 0.817 & 0.765 \\
+		Neural \newline network & & & \\
+		sklearn & & & \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:AUC}
+\end{table}
+
+Similarly, Table \ref{tab:AUC} shows the parameters that gave the highest accuracy in Figure \ref{fig:TuneLogReg_accuracy}.
+ 
+\begin{table}[htbp]
+	\renewcommand{\arraystretch}{1.2}
+	\caption{Table of parameters that gave the highest \textbf{accuracy} in the classification problem. Learning rate $\gamma$, minibatch size m, accuracy acc and AUC is shown for Logistic regression, Neural Network and sklearn's neural network.}
+	\begin{tabular}{p{18mm} p{10mm} p{10mm} p{10mm} p{10mm}}
+		\toprule
+		Method & $\gamma$ & m & acc & AUC \\
+		\midrule
+		Logisitc \newline regression & $0.0069$ & 1645 & 0.820 &  0.758\\
+		Neural \newline network & & & \\
+		sklearn & & & \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:acc}
+\end{table}
+
+
+In Table \ref{tab:confusion}, we can see the number of true and false positives and negatives, when the parameters stated in Table \ref{tab:AUC} are used, i.e. the parametres that gave the highest AUC. 
+\begin{table}[htbp]
+	\renewcommand{\arraystretch}{1.2}
+	\caption{Fraction of true and false negatives and positives for Logistic regression, Neural network, and SciKit Learn applied on the classification problem.}
 	\begin{tabular}{p{18mm} l l l l}
 		\toprule
 		Method & \multicolumn{2}{l}{Positive} & \multicolumn{2}{l}{Negative} \\
 		\cline{2-3} \cline{4-5}
 		& True & False & True & False \\
 		\midrule
-		Logistic \newline regression & 0.67 & 0.33 & 0.84 & 0.16 \\
+		Logistic \newline regression & 432 & 210 & 3964 & 776 \\
 		Neural \newline network & TBA & TBA & TBA & TBA \\
 		\bottomrule
 	\end{tabular}
-\label{tab:confusion}
+	\label{tab:confusion}
 \end{table}
+
+
+\subsection{Verification by Comparison to Scikit-Learn}
+
+\subsection{Neural Networks for Regression on Franke's Function}
+
 
 

@@ -17,10 +17,10 @@ plt.rc('font', family='serif')
 
 df_LogReg = pd.read_csv("../data/output/LogisticRegression/logistic_acc_auc_3.csv")
 df_LogReg.rename(columns = {'learning_rate_init':'Initial learning rate', 'minibatch_size':'Mini batch size'}, inplace = True)
-print("max accuracy:")
+print("max accuracy LR:")
 print(df_LogReg.loc[df_LogReg['accuracy'].idxmax()])
 print()
-print("max AUC:")
+print("max AUC LR:")
 print(df_LogReg.loc[df_LogReg['AUC'].idxmax()])
 
 x_dim = 30
@@ -72,14 +72,14 @@ fig.colorbar(c, ax=ax)
 
 df_NN = pd.read_csv("../data/output/NeuralNetwork/neural_acc_auc_3.csv")
 df_NN.rename(columns = {'learning_rate_init':'Initial learning rate', 'minibatch_size':'Mini batch size'}, inplace = True)
-print("max accuracy:")
+print("max accuracy NN:")
 print(df_NN.loc[df_NN['accuracy'].idxmax()])
 print()
-print("max AUC:")
+print("max AUC NN:")
 print(df_NN.loc[df_NN['AUC'].idxmax()])
 
-x_dim = 20
-y_dim = 5
+x_dim = 25
+y_dim = 10
 
 data_NN = df_NN.values
 accuracy = data_NN[:,0].reshape(x_dim,y_dim)
@@ -109,7 +109,7 @@ plt.savefig("../figures/NNTune_accuracy.pdf")
 
 fig, ax = plt.subplots()
 
-c = ax.pcolormesh(mini_batch_size[0:-cut_off-1,:], learning_rate[0:-cut_off-1,:],accuracy[0:-cut_off-1,:]
+c = ax.pcolormesh(mini_batch_size[0:-cut_off-1,:], learning_rate[0:-cut_off-1,:],auc[0:-cut_off-1,:]
                   ,cmap = 'plasma'#'viridis'#'plasma'
                   #,vmin = 0.3
                   #,vmax = 0.8

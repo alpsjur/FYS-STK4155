@@ -80,8 +80,8 @@ logreg = LogisticRegression()
 logreg.train(designMatrix_train, labels_train,
         learning_schedule=learning_schedule,
         n_epochs=20,
-        minibatch_size=3000,
-        learning_rate_init=0.03
+        minibatch_size=870,
+        learning_rate_init=0.15
         )
 
 model = logreg.fit(designMatrix_test)
@@ -97,21 +97,13 @@ r2 = logreg.r2(model, labels_test)
 r2_sklearn = r2_score(labels_test, model)
 bias = logreg.bias(model, labels_test)
 variance = logreg.variance(model)
+probabilities = logreg.fit(designMatrix_test)
 predictions = logreg.predict(designMatrix_test)
 guess_rate = np.mean(predictions)
 
 #compute confusion matrix
 true_negative, false_positive, false_negative, true_positive = confusion_matrix(labels_test, predictions).ravel()
-#normalize
-'''
-n_negative = true_negative+false_negative
-true_negative /= n_negative
-false_negative /= n_negative
 
-n_positive = true_positive+false_positive
-true_positive /= n_positive
-false_positive /= n_positive
-'''
 
 print('true positive: ',true_positive)
 print('false positive: ',false_positive)
@@ -127,7 +119,7 @@ print(f"R2 (SKLEARN)       {r2_sklearn}")
 print(f"BIAS               {bias}")
 print(f"VAR                {variance}")
 print(f"GUESS RATE         {guess_rate}")
-print(f"AREA RATIO         {roc_auc_score(labels_test, predictions)}")
+print(f"AUC                {roc_auc_score(labels_test, probabilities)}")
 
 """
 # %% our code bootstrap
