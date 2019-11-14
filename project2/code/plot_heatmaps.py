@@ -70,7 +70,7 @@ fig.colorbar(c, ax=ax)
 
 
 
-df_NN = pd.read_csv("../data/output/NeuralNetwork/neural_acc_auc_3.csv")
+df_NN = pd.read_csv("../data/output/NeuralNetwork/neural_acc_auc_5.csv")
 df_NN.rename(columns = {'learning_rate_init':'Initial learning rate', 'minibatch_size':'Mini batch size'}, inplace = True)
 print("max accuracy:")
 print(df_NN.loc[df_NN['accuracy'].idxmax()])
@@ -78,8 +78,8 @@ print()
 print("max AUC:")
 print(df_NN.loc[df_NN['AUC'].idxmax()])
 
-x_dim = 20
-y_dim = 5
+x_dim = 25
+y_dim = 10
 
 data_NN = df_NN.values
 accuracy = data_NN[:,0].reshape(x_dim,y_dim)
@@ -91,8 +91,8 @@ auc = data_NN[:,3].reshape(x_dim,y_dim)
 fig, ax = plt.subplots()
 
 
-cut_off = 1
-c = ax.pcolormesh(mini_batch_size[0:-cut_off-1,:], learning_rate[0:-cut_off-1,:],accuracy[0:-cut_off-1,:]
+end = 25
+c = ax.pcolormesh(mini_batch_size[0:end,:], learning_rate[0:end,:],accuracy[0:end,:]
                 ,cmap = 'plasma'#'viridis'#'plasma'
                 #,vmin = 0.2
                 #,vmax = 0.9
@@ -109,7 +109,7 @@ plt.savefig("../figures/NNTune_accuracy.pdf")
 
 fig, ax = plt.subplots()
 
-c = ax.pcolormesh(mini_batch_size[0:-cut_off-1,:], learning_rate[0:-cut_off-1,:],accuracy[0:-cut_off-1,:]
+c = ax.pcolormesh(mini_batch_size[0:end,:], learning_rate[0:end,:],auc[0:end,:]
                   ,cmap = 'plasma'#'viridis'#'plasma'
                   #,vmin = 0.3
                   #,vmax = 0.8
