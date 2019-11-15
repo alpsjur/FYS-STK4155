@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.10.28)  15 NOV 2019 15:59
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  15 NOV 2019 15:37
+>>>>>>> e09cd775efb3e80dc0179e57cbce8669185940cd
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1028,16 +1032,32 @@ Underfull \hbox (badness 1184) in paragraph at lines 288--289
 
 Package xcolor Warning: Incompatible color definition on input line 295.
 
-)
-Underfull \hbox (badness 3590) in paragraph at lines 291--52
+
+Package xcolor Warning: Incompatible color definition on input line 295.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   \endgroup 
+l.295 ...tps://github.com/janadr/FYS-STK4155.git}}
+                                                  
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+
+Underfull \hbox (badness 3590) in paragraph at lines 291--296
 \OT1/cmr/m/n/10.95 All our al-go-rithms were im-ple-mented in
  []
 
-(./results.tex
+) (./results.tex
 
 Package xcolor Warning: Incompatible color definition on input line 7.
 
+<<<<<<< HEAD
 <../figures/LogRegTune_auc.pdf, id=199, 462.52798pt x 346.89601pt>
+=======
+<../figures/LogRegTune_auc.pdf, id=200, 462.52798pt x 346.89601pt>
+>>>>>>> e09cd775efb3e80dc0179e57cbce8669185940cd
 File: ../figures/LogRegTune_auc.pdf Graphic file (type pdf)
 <use ../figures/LogRegTune_auc.pdf>
 Package pdftex.def Info: ../figures/LogRegTune_auc.pdf  used on input line 10.
@@ -1053,7 +1073,11 @@ Package xcolor Warning: Incompatible color definition on input line 16.
 
 Package xcolor Warning: Incompatible color definition on input line 16.
 
+<<<<<<< HEAD
 <../figures/LogRegTune_accuracy.pdf, id=202, 462.52798pt x 346.89601pt>
+=======
+<../figures/LogRegTune_accuracy.pdf, id=203, 462.52798pt x 346.89601pt>
+>>>>>>> e09cd775efb3e80dc0179e57cbce8669185940cd
 File: ../figures/LogRegTune_accuracy.pdf Graphic file (type pdf)
 <use ../figures/LogRegTune_accuracy.pdf>
 Package pdftex.def Info: ../figures/LogRegTune_accuracy.pdf  used on input line 19.
@@ -1076,7 +1100,11 @@ Package xcolor Warning: Incompatible color definition on input line 29.
 
 Package xcolor Warning: Incompatible color definition on input line 29.
 
+<<<<<<< HEAD
 <../figures/NNTune_auc.pdf, id=252, 462.52798pt x 346.89601pt>
+=======
+<../figures/NNTune_auc.pdf, id=253, 462.52798pt x 346.89601pt>
+>>>>>>> e09cd775efb3e80dc0179e57cbce8669185940cd
 File: ../figures/NNTune_auc.pdf Graphic file (type pdf)
 <use ../figures/NNTune_auc.pdf>
 Package pdftex.def Info: ../figures/NNTune_auc.pdf  used on input line 32.
@@ -1086,7 +1114,11 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 32--34
  [][] 
  []
 
+<<<<<<< HEAD
 <../figures/NNTune_accuracy.pdf, id=253, 462.52798pt x 346.89601pt>
+=======
+<../figures/NNTune_accuracy.pdf, id=254, 462.52798pt x 346.89601pt>
+>>>>>>> e09cd775efb3e80dc0179e57cbce8669185940cd
 File: ../figures/NNTune_accuracy.pdf Graphic file (type pdf)
 <use ../figures/NNTune_accuracy.pdf>
 Package pdftex.def Info: ../figures/NNTune_accuracy.pdf  used on input line 40.
@@ -1138,10 +1170,19 @@ Package xcolor Warning: Incompatible color definition on input line 81.
 
 Package xcolor Warning: Incompatible color definition on input line 100.
 
+<<<<<<< HEAD
 <../figures/NNTune_franke_mse.pdf, id=263, 462.52798pt x 346.89601pt>
+=======
+<../figures/NNTune_franke_mse.pdf, id=264, 462.52798pt x 346.89601pt>
+>>>>>>> e09cd775efb3e80dc0179e57cbce8669185940cd
 File: ../figures/NNTune_franke_mse.pdf Graphic file (type pdf)
 <use ../figures/NNTune_franke_mse.pdf>
+<<<<<<< HEAD
 Package pdftex.def Info: ../figures/NNTune_franke_mse.pdf  used on input line 105.
+=======
+Package pdftex.def Info: ../figures/NNTune_franke_mse.pdf used on input line 10
+5.
+>>>>>>> e09cd775efb3e80dc0179e57cbce8669185940cd
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
 Overfull \hbox (5.0pt too wide) in paragraph at lines 105--106
@@ -1153,6 +1194,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 105--106
 pdfTeX warning: pdflatex (file ../figures/NNTune_auc.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 > <../figures/NNTune_accuracy.pdf
 
+<<<<<<< HEAD
 pdfTeX warning: pdflatex (file ../figures/NNTune_accuracy.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >] (./discussion.tex) (./conclusion.tex [9 <../figures/NNTune_franke_mse.pdf>]
 
@@ -1163,6 +1205,16 @@ Package xcolor Warning: Incompatible color definition on input line 15.
 
 
 Underfull \vbox (badness 6708) has occurred while \output is active []
+=======
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/NNTune_accuracy.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+>] (./discussion.tex) (./conclusion.tex [9 <../figures/NNTune_franke_mse.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 16.
+
+
+Package xcolor Warning: Incompatible color definition on input line 16.
+>>>>>>> e09cd775efb3e80dc0179e57cbce8669185940cd
 
 ) (./main.bbl
 
@@ -1188,6 +1240,7 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 66.
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  31402 strings out of 492609
  599309 string characters out of 6131461
  656242 words of memory out of 5000000
@@ -1201,6 +1254,41 @@ Output written on main.pdf (10 pages, 447363 bytes).
 PDF statistics:
  471 PDF objects out of 1000 (max. 8388607)
  421 compressed objects within 5 object streams
+=======
+ 27796 strings out of 493029
+ 530181 string characters out of 6136234
+ 575340 words of memory out of 5000000
+ 30837 multiletter control sequences out of 15000+600000
+ 17802 words of font info for 66 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 55i,19n,70p,10407b,983s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (10 pages, 446255 bytes).
+PDF statistics:
+ 472 PDF objects out of 1000 (max. 8388607)
+ 422 compressed objects within 5 object streams
+>>>>>>> e09cd775efb3e80dc0179e57cbce8669185940cd
  76 named destinations out of 1000 (max. 500000)
  142 words of extra memory for PDF output out of 10000 (max. 10000000)
 
