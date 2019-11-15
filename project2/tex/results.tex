@@ -25,20 +25,20 @@ In both Figure \ref{fig:TuneLogReg_accuracy} and \ref{fig:TuneLogReg_auc}, the b
 We see that both AUC and accuracy are highest in a band spanning form relatively high initial learning rates and relatively small batch sizes to smaller initial learning rates and larger batch sizes.
 
 \subsubsection*{Neural network}
-Figure \ref{fig:TuneNN_accuracy} and \ref{fig:TuneLogReg_auc} shows heatmaps of the accuracy and AUC of the Neural Network. As before, blanc fields represent values that gave overflow. 
+Figure \ref{fig:TuneNN_accuracy} and \ref{fig:TuneLogReg_auc} shows heatmaps of the accuracy and AUC of the Neural Network. As before, blanc fields represent values that gave overflow.
 
-For both accuracy and AUC, large minibatch sizes combined with small learning rates gave lower scores. In the heatmap of AUC, the combination of relatively high learning rates and low minibatch sizes gave lower AUC values. 
+For both accuracy and AUC, large minibatch sizes combined with small learning rates gave lower scores. In the heatmap of AUC, the combination of relatively high learning rates and low minibatch sizes gave lower AUC values.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{NNTune_auc}
-	\caption{Heatmap showing the AUC of the Neural Network applied on the classification problem for minibatch sizes $m\in[1, 1000]$ and learning rates $\gamma\in[10^{-2.5}, 10^{0.3}]$ in logarithmic scale. AUC increases from blue to yellow.}
+	\caption{Heatmap showing the AUC of the Neural Network applied on the classification problem for minibatch sizes $m\in[1, 1000]$ and learning rates $\gamma\in[10^{-2.5}, 10^{0.3}]$ in logarithmic scale. The hidden layers were configured as $[20, 20]$. AUC increases from blue to yellow.}
 	\label{fig:TuneNN_auc}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{NNTune_accuracy}
-	\caption{Heatmap showing the accuracy of the Neural Network applied on the classification problem for minibatch sizes $m\in[1, 1000]$ and learning rates $\gamma\in[10^{-2.5}, 10^{0.3}]$ in logarithmic scale. Accuracy increases from blue to yellow.}
+	\caption{Heatmap showing the accuracy of the Neural Network applied on the classification problem for minibatch sizes $m\in[1, 1000]$ and learning rates $\gamma\in[10^{-2.5}, 10^{0.3}]$ in logarithmic scale. The hidden layers were configured as $[20, 20]$. Accuracy increases from blue to yellow.}
 	\label{fig:TuneNN_accuracy}
 \end{figure}
 
@@ -102,6 +102,6 @@ Additionally, for approximate ranges $m\in[10^2, 10^3]$ and $\gamma\in[10^{-4}, 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{NNTune_franke_mse}
-	\caption{Heatmap showing the MSE of the Neural Network applied on Franke's function for minibatch sizes $m\in[1, 1000]$ and learning rates $\gamma\in[10^{-4}, 1]$ in logarithmic scale. MSE decreases from blue to yellow.}
+	\caption{Heatmap showing the MSE of the Neural Network applied on Franke's function for minibatch sizes $m\in[1, 1000]$ and learning rates $\gamma\in[10^{-4}, 1]$ in logarithmic scale. The hidden layers were configured as $[100, 20]$. MSE decreases from blue to yellow.}
 	\label{fig:TuneNN_mse}
 \end{figure}
