@@ -10,13 +10,13 @@ In addition to the default of credit card clients data set, data produced with F
 \subsection{Logistic Regression}
 Classification problems aim to predict the behaviour of a given object, and produces outcomes in form of discrete variables (i.e. categories). Logistic Regression can be used to solve such problems, commonly by the use of binary outcomes such as true/false, positive/negative, success/failure etc., or in the specific credit card case: \textit{risky/non-risky} \cite{LogRegLectures}. 
 
-As opposed to Linear Regression, the equation one gets as a result of minimizing the cost function by $\hat{\beta}$ using Logistic Regression, is non-linear, and can not be solved explicitly. Instead it can be solved using minimization algorithms, for example by \emph{gradient descent methods}. \\
+As opposed to Linear Regression, the equation one gets as a result of minimizing the cost function by $\boldsymbol{\beta}$ using Logistic Regression, is non-linear, and can not be solved explicitly. Instead it can be solved using minimization algorithms, for example by \emph{gradient descent methods}. \\
 
-When predicting the output classes in which an object belongs, the prediction is based on the design matrix $\mathbf{\hat{X}} \in \mathbb{R}^{n\cross p}$ that contain $n$ samples that each carry $p$ features.
+When predicting the output classes in which an object belongs, the prediction is based on the design matrix $\mathbf{{X}} \in \mathbb{R}^{n\cross p}$ that contains $n$ samples that each carry $p$ features.
 
 A distinction is made between \textit{hard classification} -  determines the variable to a category deterministically, and \textit{soft classification} - determines the probability that a given variable belongs in a certain category. The latter is favourable in many cases, and logistic regression is the most used example of this type of classifier.
 
-When using Logistic Regression, the probability that a given data point $x_i$ belongs in a category $y_i$ is given by the Sigmoid-function (or logistic function):
+When using Logistic Regression, the probability that a given data point $\boldsymbol{x_i}=[x_{i1},x_{i2},\ldots,x_{ip}]$ belongs in a category $y_i$ is given by the Sigmoid-function (or logistic function):
 \begin{equation}
 \begin{split}
     & p(t) = \frac{1}{1 + e^{-t}} = \frac{e^t}{1+e^t} \\
@@ -25,26 +25,26 @@ When using Logistic Regression, the probability that a given data point $x_i$ be
   \label{eq:sigmoid}
 \end{equation}
 
-Assuming a binary classification problem, i.e. $y_i$ can be either 0 or 1, and a set of predictors $\hat{\beta}$ the Sigmoid function \eqref{eq:sigmoid} gives the probabilities with relation:
+Assuming a binary classification problem, i.e. $y_i$ can be either 0 or 1, and a set of predictors $\boldsymbol{\beta}$ the Sigmoid function \eqref{eq:sigmoid} gives the probabilities with relation:
 \begin{equation*}
-  p(y_i = 0|x_i,\hat{\beta})  = 1 - p(y_i = 1|x_i,\hat{\beta})
+  p(y_i = 0|\boldsymbol{x_i},\boldsymbol{\beta})  = 1 - p(y_i = 1|\boldsymbol{x_i},\boldsymbol{\beta})
   \label{eq:prob_relation}
 \end{equation*}
 
 The total likelihood for all possible outcomes $\mathcal{D}=\{(y_i,x_i)\}$ is used in the Maximum Likelihood Estimation (MLE), aiming at maximizing the log/likelihood function \eqref{eq:log_p}. The likelihood function can be expressed with $\mathcal{D}$:
 \begin{equation*}
 \begin{split}
-    &\qquad P(\mathcal{D}|\hat{\beta}) = \\
-    &\prod_{i=1}^n \qty[p(y_i = 1|x_i,\hat{\beta}) ]^{y_i}  \qty[1 - p(y_i = 0|x_i,\hat{\beta})]^{1-y_i}
+    &\qquad P(\mathcal{D}|\boldsymbol{\beta}) = \\
+    &\prod_{i=1}^n \qty[p(y_i = 1|\boldsymbol{x_i},\boldsymbol{\beta}) ]^{y_i}  \qty[1 - p(y_i = 0|\boldsymbol{x_i},\boldsymbol{\beta})]^{1-y_i}
 \end{split}
 \end{equation*}
 
 And the log/likelihood function is then:
 \begin{equation}
 \begin{split}
-    &P_{\log}(\hat{\beta}) = \\
-    &\sum_{i=1}^n \Big(y_i \log \qty[p(y_i = 1|x_i,\hat{\beta})] \\
-    &\quad+ (1-y_i) \log [1 - p(y_i = 0|x_i,\hat{\beta})]\Big)
+    &P_{\log}(\boldsymbol{\beta}) = \\
+    &\sum_{i=1}^n \Big(y_i \log \qty[p(y_i = 1|\boldsymbol{x_i},\boldsymbol{\beta})] \\
+    &\quad+ (1-y_i) \log [1 - p(y_i = 0|\boldsymbol{x_i},\boldsymbol{\beta})]\Big)
 \end{split}
 \label{eq:log_p}
 \end{equation}
@@ -52,30 +52,30 @@ And the log/likelihood function is then:
 The cost/error-function $\mathcal{C}$ (also called cross-entropy in statistics) is the negative of the log/likelihood. Maximizing $P_{\log}$ is thus the same as minimizing the cost function. The cost function is:
 \begin{equation}
   \begin{split}
-    &\mathcal{C}(\hat{\beta}) = - P_{\log}(\hat{\beta}) =  \\
-    -&\sum_{i=1}^n \Big(y_i \log \qty[p(y_i = 1|x_i,\hat{\beta})] \\
-    &\quad+ (1-y_i) \log [1 - p(y_i = 0|x_i,\hat{\beta})]\Big)
+    &\mathcal{C}(\boldsymbol{\beta}) = - P_{\log}(\boldsymbol{\beta}) =  \\
+    -&\sum_{i=1}^n \Big(y_i \log \qty[p(y_i = 1|\boldsymbol{x_i},\boldsymbol{\beta})] \\
+    &\quad+ (1-y_i) \log [1 - p(y_i = 0|\boldsymbol{x_i},\boldsymbol{\beta})]\Big)
   \end{split}
   \label{eq:cost_function}
 \end{equation}
 
-Finding the parameters $\hat{\beta}$ that minimize the cost function is then done through differentiation.
-Defining the vector $\hat{y}$ containing $n$ elements $y_i$, the $n \cross p$ matrix $\hat{X}$ containing the $x_i$ elements, and the vector $\hat{p}$ that is the fitted probabilities $p(y_i|x_i,\hat{\beta})$, the first derivative of $\mathcal{C}$ is
+Finding the parameters $\boldsymbol{\beta}$ that minimize the cost function is then done through differentiation.
+Defining the vector $\boldsymbol{y}$ containing $n$ elements $y_i$, the $n \cross p$ matrix $\boldsymbol{X}$ containing the $\boldsymbol{x_i}$ elements as rows, and the vector $\boldsymbol{p}$ that is the fitted probabilities $p(y_i|\boldsymbol{x_i},\boldsymbol{\beta})$, the first derivative of $\mathcal{C}$ is
 \begin{equation}
-  \nabla_\beta \mathcal{C} = \pdv{\mathcal{C}(\hat{\beta})}{\hat{\beta}} = - \hat{X}^T (\hat{y}-\hat{p})
+  \nabla_\beta \mathcal{C} = \pdv{\mathcal{C}(\boldsymbol{\beta})}{\boldsymbol{\beta}} = - \boldsymbol{X}^T (\boldsymbol{y}-\boldsymbol{p})
   \label{eq:cost_d}
 \end{equation}
-This gives rise to a set of linear equations, where the aim is to solve the system for $\hat{\beta}$.
+This gives rise to a set of linear equations, where the aim is to solve the system for $\boldsymbol{\beta}$.
 
-With $\hat{x} = [1, x_1,x_2,...,x_p]$ and $p$ predictors $\hat{\beta} = [\beta_0,\beta_1,\beta_2,...,\beta_p]$ the ration between likelihoods of outcome is:
+With $\boldsymbol{x} = [1, x_1,x_2,...,x_p]$ and $p$ predictors $\boldsymbol{\beta} = [\beta_0,\beta_1,\beta_2,...,\beta_p]$ the ration between likelihoods of outcome is:
 \begin{equation}
-  \log \frac{p(\hat{\beta}\hat{x})}{1-p(\hat{\beta}\hat{x})} = \beta_0 + \beta_1x_1 + ... + \beta_px_p
+  \log \frac{p(\boldsymbol{\beta}\boldsymbol{x})}{1-p(\boldsymbol{\beta}\boldsymbol{x})} = \beta_0 + \beta_1x_1 + ... + \beta_px_p
   \label{eq:prob_ratio}
 \end{equation}
 
-\noindent and $p(\hat{\beta}\hat{x})$ defined by:
+\noindent and $p(\boldsymbol{\beta}\boldsymbol{x})$ is defined by:
 \begin{equation}
-  p(\hat{\beta}\hat{x}) = \frac{e^{\beta_0 + \beta_1x_1 + ... + \beta_px_p}}{1+e^{\beta_0 + \beta_1x_1 + ... + \beta_px_p}}
+  p(\boldsymbol{\beta}\boldsymbol{x}) = \frac{e^{\beta_0 + \beta_1x_1 + ... + \beta_px_p}}{1+e^{\beta_0 + \beta_1x_1 + ... + \beta_px_p}}
   \label{eq:pBx}
 \end{equation}
 
@@ -93,17 +93,17 @@ When a minimum is approached, $\nabla_\beta \mathcal{C}(\beta) \rightarrow$ 0, a
 \subsubsection*{Stochastic Gradient Descent}
 In this project we use a stochastic version of gradient descent, which is an improvement upon the regular gradient descent. This is done by expressing the cost function (and thus also its gradient) as a sum
 \begin{equation}
-    \nabla_\beta \mathcal{C}(\beta) = \sum_i^n     \nabla_\beta c_i(\boldsymbol{x_i},\beta) ,
+    \nabla_\beta \mathcal{C}(\beta) = \sum_{i=1}^n     \nabla_\beta C_i(\boldsymbol{x_i},\beta) ,
     \label{eq:gradient_sum}
 \end{equation}
-and by only calculating the gradient of a subset of the data at the time. These subsets, called \textit{minibatches} are of size $m$ , and the total amount is $\frac{n}{m}$ where $n$ is the amount of data points. The minibatches are denoted $\boldsymbol{B}_k$, with k = 1,2,...,$\frac{n}{m}$.
+and by only calculating the gradient $\nabla_{\beta} C_i$ of a subset of the data at the time. These subsets, called \textit{minibatches} are of size $m$ , and the total amount is $\frac{n}{m}$ where $n$ is the amount of data points. The minibatches are denoted $\boldsymbol{B}_k$, with k = 1,2,...,$\frac{n}{m}$.
 
 Instead of a sum over all the the data points $i \in [1,n]$ we now sum over all the data points in the given minibatch $i \in \boldsymbol{B}_k$ where $k$ is picked randomly with uniform probability from $[1, \frac{n}{m}]$.
 
 The stochastic and final version of \eqref{eq:gradient_decent} is therefore given by the algorithm
 
 \begin{equation}
-    \beta_{j+1} = \beta_j - \gamma_j \sum_{i \in \boldsymbol{B}_k}\nabla_\beta c_i(\boldsymbol{x_i},\beta)
+    \beta_{j+1} = \beta_j - \gamma_j \sum_{i \in \boldsymbol{B}_k}\nabla_\beta C_i(\boldsymbol{x_i},\beta)
     \label{eq:stochstic_gradient_descent}
 \end{equation}
 An iteration over the total number of minibatches is commonly referred to as an \textit{epoch.}\\
