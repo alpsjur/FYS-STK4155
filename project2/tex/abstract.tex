@@ -1,13 +1,14 @@
 \begin{abstract}
 
-We use a Neural Network (NN) and Logistic Regression (LR) to classify the 2005 Taiwan credit card data.
+We use a neural network (NN) and logistic regression (LR) to classify the 2005 Taiwan credit card data.
 There are two categories: non-default and default. A comparison is made between
-the two methods, and we find that the NN yields the highest accuracy score (HER) compared with (HER)
+the two methods, and we find that the NN yields the highest accuracy score 0.823 compared with 0.820
 from the LR algorithm.
-Area ratio was also used as a performance measure, the NN producing the highest score of (HER).
+AUC score was also used as a performance measure, the NN producing the highest score of 0.782, compared with 0.765 from logistic regression. The highest accuracy and AUC were found from different hyperparameters respectively. We also produced a confusion matrix, although in this case it was difficult to differentiate between the two methods.
 In terms of efficiency, the LR algorithm converges quite rapidly compared to the NN, and is overall
 more stable, possibly due to an implementation of dynamic learning rate.
 Furthermore, we use the NN to fit the Franke function (with noise), and compare this to linear
-regression algorithms used in our earlier paper. Our findings suggest that
+regression algorithms used in our earlier paper. Our findings suggest that the neural
+network achieved the lowest MSE of $0.011$, and a R2-score of $0.89$.
 
 \end{abstract}
