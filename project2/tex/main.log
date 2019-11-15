@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  15 NOV 2019 18:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  15 NOV 2019 18:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2535,10 +2535,32 @@ Package xcolor Warning: Incompatible color definition on input line 12.
 
 Package xcolor Warning: Incompatible color definition on input line 12.
 
-[10 <../figures/NNTune_franke_mse.pdf>]) (./conclusion.tex
+[10 <../figures/NNTune_franke_mse.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 15.
+
+
+Package xcolor Warning: Incompatible color definition on input line 15.
+
+
+Package xcolor Warning: Incompatible color definition on input line 15.
+
+
+Package xcolor Warning: Incompatible color definition on input line 19.
+
+
+Package xcolor Warning: Incompatible color definition on input line 19.
+
+
+Package xcolor Warning: Incompatible color definition on input line 19.
+
+
+Package xcolor Warning: Incompatible color definition on input line 19.
+
+) (./conclusion.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
+ [11]
 
 Package xcolor Warning: Incompatible color definition on input line 15.
 
@@ -2549,7 +2571,6 @@ Package xcolor Warning: Incompatible color definition on input line 15.
 
 Package xcolor Warning: Incompatible color definition on input line 12.
 
-[11]
 
 Package xcolor Warning: Incompatible color definition on input line 19.
 
@@ -2569,13 +2590,13 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 66.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 66.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 66.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: EED939702BBA7789C465075011D469E7;1042.
+(rerunfilecheck)             Checksum: 384D0216471B65BEEA95617E849419EF;1067.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 66.
  ) 
 Here is how much of TeX's memory you used:
  27811 strings out of 493029
  530374 string characters out of 6136234
- 577015 words of memory out of 5000000
+ 578166 words of memory out of 5000000
  30846 multiletter control sequences out of 15000+600000
  19023 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2603,10 +2624,10 @@ ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/symbols/msbm10.pfb>
-Output written on main.pdf (12 pages, 465463 bytes).
+Output written on main.pdf (12 pages, 466730 bytes).
 PDF statistics:
- 512 PDF objects out of 1000 (max. 8388607)
- 459 compressed objects within 5 object streams
+ 519 PDF objects out of 1000 (max. 8388607)
+ 464 compressed objects within 5 object streams
  81 named destinations out of 1000 (max. 500000)
  166 words of extra memory for PDF output out of 10000 (max. 10000000)
 
