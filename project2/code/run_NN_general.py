@@ -22,6 +22,7 @@ sns.set()
 sns.set_style("whitegrid")
 sns.set_palette("husl")
 
+
 class ReLU:
     def __init__(self):
         return
@@ -44,18 +45,15 @@ class ReLU:
         else:
             return 1
 
+
 class Sigmoid:
     def __init__(self):
         return
 
-    @staticmethod
-    @vectorize
-    def __call__(z):
+    def __call__(self, z):
         return np.exp(z)/(1+np.exp(z))
 
-    @staticmethod
-    @vectorize
-    def derivative(z):
+    def derivative(self, z):
         return np.exp(z)/(1 + np.exp(z))**2
 
 #testing NN on Franke's Function
@@ -100,7 +98,7 @@ batch_size = 20
 learning_rate = 0.1
 regularisation = 0.0001
 
-network = NeuralNetwork(layers, ReLU)
+network = NeuralNetwork(layers, Sigmoid())
 
 network.train(X_train, z_train, learning_rate, n_epochs, batch_size, \
               X_test, z_test, test='mse', regularisation=regularisation)

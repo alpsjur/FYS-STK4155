@@ -24,11 +24,10 @@ class NeuralNetwork:
             input = array with inputs to the first layer of the network
             returns array with resulting output from the last layer
         """
-        activation_function = self.activation_function
         input = input.transpose()
         for layer in range(self.n_layers-1):
             z = np.matmul(self.weights[layer],input) + self.biases[layer]
-            input = activation_function(z)
+            input = self.activation_function(z)
         return input[0]
 
     def backpropagation(self, input, labels):
@@ -44,12 +43,11 @@ class NeuralNetwork:
         activation = input.transpose()
         activations = [activation]
         zs = []
-        activation_function = self.activation_function
         #calculating and storing activations for each layer
         for layer in range(self.n_layers-1):
             z = np.matmul(self.weights[layer],activation) + self.biases[layer]
             zs.append(z)
-            activation = activation_function(z)
+            activation = self.activation_function(z)
             activations.append(activation)
         #calculating gradient for the last layer
         delta = self.cost_derivative(activation[-1], labels)[np.newaxis]
@@ -58,7 +56,7 @@ class NeuralNetwork:
         #itterating over rest of layers, from last to first
         for layer in range(2, self.n_layers):
             z = zs[-layer]
-            delta = np.matmul(self.weights[-layer+1].transpose(), delta)*activation_function.derivative(z)
+            delta = np.matmul(self.weights[-layer+1].transpose(), delta)*self.activation_function.derivative(z)
             biases_gradient[-layer] = np.sum(delta, axis=1)[np.newaxis].transpose()
             weights_gradient[-layer] = np.matmul(delta,activations[-layer-1].transpose())
         return biases_gradient, weights_gradient
