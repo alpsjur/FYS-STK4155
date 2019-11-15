@@ -12,4 +12,8 @@ accuracy of HER. As for the ROC AUC score, the neural network also performed bet
 with a score of HER. In general, the LR algorithm seemed to converge faster compared to
 the neural network, although no formal analysis was made.
 
-As for regression, we found that the MSE
+As for regression, we found that the neural network achieved a lower MSE of $0.011$ compared
+with values obtained from linear, ridge, and lasso regression \citep{prosjekt1}.
+R2-scores could not be compared between methods, but we found that the same hyperparameters
+yielding the lowest MSE also yielded highest R2 of $0.89$, and so this indicated that MSE is a
+good measure. The neural network therefore produced the best model.

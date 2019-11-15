@@ -93,13 +93,10 @@ In Table \ref{tab:confusion}, we can see the number of true and false positives 
 	\label{tab:confusion}
 \end{table}
 
-
-\subsection{Verification by Comparison to Scikit-Learn}
-
 \subsection{Neural Networks for Regression on Franke's Function}
 Looking at Figure \ref{fig:TuneNN_mse}, we show a heatmap for MSE as a function of
 minibatch size and learning rate. We observe a zone of low MSE for m=1 and $\gamma\approx 10^{-2}$.
-Additionally, for approximate ranges $m\in[10^2, 10^3]$ and $\gamma\in[10^{-4}, 10^{-2}]$, in the lower right corner, we observe a zone where the MSE is an order of magnitude higher or more.
+Additionally, for approximate ranges $m\in[10^2, 10^3]$ and $\gamma\in[10^{-4}, 10^{-2}]$, in the lower right corner, we observe a zone where the MSE is an order of magnitude higher or more. The lowest MSE obtained was $0.011$, while the highest R2 score was $0.89$.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{NNTune_franke_mse}
