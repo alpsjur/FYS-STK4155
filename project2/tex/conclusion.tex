@@ -7,13 +7,14 @@ and for regression we fitted the Franke function. In both cases, the neural netw
 was compared to other methods: logistic and linear regression, respectively.
 To compare methods we used the accuracy and ROC AUC score functions for classification,
 and R2 and MSE for regression. For classification, we found that the neural network gave
-the highest accuracy of HER, slightly higher than logistic regression, which had a
-accuracy of HER. As for the ROC AUC score, the neural network also performed better
-with a score of HER. In general, the LR algorithm seemed to converge faster compared to
-the neural network, although no formal analysis was made.
+the highest accuracy of 0.823, slightly higher than logistic regression, which had a
+accuracy of 0.820. As for the ROC AUC score, the neural network also performed better
+with a score of 0.782 compared with 0.765 from the LR algorithm. Comparing confusion matrices, it was difficult to discern significant differences between the algorithms. This might have been because of the chosen thresholds for classification in each method. Representing a hyperparameter on its own, tuning of the treshold could achieve higher accuracy. The AUC score takes this into account however, and so we deemed it the most reliable performance measure. In general, the LR algorithm seemed to converge faster compared to the neural network, although no formal analysis was made.
 
 As for regression, we found that the neural network achieved a lower MSE of $0.011$ compared
 with values obtained from linear, ridge, and lasso regression \citep{prosjekt1}.
 R2-scores could not be compared between methods, but we found that the same hyperparameters
 yielding the lowest MSE also yielded highest R2 of $0.89$, and so this indicated that MSE is a
 good measure. The neural network therefore produced the best model.
+
+For classification and regression, it seems neural networks perform just as good, if not better compared with logistic and linear regression methods.
