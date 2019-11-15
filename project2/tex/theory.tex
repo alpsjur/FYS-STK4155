@@ -10,11 +10,11 @@ In addition to the default of credit card clients data set, data produced with F
 \subsection{Logistic Regression}
 Classification problems aim to predict the behaviour of a given object, and look for patterns based on discrete variables (i.e categories). Logistic Regression can be used to solve such problems, commonly by the use of variables with binary outcomes such as true/false, positive/negative, success/failure etc., or in the specific credit card case: \textit{risky/non-risky} \cite{LogRegLectures}
 
-As opposed to Linear Regression, the equation one gets as a result of minimization of of the cost function by $\hat{\beta}$ using Logistic Regression, is non-linear, and is solved using minimization algorithms called \emph{gradient descent methods}. \\
+As opposed to Linear Regression, the equation one gets as a result of minimization of the cost function by $\hat{\beta}$ using Logistic Regression, is non-linear, and is solved using minimization algorithms called \emph{gradient descent methods}. \\
 
-When predicting the the output classes in which an object belongs, the prediction is based on the design matrix $\mathbf{\hat{X}} \in \mathbb{R}^{n\cross p}$ that contain $n$ samples that each carry $p$ features.
+When predicting the output classes in which an object belongs, the prediction is based on the design matrix $\mathbf{\hat{X}} \in \mathbb{R}^{n\cross p}$ that contain $n$ samples that each carry $p$ features.
 
-A distinction is made between \textit{hard classification} - deterministically determine the variable to a category, and \textit{soft classification} - determines the probability that a given variable belongs in a certain category. The latter is favourable in many cases, and logistic regression is the most used example og this type of classifier.
+A distinction is made between \textit{hard classification} -  determines the variable to a category deterministically, and \textit{soft classification} - determines the probability that a given variable belongs in a certain category. The latter is favourable in many cases, and logistic regression is the most used example of this type of classifier.
 
 When using Logistic Regression, the probability that a given data point $x_i$ belongs in a category $y_i$ is given by the Sigmoid-function (or logistic function):
 \begin{equation}
@@ -81,7 +81,7 @@ With $\hat{x} = [1, x_1,x_2,...,x_p]$ and $p$ predictors $\hat{\beta} = [\beta_0
 
 \subsection{Gradient Descent Methods}
 \subsubsection*{The General Idea}
-With the gradient of $\mathcal{C}$ defined as in \eqref{eq:cost_d}, we use this to find the minimum of the cost function. The basic idea is that by moving in the direction of the negative gradient of a function, we can move towards the value (in this case the $\beta$) that minimizes the function (in this case $\mathcal{C}(\beta)$). \cite{GDLectures}
+With the gradient of $\mathcal{C}$ defined as in \eqref{eq:cost_d}, we used this to find the minimum of the cost function. The basic idea is that by moving in the direction of the negative gradient of a function, we can move towards the value (in this case the $\beta$) that minimizes the function (in this case $\mathcal{C}(\beta)$). \cite{GDLectures}
 
 This is done by repeating the algorithm
 \begin{equation}
@@ -91,14 +91,14 @@ This is done by repeating the algorithm
 When a minimum is approached, $\nabla_\beta \mathcal{C}(\beta) \rightarrow$ 0, and thus we can set a limit when $\beta_{k+1} \approx \beta_k$ given a certain tolerance, and the $\beta$ which minimizes the cost function is found. $\gamma$ is in this case called the \textit{learning rate}, and is a parameter that must be tuned to each specific case in order to optimize the regression.
 
 \subsubsection*{Stochastic Gradient Descent}
-In this project we use a stochastic version of gradient descent, which is an improvement upon the regular gradient descent. This is done by expression the cost function (and thus also its gradient) as a sum
+In this project we use a stochastic version of gradient descent, which is an improvement upon the regular gradient descent. This is done by expressing the cost function (and thus also its gradient) as a sum
 \begin{equation}
     \nabla_\beta \mathcal{C}(\beta) = \sum_i^n     \nabla_\beta c_i(\boldsymbol{x_i},\beta) ,
     \label{eq:gradient_sum}
 \end{equation}
-and by only taking calculating the gradient of a subset of the data at the time. These subsets, called \textit{minibatches} are of size $\boldsymbol{M}$ , and the total amount is $\frac{n}{\boldsymbol{M}}$ where $n$ is the amount of data points. The minibatches are denoted $\boldsymbol{B}_k$, with k = 1,2,...,$\frac{n}{\boldsymbol{M}}$.
+and by only calculating the gradient of a subset of the data at the time. These subsets, called \textit{minibatches} are of size $\boldsymbol{M}$ , and the total amount is $\frac{n}{\boldsymbol{M}}$ where $n$ is the amount of data points. The minibatches are denoted $\boldsymbol{B}_k$, with k = 1,2,...,$\frac{n}{\boldsymbol{M}}$.
 
-Instead of a sum over all the the data points $i \in [1,n]$ we now in each step, sum over all the data points in the given minibatch $i \in \boldsymbol{B}_k$ where $k$ is picked randomly with uniform probability from $[1, \frac{n}{\boldsymbol{M}}]$.
+Instead of a sum over all the the data points $i \in [1,n]$ we now sum over all the data points in the given minibatch $i \in \boldsymbol{B}_k$ where $k$ is picked randomly with uniform probability from $[1, \frac{n}{\boldsymbol{M}}]$.
 
 The stochastic and final version of \eqref{eq:gradient_decent} is therefore given by the algorithm
 
@@ -108,7 +108,7 @@ The stochastic and final version of \eqref{eq:gradient_decent} is therefore give
 \end{equation}
 An iteration over the total number of minibatches is commonly referred to as an \textit{epoch.}\\
 
-By using the stochastic gradient descent method \eqref{eq:stochstic_gradient_descent} to minimize the cost function \eqref{eq:cost_function} we can this find the $\beta$ values that give the most accurate classification, by doing \textit{logistic regression}.
+By using the stochastic gradient descent method \eqref{eq:stochstic_gradient_descent} to minimize the cost function \eqref{eq:cost_function} we can find the $\beta$ values that give the most accurate classification, by doing \textit{logistic regression}.
 
 \subsubsection*{Dynamic learning rate}
 Convergence rate might be slow, and a possible solution to this is changing learning rate as
