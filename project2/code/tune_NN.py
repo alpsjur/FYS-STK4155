@@ -75,17 +75,17 @@ seed = 42
 input_neurons = designMatrix_prepared.shape[1]
 layers = [input_neurons, 20, 20, 1]
 
-network = NeuralNetwork(layers, Sigmoid)
+network = NeuralNetwork(layers, Sigmoid())
 
-rate_range = np.logspace(-3, -0.5, 25, dtype=float)
-batch_range = np.logspace(0, 3 ,10, dtype=int)
+rate_range = np.logspace(-2.5, 0.3, 25, dtype=float)
+batch_range = np.logspace(0, 3, 10, dtype=int)
 
 
 # run tune hyperparameter funcition
 df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, network, seed,
                                   rate_range,
                                   batch_range,
-                                  n_epochs=5,
+                                  n_epochs=10,
                                   test=None
                                   )
 
@@ -94,6 +94,6 @@ df_tuned = pf.tune_hyperparameter(designMatrix_prepared, labels, network, seed,
 # store results
 datadir = "../data/output/NeuralNetwork/"
 pf.create_directories(datadir)
-filename = "neural_acc_auc_run.csv"
+filename = "neural_acc_auc_1.csv"
 df_tuned.to_csv(datadir + filename)
 print(df_tuned.head())
