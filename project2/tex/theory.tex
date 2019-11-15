@@ -281,6 +281,13 @@ To measure how good the different methods were at classifying the credit card da
 \begin{equation}\label{eq:acc}
   \text{Accuracy} = \frac{\text{Correct classifications}}{\text{Total \# of classifications}}
 \end{equation}
-For calculations of AUC, \texttt{sklearn.metrics.roc\_auc\_score} was used. AUC can be interpreted as the probability that a random true positive sample is ranked higher than a random true negative. This score is not dependent on the chosen classification threshold, i.e. the value that must be exceed to classify an input as one instead of zero.    
+For calculations of AUC, \texttt{sklearn.metrics.roc\_auc\_score} was used. AUC can be interpreted as the probability that a random true positive sample is ranked higher than a random true negative. This score is not dependent on the chosen classification threshold, i.e. the value that must be exceed to classify an input as one instead of zero.
 
 For data generated with Franke's function, the same test-train-split was made, and the mean squared error was calculated, as in \cite{prosjekt1}.
+
+\subsection{Implementation}
+All our algorithms were implemented in python3.6 using the numpy, matplotlib, pandas, seaborn,
+and scikit-learn packages. We wrote our own class "Regression" for linear and logistic
+regression, as well as class "Network" for neural network. In the way our neural network was implemented, we could use the same code for classification and regression by simply replacing activation functions, while at the same time ensuring that the appropriate cost function was used.
+Scikit-learn was used to verify our implementation by comparing accuracy and AUC scores.
+Code along with data and figures can be found on our github repository under "Project 2".\footnote{https://github.com/janadr/FYS-STK4155.git}

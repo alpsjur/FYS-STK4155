@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  15 NOV 2019 10:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.10.28)  15 NOV 2019 12:45
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **main.tex
 (./main.tex
-LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+LaTeX2e <2018-12-01>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
@@ -59,13 +59,6 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 ) (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
-********************************************************
-Package `algorithm2e' Release 5.1 -- october 19 2015 --
-- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
-- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
-subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
-- Author: Christophe Fiorio (christophe.fiorio@umontpellier.fr)
-********************************************************
 \skiptotal=\skip44
 \skiplinenumber=\skip45
 \skiprule=\skip46
@@ -90,27 +83,27 @@ subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
 \algocf@hangingbox=\box30
 \algocf@untilbox=\box31
 \algocf@skipuntil=\skip56
-\algocf@capbox=\box31
-\algoheightruledefault=\skip57
-\algoheightrule=\skip58
-\algotitleheightruledefault=\skip59
-\algotitleheightrule=\skip60
-\c@algocfline=\count89
-\c@algocfproc=\count90
-\c@algocf=\count91
-\algocf@algoframe=\box32
-\algocf@algobox=\box33
+\algocf@capbox=\box32
+\algocf@lcaptionbox=\skip57
+\algoheightruledefault=\skip58
+\algoheightrule=\skip59
+\algotitleheightruledefault=\skip60
+\algotitleheightrule=\skip61
+\c@algocfline=\count90
+\c@algocfproc=\count91
+\c@algocf=\count92
+\algocf@algoframe=\box33
+\algocf@algobox=\box34
 ) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count93
 \float@exts=\toks17
 \float@box=\box35
 \@float@everytoks=\toks18
-\@floatcapt=\box35
-)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2016/03/03 v2.15a AMS math features
-\@mathmargin=\skip61
+\@floatcapt=\box36
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2018/12/01 v2.17b AMS math features
+\@mathmargin=\skip62
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -122,27 +115,26 @@ File: amsgen.sty 1999/11/30 v2.0 generic functions
 )) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen112
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 1999/12/14 v2.01 operator names
-)
-\inf@bad=\count93
-LaTeX Info: Redefining \frac on input line 199.
-\uproot@=\count94
-\leftroot@=\count95
-LaTeX Info: Redefining \overline on input line 297.
-\classnum@=\count96
-\DOTSCASE@=\count97
-LaTeX Info: Redefining \ldots on input line 394.
-LaTeX Info: Redefining \dots on input line 397.
-LaTeX Info: Redefining \cdots on input line 518.
-\Mathstrutbox@=\box36
-\strutbox@=\box37
+\inf@bad=\count94
+LaTeX Info: Redefining \frac on input line 223.
+\uproot@=\count95
+\leftroot@=\count96
+LaTeX Info: Redefining \overline on input line 385.
+\classnum@=\count97
+\DOTSCASE@=\count98
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
+\Mathstrutbox@=\box37
+\strutbox@=\box38
 \big@size=\dimen113
-LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
-\macc@depth=\count98
-\c@MaxMatrixCols=\count99
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+\macc@depth=\count99
+\c@MaxMatrixCols=\count100
 \dotsspace@=\muskip10
 \c@parentequation=\count101
 \dspbrk@lvl=\count102
@@ -158,13 +150,12 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
 \totwidth@=\dimen118
 \lineht@=\dimen119
 \@envbody=\toks22
-\multlinegap=\skip62
-\multlinetaggap=\skip63
+\multlinegap=\skip63
+\multlinetaggap=\skip64
 \mathdisplay@stack=\toks23
-LaTeX Info: Redefining \[ on input line 2735.
-LaTeX Info: Redefining \] on input line 2736.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
@@ -172,9 +163,8 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
-Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+Package: epsfig 2017/06/25 v1.7b (e)psfig emulation (SPQR)
 \epsfxsize=\dimen120
 \epsfysize=\dimen121
 ) (/usr/share/texlive/texmf-dist/tex/latex/floatflt/floatflt.sty
@@ -199,10 +189,9 @@ Package: floatflt 1997/07/16 v. 1.31
 \fltitemwidth=\dimen129
 \outputpretest=\toks24
 ) (/usr/share/texlive/texmf-dist/tex/latex/physics/physics.sty
-Package: physics
-<<<<<<< HEAD
+Package: physics 
  (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2019-07-01 L3 programming layer (loader)
+Package: expl3 2019-07-01 L3 programming layer (loader) 
  (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
 Package: expl3 2019-07-01 L3 programming layer (code)
 \c_max_int=\count113
@@ -217,61 +206,24 @@ Package: expl3 2019-07-01 L3 programming layer (code)
 \l__iow_line_target_int=\count122
 \l__iow_one_indent_int=\count123
 \l__iow_indent_int=\count124
-=======
-
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2016/01/19 v6377 L3 programming layer (loader)
-
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2016/01/19 v6377 L3 programming layer (code)
-L3 Module: l3bootstrap 2016/01/01 v6339 L3 Bootstrap code
-L3 Module: l3names 2015/12/21 v6328 L3 Namespace for primitives
-L3 Module: l3basics 2015/11/22 v6315 L3 Basic definitions
-L3 Module: l3expan 2015/09/10 v5983 L3 Argument expansion
-L3 Module: l3tl 2015/09/29 v6121 L3 Token lists
-L3 Module: l3str 2016/01/03 v6357 L3 Strings
-L3 Module: l3seq 2015/08/05 v5777 L3 Sequences and stacks
-L3 Module: l3int 2016/01/05 v6366 L3 Integers
-\c_max_int=\count112
-\l_tmpa_int=\count113
-\l_tmpb_int=\count114
-\g_tmpa_int=\count115
-\g_tmpb_int=\count116
-L3 Module: l3quark 2015/08/17 v5855 L3 Quarks
-L3 Module: l3prg 2015/11/01 v6216 L3 Control structures
-\g__prg_map_int=\count117
-L3 Module: l3clist 2015/09/02 v5901 L3 Comma separated lists
-L3 Module: l3token 2015/11/11 v6249 L3 Experimental token manipulation
-L3 Module: l3prop 2016/01/05 v6366 L3 Property lists
-L3 Module: l3msg 2015/09/28 v6113 L3 Messages
-L3 Module: l3file 2015/12/03 v6317 L3 File and I/O operations
-\l_iow_line_count_int=\count118
-\l__iow_target_count_int=\count119
-\l__iow_current_line_int=\count120
-\l__iow_current_word_int=\count121
-\l__iow_current_indentation_int=\count122
-L3 Module: l3skip 2016/01/05 v6366 L3 Dimensions and skips
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 \c_zero_dim=\dimen130
 \c_max_dim=\dimen131
 \l_tmpa_dim=\dimen132
 \l_tmpb_dim=\dimen133
 \g_tmpa_dim=\dimen134
 \g_tmpb_dim=\dimen135
-\c_zero_skip=\skip64
-\c_max_skip=\skip65
-\l_tmpa_skip=\skip66
-\l_tmpb_skip=\skip67
-\g_tmpa_skip=\skip68
-\g_tmpb_skip=\skip69
+\c_zero_skip=\skip65
+\c_max_skip=\skip66
+\l_tmpa_skip=\skip67
+\l_tmpb_skip=\skip68
+\g_tmpa_skip=\skip69
+\g_tmpb_skip=\skip70
 \c_zero_muskip=\muskip11
 \c_max_muskip=\muskip12
 \l_tmpa_muskip=\muskip13
 \l_tmpb_muskip=\muskip14
 \g_tmpa_muskip=\muskip15
 \g_tmpb_muskip=\muskip16
-<<<<<<< HEAD
 \l_keys_choice_int=\count125
 \l__intarray_loop_int=\count126
 \c__intarray_sp_dim=\dimen136
@@ -407,962 +359,8 @@ Package: xparse 2019-05-28 L3 Experimental document command parser
 Package: babel 2019/06/03 3.32 The Babel package
  (/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
 File: switch.def 2019/06/03 3.32 Babel switching mechanism
-=======
-L3 Module: l3keys 2015/11/17 v6284 L3 Key-value interfaces
-\g__keyval_level_int=\count123
-\l_keys_choice_int=\count124
-L3 Module: l3fp 2015/08/25 v5890 L3 Floating points
-\c__fp_leading_shift_int=\count125
-\c__fp_middle_shift_int=\count126
-\c__fp_trailing_shift_int=\count127
-\c__fp_big_leading_shift_int=\count128
-\c__fp_big_middle_shift_int=\count129
-\c__fp_big_trailing_shift_int=\count130
-\c__fp_Bigg_leading_shift_int=\count131
-\c__fp_Bigg_middle_shift_int=\count132
-\c__fp_Bigg_trailing_shift_int=\count133
-L3 Module: l3box 2015/08/09 v5822 L3 Experimental boxes
-\c_empty_box=\box41
-\l_tmpa_box=\box42
-\l_tmpb_box=\box43
-\g_tmpa_box=\box44
-\g_tmpb_box=\box45
-L3 Module: l3coffins 2015/08/06 v5789 L3 Coffin code layer
-\l__coffin_internal_box=\box46
-\l__coffin_internal_dim=\dimen136
-\l__coffin_offset_x_dim=\dimen137
-\l__coffin_offset_y_dim=\dimen138
-\l__coffin_x_dim=\dimen139
-\l__coffin_y_dim=\dimen140
-\l__coffin_x_prime_dim=\dimen141
-\l__coffin_y_prime_dim=\dimen142
-\c_empty_coffin=\box47
-\l__coffin_aligned_coffin=\box48
-\l__coffin_aligned_internal_coffin=\box49
-\l_tmpa_coffin=\box50
-\l_tmpb_coffin=\box51
-\l__coffin_display_coffin=\box52
-\l__coffin_display_coord_coffin=\box53
-\l__coffin_display_pole_coffin=\box54
-\l__coffin_display_offset_dim=\dimen143
-\l__coffin_display_x_dim=\dimen144
-\l__coffin_display_y_dim=\dimen145
-L3 Module: l3color 2014/08/23 v5354 L3 Experimental color support
-L3 Module: l3sys 2015/09/25 v6087 L3 Experimental system/runtime functions
-L3 Module: l3candidates 2016/01/14 v6376 L3 Experimental additions to l3kernel
-\l__box_top_dim=\dimen146
-\l__box_bottom_dim=\dimen147
-\l__box_left_dim=\dimen148
-\l__box_right_dim=\dimen149
-\l__box_top_new_dim=\dimen150
-\l__box_bottom_new_dim=\dimen151
-\l__box_left_new_dim=\dimen152
-\l__box_right_new_dim=\dimen153
-\l__box_internal_box=\box55
-\l__coffin_bounding_shift_dim=\dimen154
-\l__coffin_left_corner_dim=\dimen155
-\l__coffin_right_corner_dim=\dimen156
-\l__coffin_bottom_corner_dim=\dimen157
-\l__coffin_top_corner_dim=\dimen158
-\l__coffin_scaled_total_height_dim=\dimen159
-\l__coffin_scaled_width_dim=\dimen160
-L3 Module: l3luatex 2015/11/11 v6250 L3 Experimental LuaTeX-specific functions
 )
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
-File: l3pdfmode.def 2015/11/11 v6250 L3 Experimental driver: PDF mode
-\l__driver_color_stack_int=\count134
-))
-Package: xparse 2016/01/19 v6377 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count135
-\l__xparse_m_args_int=\count136
-\l__xparse_mandatory_args_int=\count137
-\l__xparse_processor_int=\count138
-\l__xparse_v_nesting_int=\count139
-)
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \vnabla with sig. '' on line 25.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \varE with sig. '' on line 29.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \ordersymbol with sig. '' on line 30.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \lparen with sig. '' on line 31.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \rparen with sig. '' on line 32.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \quantity with sig. '' on line 35.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \@quantity with sig. ' t\big t\Big t\bigg t\Bigg g o d()
-. d|| ' on line 62.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qty with sig. '' on line 63.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \pqty with sig. ' l m ' on line 64.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \bqty with sig. ' l m ' on line 65.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \Bqty with sig. ' l m ' on line 66.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \vqty with sig. ' l m ' on line 67.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \pmqty with sig. 'm' on line 70.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \Pmqty with sig. 'm' on line 71.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \bmqty with sig. 'm' on line 72.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \vmqty with sig. 'm' on line 73.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \matrixquantity with sig. '' on line 74.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \@matrixquantity with sig. ' s g o d() d|| ' on line 100.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \mqty with sig. '' on line 101.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \matrixdeterminant with sig. 'm' on line 102.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \mdet with sig. '' on line 103.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \spmqty with sig. 'm' on line 105.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \sPmqty with sig. 'm' on line 106.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \sbmqty with sig. 'm' on line 107.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \svmqty with sig. 'm' on line 108.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \smallmatrixquantity with sig. ' s g o d() d|| ' on line
-. 133.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \smqty with sig. '' on line 134.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \smallmatrixdeterminant with sig. 'm' on line 135.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \smdet with sig. '' on line 136.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \argopen with sig. 's' on line 138.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \argclose with sig. 's' on line 139.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \braces with sig. '' on line 141.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \@braces with sig. ' s t\big t\Big t\bigg t\Bigg m m m ' on
-. line 156.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \fbraces with sig. ' s t\big t\Big t\bigg t\Bigg m m m m '
-. on line 174.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \absolutevalue with sig. ' l m ' on line 176.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \abs with sig. '' on line 177.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \norm with sig. ' l m ' on line 178.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \order with sig. ' l m ' on line 179.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \evaluated with sig. ' s g d[| d(| ' on line 194.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \eval with sig. '' on line 195.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \poissonbracket with sig. ' l m m ' on line 197.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \pb with sig. '' on line 198.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \commutator with sig. ' l m m ' on line 201.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \comm with sig. '' on line 202.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \anticommutator with sig. ' l m m ' on line 203.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \acommutator with sig. '' on line 204.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \acomm with sig. '' on line 205.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \vectorbold with sig. ' s m ' on line 208.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \vb with sig. '' on line 209.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \vectorarrow with sig. ' s m ' on line 211.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \va with sig. '' on line 212.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \vectorunit with sig. ' s m ' on line 214.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \vu with sig. '' on line 215.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \dotproduct with sig. '' on line 217.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \vdot with sig. '' on line 218.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \crossproduct with sig. '' on line 220.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \cross with sig. '' on line 221.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \cp with sig. '' on line 222.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \gradient with sig. ' g o d() ' on line 232.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \grad with sig. '' on line 233.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \divergence with sig. ' g o d() ' on line 243.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \div with sig. '' on line 246.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \curl with sig. ' g o d() ' on line 256.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \laplacian with sig. ' g o d() ' on line 266.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \principalvalue with sig. 'g' on line 274.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \pv with sig. '' on line 275.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \PV with sig. 'g' on line 276.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \Re with sig. 'g' on line 277.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \Im with sig. 'g' on line 278.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \opbraces with sig. ' m g o d() ' on line 299.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \trigbraces with sig. ' m o d() ' on line 305.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \sin with sig. '' on line 309.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \cos with sig. '' on line 310.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \tan with sig. '' on line 311.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \csc with sig. '' on line 312.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \sec with sig. '' on line 313.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \cot with sig. '' on line 314.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \arcsin with sig. '' on line 316.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \arccos with sig. '' on line 317.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \arctan with sig. '' on line 318.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \arccsc with sig. '' on line 320.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \arcsec with sig. '' on line 322.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \arccot with sig. '' on line 324.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \asin with sig. '' on line 327.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \acos with sig. '' on line 329.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \atan with sig. '' on line 331.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \acsc with sig. '' on line 333.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \asec with sig. '' on line 335.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \acot with sig. '' on line 337.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \sinh with sig. '' on line 339.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \cosh with sig. '' on line 340.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \tanh with sig. '' on line 341.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \csch with sig. '' on line 343.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \sech with sig. '' on line 345.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \coth with sig. '' on line 346.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \exp with sig. '' on line 348.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \log with sig. '' on line 349.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \ln with sig. '' on line 350.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \det with sig. '' on line 351.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-.
-. Redefining command \Pr with sig. '' on line 352.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \tr with sig. '' on line 353.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \Tr with sig. '' on line 354.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \Res with sig. '' on line 355.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qqtext with sig. ' s m ' on line 377.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qq with sig. '' on line 378.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qcomma with sig. '' on line 380.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qc with sig. '' on line 381.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qif with sig. 's' on line 383.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qthen with sig. 's' on line 384.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qelse with sig. 's' on line 385.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qotherwise with sig. 's' on line 386.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qunless with sig. 's' on line 387.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qgiven with sig. 's' on line 388.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qusing with sig. 's' on line 389.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qassume with sig. 's' on line 390.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qsince with sig. 's' on line 391.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qlet with sig. 's' on line 392.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qfor with sig. 's' on line 393.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qall with sig. 's' on line 394.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qeven with sig. 's' on line 395.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qodd with sig. 's' on line 396.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qinteger with sig. 's' on line 397.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qand with sig. 's' on line 398.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qor with sig. 's' on line 399.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qas with sig. 's' on line 400.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qin with sig. 's' on line 401.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \qcc with sig. 's' on line 402.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \differential with sig. ' o g d() ' on line 415.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \dd with sig. '' on line 416.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \derivative with sig. ' s o m g d() ' on line 435.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \dv with sig. '' on line 436.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \partialderivative with sig. ' s o m g g d() ' on line 460.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \pderivative with sig. '' on line 461.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \pdv with sig. '' on line 462.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \variation with sig. ' o g d() ' on line 474.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \var with sig. '' on line 475.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \functionalderivative with sig. ' s o m g d() ' on line
-. 494.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \fderivative with sig. '' on line 495.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \fdv with sig. '' on line 496.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \bra with sig. ' s m t\ket s g ' on line 526.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \ket with sig. ' s m ' on line 533.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \innerproduct with sig. ' s m g ' on line 548.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \braket with sig. '' on line 549.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \ip with sig. '' on line 550.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \outerproduct with sig. ' s m g ' on line 565.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \dyad with sig. '' on line 566.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \op with sig. '' on line 567.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \ketbra with sig. '' on line 568.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \expectationvalue with sig. ' s s m g ' on line 587.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \expval with sig. '' on line 588.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \ev with sig. '' on line 589.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \vev with sig. ' m ' on line 590.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \matrixelement with sig. ' s s m m m ' on line 601.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \matrixel with sig. '' on line 602.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \mel with sig. '' on line 603.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \identitymatrix with sig. 'm' on line 633.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \imat with sig. '' on line 634.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \xmatrix with sig. ' s m m m ' on line 659.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \xmat with sig. '' on line 660.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \zeromatrix with sig. ' m g ' on line 662.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \zmat with sig. '' on line 663.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \paulixmatrix with sig. '' on line 665.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \pauliymatrix with sig. '' on line 666.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \paulizmatrix with sig. '' on line 667.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \paulimatrix with sig. 'm' on line 678.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \pmat with sig. '' on line 679.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \diagonalmatrix with sig. 'O{} >{\SplitList {,}}m ' on line
-. 681.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \@dmat with sig. 'mmggggggg' on line 714.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \dmat with sig. '' on line 715.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \antidiagonalmatrix with sig. 'O{} >{\SplitList {,}}m ' on
-. line 717.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \@admat with sig. 'mmggggggg' on line 750.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \admat with sig. '' on line 751.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \flatfrac with sig. ' m m ' on line 754.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-.
-. Defining command \homework with sig. '' on line 764.
-.................................................
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
-)
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2016/02/24 3.9q The Babel package
-
 (/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
-<<<<<<< HEAD
 Language: english 2017/06/06 v3.3r English support from the babel system
  (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2019/06/03 3.32 Babel common definitions
@@ -1370,19 +368,10 @@ File: babel.def 2019/06/03 3.32 Babel common definitions
 \U@D=\dimen162
  (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@dirlevel=\count273
-=======
-Language: english 2012/08/20 v3.3p English support from the babel system
-
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2016/02/24 3.9q Babel common definitions
-\babel@savecnt=\count140
-\U@D=\dimen161
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 )
-\l@canadian = a dialect from \language\l@american
-\l@australian = a dialect from \language\l@british
-\l@newzealand = a dialect from \language\l@british
-<<<<<<< HEAD
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
 )) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \heavyrulewidth=\dimen163
@@ -1403,35 +392,10 @@ Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \@lastruleclass=\count277
 \@thisrulewidth=\dimen175
 ) (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
-=======
-))
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
-Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen162
-\lightrulewidth=\dimen163
-\cmidrulewidth=\dimen164
-\belowrulesep=\dimen165
-\belowbottomsep=\dimen166
-\aboverulesep=\dimen167
-\abovetopsep=\dimen168
-\cmidrulesep=\dimen169
-\cmidrulekern=\dimen170
-\defaultaddspace=\dimen171
-\@cmidla=\count141
-\@cmidlb=\count142
-\@aboverulesep=\dimen172
-\@belowrulesep=\dimen173
-\@thisruleclass=\count143
-\@lastruleclass=\count144
-\@thisrulewidth=\dimen174
-)
-(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip70
-\bibsep=\skip71
+\bibhang=\skip71
+\bibsep=\skip72
 LaTeX Info: Redefining \cite on input line 694.
-<<<<<<< HEAD
 \c@NAT@ctr=\count278
 ) (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2018/10/06 v3.3-154 Customizing captions (AR)
@@ -1448,31 +412,11 @@ Package caption3 Info: TeX engine: e-TeX on input line 64.
 )
 \c@caption@flags=\count279
 \c@ContinuedFloat=\count280
-=======
-\c@NAT@ctr=\count145
-)
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
-
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2016/02/04 v1.7-139 caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen175
-\captionmargin@=\dimen176
-\captionwidth=\dimen177
-\caption@tempdima=\dimen178
-\caption@indent=\dimen179
-\caption@parindent=\dimen180
-\caption@hangindent=\dimen181
-)
-\c@ContinuedFloat=\count146
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 Package caption Info: float package is loaded.
 Package caption Info: floatflt package is loaded.
 ) (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-<<<<<<< HEAD
 ) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2018/11/30 v6.88e Hypertext links for LaTeX
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -1483,70 +427,30 @@ Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
-=======
-)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
-
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
-Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
-Package hobsub Info: Skipping package `infwarerr' (already loaded).
-Package hobsub Info: Skipping package `ltxcmds' (already loaded).
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 Package ifluatex Info: LuaTeX not detected.
-Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
-<<<<<<< HEAD
 Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
 Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
 Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO)
-=======
-Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-<<<<<<< HEAD
 Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
 Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO)
 Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
 Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
-=======
-Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
-Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
-)
-Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
-Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 )
 Package hobsub Info: Skipping package `hobsub' (already loaded).
-Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
-Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
-Package: xcolor-patch 2011/01/30 xcolor patch
-Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
-<<<<<<< HEAD
 Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
 Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
 Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
@@ -1566,36 +470,10 @@ Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
 \Hy@SavedSpaceFactor=\count283
-=======
-Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
-Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
-Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
-Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-)
-\@linkdim=\dimen182
-\Hy@linkcounter=\count147
-\Hy@pagecounter=\count148
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
-Now handling font encoding PD1 ...
-... no UTF-8 mapping file for font encoding PD1
-)
-\Hy@SavedSpaceFactor=\count149
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-<<<<<<< HEAD
 Package hyperref Info: Hyper figures OFF on input line 4519.
 Package hyperref Info: Link nesting OFF on input line 4524.
 Package hyperref Info: Hyper index ON on input line 4527.
@@ -1636,75 +514,17 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
-=======
-Package hyperref Info: Hyper figures OFF on input line 4443.
-Package hyperref Info: Link nesting OFF on input line 4448.
-Package hyperref Info: Hyper index ON on input line 4451.
-Package hyperref Info: Plain pages OFF on input line 4458.
-Package hyperref Info: Backreferencing OFF on input line 4463.
-Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4688.
-\c@Hy@tempcnt=\count150
-LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen183
-\Fld@menulength=\count151
-\Field@Width=\dimen184
-\Fld@charsize=\dimen185
-Package hyperref Info: Hyper figures OFF on input line 6295.
-Package hyperref Info: Link nesting OFF on input line 6300.
-Package hyperref Info: Hyper index ON on input line 6303.
-Package hyperref Info: backreferencing OFF on input line 6310.
-Package hyperref Info: Link coloring OFF on input line 6315.
-Package hyperref Info: Link coloring with OCG OFF on input line 6320.
-Package hyperref Info: PDF/A mode OFF on input line 6325.
-LaTeX Info: Redefining \ref on input line 6365.
-LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count152
-\c@Item=\count153
-\c@Hfootnote=\count154
 )
-
-Package hyperref Message: Driver (autodetected): hpdftex.
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count155
-\c@bookmark@seq@number=\count156
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
-Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-82.
-)
-\Hy@SectionHShift=\skip72
-)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2016/01/03 v1.1b Standard LaTeX Color (DPC)
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
-)
-Package color Info: Driver file: pdftex.def on input line 143.
+Package color Info: Driver file: pdftex.def on input line 147.
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 28.
  (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks25
-<<<<<<< HEAD
 \pgfutil@tempdima=\dimen187
 \pgfutil@tempdimb=\dimen188
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box61
  (/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
-=======
-\pgfutil@tempdima=\dimen186
-\pgfutil@tempdimb=\dimen187
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box56
-(/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 )) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)
 Package: pgfrcs 2019/05/09 v3.1.3 (3.1.3)
@@ -1730,19 +550,11 @@ Package: pgfsys 2019/05/09 v3.1.3 (3.1.3)
 \pgf@xd=\dimen197
 \pgf@yd=\dimen198
 \w@pgf@writea=\write3
-<<<<<<< HEAD
 \r@pgf@reada=\read2
 \c@pgf@counta=\count291
 \c@pgf@countb=\count292
 \c@pgf@countc=\count293
 \c@pgf@countd=\count294
-=======
-\r@pgf@reada=\read1
-\c@pgf@counta=\count157
-\c@pgf@countb=\count158
-\c@pgf@countc=\count159
-\c@pgf@countd=\count160
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 \t@pgf@toka=\toks29
 \t@pgf@tokb=\toks30
 \t@pgf@tokc=\toks31
@@ -1751,7 +563,6 @@ Package: pgfsys 2019/05/09 v3.1.3 (3.1.3)
 File: pgf.cfg 2019/05/09 v3.1.3 (3.1.3)
 )
 Driver file for pgf: pgfsys-pdftex.def
-<<<<<<< HEAD
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
 File: pgfsys-pdftex.def 2019/05/09 v3.1.3 (3.1.3)
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
@@ -1860,171 +671,6 @@ File: pgfcorerdf.code.tex 2019/05/09 v3.1.3 (3.1.3)
 ))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2019/05/09 v3.1.3 (3.1.3)
 \pgfnodeparttextbox=\box67
-=======
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
-File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
-f
-File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
-)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
-tex
-File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count161
-\pgfsyssoftpath@bigbuffer@items=\count162
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
-tex
-File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
-)) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
-)
-Package xcolor Info: Driver file: pdftex.def on input line 225.
-LaTeX Info: Redefining \color on input line 702.
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
-Package xcolor Info: Model `RGB' extended on input line 1353.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen196
-\pgfmath@count=\count163
-\pgfmath@box=\box57
-\pgfmath@toks=\toks32
-\pgfmath@stack@operand=\toks33
-\pgfmath@stack@operation=\toks34
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
-ric.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
-thmetics.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count164
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
-x
-File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
-\pgf@picminx=\dimen197
-\pgf@picmaxx=\dimen198
-\pgf@picminy=\dimen199
-\pgf@picmaxy=\dimen256
-\pgf@pathminx=\dimen257
-\pgf@pathmaxx=\dimen258
-\pgf@pathminy=\dimen259
-\pgf@pathmaxy=\dimen260
-\pgf@xx=\dimen261
-\pgf@xy=\dimen262
-\pgf@yx=\dimen263
-\pgf@yy=\dimen264
-\pgf@zx=\dimen265
-\pgf@zy=\dimen266
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
-code.tex
-File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
-\pgf@path@lastx=\dimen267
-\pgf@path@lasty=\dimen268
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
-.tex
-File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
-\pgf@shorten@end@additional=\dimen269
-\pgf@shorten@start@additional=\dimen270
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
-x
-File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
-\pgfpic=\box58
-\pgf@hbox=\box59
-\pgf@layerbox@main=\box60
-\pgf@picture@serial@count=\count165
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
-ode.tex
-File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
-\pgflinewidth=\dimen271
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
-s.code.tex
-File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
-\pgf@pt@x=\dimen272
-\pgf@pt@y=\dimen273
-\pgf@pt@temp=\dimen274
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
-File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
-ex
-File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
-.code.tex
-File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
-x
-File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
-\pgfarrowsep=\dimen275
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
-File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
-\pgf@max=\dimen276
-\pgf@sys@shading@range@num=\count166
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
-tex
-File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
-\pgfexternal@startupbox=\box61
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
-x
-File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
-ode.tex
-File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
-tex
-File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
-)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
-\pgfnodeparttextbox=\box62
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2019/05/09 v3.1.3 (3.1.3)
 ) (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
@@ -2041,7 +687,6 @@ Package: pgffor 2019/05/09 v3.1.3 (3.1.3)
 \pgffor@skip=\dimen283
 \pgffor@stack=\toks35
 \pgffor@toks=\toks36
-<<<<<<< HEAD
 )) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2019/05/09 v3.1.3 (3.1.3)
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
@@ -2094,103 +739,6 @@ File: tikzlibraryarrows.code.tex 2019/05/09 v3.1.3 (3.1.3)
 File: pgflibraryarrows.code.tex 2019/05/09 v3.1.3 (3.1.3)
 \arrowsize=\dimen298
 )) (./main.aux)
-=======
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
-.code.tex
-File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count167
-\pgfplotmarksize=\dimen281
-)
-\tikz@lastx=\dimen282
-\tikz@lasty=\dimen283
-\tikz@lastxsaved=\dimen284
-\tikz@lastysaved=\dimen285
-\tikzleveldistance=\dimen286
-\tikzsiblingdistance=\dimen287
-\tikz@figbox=\box63
-\tikz@figbox@bg=\box64
-\tikz@tempbox=\box65
-\tikz@tempbox@bg=\box66
-\tikztreelevel=\count168
-\tikznumberofchildren=\count169
-\tikznumberofcurrentchild=\count170
-\tikz@fig@count=\count171
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count172
-\pgfmatrixcurrentcolumn=\count173
-\pgf@matrix@numberofcolumns=\count174
-)
-\tikz@expandcount=\count175
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarytopaths.code.tex
-File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
-)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarymatrix.code.tex
-File: tikzlibrarymatrix.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.4)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarypositioning.code.tex
-File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathreplacing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
-e.tex
-\pgfdecoratedcompleteddistance=\dimen288
-\pgfdecoratedremainingdistance=\dimen289
-\pgfdecoratedinputsegmentcompleteddistance=\dimen290
-\pgfdecoratedinputsegmentremainingdistance=\dimen291
-\pgf@decorate@distancetomove=\dimen292
-\pgf@decorate@repeatstate=\count176
-\pgfdecorationsegmentamplitude=\dimen293
-\pgfdecorationsegmentlength=\dimen294
-)
-\tikz@lib@dec@box=\box67
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathreplacing.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryarrows.code.tex
-File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.
-tex
-File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen295
-)) (./main.aux
-! Undefined control sequence.
-l.25 \babel@aux
-               {english}{}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...
-
-l.25 \babel@aux{e
-                 nglish}{}
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-)
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -2207,7 +755,6 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
-<<<<<<< HEAD
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count313
@@ -2232,44 +779,10 @@ Package grfext Info: Graphics extension search list:
 (grfext)             \AppendGraphicsExtensions on input line 456.
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-=======
- (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
-Overfull \hbox (7.79431pt too wide) in paragraph at lines 25--13
-[]\OT1/cmr/m/n/10.95 english
-
- []
-
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count177
-\scratchdimen=\dimen296
-\scratchbox=\box68
-\nofMPsegments=\count178
-\nofMParguments=\count179
-\everyMPshowfont=\toks37
-\MPscratchCnt=\count180
-\MPscratchDim=\dimen297
-\MPnumerator=\count181
-\makeMPintoPDFobject=\count182
-\everyMPtoPDFconversion=\toks38
-) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-)
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-<<<<<<< HEAD
 \AtBeginShipoutBox=\box74
 Package hyperref Info: Link coloring ON on input line 36.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -2278,18 +791,6 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count319
-=======
-\AtBeginShipoutBox=\box69
-Package hyperref Info: Link coloring ON on input line 36.
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
-)
-\c@section@level=\count183
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 )
 LaTeX Info: Redefining \ref on input line 36.
 LaTeX Info: Redefining \pageref on input line 36.
@@ -2298,11 +799,7 @@ LaTeX Info: Redefining \nameref on input line 36.
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
- ABD: EveryShipout initializing macros [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-]
+ ABD: EveryShipout initializing macros
 LaTeX Font Info:    Try loading font information for U+msa on input line 47.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -2354,7 +851,8 @@ Package xcolor Warning: Incompatible color definition on input line 6.
 
 Package xcolor Warning: Incompatible color definition on input line 6.
 
-[2
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
 
 ]
 
@@ -2393,7 +891,7 @@ Package xcolor Warning: Incompatible color definition on input line 34.
 
 Underfull \vbox (badness 2600) has occurred while \output is active []
 
- [3]
+ [2]
 
 Package xcolor Warning: Incompatible color definition on input line 84.
 
@@ -2406,7 +904,7 @@ Package xcolor Warning: Incompatible color definition on input line 84.
 
 Package xcolor Warning: Incompatible color definition on input line 103.
 
-[4]
+[3]
 Underfull \hbox (badness 10000) in paragraph at lines 108--110
 
  []
@@ -2431,23 +929,23 @@ Package xcolor Warning: Incompatible color definition on input line 130.
 
 
 Overfull \hbox (3.70026pt too wide) in paragraph at lines 153--153
- []\OT1/cmr/m/n/10.95 Input
+ []\OT1/cmr/m/n/10.95 Input 
  []
 
 
 Overfull \hbox (11.6086pt too wide) in paragraph at lines 153--153
- []\OT1/cmr/m/n/10.95 Hidden
+ []\OT1/cmr/m/n/10.95 Hidden 
  []
 
 
 Overfull \hbox (12.52113pt too wide) in paragraph at lines 153--153
- []\OT1/cmr/m/n/10.95 Output
+ []\OT1/cmr/m/n/10.95 Output 
  []
 
 
 Package xcolor Warning: Incompatible color definition on input line 178.
 
-[5]
+[4]
 
 Package xcolor Warning: Incompatible color definition on input line 190.
 
@@ -2469,38 +967,38 @@ Package xcolor Warning: Incompatible color definition on input line 201.
 
 Package xcolor Warning: Incompatible color definition on input line 216.
 
+[5]
+
+Package xcolor Warning: Incompatible color definition on input line 231.
+
+
+Package xcolor Warning: Incompatible color definition on input line 231.
+
+
+Package xcolor Warning: Incompatible color definition on input line 231.
+
+
+Package xcolor Warning: Incompatible color definition on input line 243.
+
+
+Package xcolor Warning: Incompatible color definition on input line 243.
+
+
+Package xcolor Warning: Incompatible color definition on input line 262.
+
+
+Package xcolor Warning: Incompatible color definition on input line 262.
+
+
+Package xcolor Warning: Incompatible color definition on input line 277.
+
+
+Package xcolor Warning: Incompatible color definition on input line 277.
+
+
+Package xcolor Warning: Incompatible color definition on input line 277.
+
 [6]
-
-Package xcolor Warning: Incompatible color definition on input line 231.
-
-
-Package xcolor Warning: Incompatible color definition on input line 231.
-
-
-Package xcolor Warning: Incompatible color definition on input line 231.
-
-
-Package xcolor Warning: Incompatible color definition on input line 243.
-
-
-Package xcolor Warning: Incompatible color definition on input line 243.
-
-
-Package xcolor Warning: Incompatible color definition on input line 262.
-
-
-Package xcolor Warning: Incompatible color definition on input line 262.
-
-
-Package xcolor Warning: Incompatible color definition on input line 277.
-
-
-Package xcolor Warning: Incompatible color definition on input line 277.
-
-
-Package xcolor Warning: Incompatible color definition on input line 277.
-
-[7]
 
 Package xcolor Warning: Incompatible color definition on input line 280.
 
@@ -2520,9 +1018,17 @@ Package xcolor Warning: Incompatible color definition on input line 286.
 
 Package xcolor Warning: Incompatible color definition on input line 286.
 
-)
-Underfull \hbox (badness 1184) in paragraph at lines 286--52
+
+Underfull \hbox (badness 1184) in paragraph at lines 286--287
 \OT1/cmr/m/n/10.95 mean squared er-ror was cal-cu-lated, as in
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 293.
+
+)
+Underfull \hbox (badness 3590) in paragraph at lines 289--52
+\OT1/cmr/m/n/10.95 All our al-go-rithms were im-ple-mented in
  []
 
 (./results.tex
@@ -2531,13 +1037,12 @@ Package xcolor Warning: Incompatible color definition on input line 7.
 
 <../figures/LogRegTune_auc.pdf, id=201, 462.52798pt x 346.89601pt>
 File: ../figures/LogRegTune_auc.pdf Graphic file (type pdf)
-
 <use ../figures/LogRegTune_auc.pdf>
-Package pdftex.def Info: ../figures/LogRegTune_auc.pdf used on input line 10.
+Package pdftex.def Info: ../figures/LogRegTune_auc.pdf  used on input line 10.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
 Overfull \hbox (5.0pt too wide) in paragraph at lines 10--12
- [][]
+ [][] 
  []
 
 
@@ -2548,18 +1053,12 @@ Package xcolor Warning: Incompatible color definition on input line 16.
 
 <../figures/LogRegTune_accuracy.pdf, id=204, 462.52798pt x 346.89601pt>
 File: ../figures/LogRegTune_accuracy.pdf Graphic file (type pdf)
-
 <use ../figures/LogRegTune_accuracy.pdf>
-<<<<<<< HEAD
 Package pdftex.def Info: ../figures/LogRegTune_accuracy.pdf  used on input line 19.
-=======
-Package pdftex.def Info: ../figures/LogRegTune_accuracy.pdf used on input line
-19.
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
 Overfull \hbox (5.0pt too wide) in paragraph at lines 19--20
- [][]
+ [][] 
  []
 
 
@@ -2568,46 +1067,31 @@ Package xcolor Warning: Incompatible color definition on input line 24.
 
 Package xcolor Warning: Incompatible color definition on input line 24.
 
-[8 <../figures/LogRegTune_auc.pdf> <../figures/LogRegTune_accuracy.pdf
-
-<<<<<<< HEAD
-pdfTeX warning: pdflatex (file ../figures/LogRegTune_accuracy.pdf): PDF inclusion: multiple pdfs with page group included in a single page
-=======
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/LogRegTune_accuracy.pdf): PD
-F inclusion: multiple pdfs with page group included in a single page
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
->]
+[7 <../figures/LogRegTune_auc.pdf>]
 
 Package xcolor Warning: Incompatible color definition on input line 29.
 
 
 Package xcolor Warning: Incompatible color definition on input line 29.
 
-<../figures/NNTune_auc.pdf, id=272, 462.52798pt x 346.89601pt>
+<../figures/NNTune_auc.pdf, id=254, 462.52798pt x 346.89601pt>
 File: ../figures/NNTune_auc.pdf Graphic file (type pdf)
-
 <use ../figures/NNTune_auc.pdf>
-Package pdftex.def Info: ../figures/NNTune_auc.pdf used on input line 32.
+Package pdftex.def Info: ../figures/NNTune_auc.pdf  used on input line 32.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
 Overfull \hbox (5.0pt too wide) in paragraph at lines 32--34
- [][]
+ [][] 
  []
 
-<../figures/NNTune_accuracy.pdf, id=273, 462.52798pt x 346.89601pt>
+<../figures/NNTune_accuracy.pdf, id=255, 462.52798pt x 346.89601pt>
 File: ../figures/NNTune_accuracy.pdf Graphic file (type pdf)
-<<<<<<< HEAD
 <use ../figures/NNTune_accuracy.pdf>
 Package pdftex.def Info: ../figures/NNTune_accuracy.pdf  used on input line 40.
-=======
-
-<use ../figures/NNTune_accuracy.pdf>
-Package pdftex.def Info: ../figures/NNTune_accuracy.pdf used on input line 40.
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
 Overfull \hbox (5.0pt too wide) in paragraph at lines 40--42
- [][]
+ [][] 
  []
 
 
@@ -2635,7 +1119,7 @@ Package xcolor Warning: Incompatible color definition on input line 62.
 
 
 Overfull \hbox (1.96396pt too wide) in paragraph at lines 71--71
-[]$\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 0069$|
+[]$\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 0069$| 
  []
 
 
@@ -2649,46 +1133,29 @@ Package xcolor Warning: Incompatible color definition on input line 79.
 
 Package xcolor Warning: Incompatible color definition on input line 79.
 
-<<<<<<< HEAD
 
 Package xcolor Warning: Incompatible color definition on input line 100.
 
-<../figures/NNTune_franke_mse.pdf, id=279, 462.52798pt x 346.89601pt>
-=======
-<../figures/NNTune_franke_mse.pdf, id=282, 462.52798pt x 346.89601pt>
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
+<../figures/NNTune_franke_mse.pdf, id=265, 462.52798pt x 346.89601pt>
 File: ../figures/NNTune_franke_mse.pdf Graphic file (type pdf)
-
 <use ../figures/NNTune_franke_mse.pdf>
-<<<<<<< HEAD
 Package pdftex.def Info: ../figures/NNTune_franke_mse.pdf  used on input line 105.
-=======
-Package pdftex.def Info: ../figures/NNTune_franke_mse.pdf used on input line 10
-3.
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
 Overfull \hbox (5.0pt too wide) in paragraph at lines 105--106
- [][]
+ [][] 
  []
 
 )
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4303) has occurred while \output is active []
 
- [9 <../figures/NNTune_auc.pdf> <../figures/NNTune_accuracy.pdf
+ [8 <../figures/LogRegTune_accuracy.pdf> <../figures/NNTune_auc.pdf
 
-<<<<<<< HEAD
+pdfTeX warning: pdflatex (file ../figures/NNTune_auc.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <../figures/NNTune_accuracy.pdf
+
 pdfTeX warning: pdflatex (file ../figures/NNTune_accuracy.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] (./discussion.tex) (./conclusion.tex) (./main.bbl
-=======
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/NNTune_accuracy.pdf): PDF in
-clusion: multiple pdfs with page group included in a single page
->]) (./discussion.tex) (./conclusion.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-)
-(./main.bbl
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
+>] (./discussion.tex) (./conclusion.tex [9 <../figures/NNTune_franke_mse.pdf>]) (./main.bbl
 
 Package xcolor Warning: Incompatible color definition on input line 12.
 
@@ -2701,13 +1168,7 @@ Package xcolor Warning: Incompatible color definition on input line 26.
 
 Package xcolor Warning: Incompatible color definition on input line 32.
 
-<<<<<<< HEAD
-[9 <../figures/NNTune_franke_mse.pdf>]) [10
-=======
-[10 <../figures/NNTune_franke_mse.pdf>])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 66.
- [11
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
+) [10
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 66.
@@ -2715,70 +1176,24 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 66.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 66.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 66.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 972748103844663D874556453FB986E3;850
-(rerunfilecheck)             After:  0BED61B573651654FF36339BF2C85D33;850.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 6506E222A814F68CE6D954186AB0EBE8;914.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 66.
- )
+ ) 
 Here is how much of TeX's memory you used:
-<<<<<<< HEAD
- 31375 strings out of 492609
- 599030 string characters out of 6131461
- 656136 words of memory out of 5000000
- 34808 multiletter control sequences out of 15000+600000
- 543693 words of font info for 65 fonts, out of 8000000 for 9000
+ 31397 strings out of 492609
+ 599251 string characters out of 6131461
+ 656084 words of memory out of 5000000
+ 34820 multiletter control sequences out of 15000+600000
+ 546500 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,19n,69p,1540b,1045s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (10 pages, 444881 bytes).
+Output written on main.pdf (10 pages, 446207 bytes).
 PDF statistics:
- 462 PDF objects out of 1000 (max. 8388607)
- 412 compressed objects within 5 object streams
- 74 named destinations out of 1000 (max. 500000)
-=======
- 27776 strings out of 493029
- 529982 string characters out of 6136234
- 576199 words of memory out of 5000000
- 30826 multiletter control sequences out of 15000+600000
- 14995 words of font info for 55 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 55i,19n,70p,10407b,983s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
-7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (11 pages, 444117 bytes).
-PDF statistics:
- 465 PDF objects out of 1000 (max. 8388607)
- 414 compressed objects within 5 object streams
- 75 named destinations out of 1000 (max. 500000)
->>>>>>> a3a910486ca75631f14fa623b6b1c0bf3d06e243
- 142 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 470 PDF objects out of 1000 (max. 8388607)
+ 420 compressed objects within 5 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 150 words of extra memory for PDF output out of 10000 (max. 10000000)
+
