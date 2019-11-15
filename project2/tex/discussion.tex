@@ -1,2 +1,19 @@
 \section{Discussion}
 \label{sec:discussion}
+
+\begin{table}[htbp]
+	\renewcommand{\arraystretch}{1.2}
+	\centering
+	\caption{The minimum MSE achieved when applying different regression models and Neural Network on Franke's function.}
+	\begin{tabular}{l l}
+		\toprule
+		Method & MSE \\
+		\midrule
+		Ordinary Least Square & 0.017 \\
+		Ridge regression & 0.015\\
+		Lasso regression & 0.021\\
+		Neural Network & 0.011\\
+		\bottomrule
+	\end{tabular}
+	\label{tab:mse}
+\end{table}
