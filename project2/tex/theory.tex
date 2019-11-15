@@ -3,14 +3,14 @@
 
 \subsection{Data sets}
 \label{sec:datasets}
-In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the logistic regression method and neural networks for classification. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, two additional data sets were constructed. In one, all the invalid PAY values were kept. These invalid values were some $-2$s, but mostly $0$s. In the second additional set, all $-2$s, $-1$s and $0$s were set to $0$, since these were assumed to all represent duly payments. Both sets contained 26908 data points, with 78\% of the labels equal to zero, i.e. not default payment next month. The last set gave best results on initial runs, and was used for the rest of the project. For a more in-depth inspection of the data set, see the Jupyter notebook \texttt{inspect\_data.ipynb} in the \href{https://github.com/janadr/FYS-STK4155/tree/master/project2}{GitHub repository} of janadr.
+In this report, the default of credit card clients data set \citep{yeh2009UCI} was used to study the performance and compare the Logistic Regression method and Neural Networks for classification. A description of the attributes of the data set can be found in \cite{yeh2009UCI}. Upon inspection, it is notable that the data set contains a considerable amount of values different from their valid values as described by \citeauthor{yeh2009UCI}. Mostly, this apply for the categorical variables, where the given value does not correspond to any category. By removing data points with invalid values, as well as entries where the client does not have any history of past payments or bill statements, the data set is reduced from 30000 data points to 3792 points. As this is a considerable reduction of data points, two additional data sets were constructed. In one, all the invalid PAY values were kept. These invalid values were some $-2$s, but mostly $0$s. In the second additional set, all $-2$s, $-1$s and $0$s were set to $0$, since these were assumed to all represent duly payments. Both sets contained 26908 data points, with 78\% of the labels equal to zero, i.e. not default payment next month. The last set gave best results on initial runs, and was used for the rest of the project. To handle categorical variables, One hot encoding was used. For a more in-depth inspection of the data set, see the Jupyter notebook \texttt{inspect\_data.ipynb} in the \href{https://github.com/janadr/FYS-STK4155/tree/master/project2}{GitHub repository} of janadr.
 
-In addition to the default of credit card clients data set, data produced with Franke's function was applied to neural networks. For details on Franke's function, see \cite{prosjekt1}.
+In addition to the default of credit card clients data set, data produced with Franke's function was applied to Neural Networks. For details on Franke's function, see \cite{prosjekt1}.
 
 \subsection{Logistic Regression}
-Classification problems aim to predict the behaviour of a given object, and look for patterns based on discrete variables (i.e categories). Logistic Regression can be used to solve such problems, commonly by the use of variables with binary outcomes such as true/false, positive/negative, success/failure etc., or in the specific credit card case: \textit{risky/non-risky} \cite{LogRegLectures}
+Classification problems aim to predict the behaviour of a given object, and produces outcomes in form of discrete variables (i.e. categories). Logistic Regression can be used to solve such problems, commonly by the use of binary outcomes such as true/false, positive/negative, success/failure etc., or in the specific credit card case: \textit{risky/non-risky} \cite{LogRegLectures}. 
 
-As opposed to Linear Regression, the equation one gets as a result of minimization of the cost function by $\hat{\beta}$ using Logistic Regression, is non-linear, and is solved using minimization algorithms called \emph{gradient descent methods}. \\
+As opposed to Linear Regression, the equation one gets as a result of minimizing the cost function by $\hat{\beta}$ using Logistic Regression, is non-linear, and can not be solved explicitly. Instead it can be solved using minimization algorithms, for example by \emph{gradient descent methods}. \\
 
 When predicting the output classes in which an object belongs, the prediction is based on the design matrix $\mathbf{\hat{X}} \in \mathbb{R}^{n\cross p}$ that contain $n$ samples that each carry $p$ features.
 
@@ -65,7 +65,7 @@ Defining the vector $\hat{y}$ containing $n$ elements $y_i$, the $n \cross p$ ma
   \nabla_\beta \mathcal{C} = \pdv{\mathcal{C}(\hat{\beta})}{\hat{\beta}} = - \hat{X}^T (\hat{y}-\hat{p})
   \label{eq:cost_d}
 \end{equation}
-This gives rise to set of linear equations, where the aim is to solve the system for $\hat{\beta}$.
+This gives rise to a set of linear equations, where the aim is to solve the system for $\hat{\beta}$.
 
 With $\hat{x} = [1, x_1,x_2,...,x_p]$ and $p$ predictors $\hat{\beta} = [\beta_0,\beta_1,\beta_2,...,\beta_p]$ the ration between likelihoods of outcome is:
 \begin{equation}
@@ -96,9 +96,9 @@ In this project we use a stochastic version of gradient descent, which is an imp
     \nabla_\beta \mathcal{C}(\beta) = \sum_i^n     \nabla_\beta c_i(\boldsymbol{x_i},\beta) ,
     \label{eq:gradient_sum}
 \end{equation}
-and by only calculating the gradient of a subset of the data at the time. These subsets, called \textit{minibatches} are of size $\boldsymbol{M}$ , and the total amount is $\frac{n}{\boldsymbol{M}}$ where $n$ is the amount of data points. The minibatches are denoted $\boldsymbol{B}_k$, with k = 1,2,...,$\frac{n}{\boldsymbol{M}}$.
+and by only calculating the gradient of a subset of the data at the time. These subsets, called \textit{minibatches} are of size $m$ , and the total amount is $\frac{n}{m}$ where $n$ is the amount of data points. The minibatches are denoted $\boldsymbol{B}_k$, with k = 1,2,...,$\frac{n}{m}$.
 
-Instead of a sum over all the the data points $i \in [1,n]$ we now sum over all the data points in the given minibatch $i \in \boldsymbol{B}_k$ where $k$ is picked randomly with uniform probability from $[1, \frac{n}{\boldsymbol{M}}]$.
+Instead of a sum over all the the data points $i \in [1,n]$ we now sum over all the data points in the given minibatch $i \in \boldsymbol{B}_k$ where $k$ is picked randomly with uniform probability from $[1, \frac{n}{m}]$.
 
 The stochastic and final version of \eqref{eq:gradient_decent} is therefore given by the algorithm
 
@@ -108,7 +108,7 @@ The stochastic and final version of \eqref{eq:gradient_decent} is therefore give
 \end{equation}
 An iteration over the total number of minibatches is commonly referred to as an \textit{epoch.}\\
 
-By using the stochastic gradient descent method \eqref{eq:stochstic_gradient_descent} to minimize the cost function \eqref{eq:cost_function} we can find the $\beta$ values that give the most accurate classification, by doing \textit{logistic regression}.
+By using the stochastic gradient descent method \eqref{eq:stochstic_gradient_descent} to minimize the cost function \eqref{eq:cost_function} we can find the $\beta$ values that give the most accurate classification.
 
 \subsubsection*{Dynamic learning rate}
 Convergence rate might be slow, and a possible solution to this is changing learning rate as
@@ -117,10 +117,10 @@ be a function of epochs and minibatches. Specifically, the learning rate should 
 A possible function for the learning rate is then
   \begin{equation}
     \label{eq:learning_schedule}
-    \Gamma_{i} = \frac{\Gamma_0}{nN+i},
+    \gamma_{j} = \frac{\gamma_0}{im+j},
   \end{equation}
-where $\Gamma_{0}$ is the initial learning rate, n the current epoch, i the current minibatch,
-and N the minibatch size.
+where $\gamma_{0}$ is the initial learning rate, $i$ the current epoch, $j$ the current minibatch,
+and $m$ the minibatch size.
 
 \subsection{Neural Networks}
 In this section, the equations used are based off the book by \cite{Nielsen}, unless otherwise specified.
@@ -212,11 +212,12 @@ With a basis in Eq. (\ref{eq:forward}), the algorithm for forward feeding is giv
 	\BlankLine
 \end{algorithm}
 
-Note that the output will have values between 0 and 1, when the sigmoid function is used to compute the activations of all the layers. In a classification problem, this corresponds to the likelihood of an outcome. For example, in a classification problem with five classes, the network would have five output neurons, each representing a class. The final classification of an input would then be the class with the highest probability.
+Note that the output will have values between 0 and 1, when the sigmoid function is used to compute the activations of all the layers. In a classification problem, this corresponds to the likelihood of an outcome. For example, in a classification problem with five classes, the network would have five output neurons, each representing a class. The final classification of an input would then be the class with the highest probability. In our classification problem, we have a single neuron that gives the probability of default payment. 
+
 In the regression case, we see that when using the leaky ReLU activation function from Eq. (\ref{leakyReLU}), the output can be any positive value (strictly also negative values, due to the leakage, but this would call for large negative $z$-values).
 
 \subsubsection*{Backpropagation}
-When training the network, the goal is to find the weights and biases that minimize the cost function $C$. In this project, the cross-entropy cost function was used for classification. This is given as
+When training the network, the goal is to find the weights and biases that minimize the cost function $C$. In this project, the cross-entropy cost function was used for classification. This is given as follows for a Neural Network: 
 \begin{equation}\label{eq:cross-entropy}
 	C = -\sum_{i=1}^n\left[y_i\ln a^L_i + (1-y_i)\ln(1-a^L_i)\right]
 \end{equation}
@@ -238,7 +239,7 @@ To find the weights and biases that minimize Eq.(\ref{eq:cross-entropy}) and (\r
 \end{aligned}
 \end{equation}
 
-Taking a look at the expression for $\delta^L$, one can show that this reduces to $\delta^L = \boldsymbol{a}-\boldsymbol{y}$, when the cross-entropy cost function is combined with the sigmoid activation function, and similarly for the quadratic cost and ReLU when we have positive output values.
+Taking a look at the expression for $\delta^L$, one can show that this reduces to $\delta^L = \boldsymbol{a}-\boldsymbol{y}$, when the cross-entropy cost function is combined with the sigmoid activation function, and similarly for the quadratic cost and ReLU when we have positive output values. This means that we get rid of the $f'(z^L)$ factor, which can slow down learning significantly if the derivative is close to 0. 
 
 Equation (\ref{eq:backprop}) are the basis for the backpropagating algorithm, described in Algorithm \ref{alg:backprop}.
 \begin{algorithm}[htbp]\caption{The backpropagation algorithm.}\label{alg:backprop}
@@ -257,11 +258,9 @@ Equation (\ref{eq:backprop}) are the basis for the backpropagating algorithm, de
 	\BlankLine
 	\BlankLine
 	\end{algorithm}
-	
-Lastly, let's revisit the cost functions stated in Eq. (\ref{eq:cross-entropy}) and (\ref{eq:quadratic_cost}). These equations were chosen to accompany the ReLU and sigmoid activation function, respectively, because when computing $\delta^L$ factors cancel out nicely, and we end up with $\delta^L=a^L-y$. This means that we get rid of the $f'(z^L)$-term, which can slow down learning significantly if the derivative is close to 0. 
 
 \subsubsection*{Overfitting and Regularization}
-A problem that can arise when fitting a regression model, as discussed in \cite{prosjekt1}, is overfitting to data. This is a major problem also in neural networks, where the network can fit too heavily to outliers in the training set, especially when you have a large number of neurons. Apart from increasing the training data set and decreasing the number of neurons, a third approach is to use a regularization technique. Here, we will use the weight decay or L2 regularization technique.
+A problem that can arise when fitting a regression model, as discussed in \cite{prosjekt1}, is overfitting to data. This is a major problem also in Neural Networks, where the network can fit too heavily to outliers in the training set, especially when we have a large number of neurons \citep{Nielsen}. Apart from increasing the training data set and decreasing the number of neurons, a third approach is to use a regularization technique. Here, we will use the weight decay or L2 regularization technique.
 The idea is to add a term to the cost function. For both cross-entropy and quadratic cost, the new cost function can be written as
 \begin{equation*}
   C = C_0 + \frac{\lambda}{2n}\sum_w w^2
@@ -271,7 +270,7 @@ The algorithm for updating the weights, when using stochastic gradient descent, 
 \begin{equation}\label{eq:w_update}
   w \rightarrow \left(1-\frac{\gamma\lambda}{n}\right)w -  \frac{\gamma}{m}\sum_{i \in \boldsymbol{B}_k}\frac{\partial C_i}{\partial w}
 \end{equation}
-Here, $m$ is the mini batch size. The algorithm for updating the biases are unchanged:
+Here, $m$ is the mini batch size. The algorithm for updating the biases is unchanged:
 \begin{equation}\label{eq:b_update}
   b \rightarrow b -  \frac{\gamma}{m}\sum_{i \in \boldsymbol{B}_k}\frac{\partial C_i}{\partial b}
 \end{equation}
@@ -283,14 +282,14 @@ To measure how good the different methods were at classifying the credit card da
 \begin{equation}\label{eq:acc}
   \text{Accuracy} = \frac{\text{Correct classifications}}{\text{Total \# of classifications}}
 \end{equation}
-For calculations of AUC, \texttt{sklearn.metrics.roc\_auc\_score} was used. AUC can be interpreted as the probability that a random true positive sample is ranked higher than a random true negative. This score is not dependent on the chosen classification threshold, i.e. the value that must be exceed to classify an input as one instead of zero.
+For calculations of AUC, \texttt{sklearn.metrics.roc\_auc\_score} was used. AUC can be interpreted as the probability that a random true positive sample is ranked higher than a random true negative. This score is not dependent on the chosen classification threshold, i.e. the value that must be exceed to classify an input as one instead of zero. For reference, the classification threshold was set to $0.5$ in this project.  
 
 For data generated with Franke's function, the same test-train-split was made, and the mean squared error was calculated, as in \cite{prosjekt1}.
 
 \subsection{Implementation}
 All our algorithms were implemented in python3.6 using the numpy, matplotlib, pandas, seaborn,
 and scikit-learn packages. We wrote our own class "Regression" for linear and logistic
-regression, as well as class "Network" for neural network. In the way our neural network was implemented, we could use the same code for classification and regression by simply replacing activation functions, while at the same time ensuring that the appropriate cost function was used.
+regression, as well as class "Network" for Neural Network. In the way our Neural Network was implemented, we could use the same code for classification and regression by simply replacing activation functions, while at the same time ensuring that the appropriate cost function was used.
 Scikit-learn was used to verify our implementation by comparing accuracy and AUC scores.
-Code along with data and figures can be found on our github repository under "Project 2".\footnote{\{https://github.com/janadr/FYS-STK4155.git}}
+Code along with data and figures can be found on our github repository under "Project 2".\footnote{\url{https://github.com/janadr/FYS-STK4155.git}}
 

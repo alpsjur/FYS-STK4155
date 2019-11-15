@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  15 NOV 2019 16:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  15 NOV 2019 17:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2106,28 +2106,38 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (./abstract.tex)
 (./introduction.tex
 
-Package xcolor Warning: Incompatible color definition on input line 13.
+Package xcolor Warning: Incompatible color definition on input line 10.
+
+
+Package xcolor Warning: Incompatible color definition on input line 10.
+
+
+Package xcolor Warning: Incompatible color definition on input line 12.
+
+
+Package xcolor Warning: Incompatible color definition on input line 12.
 
 
 Package xcolor Warning: Incompatible color definition on input line 13.
 
 
-Package xcolor Warning: Incompatible color definition on input line 14.
+Package xcolor Warning: Incompatible color definition on input line 13.
 
 
-Package xcolor Warning: Incompatible color definition on input line 14.
+Underfull \vbox (badness 2205) has occurred while \output is active []
 
 
-Package xcolor Warning: Incompatible color definition on input line 16.
+
+Package xcolor Warning: Incompatible color definition on input line 15.
+
+
+Package xcolor Warning: Incompatible color definition on input line 17.
 
 
 Package xcolor Warning: Incompatible color definition on input line 18.
 
 
-Package xcolor Warning: Incompatible color definition on input line 19.
-
-
-Package xcolor Warning: Incompatible color definition on input line 22.
+Package xcolor Warning: Incompatible color definition on input line 21.
 
 ) (./theory.tex
 
@@ -2148,7 +2158,10 @@ Package xcolor Warning: Incompatible color definition on input line 6.
 
 Package xcolor Warning: Incompatible color definition on input line 6.
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
@@ -2165,8 +2178,11 @@ Package xcolor Warning: Incompatible color definition on input line 11.
 Package xcolor Warning: Incompatible color definition on input line 11.
 
 
-Underfull \hbox (badness 1859) in paragraph at lines 11--12
-\OT1/cmr/m/n/10.95 Lo-gis-tic Re-gres-sion can be used to solve
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 3449) in paragraph at lines 13--14
+[]\OT1/cmr/m/n/10.95 As op-posed to Lin-ear Re-gres-sion, the
  []
 
 
@@ -2190,6 +2206,7 @@ Package xcolor Warning: Incompatible color definition on input line 84.
 
 Package xcolor Warning: Incompatible color definition on input line 84.
 
+[3]
 
 Package xcolor Warning: Incompatible color definition on input line 103.
 
@@ -2204,7 +2221,6 @@ Package xcolor Warning: Incompatible color definition on input line 111.
 
 Package xcolor Warning: Incompatible color definition on input line 111.
 
-[3]
 
 Package xcolor Warning: Incompatible color definition on input line 126.
 
@@ -2235,10 +2251,7 @@ Overfull \hbox (12.52113pt too wide) in paragraph at lines 153--153
 
 Package xcolor Warning: Incompatible color definition on input line 178.
 
-
-Underfull \vbox (badness 4479) has occurred while \output is active []
-
- [4]
+[4]
 
 Package xcolor Warning: Incompatible color definition on input line 190.
 
@@ -2258,90 +2271,79 @@ Package xcolor Warning: Incompatible color definition on input line 201.
 Package xcolor Warning: Incompatible color definition on input line 201.
 
 
-Package xcolor Warning: Incompatible color definition on input line 216.
+Package xcolor Warning: Incompatible color definition on input line 217.
 
 [5]
 
-Package xcolor Warning: Incompatible color definition on input line 231.
+Package xcolor Warning: Incompatible color definition on input line 232.
 
 
-Package xcolor Warning: Incompatible color definition on input line 231.
+Package xcolor Warning: Incompatible color definition on input line 232.
 
 
-Package xcolor Warning: Incompatible color definition on input line 231.
+Package xcolor Warning: Incompatible color definition on input line 232.
 
 
-Package xcolor Warning: Incompatible color definition on input line 243.
+Package xcolor Warning: Incompatible color definition on input line 244.
 
 
-Package xcolor Warning: Incompatible color definition on input line 243.
+Package xcolor Warning: Incompatible color definition on input line 244.
 
 
-Package xcolor Warning: Incompatible color definition on input line 261.
+Package xcolor Warning: Incompatible color definition on input line 263.
 
 
-Package xcolor Warning: Incompatible color definition on input line 261.
+Package xcolor Warning: Incompatible color definition on input line 263.
 
 
-Package xcolor Warning: Incompatible color definition on input line 264.
+Package xcolor Warning: Incompatible color definition on input line 263.
 
 
-Package xcolor Warning: Incompatible color definition on input line 264.
-
-
-Package xcolor Warning: Incompatible color definition on input line 279.
-
-
-Package xcolor Warning: Incompatible color definition on input line 279.
-
-
-Package xcolor Warning: Incompatible color definition on input line 279.
+Package xcolor Warning: Incompatible color definition on input line 263.
 
 [6]
 
-Package xcolor Warning: Incompatible color definition on input line 282.
+Package xcolor Warning: Incompatible color definition on input line 278.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 285--287
+Package xcolor Warning: Incompatible color definition on input line 278.
+
+
+Package xcolor Warning: Incompatible color definition on input line 278.
+
+
+Package xcolor Warning: Incompatible color definition on input line 281.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 284--286
 \OT1/cmr/m/n/10.95 For cal-cu-la-tions of AUC,
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 285--287
+Underfull \hbox (badness 1221) in paragraph at lines 284--286
 \OT1/cmtt/m/n/10.95 sklearn.metrics.roc[]auc[]score \OT1/cmr/m/n/10.95 was used
 .
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 288.
+Package xcolor Warning: Incompatible color definition on input line 287.
 
 
-Package xcolor Warning: Incompatible color definition on input line 288.
+Package xcolor Warning: Incompatible color definition on input line 287.
 
 
-Underfull \hbox (badness 1184) in paragraph at lines 288--289
+Underfull \hbox (badness 1184) in paragraph at lines 287--288
 \OT1/cmr/m/n/10.95 mean squared er-ror was cal-cu-lated, as in
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 295.
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 295.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 295.
-
-! Too many }'s.
-l.295 ...tps://github.com/janadr/FYS-STK4155.git}}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
+Package xcolor Warning: Incompatible color definition on input line 294.
 
 
-Underfull \hbox (badness 3590) in paragraph at lines 291--296
+Package xcolor Warning: Incompatible color definition on input line 294.
+
+
+Underfull \hbox (badness 3590) in paragraph at lines 290--295
 \OT1/cmr/m/n/10.95 All our al-go-rithms were im-ple-mented in
  []
 
@@ -2384,14 +2386,14 @@ Package xcolor Warning: Incompatible color definition on input line 23.
 
 Package xcolor Warning: Incompatible color definition on input line 23.
 
-[7 <../figures/LogRegTune_auc.pdf>]
+[7]
 
 Package xcolor Warning: Incompatible color definition on input line 28.
 
 
 Package xcolor Warning: Incompatible color definition on input line 28.
 
-<../figures/NNTune_auc.pdf, id=253, 462.52798pt x 346.89601pt>
+<../figures/NNTune_auc.pdf, id=220, 462.52798pt x 346.89601pt>
 File: ../figures/NNTune_auc.pdf Graphic file (type pdf)
 
 <use ../figures/NNTune_auc.pdf>
@@ -2402,7 +2404,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 33--34
  [][] 
  []
 
-<../figures/NNTune_accuracy.pdf, id=254, 462.52798pt x 346.89601pt>
+<../figures/NNTune_accuracy.pdf, id=221, 462.52798pt x 346.89601pt>
 File: ../figures/NNTune_accuracy.pdf Graphic file (type pdf)
 
 <use ../figures/NNTune_accuracy.pdf>
@@ -2428,18 +2430,6 @@ Overfull \hbox (4.02592pt too wide) in paragraph at lines 51--60
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [8 <../figures/LogRegTune_accuracy.pdf> <../figures/NNTune_auc.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/NNTune_auc.pdf): PDF inclusi
-on: multiple pdfs with page group included in a single page
-> <../figures/NNTune_accuracy.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ../figures/NNTune_accuracy.pdf): PDF in
-clusion: multiple pdfs with page group included in a single page
->]
-
 Package xcolor Warning: Incompatible color definition on input line 62.
 
 
@@ -2464,10 +2454,19 @@ Package xcolor Warning: Incompatible color definition on input line 80.
 
 Package xcolor Warning: Incompatible color definition on input line 80.
 
+[8 <../figures/LogRegTune_auc.pdf> <../figures/LogRegTune_accuracy.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/LogRegTune_accuracy.pdf): PD
+F inclusion: multiple pdfs with page group included in a single page
+> <../figures/NNTune_auc.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ../figures/NNTune_auc.pdf): PDF inclusi
+on: multiple pdfs with page group included in a single page
+>]
 
 Package xcolor Warning: Incompatible color definition on input line 99.
 
-<../figures/NNTune_franke_mse.pdf, id=336, 462.52798pt x 346.89601pt>
+<../figures/NNTune_franke_mse.pdf, id=318, 462.52798pt x 346.89601pt>
 File: ../figures/NNTune_franke_mse.pdf Graphic file (type pdf)
 
 <use ../figures/NNTune_franke_mse.pdf>
@@ -2479,21 +2478,21 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 104--105
  [][] 
  []
 
-)
-Underfull \vbox (badness 6944) has occurred while \output is active []
+) [9 <../figures/NNTune_accuracy.pdf>] (./discussion.tex) (./conclusion.tex
+
+Package xcolor Warning: Incompatible color definition on input line 15.
 
 
-(./discussion.tex) (./conclusion.tex [9]
-
-Package xcolor Warning: Incompatible color definition on input line 16.
-
-
-Package xcolor Warning: Incompatible color definition on input line 16.
+Package xcolor Warning: Incompatible color definition on input line 15.
 
 ) (./main.bbl
 
 Package xcolor Warning: Incompatible color definition on input line 12.
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10 <../figures/NNTune_franke_mse.pdf>]
 
 Package xcolor Warning: Incompatible color definition on input line 19.
 
@@ -2503,8 +2502,11 @@ Package xcolor Warning: Incompatible color definition on input line 26.
 
 Package xcolor Warning: Incompatible color definition on input line 32.
 
-) [10 <../figures/NNTune_franke_mse.pdf>]
+)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 66.
+ [11
+
+]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 66.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 66.
@@ -2514,11 +2516,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 66.
  ) 
 Here is how much of TeX's memory you used:
- 27813 strings out of 493029
- 530475 string characters out of 6136234
- 575790 words of memory out of 5000000
- 30851 multiletter control sequences out of 15000+600000
- 17802 words of font info for 66 fonts, out of 8000000 for 9000
+ 27804 strings out of 493029
+ 530267 string characters out of 6136234
+ 579792 words of memory out of 5000000
+ 30843 multiletter control sequences out of 15000+600000
+ 19023 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,19n,70p,10407b,983s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
@@ -2542,11 +2544,12 @@ f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (10 pages, 448046 bytes).
+amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/symbols/msbm10.pfb>
+Output written on main.pdf (11 pages, 459585 bytes).
 PDF statistics:
- 473 PDF objects out of 1000 (max. 8388607)
- 423 compressed objects within 5 object streams
- 76 named destinations out of 1000 (max. 500000)
+ 479 PDF objects out of 1000 (max. 8388607)
+ 427 compressed objects within 5 object streams
+ 77 named destinations out of 1000 (max. 500000)
  142 words of extra memory for PDF output out of 10000 (max. 10000000)
 
