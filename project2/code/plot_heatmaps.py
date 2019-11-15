@@ -156,6 +156,6 @@ ax.tick_params(axis='both', labelsize=14)
 ax.set_yscale("log")
 ax.set_xscale("log")
 fig.colorbar(c, ax=ax)
-plt.savefig("../figures/NNTune_franke_mse.pdf")
+#plt.savefig("../figures/NNTune_franke_mse.pdf")
 
 plt.show()
