@@ -8,8 +8,7 @@ Figure \ref{fig:TuneLogReg_auc} shows a heatmap of the AUC of the Logistic Regre
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{LogRegTune_auc}
-	\caption{Heatmap showing the AUC of the Logistic Regression for different
-		values of the minibatch sizes and initial learning rates.}
+	\caption{Heatmap showing the AUC of the Logistic Regression applied on the classification problem for minibatch sizes $m\in[5, 5000]$ and learning rates $\gamma\in[0.5\cdot10^{-3}, 0.5]$ in logarithmic scale. AUC increases from blue to yellow.}
 	\label{fig:TuneLogReg_auc}
 \end{figure}
 
@@ -17,34 +16,34 @@ Figure \ref{fig:TuneLogReg_accuracy} is similar to Figure \ref{fig:TuneLogReg_au
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{LogRegTune_accuracy}
-	\caption{Heatmap showing the accuracy of the Logistic Regression for different values of the minibatch sizes and initial learning rates.}
+	\caption{Heatmap showing the accuracy of the Logistic Regression applied on the classification problem for minibatch sizes $m\in[5, 5000]$ and learning rates $\gamma\in[0.5\cdot10^{-3}, 0.5]$ in logarithmic scale. Accuracy increases from blue to yellow.}
 	\label{fig:TuneLogReg_accuracy}
 \end{figure}
 
-In both Figure \ref{fig:TuneLogReg_accuracy} and \ref{fig:TuneLogReg_auc}, the monochromatic field to the top right represents parameters that gave overflow.
+In both Figure \ref{fig:TuneLogReg_accuracy} and \ref{fig:TuneLogReg_auc}, the blanc field to the top right represents parameters that gave overflow.
 
 We see that both AUC and accuracy are highest in a band spanning form relatively high initial learning rates and relatively small batch sizes to smaller initial learning rates and larger batch sizes.
 
 \subsubsection*{Neural network}
-Figure \ref{fig:TuneNN_accuracy} and \ref{fig:TuneLogReg_auc} shows heatmaps of the accuracy and AUC of the Neural Network.
+Figure \ref{fig:TuneNN_accuracy} and \ref{fig:TuneLogReg_auc} shows heatmaps of the accuracy and AUC of the Neural Network. As before, blanc fields represent values that gave overflow. 
+
+For both accuracy and AUC, large minibatch sizes combined with small learning rates gave lower scores. In the heatmap of AUC, the combination of relatively high learning rates and low minibatch sizes gave lower AUC values. 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{NNTune_auc}
-	\caption{Heatmap showing the AUC of the Neural Network for different
-		values of the minibatch sizes and learning rates.}
+	\caption{Heatmap showing the AUC of the Neural Network applied on the classification problem for minibatch sizes $m\in[1, 1000]$ and learning rates $\gamma\in[10^{-2.5}, 10^{0.3}]$ in logarithmic scale. AUC increases from blue to yellow.}
 	\label{fig:TuneNN_auc}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{NNTune_accuracy}
-	\caption{Heatmap showing the accuracy of the Neural Network for different
-		values of the minibatch sizes and learning rates.}
+	\caption{Heatmap showing the accuracy of the Neural Network applied on the classification problem for minibatch sizes $m\in[1, 1000]$ and learning rates $\gamma\in[10^{-2.5}, 10^{0.3}]$ in logarithmic scale. Accuracy increases from blue to yellow.}
 	\label{fig:TuneNN_accuracy}
 \end{figure}
 
 \subsection*{Optimal Parameters and Associated Results}
-Table \ref{tab:AUC} spells out the values that gave the highest AUC in Figure \ref{fig:TuneLogReg_auc} and \ref{fig:TuneNN_auc}.
+Table \ref{tab:AUC} spells out the values that gave the highest AUC for Logistic Regression and Neural Network in Figure \ref{fig:TuneLogReg_auc} and \ref{fig:TuneNN_auc}.
 \begin{table}[htbp]
 	\renewcommand{\arraystretch}{1.2}
 	\centering
@@ -60,7 +59,7 @@ Table \ref{tab:AUC} spells out the values that gave the highest AUC in Figure \r
 	\label{tab:AUC}
 \end{table}
 
-Similarly, Table \ref{tab:acc} shows the parameters that gave the highest accuracy in Figure \ref{fig:TuneLogReg_accuracy} and \ref{fig:TuneNN_accuracy}.
+Similarly, Table \ref{tab:acc} shows the parameters that gave the highest accuracy for Logistic Regression and Neural Network in Figure \ref{fig:TuneLogReg_accuracy} and \ref{fig:TuneNN_accuracy}.
 
 \begin{table}[htbp]
 	\renewcommand{\arraystretch}{1.2}
@@ -103,6 +102,6 @@ Additionally, for approximate ranges $m\in[10^2, 10^3]$ and $\gamma\in[10^{-4}, 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{NNTune_franke_mse}
-	\caption{Heatmap showing the MSE of the Neural Network applied on Franke's function for minibatch sizes $m\in[1, 1000]$ and learning rates $\gamma\in[10^{-4}, 1]$. MSE decreases from blue to yellow.}
+	\caption{Heatmap showing the MSE of the Neural Network applied on Franke's function for minibatch sizes $m\in[1, 1000]$ and learning rates $\gamma\in[10^{-4}, 1]$ in logarithmic scale. MSE decreases from blue to yellow.}
 	\label{fig:TuneNN_mse}
 \end{figure}
