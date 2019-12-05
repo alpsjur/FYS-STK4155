@@ -58,15 +58,16 @@ plt.plot(x2, initial(x2), label="inital")
 plt.plot(x1, u1_1[-1, :], label="u, t=0.02, $\Delta x=0.1$")
 plt.plot(x2, u2_1[-1, :], label="u, t=0.02, $\Delta x=0.01$")
 plt.plot(x2, exact(x2, 0.02), '--', label="$u_e$")
-plt.legend()
+# plt.legend()
 
 
-plt.figure(2)
-plt.plot(x2, initial(x2), label="inital")
+# plt.figure(2)
+# plt.plot(x2, initial(x2), label="inital")
 plt.plot(x1, u1_2[-1, :], label="u, t=0.3, $\Delta x=0.1$")
 plt.plot(x2, u2_2[-1, :], label="u, t=0.3, $\Delta x=0.01$")
 plt.plot(x2, exact(x2, 0.3), '--', label="$u_e$")
 plt.legend()
+plt.savefig("../figures/FD_solved.pdf")
 plt.show()
 
 # compute MSE of the error for the different cases:
