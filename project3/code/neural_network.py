@@ -24,8 +24,8 @@ L = 1
 dx = 0.1
 Nx = int(L/dx) + 1
 
-final_t = 0.02
-dt = 0.001
+final_t = 0.08
+dt = 0.005
 Nt = int(final_t/dt) + 1
 
 x = np.linspace(0, L, Nx)
@@ -43,9 +43,9 @@ t_tf = tf.convert_to_tensor(t_)
 points = tf.concat([x_tf, t_tf], 1)
 
 # SET UP NEURAL NETWORK
-num_iter = 100000
+num_iter = 10000
 
-num_hidden_neurons = [20,20]
+num_hidden_neurons = [30,30]
 num_hidden_layers = np.size(num_hidden_neurons)
 
 with tf.variable_scope('nn'):
@@ -65,7 +65,7 @@ with tf.variable_scope('nn'):
 # set up cost function (error^2)
 # define initial condition
 def initial(x):
-    return np.sin(np.pi*x)
+    return tf.sin(np.pi*x)
 
 with tf.name_scope('cost'):
     # define trial funcition
@@ -80,7 +80,6 @@ with tf.name_scope('cost'):
     cost = tf.reduce_sum(err, name='cost')
 
 # define learning rate and minimization of cost function
-# Define how the neural network should be trained
 learning_rate = 0.001
 with tf.name_scope('train'):
     optimizer = tf.train.AdamOptimizer(learning_rate)
@@ -89,4 +88,38 @@ with tf.name_scope('train'):
 # definie itialization of all nodes
 init = tf.global_variables_initializer()
 
+# define a storage value for the solution
+u_nn = None
+
 # CALCULATE AND SOLVE THE PDE
+with tf.Session() as session:
+    # Initialize the computational graph
+    init.run()
+
+    print('Initial cost: %g'%cost.eval())
+
+    for i in range(num_iter):
+        session.run(traning_op)
+
+    print('Final cost: %g'%cost.eval())
+
+    u_nn = trial.eval()
+
+# define exact solution
+u_e = np.exp(-np.pi**2*t_)*np.sin(np.pi*x_)
+
+# reshape arrays
+U_nn = u_nn.reshape((Nt, Nx))
+U_e = u_e.reshape((Nt, Nx))
+
+print(f"For t = {final_t} and dx = {dx}")
+print(f"MSE = {np.mean((U_nn[-1, :]-U_e[-1,:])**2)}")
+
+plt.figure(1)
+plt.plot(x, U_nn[-1, :], label=f"Neural Network, t = {final_t}")
+plt.plot(x, U_e[-1, :], label=f"u_e, t = {final_t}")
+plt.plot(x, U_nn[5, :], label=f"Neural Network, t = {t[5]}")
+plt.plot(x, U_e[5, :], label=f"u_e, t = {t[5]}")
+plt.legend()
+plt.savefig("../figures/NN_solved.pdf")
+plt.show()
