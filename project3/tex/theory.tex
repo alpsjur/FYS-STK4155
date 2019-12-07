@@ -1,12 +1,97 @@
 \section{Theory}
 \label{sec:theory}
 
+\subsection{The general Problem}
+The equation to be solved with different methods in this project is a simple diffusion equation
+\begin{equation}
+\pdv[2]{u(x,t)}{x} = \pdv{u(x,t)}{t} \quad t>0 \quad x\in [0,L]
+    \label{eq:diffusionEQ}
+\end{equation}
+Or $u_{xx} = u_t$. Using $L=1$, with initial condition at t=0:
+\begin{equation}
+    u(x,0) = \sin(\pi x)
+    \label{eq:initialCondition}
+\end{equation}
+and Dirichlet boundry conditions
+\begin{equation*}
+    u(0,t) = u(L,t) = 0 \quad t \geq 0
+\end{equation*}
+
+This problem can for instance model the temperature of rod that has been heated in the middle,
+and as time progresses the temperature is transported through the rod and falls.
+
+\subsection{Discretization}
+
+For time discretization, as time is only used in first order derivative, we will use the explicit Forward Euler Scheme, which gives an error proportional to $\Delta t$ (SOURCE).
+\begin{equation}
+    \pdv{u(x,t)}{t} \approx \frac{u(x,t+\Delta t) - u(x,t)}{\Delta t}
+    \label{eq:FE}
+\end{equation}
+For the spatial discretization we use centered difference, which has an error proportional to $\Delta x^2$ (SOURCE).
+\begin{equation}
+    \pdv[2]{u(x,t)}{x} = \frac{u(x+\Delta x,t) - 2u(x,t) + u(x-\Delta x,t)}{\Delta x^2}
+    \label{eq:CD}
+\end{equation}
+On a discrete time and space grid, $u(x,t) = u(x_i,t_n)$, $t+\Delta t = t_{n+1}$ and so on.
+For simplicity we use the notation $u_i^n = u(x_i,t_n)$. The equation in it's discrete form is then
+\begin{equation}
+\begin{split}
+    u_{xx} &= u_t \\
+    [u_{xx}]_i^n &= [u_t]_i^n \\
+    \frac{u_{i+1}^n - 2u_i^n + u_{i-1}^n}{\Delta x^2} &= \frac{u_i^{n+1}-u_i^n}{\Delta t}
+\end{split}
+\end{equation}
+Solving this for $u_i^{n+1}$ we can caluclate the next time step for each spatial point $i$:
+\begin{equation}
+    u_i^{n+1} = \frac{\Delta t}{\Delta x^2}\qty(u_{i+1}^n - 2u_i^n + u_{i-1}^n)  + u_i^n
+    \label{eq:theAlgorithm}
+\end{equation}
+Which has a stability level for the grid resolution
+\begin{equation*}
+    \frac{\Delta t}{\Delta x^2} \leq \frac{1}{2}
+\end{equation*}
+
+\subsection{The Exact Solution}
+As we will be comparing the precision of the different ways of solving the partial differential equation, we need to calculate the the exact solution in order to calculate the error.
+Through sepeation of variables, the equation can be expressed as
+\begin{equation}
+    u(x,t) = X(x)T(t)
+    \label{eq:separated}
+\end{equation}
+Differentiating this according to \eqref{eq:diffusionEQ} and moving some terms, we get
+\begin{equation*}
+    \frac{X''(x)}{X(x)} = \frac{T'(t)}{T(t)}
+\end{equation*}
+As the to sides of this equation are not dependant on the same variables, they must both be equal to a consant. (We can choose this constant to be $-\lambda ^2$). This gives the tho equations.
+\begin{equation*}
+    \begin{split}
+        X''(x) &= -\lambda ^2 X(x) \\
+        T'(t) &= -\lambda^2 T(t)
+    \end{split}
+\end{equation*}
+For $X$ can have three possible forms given by the characteristic equation. In order to satisfy the inital condition \eqref{eq:initialCondition}, $X(x)$ must be on the form
+\begin{equation*}
+    X(x) = B\sin(\lambda x) + C\cos(\lambda x)
+\end{equation*}
+The inital condition then rules $C=0, \lambda = \pi$. For $T(t)$ the solution is on the form
+\begin{equation*}
+    T(t) = Ae^{-\lambda^2t}
+\end{equation*}
+As we know $\lambda =\pi$ the solution is then:
+\begin{equation*}
+    u(x,t) = X(x)T(t) = Ae^{-\pi^2 t}B\sin(\pi x)
+\end{equation*}
+And finally from the initial condition, we know that $A\cdot B = 1$, and the exact solution is
+\begin{equation}
+    u(x,t) = e^{-\pi^2 t}\sin(\pi x)
+    \label{eq:exact}
+\end{equation}
 % Eksempel for store matriser
-\[A =
-\mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\
-a_1 & b_2 & c_2 & 0 & \hdots & 0 \\
-0 & a_2 & b_3 & c_3 & \hdots & 0 \\
-\vdots & \ddots & \ddots & \ddots & \ddots & \vdots \\
-0 & \hdots & \ddots & a_{n-2} & b_{n-1} & c_{n-1} \\
-0 & \hdots & \hdots & 0 & a_{n-1} & b_n],
-\]
+% \[A =
+% \mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\
+% a_1 & b_2 & c_2 & 0 & \hdots & 0 \\
+% 0 & a_2 & b_3 & c_3 & \hdots & 0 \\
+% \vdots & \ddots & \ddots & \ddots & \ddots & \vdots \\
+% 0 & \hdots & \ddots & a_{n-2} & b_{n-1} & c_{n-1} \\
+% 0 & \hdots & \hdots & 0 & a_{n-1} & b_n],
+% \]
