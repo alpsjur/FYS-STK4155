@@ -12,14 +12,14 @@ tf.set_random_seed(4155)
 n = 6
 Q = np.random.rand(n,n)
 A = (Q.T+Q)/2
+A_tf = tf.convert_to_tensor(A,dtype=tf.float64)
 
 #compute eigenvalues with numpy.linalg
-w_np = np.linalg.eig(A)[0]
+w_np, v_np = np.linalg.eig(A)
 w_min_np = np.min(w_np)
 w_max_np = np.max(w_np)
 
-
-def f(x, A):
+def f(x):
     """
     function denoted as f in the paper by YI et al.
     x is tensor of size (n,1)
@@ -27,42 +27,43 @@ def f(x, A):
     """
     I = tf.eye(n,dtype=tf.float64)
     xT = tf.transpose(x)
-    term1 = tf.matmul(xT,x)*A
-    term2 = (1 - tf.matmul(tf.matmul(xT,A),x))*I
+    term1 = tf.matmul(xT,x)*A_tf
+    term2 = (1 - tf.matmul(tf.matmul(xT,A_tf),x))*I
     return tf.matmul((term1 + term2),x)
 
-def compute_eigval(v, A):
+def compute_eigval(v):
     """
     function for computing eigenvalue, given eigenvector v
     v is tensor of size (n,1)
     returns a float
     """
     vT = tf.transpose(v)
-    num = tf.matmul(tf.matmul(vT,A),v)
+    num = tf.matmul(tf.matmul(vT,A_tf),v)
     den = tf.matmul(vT,v)
     return num/den
 
 
 
 #setting up the NN
-Nt = 10
+Nt = 100
 Nx = n
 t = np.linspace(0,Nt-1, Nt)
 x = np.linspace(1, Nx-1, Nx)
-#x = np.random.rand(n)
+v0 = np.random.rand(n)
 
 # Create mesh and convert to tensors
 X, T = np.meshgrid(x, t)
+V, T = np.meshgrid(v0, t)
 
 x_ = (X.ravel()).reshape(-1, 1)
 t_ = (T.ravel()).reshape(-1, 1)
+v0_ = (V.ravel()).reshape(-1, 1)
 
-x_tf = tf.convert_to_tensor(x_)
-t_tf = tf.convert_to_tensor(t_)
+x_tf = tf.convert_to_tensor(x_,dtype=tf.float64)
+t_tf = tf.convert_to_tensor(t_,dtype=tf.float64)
+v0_tf = tf.convert_to_tensor(v0_,dtype=tf.float64)
 
 points = tf.concat([x_tf, t_tf], 1)
-
-A_tf = tf.convert_to_tensor(A)
 
 num_iter = 10000
 num_hidden_neurons = [30,30]
@@ -86,21 +87,24 @@ with tf.name_scope('dnn'):
 
 #define loss function
 #DETTE MAA ORDNES
-#dnn_output maa reshapes slik at funskjonen f kan brukes, tidssteg for tidssteg?
-#maa beregne f(x) for hvert tidssteg
+#trial solution maa defineres annerledes tror AL
 with tf.name_scope('cost'):
-    trial = t_tf*(1-t_tf)*t_tf*dnn_output
+    trial = t_tf*(1-t_tf)*dnn_output#(1-t_tf)*v0_tf + x_tf*(1-x_tf)*t_tf*dnn_output
 
     # calculate the gradients
     trial_dt = tf.gradients(trial, t_tf)
 
-    dnn_output_rs = tf.reshape(dnn_output,(Nx, Nt))
-    trial_dt_rs = tf.reshape(trial_dt,(Nx, Nt))
+    dnn_output_rs = tf.reshape(dnn_output,(Nt, Nx))
+    trial_dt_rs = tf.reshape(trial_dt,(Nt, Nx))
 
     # calculate cost function
-    rhs = f(dnn_output_rs, A_tf) - dnn_output_rs
-    err = tf.square(-trial_dt_rs-rhs)
-    cost = tf.reduce_sum(err, name='cost')
+    cost = 0
+    for j in range(n):
+        dnn_output_temp = tf.reshape(dnn_output_rs[j],(n,1))
+        trial_dt_temp = tf.reshape(trial_dt_rs[j],(n,1))
+        rhs = f(dnn_output_temp) - dnn_output_temp
+        err = tf.square(-trial_dt_temp-rhs)
+        cost += tf.reduce_sum(err, name='cost')
 
 learning_rate = 0.001
 with tf.name_scope('train'):
@@ -124,11 +128,16 @@ with tf.Session() as sess:
         sess.run(traning_op)
 
         # If one desires to see how the cost function behaves for each iteration:
-        #if i % 1000 == 0:
-        #    print(cost.eval())
+        if i % 1000 == 0:
+            print(cost.eval())
 
     # Training is done, and we have an approximate solution to the ODE
     print('Final cost: %g'%cost.eval())
 
     # Store the result
-    v_dnn_tf = trial.eval()
+    #v_dnn_tf = trial.eval()
+    v_dnn_tf = tf.reshape(trial,(Nt,Nx))
+    v_dnn_tf = v_dnn_tf.eval()
+
+print(v_dnn_tf[-1])
+print(v_np)
