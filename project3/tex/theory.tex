@@ -9,7 +9,7 @@ The equation to be solved with different methods in this project is a simple dif
 \end{equation}
 Or $u_{xx} = u_t$. Using $L=1$, with initial condition at t=0:
 \begin{equation}
-    u(x,0) = \sin(\pi x)
+    u(x,0) = I(x) = \sin(\pi x)
     \label{eq:initialCondition}
 \end{equation}
 and Dirichlet boundry conditions
@@ -86,9 +86,37 @@ And finally from the initial condition, we know that $A\cdot B = 1$, and the exa
     u(x,t) = e^{-\pi^2 t}\sin(\pi x)
     \label{eq:exact}
 \end{equation}
+
+\subsection{Solving PDEs with Neural Networks}
+How we use gradient descent to minimize a cost function with forward feeding when using a Neural Network is discussed in detail in (REF TIL PROSJEKT 2). Much of the same logic will here be applied to solve a partial differential equation.
+
+A trial function $\Psi (x,t)$ can be approximated, and our aim is to get this $\Psi$ as close to the true function $u$ as possible \cite{lagaris1998artificial}. Since the equation to be solved is \eqref{eq:diffusionEQ}, the corresponding equation is
+\begin{equation*}
+    \pdv[2]{\Psi(x,t)}{x} = \pdv{\Psi(x,t)}{t} \quad t>0 \quad x\in [0,L]
+\end{equation*}
+The error (or residual) in the approximation is then
+\begin{equation}
+    E = \pdv[2]{\Psi(x,t)}{x} - \pdv{\Psi(x,t)}{t}
+    \label{eq:errorFunc}
+\end{equation}
+The cost function to be mimimized by the Neural Network is the sum of this $E$, evaluated at each point in the space and time grid.
+
+For each iteration in the calculations, we will update our trial function based on the Neural Network's previous calculations. Therefore we must choose a fitting form for our trial function. This is based on the order of the PDE, and its initial condition. To satisfy the inital condition and Dirichlet conditions, we choose:
+\begin{equation}
+    \Psi (x,t) = (1-t)I(x) + x(1-x)tN(x,t,p)
+    \label{eq:trialFunction}
+\end{equation}
+Where $I(x)$ is the initial condition, and $N(x,t,p)$ is the output from the neural network, and $p$ is the weigts.
+
+Then, for each iteration in the network, the partial derivatives of $\Psi$ is calculated, formulating the cost function and a new $N(x,t,p)$ for minimization is calculated, being used in the next iteration.
+
+How small we are able to get the cost is dependant of the maximum number of iterations we allow the Network to execute, the learning rate, and the structure of the Neural Network in terms of the number of hidden layers, and the number of nodes in each layer.
+
+\subsection{Implementing the Neural Network}
+There are many ways of implementing the Neural Network method for solving this partial differential equation. In this project, we have chosen to use \textit{TensorFlow} for python3, as it is fast, stable and relatively simple to use. For implementation, see (GITHUB REPO).
 % Eksempel for store matriser
 % \[A =
-% \mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\
+% \mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\$$
 % a_1 & b_2 & c_2 & 0 & \hdots & 0 \\
 % 0 & a_2 & b_3 & c_3 & \hdots & 0 \\
 % \vdots & \ddots & \ddots & \ddots & \ddots & \vdots \\
