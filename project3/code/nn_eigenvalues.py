@@ -34,26 +34,27 @@ def f(x):
 def compute_eigval(v):
     """
     function for computing eigenvalue, given eigenvector v
-    v is tensor of size (n,1)
+    v is vector of size n
     returns a float
     """
-    vT = tf.transpose(v)
-    num = tf.matmul(tf.matmul(vT,A_tf),v)
-    den = tf.matmul(vT,v)
+    v = v.reshape(n,1)
+    vT = v.transpose()
+    num = np.matmul(np.matmul(vT,A),v)[0,0]
+    den = np.matmul(vT,v)[0,0]
     return num/den
 
 
 
 #setting up the NN
-Nt = 100
+Nt = 40
 Nx = n
 t = np.linspace(0, 1, Nt)
 x = np.linspace(1, Nx, Nx)
 v0 = np.random.rand(n)
 
 # Create mesh and convert to tensors
-T, X = np.meshgrid(t, x)
-T_, V = np.meshgrid(t, v0)
+X, T = np.meshgrid(x, t)
+V, T_ = np.meshgrid(v0, t)
 
 x_ = (X.ravel()).reshape(-1, 1)
 t_ = (T.ravel()).reshape(-1, 1)
@@ -65,7 +66,7 @@ v0_tf = tf.convert_to_tensor(v0_,dtype=tf.float64)
 
 points = tf.concat([x_tf, t_tf], 1)
 
-num_iter = 1000
+num_iter = 10000
 num_hidden_neurons = [30,30]
 num_hidden_layers = np.size(num_hidden_neurons)
 
@@ -89,26 +90,27 @@ with tf.name_scope('dnn'):
 #DETTE MAA ORDNES
 #trial solution maa defineres annerledes tror AL
 with tf.name_scope('cost'):
-    trial = (1-t_tf)*v0_tf + t_tf*dnn_output
+    trial = dnn_output*t_tf + v0_tf
+    #v0_tf*dnn_output**(-t_tf)#(1-t_tf)*v0_tf + t_tf*dnn_output
 
     # calculate the gradients
     trial_dt = tf.gradients(trial, t_tf)
 
-    dnn_output_rs = tf.reshape(dnn_output,(Nt, Nx))
+    trial_rs = tf.reshape(trial,(Nt, Nx))
     trial_dt_rs = tf.reshape(trial_dt,(Nt, Nx))
 
     # calculate cost function
-    cost = 0
+    cost_temp = 0
     for j in range(Nt):
-        dnn_output_temp = tf.reshape(dnn_output_rs[j],(n,1))
+        trial_temp = tf.reshape(trial_rs[j],(n,1))
         trial_dt_temp = tf.reshape(trial_dt_rs[j],(n,1))
-        rhs = f(dnn_output_temp) - dnn_output_temp
-        err = tf.square(-trial_dt_temp-rhs)
-        cost += tf.reduce_sum(err, name='cost')
-
+        rhs = f(trial_temp) - trial_temp
+        err = tf.square(-trial_dt_temp+rhs)
+        cost_temp += tf.reduce_sum(err)
+    cost = tf.reduce_sum(cost_temp, name='cost')
 learning_rate = 0.001
 with tf.name_scope('train'):
-    optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+    optimizer = tf.train.AdamOptimizer(learning_rate)
     traning_op = optimizer.minimize(cost)
 
 v_dnn_tf = None
@@ -129,7 +131,7 @@ with tf.Session() as sess:
 
         # If one desires to see how the cost function behaves for each iteration:
         if i % 1000 == 0:
-            print(cost.eval())
+            print(i,' iterations:', cost.eval())
 
     # Training is done, and we have an approximate solution to the ODE
     print('Final cost: %g'%cost.eval())
@@ -139,5 +141,10 @@ with tf.Session() as sess:
     v_dnn_tf = tf.reshape(trial,(Nt,Nx))
     v_dnn_tf = v_dnn_tf.eval()
 
-print(v_dnn_tf[-1])
-print(v_np)
+v_max_dnn = v_dnn_tf[-1]
+w_max_dnn = compute_eigval(v_max_dnn)
+print('v0: \n', v0)
+print('v max nn: \n',v_max_dnn)
+print('v numpy: \n',v_np)
+print('w max nn: \n',w_max_dnn)
+print('w max numpy: \n',w_max_np)
