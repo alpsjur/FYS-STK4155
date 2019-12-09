@@ -47,7 +47,7 @@ def compute_eigval(v):
 #setting up the NN
 Nt = 100
 Nx = n
-t = np.linspace(0,Nt-1, Nt)
+t = np.linspace(0, 1, Nt)
 x = np.linspace(1, Nx-1, Nx)
 v0 = np.random.rand(n)
 
@@ -65,7 +65,7 @@ v0_tf = tf.convert_to_tensor(v0_,dtype=tf.float64)
 
 points = tf.concat([x_tf, t_tf], 1)
 
-num_iter = 10000
+num_iter = 1000
 num_hidden_neurons = [30,30]
 num_hidden_layers = np.size(num_hidden_neurons)
 
@@ -89,7 +89,7 @@ with tf.name_scope('dnn'):
 #DETTE MAA ORDNES
 #trial solution maa defineres annerledes tror AL
 with tf.name_scope('cost'):
-    trial = t_tf*(1-t_tf)*dnn_output#(1-t_tf)*v0_tf + x_tf*(1-x_tf)*t_tf*dnn_output
+    trial = (1-t_tf)*v0_tf + t_tf*dnn_output
 
     # calculate the gradients
     trial_dt = tf.gradients(trial, t_tf)
@@ -99,7 +99,7 @@ with tf.name_scope('cost'):
 
     # calculate cost function
     cost = 0
-    for j in range(n):
+    for j in range(Nt):
         dnn_output_temp = tf.reshape(dnn_output_rs[j],(n,1))
         trial_dt_temp = tf.reshape(trial_dt_rs[j],(n,1))
         rhs = f(dnn_output_temp) - dnn_output_temp
