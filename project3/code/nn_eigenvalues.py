@@ -48,12 +48,12 @@ def compute_eigval(v):
 Nt = 100
 Nx = n
 t = np.linspace(0, 1, Nt)
-x = np.linspace(1, Nx-1, Nx)
+x = np.linspace(1, Nx, Nx)
 v0 = np.random.rand(n)
 
 # Create mesh and convert to tensors
-X, T = np.meshgrid(x, t)
-V, T = np.meshgrid(v0, t)
+T, X = np.meshgrid(t, x)
+T_, V = np.meshgrid(t, v0)
 
 x_ = (X.ravel()).reshape(-1, 1)
 t_ = (T.ravel()).reshape(-1, 1)
