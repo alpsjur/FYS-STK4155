@@ -2,22 +2,35 @@ import numpy as np
 from matplotlib import cm
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
+import seaborn as sns
+
+sns.set()
+sns.set_style("white")
+sns.set_palette("Set2")
+plt.rc('text', usetex=True)
+plt.rc('font', family='serif')
 
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 tf.set_random_seed(4155)
+np.random.seed(4155)
 
 
 #code for generating random, symmetric nxn matrix
 n = 6
 Q = np.random.rand(n,n)
 A = (Q.T+Q)/2
+#change sign of A to mind other eigenvalue
 A_tf = tf.convert_to_tensor(A,dtype=tf.float64)
 
 #compute eigenvalues with numpy.linalg
 w_np, v_np = np.linalg.eig(A)
+idx = np.argsort(w_np)
+v_np = v_np[:,idx]
 w_min_np = np.min(w_np)
 w_max_np = np.max(w_np)
+v_min_np = v_np[:,0]
+v_max_np = v_np[:,-1]
 
 def f(x):
     """
@@ -46,9 +59,9 @@ def compute_eigval(v):
 
 
 #setting up the NN
-Nt = 40
+Nt = 20
 Nx = n
-t = np.linspace(0, 1, Nt)
+t = np.linspace(0, 1, Nt) #maa gaa fra 0 til 1 for aa faa konvergens
 x = np.linspace(1, Nx, Nx)
 v0 = np.random.rand(n)
 
@@ -96,10 +109,11 @@ with tf.name_scope('cost'):
     # calculate the gradients
     trial_dt = tf.gradients(trial, t_tf)
 
+    #reshape to allow itterating over time stemps
     trial_rs = tf.reshape(trial,(Nt, Nx))
     trial_dt_rs = tf.reshape(trial_dt,(Nt, Nx))
 
-    # calculate cost function
+    # calculate cost function, mse
     cost_temp = 0
     for j in range(Nt):
         trial_temp = tf.reshape(trial_rs[j],(n,1))
@@ -107,13 +121,13 @@ with tf.name_scope('cost'):
         rhs = f(trial_temp) - trial_temp
         err = tf.square(-trial_dt_temp+rhs)
         cost_temp += tf.reduce_sum(err)
-    cost = tf.reduce_sum(cost_temp, name='cost')
+    cost = tf.reduce_sum(cost_temp/(Nx*Nt), name='cost')
 learning_rate = 0.001
 with tf.name_scope('train'):
     optimizer = tf.train.AdamOptimizer(learning_rate)
     traning_op = optimizer.minimize(cost)
 
-v_dnn_tf = None
+v_dnn = None
 
 init = tf.global_variables_initializer()
 
@@ -138,13 +152,23 @@ with tf.Session() as sess:
 
     # Store the result
     #v_dnn_tf = trial.eval()
-    v_dnn_tf = tf.reshape(trial,(Nt,Nx))
-    v_dnn_tf = v_dnn_tf.eval()
+    v_dnn = tf.reshape(trial,(Nt,Nx))
+    v_dnn = v_dnn.eval()
 
-v_max_dnn = v_dnn_tf[-1]
+fig, ax = plt.subplots()
+ax.plot(v_dnn, color='black')
+ax.set_xlabel('Number of timesteps')
+ax.set_ylabel('Value of the elements of the estimated eigenvector')
+
+v_max_dnn = v_dnn[-1]
 w_max_dnn = compute_eigval(v_max_dnn)
 print('v0: \n', v0)
-print('v max nn: \n',v_max_dnn)
-print('v numpy: \n',v_np)
-print('w max nn: \n',w_max_dnn)
+print('v nn: \n',v_max_dnn)
+print('unit v nn: \n', v_max_dnn/np.linalg.norm(v_max_dnn))
+print('unit v max np: \n',v_max_np)
+print('unit v min np: \n',v_min_np)
+print('w nn: \n',w_max_dnn)
 print('w max numpy: \n',w_max_np)
+print('w min numpy: \n',w_min_np)
+
+plt.show()
