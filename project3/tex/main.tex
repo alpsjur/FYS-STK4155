@@ -4,6 +4,7 @@
 \usepackage[noend]{algorithm2e}
 \usepackage{float}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{epsfig,floatflt}
 \usepackage{physics}
 \usepackage[english]{babel}
@@ -13,13 +14,25 @@
 \usepackage[format=plain,
 font=it]{caption}
 \usepackage{url}
+\usepackage{hyperref}
+\usepackage{color}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkblue}{rgb}{0,0,0.5}
 
-\graphicspath{{../figurer/}}
+
+\hypersetup{ colorlinks,
+	linkcolor=darkblue,
+	filecolor=darkgreen,
+	urlcolor=darkred,
+	citecolor=darkblue }
+
+\graphicspath{{../figures/}}
 \DeclareGraphicsExtensions{.pdf}
 
 \begin{document}
 
-\title{}
+\title{Solving differential equations using neural networks}
 
 \author{Eina B. Jørgensen, Anna Lina P. Sjur and Jan-Adrian H. Kallmyr}
 

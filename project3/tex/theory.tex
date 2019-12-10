@@ -1,38 +1,83 @@
-\section{Theory}
+\section{Theory and implementation}
 \label{sec:theory}
 
-\subsection{The general Problem}
-The equation to be solved with different methods in this project is a simple diffusion equation
+\subsection{The general problem}
+
+The first problem to be solved in this project is a simple diffusion equation 
 \begin{equation}
-\pdv[2]{u(x,t)}{x} = \pdv{u(x,t)}{t} \quad t>0 \quad x\in [0,L]
+\pdv[2]{u(x,t)}{x} = \pdv{u(x,t)}{t} \quad t>0 \quad x\in [0,L].
     \label{eq:diffusionEQ}
 \end{equation}
-Or $u_{xx} = u_t$. Using $L=1$, with initial condition at t=0:
+Alternatively, this can be written as $u_{xx} = u_t$. Using $L=1$, the initial condition at $t=0$ are given by
 \begin{equation}
-    u(x,0) = I(x) = \sin(\pi x)
-    \label{eq:initialCondition}
+    u(x,0) = \sin(\pi x)
+    \label{eq:initialCondition}.
 \end{equation}
-and Dirichlet boundry conditions
+Dirichlet boundary conditions are used, given by
 \begin{equation*}
-    u(0,t) = u(L,t) = 0 \quad t \geq 0
+    u(0,t) = u(L,t) = 0 \quad t \geq 0.
 \end{equation*}
 
-This problem can for instance model the temperature of rod that has been heated in the middle,
-and as time progresses the temperature is transported through the rod and falls.
+This problem can for instance model the temperature of a rod that has been heated in the middle,
+and as time progresses the heat is transported through the rod and the temperature falls. We will first look at how an explicit scheme can be used, followed by a method using neural networks. 
 
-\subsection{Discretization}
+In the second part, we will look at how we can compute the eigenvalues and eigenvectors of a real, symmetric $6\times 6$ matrix $A$. In particular, we will see how methods used to solve Eq. (\ref{eq:diffusionEQ}) can be applied to this problem. 
 
-For time discretization, as time is only used in first order derivative, we will use the explicit Forward Euler Scheme, which gives an error proportional to $\Delta t$ (SOURCE).
+To construct such a matrix, we let
+\begin{equation*}
+	A = \frac{Q^T+Q }{2}
+\end{equation*}
+where $Q$ is a random, real matrix. 
+
+\subsection{Exact solution of the diffusion equation}
+As we will be comparing the precision of the different ways of solving the partial differential equation, we need to calculate the exact solution in order to calculate the error.
+Through separation of variables, the equation can be expressed as
+\begin{equation}
+u(x,t) = X(x)T(t)
+\label{eq:separated}
+\end{equation}
+Differentiating this according to \eqref{eq:diffusionEQ} and moving some terms, we get
+\begin{equation*}
+\frac{X''(x)}{X(x)} = \frac{T'(t)}{T(t)}
+\end{equation*}
+As the to sides of this equation are not dependant on the same variables, they must both be equal to a constant. (We can choose this constant to be $-\lambda ^2$). This gives the two equations.
+\begin{equation*}
+\begin{split}
+X''(x) &= -\lambda ^2 X(x) \\
+T'(t) &= -\lambda^2 T(t)
+\end{split}
+\end{equation*}
+For $X$ can have three possible forms given by the characteristic equation. In order to satisfy the initial condition \eqref{eq:initialCondition}, $X(x)$ must be on the form
+\begin{equation*}
+X(x) = B\sin(\lambda x) + C\cos(\lambda x)
+\end{equation*}
+The initial condition then rules $C=0, \lambda = \pi$. For $T(t)$ the solution is on the form
+\begin{equation*}
+T(t) = Ae^{-\lambda^2t}
+\end{equation*}
+As we know $\lambda =\pi$ the solution is then:
+\begin{equation*}
+u(x,t) = X(x)T(t) = Ae^{-\pi^2 t}B\sin(\pi x)
+\end{equation*}
+And finally from the initial condition, we know that $A\cdot B = 1$, and the exact solution is
+\begin{equation}
+u(x,t) = e^{-\pi^2 t}\sin(\pi x)
+\label{eq:exact}
+\end{equation}
+
+\subsection{Discretization of the diffusion equation}
+
+For time discretization, as time is only used in first order derivative, we will use the explicit Forward Euler Scheme, which gives an error proportional to $\Delta t$ (SOURCE). This is given as 
 \begin{equation}
     \pdv{u(x,t)}{t} \approx \frac{u(x,t+\Delta t) - u(x,t)}{\Delta t}
     \label{eq:FE}
 \end{equation}
-For the spatial discretization we use centered difference, which has an error proportional to $\Delta x^2$ (SOURCE).
+For the spatial discretization we use centred difference, which has an error proportional to $\Delta x^2$ (SOURCE), given by
 \begin{equation}
     \pdv[2]{u(x,t)}{x} = \frac{u(x+\Delta x,t) - 2u(x,t) + u(x-\Delta x,t)}{\Delta x^2}
     \label{eq:CD}
 \end{equation}
-On a discrete time and space grid, $u(x,t) = u(x_i,t_n)$, $t+\Delta t = t_{n+1}$ and so on.
+On a discrete time and space grid, $u(x,t) = u(x_i,t_n)$, $t+\Delta t_n = t_{n+1}$ and so on.
 For simplicity we use the notation $u_i^n = u(x_i,t_n)$. The equation in it's discrete form is then
 \begin{equation}
 \begin{split}
@@ -46,51 +91,15 @@ Solving this for $u_i^{n+1}$ we can caluclate the next time step for each spatia
     u_i^{n+1} = \frac{\Delta t}{\Delta x^2}\qty(u_{i+1}^n - 2u_i^n + u_{i-1}^n)  + u_i^n
     \label{eq:theAlgorithm}
 \end{equation}
-Which has a stability level for the grid resolution
+Which has a stability level for the grid resolution given by 
 \begin{equation*}
     \frac{\Delta t}{\Delta x^2} \leq \frac{1}{2}
 \end{equation*}
 
-\subsection{The Exact Solution}
-As we will be comparing the precision of the different ways of solving the partial differential equation, we need to calculate the the exact solution in order to calculate the error.
-Through sepeation of variables, the equation can be expressed as
-\begin{equation}
-    u(x,t) = X(x)T(t)
-    \label{eq:separated}
-\end{equation}
-Differentiating this according to \eqref{eq:diffusionEQ} and moving some terms, we get
-\begin{equation*}
-    \frac{X''(x)}{X(x)} = \frac{T'(t)}{T(t)}
-\end{equation*}
-As the to sides of this equation are not dependant on the same variables, they must both be equal to a consant. (We can choose this constant to be $-\lambda ^2$). This gives the tho equations.
-\begin{equation*}
-    \begin{split}
-        X''(x) &= -\lambda ^2 X(x) \\
-        T'(t) &= -\lambda^2 T(t)
-    \end{split}
-\end{equation*}
-For $X$ can have three possible forms given by the characteristic equation. In order to satisfy the inital condition \eqref{eq:initialCondition}, $X(x)$ must be on the form
-\begin{equation*}
-    X(x) = B\sin(\lambda x) + C\cos(\lambda x)
-\end{equation*}
-The inital condition then rules $C=0, \lambda = \pi$. For $T(t)$ the solution is on the form
-\begin{equation*}
-    T(t) = Ae^{-\lambda^2t}
-\end{equation*}
-As we know $\lambda =\pi$ the solution is then:
-\begin{equation*}
-    u(x,t) = X(x)T(t) = Ae^{-\pi^2 t}B\sin(\pi x)
-\end{equation*}
-And finally from the initial condition, we know that $A\cdot B = 1$, and the exact solution is
-\begin{equation}
-    u(x,t) = e^{-\pi^2 t}\sin(\pi x)
-    \label{eq:exact}
-\end{equation}
-
 \subsection{Solving PDEs with Neural Networks}
-How we use gradient descent to minimize a cost function with forward feeding when using a Neural Network is discussed in detail in (REF TIL PROSJEKT 2). Much of the same logic will here be applied to solve a partial differential equation.
+A different approach to solve a PDE is with the aid of a neural network. For an more in-depth description of how a neural network functions, see \cite{prosjekt2}. Much of the same logic will here be applied to solve a partial differential equation. 
 
-A trial function $\Psi (x,t)$ can be approximated, and our aim is to get this $\Psi$ as close to the true function $u$ as possible \cite{lagaris1998artificial}. Since the equation to be solved is \eqref{eq:diffusionEQ}, the corresponding equation is
+In order to solve PDAs with a neural network, a trial function $\Psi (x,t)$ must be approximated, and our aim is to get this $\Psi$ as close to the true function $u$ as possible \cite{lagaris1998artificial}. When aiming to solve Eq. \eqref{eq:diffusionEQ}, the corresponding equation, substituting with the trial function, is
 \begin{equation*}
     \pdv[2]{\Psi(x,t)}{x} = \pdv{\Psi(x,t)}{t} \quad t>0 \quad x\in [0,L]
 \end{equation*}
@@ -99,21 +108,50 @@ The error (or residual) in the approximation is then
     E = \pdv[2]{\Psi(x,t)}{x} - \pdv{\Psi(x,t)}{t}
     \label{eq:errorFunc}
 \end{equation}
-The cost function to be mimimized by the Neural Network is the sum of this $E$, evaluated at each point in the space and time grid.
+The cost function to be minimized by the Neural Network is the sum of this $E$, evaluated at each point in the space and time grid.
 
-For each iteration in the calculations, we will update our trial function based on the Neural Network's previous calculations. Therefore we must choose a fitting form for our trial function. This is based on the order of the PDE, and its initial condition. To satisfy the inital condition and Dirichlet conditions, we choose:
+For each iteration in the calculations, we will update our trial function based on the Neural Network's previous calculations. Therefore we must choose a fitting form for our trial function. This is based on the order of the PDE, and its initial condition. To satisfy the initial condition and Dirichlet conditions of Eq. (\ref{eq:diffusionEQ}), we choose:
 \begin{equation}
-    \Psi (x,t) = (1-t)I(x) + x(1-x)tN(x,t,p)
+    \Psi (x,t) = (1-t)I(x) + x(1-x)tN(x,t,p),
     \label{eq:trialFunction}
 \end{equation}
-Where $I(x)$ is the initial condition, and $N(x,t,p)$ is the output from the neural network, and $p$ is the weigts.
+where $I(x)$ is the initial condition, $N(x,t,p)$ is the output from the neural network, and $p$ is the weights and biases.
 
-Then, for each iteration in the network, the partial derivatives of $\Psi$ is calculated, formulating the cost function and a new $N(x,t,p)$ for minimization is calculated, being used in the next iteration.
+Then, for each iteration in the network, the partial derivatives of $\Psi$ is calculated according to the new state of the network $N(x, t, p)$, updating the cost. As the cost is minimized, the error term $E$ gets closer to zero, and out trial function $\Psi (x,t)$ will approach the solution of the PDE. 
 
 How small we are able to get the cost is dependant of the maximum number of iterations we allow the Network to execute, the learning rate, and the structure of the Neural Network in terms of the number of hidden layers, and the number of nodes in each layer.
 
+\subsection{Computing eigenpairs with Neural Networks}
+Following the discussion by \cite{yi2004neural}, it is possible to compute the eigenvector $v_{max}$ corresponding to the largest eigenvalue $w_{max}$ of the $n\times n$ matrix $A$ by solving the ordinary differential equation
+\begin{equation}\label{eq:eigenDE}
+	\frac{dv(t)}{dt} = -v(t) + f(v(t)), \quad t\geq 0
+\end{equation}
+ where $v = [v_1,v_2,\ldots,v_n]^T$ and $f(v)$ is given as
+ \begin{equation}\label{eq:f}
+ f(v) = \left[v^TvA + \left(1-v^TAv\right)I\right]v
+ \end{equation}
+Here, $I$ is the $n\times n$ identity matrix. 
+
+As shown by \cite{yi2004neural}, when $t\rightarrow \infty$, any random non-zero initial $v$, as long as it's not orthogonal to $v_{max}$, will approach $v_{max}$. To compute the corresponding eigenvalue $w_{max}$, the following equation can be used.
+\begin{equation*}\label{eq:find_w}
+	w = \frac{v^TAv}{v^Tv}
+\end{equation*}
+
+To compute the eigenvector $v_{min}$ corresponding to the smallest eigenvalue $w_{min}$ of $A$, one can simply substitute $A$ with $-A$ in Eq. (\ref{eq:eigenDE}).
+
+As described earlier, a trial function is needed to solve Eq. (\ref{eq:eigenDE}) with a Neural Network. Since $v \in \mathbb{R}^n$, we choose a trial function $\Psi(x,t)$ dependent both on position $x$ and time $t$, so that for each time step, the approximated eigenvector is given as $[v(1,t), v(2,t), \ldots, v(n,t)]^T$. Eq. (\ref{eq:eigenDE}) can then be rewritten as
+\begin{equation}\label{eq:trial_eigen}
+	\frac{\partial \Psi(x,t)}{\partial t} = -\Psi(x,t) + f(\Psi(x,t))
+\end{equation}
+with $t \geq 0$ and $x=1,2,\ldots,n$. We defined the trial function as 
+\begin{equation*}
+	 \Psi(x,t) = v_0 + tN(x,t,p)
+\end{equation*}
+where $v_0$ is the initial $v$, chosen at random.   
+The error is then the difference between the two hand sides of Eq. (\ref{eq:trial_eigen}). For this project, the mean squared error (MSE) was used as cost function. 
+
 \subsection{Implementing the Neural Network}
-There are many ways of implementing the Neural Network method for solving this partial differential equation. In this project, we have chosen to use \textit{TensorFlow} for python3, as it is fast, stable and relatively simple to use. For implementation, see (GITHUB REPO).
+There are many ways of implementing the Neural Network method for solving differential equations. In this project, we have chosen to use \textit{TensorFlow} for python3, as it is fast, stable and relatively simple to use. For implementation, see the git repository of \href{https://github.com/janadr/FYS-STK4155/tree/master/project3/code}{janadr}.
 % Eksempel for store matriser
 % \[A =
 % \mqty[b_1 & c_1 & 0 & \hdots & \hdots & 0 \\$$
