@@ -209,12 +209,11 @@ def lasso_regression(X, data, hyperparam=1):
     beta = reg.coef_
     return beta
 
-def mse(data, model):
+def mse(model, labels, **kwargs):
     """
     Calculates the mean square error between data and model.
     """
-    n = len(data)
-    error = np.sum((data - model)**2)/n
+    error = np.mean( np.mean((labels - model)**2, **kwargs), **kwargs)
     return error
 
 def r2(data, model):
@@ -424,11 +423,6 @@ def frankefunction(x, y):
 def create_directories(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
-    return
-
-def remove_file(filename):
-    if os.path.exists(filename):
-        os.system("rm " + filename)
     return
 
 def produce_table(data, hheader=None, vheader=None):
