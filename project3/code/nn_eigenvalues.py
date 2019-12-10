@@ -162,8 +162,14 @@ with tf.Session() as sess:
 
 fig, ax = plt.subplots()
 ax.plot(t, v_dnn, color='black')
-ax.set_xlabel('Time t')
-ax.set_ylabel('Value of the elements of the estimated eigenvector')
+ax.set_xlabel('Time t', fontsize=20)
+ax.set_ylabel(r'Estimated $v_{max}$ elements', fontsize=20)
+ax.text(0.7, 0.9, 'dt = {} \n $\epsilon$ \, = {}'.format(dt,prec) , \
+        horizontalalignment='left', verticalalignment='top',\
+        transform=ax.transAxes, fontsize = 20)
+ax.tick_params(axis='both', labelsize=14)
+plt.savefig('../figures/eigenvector_max.pdf')
+#plt.savefig('../figures/eigenvector_min.pdf')
 
 v_max_dnn = v_dnn[-1]
 w_max_dnn = compute_eigval(v_max_dnn)
