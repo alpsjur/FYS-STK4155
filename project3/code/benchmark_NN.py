@@ -5,13 +5,14 @@ import seaborn as sns
 import time
 import sys
 
-import finite_difference as fd
+import neural_network as nn
 
 sys.path.append("class/")
 import projectfunctions as pf
 
 
-datadir = "../data/"
+datadir = "../data/pde/"
+pf.create_directories(datadir)
 
 
 #first command line argument sets the number of runs (n) for each value of N
@@ -26,7 +27,7 @@ N = np.linspace(1, N_max, N_max, dtype=int)
 #pf.remove_file("../data/finite_difference_timelog.dat")
 
 
-filename = f"finite_difference_benchmark_T{T:.0E}.dat"
+filename = f"neural_network_benchmark_T{T:.0E}.dat"
 outfile = open(datadir + filename, "w")
 counter = 1
 for i in N:
@@ -34,10 +35,10 @@ for i in N:
     msearray = np.zeros(n)
     for j in range(n):
         tic = time.process_time()
-        u, x = fd.solve(fd.initial, T, Nx=i)
+        u, x, t = fd.solve(nn.initial, T, Nt=i)
         toc = time.process_time()
         timearray[j] = toc - tic
-        msearray[j] = pf.mse(u[-1, :], fd.exact(x, T))
+        msearray[j] = pf.mse(u[-1, :], nn.exact(x, T))
     outfile.write("{} {:.16f} {:.16f}\n".format(i, np.mean(timearray), np.mean(msearray)))
     print("Iteration {}/{} complete".format(counter, len(N)))
     counter += 1

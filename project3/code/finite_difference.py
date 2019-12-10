@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 def initial(x):
     return np.sin(x*np.pi)
 
-def solve(init_func, T, Nx=100, L=1, safety_factor=0.9):
+def solve(init_func, T, Nt=100, L=1, safety_factor=0.9):
     """
     solves equation u_xx = u_t for a given inital condition and
     boundries u(0,t) = u(L,t) = 0
@@ -23,10 +23,10 @@ def solve(init_func, T, Nx=100, L=1, safety_factor=0.9):
 
     # establish space grid and time parameters
     #Nx = int(L/dx) + 1
-    dx = L/(Nx - 1)
 
-    dt = (0.5*dx**2)*safety_factor
-    Nt = int(T/dt) + 1
+    dt = T/(Nt - 1)
+    dx = np.sqrt(2*dt/safety_factor)
+    Nx = int(L/dx) + 1
 
     c = dt/dx**2
 
