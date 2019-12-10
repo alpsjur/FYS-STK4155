@@ -12,16 +12,18 @@ plt.rc('font', family='serif')
 
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
-tf.set_random_seed(4155)
-np.random.seed(4155)
+tf.set_random_seed(42)
+np.random.seed(42)
 
+#set to 1 for max eigenvalue, -1 for min eigenvalue
+k = +1
 
 #code for generating random, symmetric nxn matrix
 n = 6
 Q = np.random.rand(n,n)
 A = (Q.T+Q)/2
-#change sign of A to mind other eigenvalue
-A_tf = tf.convert_to_tensor(A,dtype=tf.float64)
+#change sign of A to find other eigenvalue
+A_tf = tf.convert_to_tensor(k*A,dtype=tf.float64)
 
 #compute eigenvalues with numpy.linalg
 w_np, v_np = np.linalg.eig(A)
@@ -59,9 +61,12 @@ def compute_eigval(v):
 
 
 #setting up the NN
-Nt = 20
+prec = 0.0001
+t_max = 3
+dt = 0.1
+Nt = int(t_max/dt)
 Nx = n
-t = np.linspace(0, 1, Nt) #maa gaa fra 0 til 1 for aa faa konvergens
+t = np.linspace(0, (Nt-1)*dt, Nt) #maa gaa fra 0 til 1 for aa faa konvergens
 x = np.linspace(1, Nx, Nx)
 v0 = np.random.rand(n)
 
@@ -79,8 +84,8 @@ v0_tf = tf.convert_to_tensor(v0_,dtype=tf.float64)
 
 points = tf.concat([x_tf, t_tf], 1)
 
-num_iter = 10000
-num_hidden_neurons = [30,30]
+#num_iter = 20000
+num_hidden_neurons = [10,10]
 num_hidden_layers = np.size(num_hidden_neurons)
 
 with tf.name_scope('dnn'):
@@ -140,24 +145,24 @@ with tf.Session() as sess:
     print('Initial cost: %g'%cost.eval())
 
     # The training of the network:
-    for i in range(num_iter):
+    i = 0
+    #for i in range(num_iter):
+    while cost.eval()>prec:
         sess.run(traning_op)
-
+        i += 1
         # If one desires to see how the cost function behaves for each iteration:
         if i % 1000 == 0:
-            print(i,' iterations:', cost.eval())
-
+            print(i,'iter: %g'%cost.eval())
     # Training is done, and we have an approximate solution to the ODE
     print('Final cost: %g'%cost.eval())
 
     # Store the result
-    #v_dnn_tf = trial.eval()
     v_dnn = tf.reshape(trial,(Nt,Nx))
     v_dnn = v_dnn.eval()
 
 fig, ax = plt.subplots()
-ax.plot(v_dnn, color='black')
-ax.set_xlabel('Number of timesteps')
+ax.plot(t, v_dnn, color='black')
+ax.set_xlabel('Time t')
 ax.set_ylabel('Value of the elements of the estimated eigenvector')
 
 v_max_dnn = v_dnn[-1]
