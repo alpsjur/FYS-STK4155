@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.10.28)  12 DEC 2019 22:59
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.24)  12 DEC 2019 19:23
->>>>>>> e354c32cf3dcd5adfddae9938021a049388f7fc2
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.10.28)  12 DEC 2019 23:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -522,8 +518,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 Package color Info: Driver file: pdftex.def on input line 147.
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 28.
- (./main.aux
-(./appendix.aux))
+ (./main.aux (./appendix.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
@@ -540,11 +535,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
-<<<<<<< HEAD
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-=======
- (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
->>>>>>> e354c32cf3dcd5adfddae9938021a049388f7fc2
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count291
 \scratchdimen=\dimen187
@@ -596,9 +587,12 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 44.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (./abstract.tex) (./introduction.tex
+Underfull \vbox (badness 4792) has occurred while \output is active []
+
+) (./theory.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-) (./theory.tex [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
@@ -611,7 +605,7 @@ Overfull \hbox (18.80278pt too wide) detected at line 79
 [][] \OT1/cmr/m/n/10.95 = []
  []
 
-[2]
+[2] [3]
 Underfull \hbox (badness 1264) in paragraph at lines 140--141
 []\OT1/cmr/m/n/10.95 To com-pute the eigen-vec-tor $\OML/cmm/m/it/10.95 v[]$ \OT1/cmr/m/n/10.95 cor-re-
  []
@@ -626,155 +620,109 @@ Underfull \hbox (badness 1596) in paragraph at lines 142--143
 \OT1/cmr/m/n/10.95 Net-work. Since $\OML/cmm/m/it/10.95 v \OMS/cmsy/m/n/10.95 2 \U/msb/m/n/10.95 R[]$\OT1/cmr/m/n/10.95 , we choose a
  []
 
-[3]) (./results.tex
-<../figures/FD_solved.pdf, id=115, 462.52798pt x 346.89601pt>
+) (./results.tex
+<../figures/FD_solved.pdf, id=122, 462.52798pt x 346.89601pt>
 File: ../figures/FD_solved.pdf Graphic file (type pdf)
 <use ../figures/FD_solved.pdf>
-Package pdftex.def Info: ../figures/FD_solved.pdf  used on input line 7.
+Package pdftex.def Info: ../figures/FD_solved.pdf  used on input line 9.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 7--8
+Overfull \hbox (5.0pt too wide) in paragraph at lines 9--10
  [][] 
  []
 
-<../figures/NN_solved.pdf, id=120, 462.52798pt x 346.89601pt>
+<../figures/NN_solved.pdf, id=127, 462.52798pt x 346.89601pt>
 File: ../figures/NN_solved.pdf Graphic file (type pdf)
 <use ../figures/NN_solved.pdf>
-Package pdftex.def Info: ../figures/NN_solved.pdf  used on input line 15.
+Package pdftex.def Info: ../figures/NN_solved.pdf  used on input line 17.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 15--16
- [][] 
- []
-
-<../figures/MSEbench.pdf, id=124, 462.52798pt x 346.89601pt>
-File: ../figures/MSEbench.pdf Graphic file (type pdf)
-<use ../figures/MSEbench.pdf>
-Package pdftex.def Info: ../figures/MSEbench.pdf  used on input line 27.
-(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 27--28
+Overfull \hbox (5.0pt too wide) in paragraph at lines 17--18
  [][] 
  []
 
 [4 <../figures/FD_solved.pdf>]
-<../figures/CPUbench.pdf, id=168, 462.52798pt x 346.89601pt>
-File: ../figures/CPUbench.pdf Graphic file (type pdf)
-<use ../figures/CPUbench.pdf>
-Package pdftex.def Info: ../figures/CPUbench.pdf  used on input line 37.
+<../figures/MSEbench.pdf, id=174, 462.52798pt x 346.89601pt>
+File: ../figures/MSEbench.pdf Graphic file (type pdf)
+<use ../figures/MSEbench.pdf>
+Package pdftex.def Info: ../figures/MSEbench.pdf  used on input line 29.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 37--38
+Overfull \hbox (5.0pt too wide) in paragraph at lines 29--30
  [][] 
  []
 
-<../figures/eigenvector_max.pdf, id=169, 462.52798pt x 346.89601pt>
-File: ../figures/eigenvector_max.pdf Graphic file (type pdf)
-<use ../figures/eigenvector_max.pdf>
-<<<<<<< HEAD
-Package pdftex.def Info: ../figures/eigenvector_max.pdf  used on input line 44.
-(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 44--45
- [][] 
- []
-
-) (./discussion.tex) (./conclusion.tex) (./main.bbl
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5 <../figures/NN_solved.pdf> <../figures/MSEbench.pdf
+[5 <../figures/NN_solved.pdf> <../figures/MSEbench.pdf
 
 pdfTeX warning: pdflatex (file ../figures/MSEbench.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 63.
- [6 <../figures/CPUbench.pdf> <../figures/eigenvector_max.pdf
+>]
+<../figures/CPUbench.pdf, id=240, 462.52798pt x 346.89601pt>
+File: ../figures/CPUbench.pdf Graphic file (type pdf)
+<use ../figures/CPUbench.pdf>
+Package pdftex.def Info: ../figures/CPUbench.pdf  used on input line 39.
+(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 39--40
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<../figures/eigenvector_max.pdf, id=241, 462.52798pt x 346.89601pt>
+File: ../figures/eigenvector_max.pdf Graphic file (type pdf)
+<use ../figures/eigenvector_max.pdf>
+Package pdftex.def Info: ../figures/eigenvector_max.pdf  used on input line 91.
+(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 91--92
+ [][] 
+ []
+
+[6 <../figures/CPUbench.pdf> <../figures/eigenvector_max.pdf
 
 pdfTeX warning: pdflatex (file ../figures/eigenvector_max.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >]
-=======
-Package pdftex.def Info: ../figures/eigenvector_max.pdf used on input line 28.
-(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 28--29
- [][] 
- []
-
-<../figures/eigenvector_min.pdf, id=114, 462.52798pt x 346.89601pt>
+<../figures/eigenvector_min.pdf, id=280, 462.52798pt x 346.89601pt>
 File: ../figures/eigenvector_min.pdf Graphic file (type pdf)
-
 <use ../figures/eigenvector_min.pdf>
-Package pdftex.def Info: ../figures/eigenvector_min.pdf used on input line 59.
+Package pdftex.def Info: ../figures/eigenvector_min.pdf  used on input line 121.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 59--60
+Overfull \hbox (5.0pt too wide) in paragraph at lines 121--122
  [][] 
  []
 
-) (./discussion.tex) (./conclusion.tex) (./main.bbl [4 <../figures/eigenvector_
-max.pdf>]) [5
-
- <../figures/eigenvector_min.pdf>]
+) (./discussion.tex) (./conclusion.tex) (./main.bbl) [7 <../figures/eigenvector_min.pdf>]
 \openout2 = `appendix.aux'.
 
- (./appendix.tex) [6
+ (./appendix.tex) [8
 
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 63.
->>>>>>> e354c32cf3dcd5adfddae9938021a049388f7fc2
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 63.
-
-(./main.aux (./appendix.aux))
+ (./main.aux (./appendix.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 63.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 63.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 6E19527CA6488D2E53707B3C93C13356;739.
+(rerunfilecheck)             Checksum: 401EA1878B11237E7952C744D0466EFD;867.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 63.
  ) 
 Here is how much of TeX's memory you used:
-<<<<<<< HEAD
- 19758 strings out of 492609
- 341078 string characters out of 6131461
- 435717 words of memory out of 5000000
- 23478 multiletter control sequences out of 15000+600000
+ 19780 strings out of 492609
+ 341482 string characters out of 6131461
+ 436412 words of memory out of 5000000
+ 23487 multiletter control sequences out of 15000+600000
  540396 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,16n,65p,1447b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 47i,16n,65p,1447b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (6 pages, 377203 bytes).
+Output written on main.pdf (8 pages, 406868 bytes).
 PDF statistics:
- 332 PDF objects out of 1000 (max. 8388607)
- 248 compressed objects within 3 object streams
- 40 named destinations out of 1000 (max. 500000)
- 114 words of extra memory for PDF output out of 10000 (max. 10000000)
-=======
- 16533 strings out of 493029
- 279684 string characters out of 6136234
- 364280 words of memory out of 5000000
- 19860 multiletter control sequences out of 15000+600000
- 11698 words of font info for 44 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 40i,16n,42p,10407b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (6 pages, 271561 bytes).
-PDF statistics:
- 225 PDF objects out of 1000 (max. 8388607)
- 198 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
- 99 words of extra memory for PDF output out of 10000 (max. 10000000)
->>>>>>> e354c32cf3dcd5adfddae9938021a049388f7fc2
+ 369 PDF objects out of 1000 (max. 8388607)
+ 282 compressed objects within 3 object streams
+ 46 named destinations out of 1000 (max. 500000)
+ 135 words of extra memory for PDF output out of 10000 (max. 10000000)
 
