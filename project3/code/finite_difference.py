@@ -50,29 +50,29 @@ def exact(x, t):
 
 if __name__ == "__main__":
     # plot exact solution vs computed for some time t
-    [u1_1, x1] = solve(initial, 0.02, Nx=10)
-    u1_2 = solve(initial, 0.3, Nx=10)[0]
+    [u1_1, x1] = solve(initial, 0.02, Nt=10)
+    u1_2, x2 = solve(initial, 0.3, Nt=10)[0]
 
-    [u2_1, x2] = solve(initial, 0.02, Nx=100)
-    u2_2 = solve(initial, 0.3, Nx=100)[0]
+    [u2_1, x3] = solve(initial, 0.02, Nt=100)
+    u2_2, x4 = solve(initial, 0.3, Nt=100)[0]
 
 
 
     plt.figure(1)
     plt.plot(x2, initial(x2), label="inital")
     plt.plot(x1, u1_1[-1, :], label="u, t=0.02, $\Delta x=0.1$")
-    plt.plot(x2, u2_1[-1, :], label="u, t=0.02, $\Delta x=0.01$")
+    plt.plot(x3, u2_1[-1, :], label="u, t=0.02, $\Delta x=0.01$")
     plt.plot(x2, exact(x2, 0.02), '--', label="$u_e$")
     # plt.legend()
 
 
     # plt.figure(2)
     # plt.plot(x2, initial(x2), label="inital")
-    plt.plot(x1, u1_2[-1, :], label="u, t=0.3, $\Delta x=0.1$")
-    plt.plot(x2, u2_2[-1, :], label="u, t=0.3, $\Delta x=0.01$")
+    plt.plot(x2, u1_2[-1, :], label="u, t=0.3, $\Delta x=0.1$")
+    plt.plot(x4, u2_2[-1, :], label="u, t=0.3, $\Delta x=0.01$")
     plt.plot(x2, exact(x2, 0.3), '--', label="$u_e$")
     plt.legend()
-    plt.savefig("../figures/FD_solved.pdf")
+    #plt.savefig("../figures/FD_solved.pdf")
     plt.show()
 
     # compute MSE of the error for the different cases:

@@ -11,7 +11,7 @@ sys.path.append("class/")
 import projectfunctions as pf
 
 
-datadir = "../data/"
+datadir = "../data/pde/"
 
 
 #first command line argument sets the number of runs (n) for each value of N
@@ -37,7 +37,7 @@ for i in N:
         u, x = fd.solve(fd.initial, T, Nt=i)
         toc = time.process_time()
         timearray[j] = toc - tic
-        msearray[j] = pf.mse(u[-1, :], fd.exact(x, T))
+        msearray[j] = np.mean((u[-1, :] - fd.exact(x, T))**2)
     outfile.write("{} {:.16f} {:.16f}\n".format(i, np.mean(timearray), np.mean(msearray)))
     print("Iteration {}/{} complete".format(counter, len(N)))
     counter += 1
