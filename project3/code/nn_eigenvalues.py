@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import axes3d
 import seaborn as sns
 
 sns.set()
-sns.set_style("white")
+sns.set_style("whitegrid")
 sns.set_palette("Set2")
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
@@ -16,14 +16,14 @@ tf.set_random_seed(42)
 np.random.seed(42)
 
 #set to 1 for max eigenvalue, -1 for min eigenvalue
-k = +1
+k = -1
 
 #code for generating random, symmetric nxn matrix
 n = 6
 Q = np.random.rand(n,n)
 A = (Q.T+Q)/2
-#change sign of A to find other eigenvalue
-A_tf = tf.convert_to_tensor(k*A,dtype=tf.float64)
+A_temp = k*A
+A_tf = tf.convert_to_tensor(A_temp,dtype=tf.float64)
 
 #compute eigenvalues with numpy.linalg
 w_np, v_np = np.linalg.eig(A)
@@ -62,11 +62,11 @@ def compute_eigval(v):
 
 #setting up the NN
 prec = 0.0001
-t_max = 3
+t_max = 8
 dt = 0.1
 Nt = int(t_max/dt)
 Nx = n
-t = np.linspace(0, (Nt-1)*dt, Nt) #maa gaa fra 0 til 1 for aa faa konvergens
+t = np.linspace(0, (Nt-1)*dt, Nt)
 x = np.linspace(1, Nx, Nx)
 v0 = np.random.rand(n)
 
@@ -85,7 +85,7 @@ v0_tf = tf.convert_to_tensor(v0_,dtype=tf.float64)
 points = tf.concat([x_tf, t_tf], 1)
 
 #num_iter = 20000
-num_hidden_neurons = [10,10]
+num_hidden_neurons = [10,10,10]
 num_hidden_layers = np.size(num_hidden_neurons)
 
 with tf.name_scope('dnn'):
@@ -109,7 +109,6 @@ with tf.name_scope('dnn'):
 #trial solution maa defineres annerledes tror AL
 with tf.name_scope('cost'):
     trial = dnn_output*t_tf + v0_tf
-    #v0_tf*dnn_output**(-t_tf)#(1-t_tf)*v0_tf + t_tf*dnn_output
 
     # calculate the gradients
     trial_dt = tf.gradients(trial, t_tf)
@@ -162,23 +161,24 @@ with tf.Session() as sess:
 
 fig, ax = plt.subplots()
 ax.plot(t, v_dnn, color='black')
-ax.set_xlabel('Time t', fontsize=20)
-ax.set_ylabel(r'Estimated $v_{max}$ elements', fontsize=20)
-ax.text(0.7, 0.9, 'dt = {} \n $\epsilon$ \, = {}'.format(dt,prec) , \
+ax.set_xlabel(r'Time $t$', fontsize=20)
+#ax.set_ylabel(r'Estimated $v_{max}$ elements', fontsize=20)
+ax.set_ylabel(r'Estimated $v_{min}$ elements', fontsize=20)
+ax.text(0.7, 0.95, 'dt = {} \n $\epsilon$ \, = {} \n i \,\, = {}'.format(dt,prec,i) , \
         horizontalalignment='left', verticalalignment='top',\
         transform=ax.transAxes, fontsize = 20)
 ax.tick_params(axis='both', labelsize=14)
-plt.savefig('../figures/eigenvector_max.pdf')
-#plt.savefig('../figures/eigenvector_min.pdf')
+#plt.savefig('../figures/eigenvector_max_.pdf')
+plt.savefig('../figures/eigenvector_min_.pdf')
 
-v_max_dnn = v_dnn[-1]
-w_max_dnn = compute_eigval(v_max_dnn)
+v_last_dnn = v_dnn[-1]
+w_last_dnn = compute_eigval(v_last_dnn)
 print('v0: \n', v0)
-print('v nn: \n',v_max_dnn)
-print('unit v nn: \n', v_max_dnn/np.linalg.norm(v_max_dnn))
+print('v nn: \n',v_last_dnn)
+print('unit v nn: \n', v_last_dnn/np.linalg.norm(v_last_dnn))
 print('unit v max np: \n',v_max_np)
 print('unit v min np: \n',v_min_np)
-print('w nn: \n',w_max_dnn)
+print('w nn: \n',w_last_dnn)
 print('w max numpy: \n',w_max_np)
 print('w min numpy: \n',w_min_np)
 
