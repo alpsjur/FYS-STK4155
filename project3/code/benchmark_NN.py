@@ -35,7 +35,7 @@ for i in N:
     msearray = np.zeros(n)
     for j in range(n):
         tic = time.process_time()
-        u, x, t = fd.solve(nn.initial, T, Nt=i)
+        u, x, t = nn.solve(nn.initial, T, Nt=i)
         toc = time.process_time()
         timearray[j] = toc - tic
         msearray[j] = pf.mse(u[-1, :], nn.exact(x, T))
