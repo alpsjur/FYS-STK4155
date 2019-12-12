@@ -1,6 +1,28 @@
 \section{Results}
 \label{sec:results}
 
+\begin{equation*}
+v_{max}^{np} = \begin{bmatrix}
+	0.4025950 \\
+	0.4790814 \\
+	0.3357358 \\
+    0.3835011 \\
+    0.3542414 \\
+    0.4723555
+\end{bmatrix} \quad w_{max}^{np} =  2.83515
+\end{equation*}
+
+\begin{equation*}
+v_{max}^{nn} = \begin{bmatrix}
+	0.4023249 \\
+	0.4791663 \\
+	0.3364637 \\
+	0.3822769 \\
+	0.3541386 \\
+	0.4730503
+\end{bmatrix} \quad w_{max}^{nn} = 2.83514
+\end{equation*}
+
 In Figure \ref{fig:FDcompare} two different instants in the time evolution of the diffusion equation (eq. \ref{eq:diffusionEQ}), as obtained from finite difference methods, are shown. For both, a comparison is made with the exact solution and a run with higher spatial resolution. In both cases, the graphs are difficult to distinguish, except for the lower resolution run, which is not as smooth.
  \begin{figure}[htbp]
   	\centering
@@ -15,6 +37,37 @@ Likewise, in Figure \ref{fig:NNcompare} we show a parallell to Figure \ref{fig:F
   	\includegraphics[width=0.5\textwidth]{NN_solved}
   	\caption{Time evolution of eq. \ref{eq:diffusionEQ} solved using a neural network. For both instants in time, a visual comparison is made with the exact solution, represented by dashed lines.}
    \label{fig:NNcompare}
+ \end{figure}
+
+ \begin{equation*}
+	 v_{min}^{np} = \begin{bmatrix}
+	  0.6928048 \\
+	 -0.0074343 \\
+	 -0.7048516 \\
+	 -0.1487365 \\
+	 0.0122096 \\
+	 0.0296413
+	 \end{bmatrix} \quad w_{min}^{np} = -0.515594
+ \end{equation*}
+
+ \begin{equation*}
+	 v_{min}^{nn} = \begin{bmatrix}
+	  -0.69116113  \\
+	  0.00492352  \\
+	  0.70646873  \\
+	  0.14887754 \\
+	  -0.01982836 \\
+	  -0.02482513
+	 \end{bmatrix} \quad w_{min}^{nn} = -0.515528
+ \end{equation*}
+
+
+
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[width=0.5\textwidth]{eigenvector_min}
+ 	\caption{Figure showing how the value of the elements of the estimated eigenvector $v_{min}$ evolves over time. Each line represents one of the elements of the vector.}
+ 	\label{fig:eigenvector_min}
  \end{figure}
 
 Shown in Figure \ref{fig:MSEbench} are the MSE's for two instants in time for both finite difference methods and a neural network. For the finite difference methods we observe a decrease in MSE for increasing temporal solution, slowing down after around 500 time points for both cases. For $t=0.02$ s (a.), the MSE is minimal at around $10^{-6}$ for 1000 time points, while for $t=0.3$ s (c.) it only becomes around $10^{-5}$ for 1000 time points.
