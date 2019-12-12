@@ -108,7 +108,7 @@ with tf.name_scope('dnn'):
 #DETTE MAA ORDNES
 #trial solution maa defineres annerledes tror AL
 with tf.name_scope('cost'):
-    trial = dnn_output*t_tf + v0_tf
+    trial = dnn_output*t_tf + v0_tf*k
 
     # calculate the gradients
     trial_dt = tf.gradients(trial, t_tf)
