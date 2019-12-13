@@ -125,18 +125,20 @@ if __name__ == "__main__":
     figdir = "../figures/"
 
 
-    u, x, t = solve(initial, T=0.3)
+    u, x, t = solve(initial, T=0.3, Nt=30)
 
 
-
+    print("==== For t = 0.3 ====")
     print(f"MSE = {np.mean((u[-1, :]-exact(x, t[-1]))**2)}")
+    print("==== For t = 0.02 ====")
+    print(f"MSE = {np.mean((u[2, :]-exact(x, t[2]))**2)}")
 
     fig, ax = plt.subplots(1, 1)
 
     ax.plot(x, u[-1, :], color="k", ls="dashed", label="Computed")
     ax.plot(x, exact(x, t[-1]), color="k", ls="dotted", lw=4, label="Exact")
-    ax.plot(x, u[5, :], color="k", ls="dashed")
-    ax.plot(x, exact(x, t[5]), color="k", ls="dotted", lw=4)
+    ax.plot(x, u[2, :], color="k", ls="dashed")
+    ax.plot(x, exact(x, t[2]), color="k", ls="dotted", lw=4)
 
     ax.set_xlabel("x", fontsize=20)
     ax.set_ylabel("u(x, t)", fontsize=20)
