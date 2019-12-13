@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.10.28)  12 DEC 2019 23:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.10.28)  13 DEC 2019 13:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -642,7 +642,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 17--18
  []
 
 [4 <../figures/FD_solved.pdf>]
-<../figures/MSEbench.pdf, id=174, 462.52798pt x 346.89601pt>
+<../figures/MSEbench.pdf, id=160, 462.52798pt x 346.89601pt>
 File: ../figures/MSEbench.pdf Graphic file (type pdf)
 <use ../figures/MSEbench.pdf>
 Package pdftex.def Info: ../figures/MSEbench.pdf  used on input line 29.
@@ -656,7 +656,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 29--30
 
 pdfTeX warning: pdflatex (file ../figures/MSEbench.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >]
-<../figures/CPUbench.pdf, id=240, 462.52798pt x 346.89601pt>
+<../figures/CPUbench.pdf, id=201, 462.52798pt x 346.89601pt>
 File: ../figures/CPUbench.pdf Graphic file (type pdf)
 <use ../figures/CPUbench.pdf>
 Package pdftex.def Info: ../figures/CPUbench.pdf  used on input line 39.
@@ -669,7 +669,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 39--40
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-<../figures/eigenvector_max.pdf, id=241, 462.52798pt x 346.89601pt>
+<../figures/eigenvector_max.pdf, id=202, 462.52798pt x 346.89601pt>
 File: ../figures/eigenvector_max.pdf Graphic file (type pdf)
 <use ../figures/eigenvector_max.pdf>
 Package pdftex.def Info: ../figures/eigenvector_max.pdf  used on input line 91.
@@ -683,7 +683,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 91--92
 
 pdfTeX warning: pdflatex (file ../figures/eigenvector_max.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >]
-<../figures/eigenvector_min.pdf, id=280, 462.52798pt x 346.89601pt>
+<../figures/eigenvector_min.pdf, id=241, 462.52798pt x 346.89601pt>
 File: ../figures/eigenvector_min.pdf Graphic file (type pdf)
 <use ../figures/eigenvector_min.pdf>
 Package pdftex.def Info: ../figures/eigenvector_min.pdf  used on input line 121.
@@ -712,17 +712,17 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 63.
 Here is how much of TeX's memory you used:
  19780 strings out of 492609
  341482 string characters out of 6131461
- 436412 words of memory out of 5000000
+ 436362 words of memory out of 5000000
  23487 multiletter control sequences out of 15000+600000
  540396 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  47i,16n,65p,1447b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (8 pages, 406868 bytes).
+Output written on main.pdf (8 pages, 396182 bytes).
 PDF statistics:
- 369 PDF objects out of 1000 (max. 8388607)
- 282 compressed objects within 3 object streams
+ 330 PDF objects out of 1000 (max. 8388607)
+ 288 compressed objects within 3 object streams
  46 named destinations out of 1000 (max. 500000)
  135 words of extra memory for PDF output out of 10000 (max. 10000000)
 
