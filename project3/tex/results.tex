@@ -43,7 +43,7 @@ Comparing the two methods, we see that the neural network is around 3 orders of 
 
 
 \subsection{Eigenpairs}
-Looking at the eigenpairs of matrix A (\ref{matrix:A}), the maximum eigenvalue computed with  \texttt{numpy.linalg} is given under as $w_{max}^{np}$, with corresponding eigenvector $v_{max}^{np}$. The same eigenpair, computed with a neural network, is given as $w_{max}^{nn}$ and $v_{max}^{nn}$. Note that the eigenvectors have been normalized, to allow for comparison. We see that the two eigenvalues only differ at the 5th decimal place, while the eigenvector elements first differ at the 3th decimal place.
+Looking at the eigenpairs of matrix A (\ref{matrix:A}), the maximum eigenvalue computed with  \texttt{numpy.linalg} is given under as $w_{max}^{np}$, with corresponding eigenvector $v_{max}^{np}$. The same eigenpair, computed with a neural network, is given as $w_{max}^{nn}$ and $v_{max}^{nn}$. Note that the eigenvectors have been normalized, to allow for comparison. We see that the two eigenvalues only differ at the 5th decimal place, while the eigenvector elements first differ at the 3th decimal place. Comparing the CPU times of the two methods for one run, the neural network is slower by a factor of about 1000.  
 
 \begin{equation*}
 v_{max}^{np} = \begin{bmatrix}
