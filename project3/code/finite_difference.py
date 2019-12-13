@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # define inital condition
 def initial(x):
@@ -49,36 +50,37 @@ def exact(x, t):
 
 
 if __name__ == "__main__":
+    sns.set()
+    sns.set_style("whitegrid")
+    sns.set_palette("Set2")
+    plt.rc("text", usetex=True)
+    plt.rc("font", family="serif")
+
+    figdir = "../figures/"
+
     # plot exact solution vs computed for some time t
-    [u1_1, x1] = solve(initial, 0.02, Nx=10)
-    u1_2 = solve(initial, 0.3, Nx=10)[0]
 
-    [u2_1, x2] = solve(initial, 0.02, Nx=100)
-    u2_2 = solve(initial, 0.3, Nx=100)[0]
+    u1, x1 = solve(initial, 0.02, Nt=100)
+    u2, x2 = solve(initial, 0.3, Nt=100)
 
 
+    fig, ax = plt.subplots(1, 1)
 
-    plt.figure(1)
-    plt.plot(x2, initial(x2), label="inital")
-    plt.plot(x1, u1_1[-1, :], label="u, t=0.02, $\Delta x=0.1$")
-    plt.plot(x2, u2_1[-1, :], label="u, t=0.02, $\Delta x=0.01$")
-    plt.plot(x2, exact(x2, 0.02), '--', label="$u_e$")
-    # plt.legend()
+    ax.plot(x1, u1[-1, :], color="k", ls="dashed", label="Computed")
+    ax.plot(x1, exact(x1, 0.02), color="k", ls="dotted", lw=4, label="Exact")
+    ax.plot(x2, u2[-1, :], color="k", linestyle="dashed")
+    ax.plot(x2, exact(x2, 0.3), color="k", linestyle="dotted", lw=4)
 
+    ax.set_xlabel("x", fontsize=20)
+    ax.set_ylabel("u(x, t)", fontsize=20)
+    fig.legend(ncol=2, loc="upper center", frameon=False, fontsize=20)
 
-    # plt.figure(2)
-    # plt.plot(x2, initial(x2), label="inital")
-    plt.plot(x1, u1_2[-1, :], label="u, t=0.3, $\Delta x=0.1$")
-    plt.plot(x2, u2_2[-1, :], label="u, t=0.3, $\Delta x=0.01$")
-    plt.plot(x2, exact(x2, 0.3), '--', label="$u_e$")
-    plt.legend()
-    plt.savefig("../figures/FD_solved.pdf")
+    #plt.savefig(figdir + "FD_solved.pdf")
     plt.show()
+
 
     # compute MSE of the error for the different cases:
     print("---------For t = 0.02:---------")
-    print(f"dx = 0.1  | MSE = {np.mean((u1_1[-1, :]-exact(x1,0.02))**2)}")
-    print(f"dx = 0.01 | MSE = {np.mean((u2_1[-1, :]-exact(x2,0.02))**2)}")
+    print(f"dx = 0.01 | MSE = {np.mean((u1[-1, :]-exact(x1,0.02))**2)}")
     print("---------For t = 0.3-----------")
-    print(f"dx = 0.1  | MSE = {np.mean((u1_2[-1, :]-exact(x1,0.3))**2)}")
-    print(f"dx = 0.01 | MSE = {np.mean((u2_2[-1, :]-exact(x2,0.3))**2)}")
+    print(f"dx = 0.01 | MSE = {np.mean((u2[-1, :]-exact(x2,0.3))**2)}")
