@@ -144,5 +144,5 @@ if __name__ == "__main__":
     ax.set_ylabel("u(x, t)", fontsize=20)
 
     fig.legend(ncol=2, frameon=False, loc="upper center", fontsize=20)
-    #plt.savefig(figdir + "NN_solved.pdf")
+    plt.savefig(figdir + "NN_solved.pdf")
     plt.show()
