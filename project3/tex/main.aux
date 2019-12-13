@@ -12,13 +12,15 @@
 \let\newlabel\oldnewlabel
 \fi}
 \fi}
-\global\let\hyper@last\relax 
+\global\let\hyper@last\relax
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \citation{yi2004neural}
-\providecommand \oddpage@label [2]{}
-\babel@aux{english}{}
+\select@language{english}
+\@writefile{toc}{\select@language{english}}
+\@writefile{lof}{\select@language{english}}
+\@writefile{lot}{\select@language{english}}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
 \newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Theory and implementation}{2}{section.2}}
@@ -52,8 +54,8 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Time evolution of eq. \ref  {eq:diffusionEQ} solved using finite difference methods: CD and FE for time's $t=0.02$ s and $t=0.3$ s. For each point in time a visual comparison is made with the exact solution.\relax }}{4}{figure.caption.1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:FDcompare}{{1}{4}{Time evolution of eq. \ref {eq:diffusionEQ} solved using finite difference methods: CD and FE for time's $t=0.02$ s and $t=0.3$ s. For each point in time a visual comparison is made with the exact solution.\relax }{figure.caption.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Time evolution of eq. \ref  {eq:diffusionEQ} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines. The computations are done with $N_t = 30$ and $N_x = 100$.\relax }}{5}{figure.caption.2}}
-\newlabel{fig:NNcompare}{{2}{5}{Time evolution of eq. \ref {eq:diffusionEQ} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines. The computations are done with $N_t = 30$ and $N_x = 100$.\relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Time evolution of eq. \ref  {eq:diffusionEQ} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines.\relax }}{5}{figure.caption.2}}
+\newlabel{fig:NNcompare}{{2}{5}{Time evolution of eq. \ref {eq:diffusionEQ} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines.\relax }{figure.caption.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Shown on the left-hand side, top-to-bottom (a., c.), are the MSE's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the MSE's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.004$.\relax }}{5}{figure.caption.3}}
 \newlabel{fig:MSEbench}{{3}{5}{Shown on the left-hand side, top-to-bottom (a., c.), are the MSE's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the MSE's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.004$.\relax }{figure.caption.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Shown on the left-hand side, top-to-bottom (a., c.), are the CPU time's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the CPU time's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.004$.\relax }}{6}{figure.caption.4}}
@@ -66,6 +68,8 @@
 \bibcite{yi2004neural}{{3}{2004}{{Yi et~al.}}{{Yi, Fu, and Tang}}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Figure showing how the value of the elements of the estimated eigenvector $v_{max}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon $ and iterations $i$ needed to achieve that precision is also shown.\relax }}{7}{figure.caption.5}}
 \newlabel{fig:eigenvector_max}{{5}{7}{Figure showing how the value of the elements of the estimated eigenvector $v_{max}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon $ and iterations $i$ needed to achieve that precision is also shown.\relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Figure showing how the value of the elements of the estimated eigenvector $v_{min}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon $ and iterations $i$ needed to achieve that precision is also shown.\relax }}{7}{figure.caption.6}}
+\newlabel{fig:eigenvector_min}{{6}{7}{Figure showing how the value of the elements of the estimated eigenvector $v_{min}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon $ and iterations $i$ needed to achieve that precision is also shown.\relax }{figure.caption.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{7}{section.4}}
 \newlabel{sec:discussion}{{4}{7}{Discussion}{section.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{7}{section.5}}

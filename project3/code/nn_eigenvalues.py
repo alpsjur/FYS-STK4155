@@ -105,8 +105,6 @@ with tf.name_scope('dnn'):
     dnn_output = tf.layers.dense(previous_layer, 1, name='output')
 
 #define loss function
-#DETTE MAA ORDNES
-#trial solution maa defineres annerledes tror AL
 with tf.name_scope('cost'):
     trial = dnn_output*t_tf + v0_tf*k
 
