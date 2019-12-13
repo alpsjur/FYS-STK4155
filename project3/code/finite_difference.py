@@ -58,24 +58,34 @@ if __name__ == "__main__":
 
     figdir = "../figures/"
 
+    """
+    If one wishes to control dx:
+        use Nt = 2*T/(0.9 dx^2) + 1
+    """
+
     # plot exact solution vs computed for some time t
 
-    u1, x1 = solve(initial, 0.02, Nt=100)
-    u2, x2 = solve(initial, 0.3, Nt=100)
+    u1, x1 = solve(initial, 0.02, Nt=int(2*0.02/(0.9*(0.01)**2) + 1)) #dx = 1/100
+    u2, x2 = solve(initial, 0.3, Nt=int(2*0.3/(0.9*(0.01)**2) + 1)) #dx = 1/100
+
+    u3, x3 = solve(initial, 0.02, Nt=int(2*0.02/(0.9*(0.1)**2) + 1)) #dx = 1/100
+    u4, x4 = solve(initial, 0.3, Nt=int(2*0.3/(0.9*(0.1)**2) + 1)) #dx = 1/100
 
 
     fig, ax = plt.subplots(1, 1)
 
-    ax.plot(x1, u1[-1, :], color="k", ls="dashed", label="Computed")
+    ax.plot(x1, u1[-1, :], color="k", ls="dashed", label="Comp. dx=0.01")
+    ax.plot(x3, u3[-1, :], color="k", ls=":", label="Comp. dx=0.1")
     ax.plot(x1, exact(x1, 0.02), color="k", ls="dotted", lw=4, label="Exact")
     ax.plot(x2, u2[-1, :], color="k", linestyle="dashed")
+    ax.plot(x4, u4[-1, :], color="k", ls=":")
     ax.plot(x2, exact(x2, 0.3), color="k", linestyle="dotted", lw=4)
 
     ax.set_xlabel("x", fontsize=20)
     ax.set_ylabel("u(x, t)", fontsize=20)
-    fig.legend(ncol=2, loc="upper center", frameon=False, fontsize=20)
+    fig.legend(ncol=3, loc="upper center", frameon=False, fontsize=15)
 
-    #plt.savefig(figdir + "FD_solved.pdf")
+    #plt.savefig(figdir + "FD_solved_new.pdf")
     plt.show()
 
 
