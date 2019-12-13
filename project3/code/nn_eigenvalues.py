@@ -16,7 +16,7 @@ tf.set_random_seed(42)
 np.random.seed(42)
 
 #set to 1 for max eigenvalue, -1 for min eigenvalue
-k = -1
+k = +1
 
 #code for generating random, symmetric nxn matrix
 n = 6
@@ -62,7 +62,7 @@ def compute_eigval(v):
 
 #setting up the NN
 prec = 0.0001
-t_max = 8
+t_max = 3
 dt = 0.1
 Nt = int(t_max/dt)
 Nx = n
@@ -162,14 +162,14 @@ with tf.Session() as sess:
 fig, ax = plt.subplots()
 ax.plot(t, v_dnn, color='black')
 ax.set_xlabel(r'Time $t$', fontsize=20)
-#ax.set_ylabel(r'Estimated $v_{max}$ elements', fontsize=20)
-ax.set_ylabel(r'Estimated $v_{min}$ elements', fontsize=20)
+ax.set_ylabel(r'Estimated $v_{max}$ elements', fontsize=20)
+#ax.set_ylabel(r'Estimated $v_{min}$ elements', fontsize=20)
 ax.text(0.7, 0.95, 'dt = {} \n $\epsilon$ \, = {} \n i \,\, = {}'.format(dt,prec,i) , \
         horizontalalignment='left', verticalalignment='top',\
         transform=ax.transAxes, fontsize = 20)
 ax.tick_params(axis='both', labelsize=14)
-#plt.savefig('../figures/eigenvector_max_.pdf')
-plt.savefig('../figures/eigenvector_min_.pdf')
+plt.savefig('../figures/eigenvector_max.pdf')
+#plt.savefig('../figures/eigenvector_min_.pdf')
 
 v_last_dnn = v_dnn[-1]
 w_last_dnn = compute_eigval(v_last_dnn)
