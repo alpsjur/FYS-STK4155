@@ -1,9 +1,14 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{4}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Chiaramonte and Kiener(2013)]{chiaramonte2013solving}
+MM~Chiaramonte and M~Kiener.
+\newblock Solving differential equations using neural networks.
+\newblock \emph{Machine Learning Project}, page~1, 2013.
 
 \bibitem[Jørgensen et~al.(2019)Jørgensen, Sjur, and Kallmyr]{prosjekt2}
 Eina~B. Jørgensen, Anna Lina~P. Sjur, and Jan-Adrian~H. Kallmyr.
