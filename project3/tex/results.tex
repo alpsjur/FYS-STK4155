@@ -3,10 +3,10 @@
 
 \subsection{Diffusion equation}
 
-In Figure \ref{fig:FDcompare} two different instants in the time evolution of the diffusion equation (eq. \ref{eq:diffusionEQ}), as obtained from finite difference methods, are shown. For both, a comparison is made with the exact solution and a run with higher spatial resolution. In both cases, the graphs are difficult to distinguish.
+In Figure \ref{fig:FDcompare} two different instants in the time evolution of the diffusion equation (eq. \ref{eq:diffusionEQ}), as obtained from finite difference methods, are shown. For both, a comparison is made with the exact solution and a run with higher spatial resolution ($\Delta x = 1/100$) and lower spatial resolution ($\Delta x = 1/10$). In both cases, the graphs of the exact solution and the one with higher spatial resolution are difficult to distinguish.
  \begin{figure}[htbp]
   	\centering
-  	\includegraphics[width=0.5\textwidth]{FD_solved}
+  	\includegraphics[width=0.5\textwidth]{FD_solved_new}
   	\caption{Time evolution of eq. \ref{eq:diffusionEQ} solved using finite difference methods: CD and FE for time's $t=0.02$ s and $t=0.3$ s. For each point in time a visual comparison is made with the exact solution.}
    \label{fig:FDcompare}
  \end{figure}
@@ -15,7 +15,7 @@ Likewise, in Figure \ref{fig:NNcompare} we show a parallell to Figure \ref{fig:F
  \begin{figure}[htbp]
   	\centering
   	\includegraphics[width=0.5\textwidth]{NN_solved}
-  	\caption{Time evolution of eq. \ref{eq:diffusionEQ} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines.}
+  	\caption{Time evolution of eq. \ref{eq:diffusionEQ} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines. The computations are done with $N_t = 30$ and $N_x = 100$.}
    \label{fig:NNcompare}
  \end{figure}
 
@@ -43,6 +43,7 @@ Comparing the two methods, we see that the neural network is around 3 orders of 
 
 
 \subsection{Eigenpairs}
+Looking at the eigenpairs of matrix A (\ref{matrix:A}), the maximum eigenvalue computed with  \texttt{numpy.linalg} is given under as $w_{max}^{np}$, with corresponding eigenvector $v_{max}^{np}$. The same eigenpair, computed with a neural network, is given as $w_{max}^{nn}$ and $v_{max}^{nn}$. Note that the eigenvectors have been normalized, to allow for comparison. We see that the two eigenvalues only differ at the 5th decimal place, while the eigenvector elements first differ at the 3th decimal place. Comparing the CPU times of the two methods for one run, the neural network is slower by a factor of about 1000.  
 
 \begin{equation*}
 v_{max}^{np} = \begin{bmatrix}
@@ -57,42 +58,25 @@ v_{max}^{np} = \begin{bmatrix}
 
 \begin{equation*}
 v_{max}^{nn} = \begin{bmatrix}
-	0.4023249 \\
-	0.4791663 \\
-	0.3364637 \\
-	0.3822769 \\
-	0.3541386 \\
-	0.4730503
-\end{bmatrix} \quad w_{max}^{nn} = 2.83514
-\end{equation*}\begin{equation*}
-v_{max}^{np} = \begin{bmatrix}
-	0.4025950 \\
-	0.4790814 \\
-	0.3357358 \\
-    0.3835011 \\
-    0.3542414 \\
-    0.4723555
-\end{bmatrix} \quad w_{max}^{np} =  2.83515
-\end{equation*}
-
-\begin{equation*}
-v_{max}^{nn} = \begin{bmatrix}
-	0.4023249 \\
-	0.4791663 \\
-	0.3364637 \\
-	0.3822769 \\
-	0.3541386 \\
-	0.4730503
+	0.40165637 \\
+	0.47992723 \\
+	0.33576365 \\
+	0.38384145 \\
+	0.35298366 \\
+	0.47294087
 \end{bmatrix} \quad w_{max}^{nn} = 2.83514
 \end{equation*}
 
-\begin{figure}[htbp]
- \centering
- \includegraphics[width=0.5\textwidth]{eigenvector_max}
- \caption{Figure showing how the value of the elements of the estimated eigenvector $v_{max}$ evolves over time. Each line represents one of the elements of the vector.}
- \label{fig:eigenvector_max}
-\end{figure}
+How $v_{max}^{nn}$ evolves over time is shown in Figure \ref{fig:eigenvector_max}. The network used for this computation had three hidden layers, all with ten neurons. The learning rate was 0.001, while the time step was 0.1. The precision, which was the MSE at which the training was stopped, was set to $10^{-4}$, resulting in 10820 iterations. 
 
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[width=0.5\textwidth]{eigenvector_max}
+ 	\caption{Figure showing how the value of the elements of the estimated eigenvector $v_{max}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon$ and iterations $i$ needed to achieve that precision is also shown.}
+ 	\label{fig:eigenvector_max}
+ \end{figure}
+ 
+ Analogously to what was shown above for the maximum eigenvalue, the minimum eigenvalue computed with \texttt{numpy.linalg} is shown below as $w_{min}^{np}$ together with the corresponding eigenvector $v_{min}^{np}$. Similarly, the same pair computed with neural network is denoted as $w_{min}^{nn}$ and $v_{min}^{nn}$. Again, the eigenvalues differ first at the 5th decimal place, and the egenvectors differ at the 3th decimal place, not taking the sign into account. 
 
 \begin{equation*}
   v_{min}^{np} = \begin{bmatrix}
@@ -116,10 +100,12 @@ v_{max}^{nn} = \begin{bmatrix}
   \end{bmatrix} \quad w_{min}^{nn} = -0.515528
 \end{equation*}
 
+Similarly to Figure \ref{fig:eigenvector_max}, the graph in Figure \ref{fig:eigenvector_min} shows the evolution of the eigenvector $v_{min}^{nn}$. Note the different time values in the two figures. The same network, with the same configurations as described above, is used, except that $A$ was replaced with $-A$ in the cost function. To reach a precision of $10^{-4}$, 842653 iterations was needed. 
+
 \begin{figure}[htbp]
  \centering
  \includegraphics[width=0.5\textwidth]{eigenvector_min}
- \caption{Figure showing how the value of the elements of the estimated eigenvector $v_{min}$ evolves over time. Each line represents one of the elements of the vector.}
+ \caption{Figure showing how the value of the elements of the estimated eigenvector $v_{min}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon$ and iterations $i$ needed to achieve that precision is also shown.}
  \label{fig:eigenvector_min}
 \end{figure}
 
