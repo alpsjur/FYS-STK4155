@@ -26,9 +26,9 @@ N = np.logspace(1, N_max, N_max*4, dtype=int)
 #removing old data-files
 #pf.remove_file("../data/finite_difference_timelog.dat")
 
-learning_rate = 1E-2
+learning_rate = 4E-3
 
-filename = f"neural_network_benchmark_T{T:.0E}_gamma{learning_rate:.0E}.dat"
+filename = f"neural_network_benchmark_T{T:.0E}_gamma{learning_rate:.0E}_Nt50.dat"
 outfile = open(datadir + filename, "w")
 counter = 1
 for i in N:
@@ -36,7 +36,7 @@ for i in N:
     msearray = np.zeros(n)
     for j in range(n):
         tic = time.process_time()
-        u, x, t = nn.solve(nn.initial, T, learning_rate=learning_rate, num_iter=i)
+        u, x, t = nn.solve(nn.initial, T, Nt=50, learning_rate=learning_rate, num_iter=i)
         toc = time.process_time()
         timearray[j] = toc - tic
         msearray[j] = np.mean((u[-1, :] - nn.exact(x, T))**2)
