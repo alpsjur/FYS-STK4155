@@ -139,7 +139,7 @@ if __name__ == '__main__':
 
 
     #set to 1 for max eigenvalue, -1 for min eigenvalue
-    k = -1
+    k = +1
 
     #code for generating random, symmetric nxn matrix
     n = 6
@@ -164,7 +164,7 @@ if __name__ == '__main__':
 
     #setting up the NN
     prec = 0.0001
-    t_max = 8
+    t_max = 3
     dt = 0.1
     learning_rate = 0.001
     v0 = np.random.rand(n)
@@ -175,7 +175,7 @@ if __name__ == '__main__':
     toc = time.process_time()
     time_nn = toc-tic
 
-    np.save('../data/eigenvectors/min_vec_dt{:.0E}t_max{:.0f}prec{:.0E}lr{:.0E}'.format(dt,t_max,prec,learning_rate),v_dnn)
+    #np.save('../data/eigenvectors/max_vec_dt{:.0E}t_max{:.0f}prec{:.0E}lr{:.0E}'.format(dt,t_max,prec,learning_rate),v_dnn)
 
     print('Time nn: ', time_nn)
 
@@ -183,15 +183,15 @@ if __name__ == '__main__':
     fig, ax = plt.subplots()
     ax.plot(t, v_dnn, color='black')
     ax.set_xlabel(r'Time $t$', fontsize=20)
-    #ax.set_ylabel(r'Estimated $v_{max}$ elements', fontsize=20)
-    ax.set_ylabel(r'Estimated $v_{min}$ elements', fontsize=20)
+    ax.set_ylabel(r'Estimated $v_{max}$ elements', fontsize=20)
+    #ax.set_ylabel(r'Estimated $v_{min}$ elements', fontsize=20)
     ax.text(0.7, 0.95, 'dt = {} \n $\epsilon$ \, = {} \n i \,\, = {}'.format(dt,prec,i) , \
             horizontalalignment='left', verticalalignment='top',\
             transform=ax.transAxes, fontsize = 20)
     ax.tick_params(axis='both', labelsize=14)
     plt.tight_layout()
-    #plt.savefig('../figures/eigenvector_max.pdf')
-    plt.savefig('../figures/eigenvector_min.pdf')
+    plt.savefig('../figures/eigenvector_max.pdf')
+    #plt.savefig('../figures/eigenvector_min.pdf')
 
     v_last_dnn = v_dnn[-1]
     w_last_dnn = compute_eigval(v_last_dnn, A)

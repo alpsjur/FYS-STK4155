@@ -1,2 +1,8 @@
 \section{Discussion}
 \label{sec:discussion}
+
+When it comes to calculating eigenpairs with the neural network, it seems to yield good results that agrees with the \texttt{numpy.linalg} method, when it comes to precision. In this report, the network was set to run until the cost function went below a threshold of $10^{-4}$. When experimenting with the network, it was clear that there was a direct link between the threshold of the cost function, and the level of agreement between the network results and the numpy results. In other words, it seems to be possible to tune the network corresponding to the level of precision needed. However, the higher the precision, the more iterations is needed. 
+
+The maybe biggest drawback of the neural network is it's time use, with a CPU time about 1000 times that of \texttt{numpy.linalg} for a precision of $10^{-4}$ for the largest eigenvalue. The smallest eigenvalue demanded even more iterations to reach that precision. This leads us to another feature of the neural network. As can be seen in Figure \ref{fig:eigenvector_max} and \ref{fig:eigenvector_min}, the time $t$ at which the estimated eigenvectors stabilises varies from matrix to matrix, and the number of iterations needed varies as well. So although it is possible to compute eigenpairs with a high level of precision, the computation can possibly become very time consuming. 
+
+Lastly, this methods only gives us the largest and the smallest eigenvalues, together with the corresponding eigenvectors. In other words, this method can not be used to find all the eigenpairs of a real symmetric matrix. 
