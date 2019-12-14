@@ -41,9 +41,30 @@ Comparing the two methods, we see that the neural network is around 3 orders of 
   \label{fig:CPUbench}
 \end{figure}
 
+\begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[width=0.5\textwidth]{}
+ 	\caption{}
+  \label{fig:}
+\end{figure}
+
+\begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[width=0.5\textwidth]{}
+ 	\caption{}
+  \label{fig:}
+\end{figure}
+
+\begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[width=0.5\textwidth]{MSE_varying_dt}
+ 	\caption{}
+  \label{fig:MSE_varying_dt}
+\end{figure}
+
 
 \subsection{Eigenpairs}
-Looking at the eigenpairs of matrix A (\ref{matrix:A}), the maximum eigenvalue computed with  \texttt{numpy.linalg} is given under as $w_{max}^{np}$, with corresponding eigenvector $v_{max}^{np}$. The same eigenpair, computed with a neural network, is given as $w_{max}^{nn}$ and $v_{max}^{nn}$. Note that the eigenvectors have been normalized, to allow for comparison. We see that the two eigenvalues only differ at the 5th decimal place, while the eigenvector elements first differ at the 3th decimal place. Comparing the CPU times of the two methods for one run, the neural network is slower by a factor of about 1000.  
+Looking at the eigenpairs of matrix A (\ref{matrix:A}), the maximum eigenvalue computed with  \texttt{numpy.linalg} is given under as $w_{max}^{np}$, with corresponding eigenvector $v_{max}^{np}$. The same eigenpair, computed with a neural network, is given as $w_{max}^{nn}$ and $v_{max}^{nn}$. Note that the eigenvectors have been normalized, to allow for comparison. We see that the two eigenvalues only differ at the 5th decimal place, while the eigenvector elements first differ at the 3th decimal place. Comparing the CPU times of the two methods for one run, the neural network is slower by a factor of about 1000.
 
 \begin{equation*}
 v_{max}^{np} = \begin{bmatrix}
@@ -67,7 +88,7 @@ v_{max}^{nn} = \begin{bmatrix}
 \end{bmatrix} \quad w_{max}^{nn} = 2.83514
 \end{equation*}
 
-How $v_{max}^{nn}$ evolves over time is shown in Figure \ref{fig:eigenvector_max}. The network used for this computation had three hidden layers, all with ten neurons. The learning rate was 0.001, while the time step was 0.1. The precision, which was the MSE at which the training was stopped, was set to $10^{-4}$, resulting in 10820 iterations. 
+How $v_{max}^{nn}$ evolves over time is shown in Figure \ref{fig:eigenvector_max}. The network used for this computation had three hidden layers, all with ten neurons. The learning rate was 0.001, while the time step was 0.1. The precision, which was the MSE at which the training was stopped, was set to $10^{-4}$, resulting in 10820 iterations.
 
  \begin{figure}[htbp]
  	\centering
@@ -75,8 +96,8 @@ How $v_{max}^{nn}$ evolves over time is shown in Figure \ref{fig:eigenvector_max
  	\caption{Figure showing how the value of the elements of the estimated eigenvector $v_{max}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon$ and iterations $i$ needed to achieve said precision is also shown.}
  	\label{fig:eigenvector_max}
  \end{figure}
- 
- Analogously to what was shown above for the maximum eigenvalue, the minimum eigenvalue computed with \texttt{numpy.linalg} is shown below as $w_{min}^{np}$ together with the corresponding eigenvector $v_{min}^{np}$. Similarly, the same pair computed with neural network is denoted as $w_{min}^{nn}$ and $v_{min}^{nn}$. Again, the eigenvalues differ first at the 5th decimal place, and the egenvectors differ at the 3th decimal place, not taking the sign into account. 
+
+ Analogously to what was shown above for the maximum eigenvalue, the minimum eigenvalue computed with \texttt{numpy.linalg} is shown below as $w_{min}^{np}$ together with the corresponding eigenvector $v_{min}^{np}$. Similarly, the same pair computed with neural network is denoted as $w_{min}^{nn}$ and $v_{min}^{nn}$. Again, the eigenvalues differ first at the 5th decimal place, and the egenvectors differ at the 3th decimal place, not taking the sign into account.
 
 \begin{equation*}
   v_{min}^{np} = \begin{bmatrix}
@@ -97,10 +118,10 @@ How $v_{max}^{nn}$ evolves over time is shown in Figure \ref{fig:eigenvector_max
    -0.15496268  \\
    0.0137166   \\
    0.02957751
-  \end{bmatrix} \quad w_{min}^{nn} =  -0.515579  
+  \end{bmatrix} \quad w_{min}^{nn} =  -0.515579
 \end{equation*}
 
-Similarly to Figure \ref{fig:eigenvector_max}, the graph in Figure \ref{fig:eigenvector_min} shows the evolution of the eigenvector $v_{min}^{nn}$. Note the different time values in the two figures. The same network, with the same configurations as described above, is used, except that $A$ was replaced with $-A$ in the cost function. To reach a precision of $10^{-4}$, 443475 iterations was needed. 
+Similarly to Figure \ref{fig:eigenvector_max}, the graph in Figure \ref{fig:eigenvector_min} shows the evolution of the eigenvector $v_{min}^{nn}$. Note the different time values in the two figures. The same network, with the same configurations as described above, is used, except that $A$ was replaced with $-A$ in the cost function. To reach a precision of $10^{-4}$, 443475 iterations was needed.
 
 \begin{figure}[htbp]
  \centering

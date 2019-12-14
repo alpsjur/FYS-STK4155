@@ -94,8 +94,10 @@ learning_rates = [1e-3, 2e-3, 3e-3, 4e-4, 5e-3, 6e-3, 7e-3, 8e-3, 9e-3, 1e-2]
 print(learning_rates)
 
 MSEs = [nn1.MSE, nn2.MSE, nn3.MSE, nn4.MSE, nn5.MSE, nn6.MSE, nn7.MSE, nn8.MSE, nn9.MSE, nn10.MSE]
-v = np.logspace(-11, -2, 20)
+v = np.logspace(-11, -2, 10)
 
+ax.set_xscale("log")
+ax.set_yscale("log")
 c = ax.contourf(nn1.index, learning_rates, MSEs, v,
                 locator=ticker.LogLocator(),
                 cmap=cm.Greys_r
@@ -108,6 +110,8 @@ cbar = fig.colorbar(c)
 cbar.ax.get_yaxis().labelpad = 15
 cbar.ax.set_ylabel("MSE", fontsize=20, rotation=270)
 
+fig.tight_layout()
+plt.savefig(figdir + "MSE_T2E-02_varying_gamma.pdf")
 
 
 filename = datadir + "neural_network_benchmark_T3E-01_gamma1E-03.dat"
@@ -181,16 +185,18 @@ nn10 = pd.read_csv(filename,
 nn10.set_index("Iterations", inplace=True)
 
 
-figdir = "../figures/"
-
 fig, ax = plt.subplots(1, 1)
 
 learning_rates = [1e-3, 2e-3, 3e-3, 4e-4, 5e-3, 6e-3, 7e-3, 8e-3, 9e-3, 1e-2]
 print(learning_rates)
 
 MSEs = [nn1.MSE, nn2.MSE, nn3.MSE, nn4.MSE, nn5.MSE, nn6.MSE, nn7.MSE, nn8.MSE, nn9.MSE, nn10.MSE]
+print(len(nn1.MSE))
 v = np.logspace(-11, -2, 10)
 
+
+ax.set_xscale("log")
+ax.set_yscale("log")
 c = ax.contourf(nn1.index, learning_rates, MSEs, v,
                 locator=ticker.LogLocator(),
                 cmap=cm.Greys_r
@@ -202,5 +208,8 @@ cbar = fig.colorbar(c)
 
 cbar.ax.get_yaxis().labelpad = 15
 cbar.ax.set_ylabel("MSE", fontsize=20, rotation=270)
+
+fig.tight_layout()
+plt.savefig(figdir + "MSE_T3E-01_varying_gamma.pdf")
 
 plt.show()

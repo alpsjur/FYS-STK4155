@@ -66,6 +66,7 @@ bigax.tick_params(labelcolor="none",
                 grid_color="none"
                 )
 bigax.set_ylabel("MSE", fontsize=20)
+bigax.get_yaxis().labelpad = 10
 
 ax[0, 0].loglog(fd1.MSEmean, color="k")
 ax[0, 0].text(0.8, 0.97, "a.",
@@ -117,6 +118,7 @@ bigax.tick_params(labelcolor="none",
                 grid_color="none"
                 )
 bigax.set_ylabel("CPU time", fontsize=20)
+bigax.get_yaxis().labelpad = 10
 
 ax[0, 0].loglog(fd1["CPU time"], color="k")
 ax[0, 0].text(0.8, 0.04, "a.",
