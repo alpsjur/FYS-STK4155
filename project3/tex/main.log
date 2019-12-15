@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.10.28)  14 DEC 2019 23:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.10.28)  15 DEC 2019 16:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -587,25 +587,25 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 44.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (./abstract.tex) (./introduction.tex
-Underfull \vbox (badness 4792) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-) (./theory.tex
+)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-]
+] (./theory.tex
 Underfull \hbox (badness 1117) in paragraph at lines 68--68
 []\OT1/cmr/bx/n/12 Discretization of the dif-fu-sion
  []
 
-
+[2]
 Overfull \hbox (18.80278pt too wide) detected at line 79
 [][] \OT1/cmr/m/n/10.95 = []
  []
 
-[2] [3]
+[3]
 Underfull \hbox (badness 1264) in paragraph at lines 140--141
 []\OT1/cmr/m/n/10.95 To com-pute the eigen-vec-tor $\OML/cmm/m/it/10.95 v[]$ \OT1/cmr/m/n/10.95 cor-re-
  []
@@ -621,7 +621,7 @@ Underfull \hbox (badness 1596) in paragraph at lines 142--143
  []
 
 ) (./results.tex
-<../figures/FD_solved_new.pdf, id=127, 462.52798pt x 346.89601pt>
+<../figures/FD_solved_new.pdf, id=126, 462.52798pt x 346.89601pt>
 File: ../figures/FD_solved_new.pdf Graphic file (type pdf)
 <use ../figures/FD_solved_new.pdf>
 Package pdftex.def Info: ../figures/FD_solved_new.pdf  used on input line 9.
@@ -631,7 +631,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 9--10
  [][] 
  []
 
-<../figures/NN_solved.pdf, id=132, 462.52798pt x 346.89601pt>
+<../figures/NN_solved.pdf, id=131, 462.52798pt x 346.89601pt>
 File: ../figures/NN_solved.pdf Graphic file (type pdf)
 <use ../figures/NN_solved.pdf>
 Package pdftex.def Info: ../figures/NN_solved.pdf  used on input line 17.
@@ -642,13 +642,23 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 17--18
  []
 
 [4 <../figures/FD_solved_new.pdf>]
-<../figures/MSEbench.pdf, id=170, 462.52798pt x 346.89601pt>
+<../figures/MSEbench.pdf, id=169, 462.52798pt x 346.89601pt>
 File: ../figures/MSEbench.pdf Graphic file (type pdf)
 <use ../figures/MSEbench.pdf>
-Package pdftex.def Info: ../figures/MSEbench.pdf  used on input line 29.
+Package pdftex.def Info: ../figures/MSEbench.pdf  used on input line 27.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 29--30
+Overfull \hbox (5.0pt too wide) in paragraph at lines 27--28
+ [][] 
+ []
+
+<../figures/CPUbench.pdf, id=172, 462.52798pt x 346.89601pt>
+File: ../figures/CPUbench.pdf Graphic file (type pdf)
+<use ../figures/CPUbench.pdf>
+Package pdftex.def Info: ../figures/CPUbench.pdf  used on input line 35.
+(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 35--36
  [][] 
  []
 
@@ -656,53 +666,43 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 29--30
 
 pdfTeX warning: pdflatex (file ../figures/MSEbench.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >]
-<../figures/CPUbench.pdf, id=211, 462.52798pt x 346.89601pt>
-File: ../figures/CPUbench.pdf Graphic file (type pdf)
-<use ../figures/CPUbench.pdf>
-Package pdftex.def Info: ../figures/CPUbench.pdf  used on input line 39.
-(pdftex.def)             Requested size: 226.0pt x 169.49884pt.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 39--40
- [][] 
- []
-
-<../figures/MSE_T2E-02_varying_gamma.pdf, id=216, 462.52798pt x 346.89601pt>
+<../figures/MSE_T2E-02_varying_gamma.pdf, id=217, 462.52798pt x 346.89601pt>
 File: ../figures/MSE_T2E-02_varying_gamma.pdf Graphic file (type pdf)
 <use ../figures/MSE_T2E-02_varying_gamma.pdf>
-Package pdftex.def Info: ../figures/MSE_T2E-02_varying_gamma.pdf  used on input line 47.
+Package pdftex.def Info: ../figures/MSE_T2E-02_varying_gamma.pdf  used on input line 43.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 47--48
+Overfull \hbox (5.0pt too wide) in paragraph at lines 43--44
  [][] 
  []
 
 
-Underfull \hbox (badness 7759) in paragraph at lines 48--48
+Underfull \hbox (badness 7759) in paragraph at lines 44--44
 []\OT1/cmr/m/it/10.95 Figure 5: |Con-tour plot show-ing MSE
  []
 
-<../figures/MSE_T3E-01_varying_gamma.pdf, id=217, 462.52798pt x 346.89601pt>
+<../figures/MSE_T3E-01_varying_gamma.pdf, id=218, 462.52798pt x 346.89601pt>
 File: ../figures/MSE_T3E-01_varying_gamma.pdf Graphic file (type pdf)
 <use ../figures/MSE_T3E-01_varying_gamma.pdf>
-Package pdftex.def Info: ../figures/MSE_T3E-01_varying_gamma.pdf  used on input line 54.
+Package pdftex.def Info: ../figures/MSE_T3E-01_varying_gamma.pdf  used on input line 50.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 54--55
+Overfull \hbox (5.0pt too wide) in paragraph at lines 50--51
  [][] 
  []
 
 
-Underfull \hbox (badness 7759) in paragraph at lines 55--55
+Underfull \hbox (badness 7759) in paragraph at lines 51--51
 []\OT1/cmr/m/it/10.95 Figure 6: |Con-tour plot show-ing MSE
  []
 
-<../figures/MSE_varying_dt.pdf, id=219, 462.52798pt x 346.89601pt>
+<../figures/MSE_varying_dt.pdf, id=220, 462.52798pt x 346.89601pt>
 File: ../figures/MSE_varying_dt.pdf Graphic file (type pdf)
 <use ../figures/MSE_varying_dt.pdf>
-Package pdftex.def Info: ../figures/MSE_varying_dt.pdf  used on input line 62.
+Package pdftex.def Info: ../figures/MSE_varying_dt.pdf  used on input line 58.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 62--63
+Overfull \hbox (5.0pt too wide) in paragraph at lines 58--59
  [][] 
  []
 
@@ -713,20 +713,20 @@ pdfTeX warning: pdflatex (file ../figures/MSE_T2E-02_varying_gamma.pdf): PDF inc
 
 pdfTeX warning: pdflatex (file ../figures/MSE_T3E-01_varying_gamma.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >]
-Underfull \hbox (badness 4556) in paragraph at lines 69--70
+Underfull \hbox (badness 4556) in paragraph at lines 65--66
 \OT1/cmr/m/n/10.95 Looking at the eigen-pairs of ma-trix A
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-<../figures/eigenvector_max.pdf, id=282, 462.52798pt x 346.89601pt>
+<../figures/eigenvector_max.pdf, id=286, 462.52798pt x 346.89601pt>
 File: ../figures/eigenvector_max.pdf Graphic file (type pdf)
 <use ../figures/eigenvector_max.pdf>
-Package pdftex.def Info: ../figures/eigenvector_max.pdf  used on input line 97.
+Package pdftex.def Info: ../figures/eigenvector_max.pdf  used on input line 93.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 97--98
+Overfull \hbox (5.0pt too wide) in paragraph at lines 93--94
  [][] 
  []
 
@@ -734,25 +734,25 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 97--98
 Underfull \vbox (badness 1478) has occurred while \output is active []
 
  [7 <../figures/MSE_varying_dt.pdf>]
-<../figures/eigenvector_min.pdf, id=313, 462.52798pt x 346.89601pt>
+<../figures/eigenvector_min.pdf, id=317, 462.52798pt x 346.89601pt>
 File: ../figures/eigenvector_min.pdf Graphic file (type pdf)
 <use ../figures/eigenvector_min.pdf>
-Package pdftex.def Info: ../figures/eigenvector_min.pdf  used on input line 130.
+Package pdftex.def Info: ../figures/eigenvector_min.pdf  used on input line 126.
 (pdftex.def)             Requested size: 226.0pt x 169.49884pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 130--131
+Overfull \hbox (5.0pt too wide) in paragraph at lines 126--127
  [][] 
  []
 
 ) (./discussion.tex [8 <../figures/eigenvector_max.pdf> <../figures/eigenvector_min.pdf
 
 pdfTeX warning: pdflatex (file ../figures/eigenvector_min.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]) (./conclusion.tex) (./main.bbl) [9
+>]) (./conclusion.tex) (./main.bbl [9]) [10
 
 ]
 \openout2 = `appendix.aux'.
 
- (./appendix.tex) [10
+ (./appendix.tex) [11
 
 
 ]
@@ -766,19 +766,19 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 63.
  ) 
 Here is how much of TeX's memory you used:
- 19811 strings out of 492609
- 342439 string characters out of 6131461
+ 19822 strings out of 492609
+ 342552 string characters out of 6131461
  437267 words of memory out of 5000000
- 23507 multiletter control sequences out of 15000+600000
- 540564 words of font info for 55 fonts, out of 8000000 for 9000
+ 23515 multiletter control sequences out of 15000+600000
+ 542263 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,16n,65p,1778b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 47i,16n,65p,1778b,448s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (10 pages, 428999 bytes).
+Output written on main.pdf (11 pages, 420869 bytes).
 PDF statistics:
- 419 PDF objects out of 1000 (max. 8388607)
- 370 compressed objects within 4 object streams
- 53 named destinations out of 1000 (max. 500000)
+ 438 PDF objects out of 1000 (max. 8388607)
+ 384 compressed objects within 4 object streams
+ 54 named destinations out of 1000 (max. 500000)
  150 words of extra memory for PDF output out of 10000 (max. 10000000)
 

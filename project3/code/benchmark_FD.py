@@ -20,13 +20,13 @@ n = int(sys.argv[1])
 T = float(sys.argv[2])
 N_max = int(sys.argv[3])
 #making a list of n power values
-N = np.linspace(1, N_max, N_max, dtype=int)
+N = np.logspace(1, N_max, 4*N_max, dtype=int)
 
 #removing old data-files
 #pf.remove_file("../data/finite_difference_timelog.dat")
 
 
-filename = f"finite_difference_benchmark_T{T:.0E}.dat"
+filename = f"finite_difference_benchmark_T{T:.0E}_Nt1E05.dat"
 outfile = open(datadir + filename, "w")
 counter = 1
 for i in N:

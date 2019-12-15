@@ -19,25 +19,21 @@ Likewise, in Figure \ref{fig:NNcompare} we show a parallell to Figure \ref{fig:F
    \label{fig:NNcompare}
  \end{figure}
 
-Shown in Figure \ref{fig:MSEbench} are the MSE's for two instants in time for both finite difference methods and a neural network. For the finite difference methods we observe a decrease in MSE for increasing temporal solution, slowing down after around 500 time points for both cases. For $t=0.02$ s (a.), the MSE is minimal at around $10^{-6}$ for 1000 time points, while for $t=0.3$ s (c.) it only becomes around $10^{-5}$ for 1000 time points.
+Shown in Figure \ref{fig:MSEbench} are the MSE's for two instants in time for both finite difference methods and a neural network. For the finite difference methods we observe a decrease in MSE for increasing temporal solution. For $t=0.02$ s (a.), the MSE is minimal at around $10^{-8.5}$ for a little under 100000 time points, while for $t=0.3$ s (c.) it only becomes around $10^{-8}$ for 100000 time points.
 
-For the neural network, we observe a decrease in MSE for an increasing number of iterations. In the case of $t=0.02$ s (b.), we see that the MSE decreases below $10^{-8}$ after around 6000 iterations, with a further, but slight, decrease at 10000 iterations. As for $t=0.3$ s (d.), the MSE is below $10^{-8}$ after around 4000 iterations and is mostly unchanged afterwards.
-
-Comparison between the finite difference methods and the neural network, we see that the neural network can obtain an MSE 2-3 orders of magnitude lower than the finite difference methods.
+For the neural network, we observe a decrease in MSE for an increasing number of iterations. In the case of $t=0.02$ s (b.), we see that the MSE decreases to almost $10^{-9}$ after less than 10000 iterations. As for $t=0.3$ s (d.), the MSE is stays at $10^{-8}$ after around 4000 iterations and is mostly unchanged afterwards.
 \begin{figure}[htbp]
  	\centering
  	\includegraphics[width=0.5\textwidth]{MSEbench}
-  \caption{Shown on the left-hand side, top-to-bottom (a., c.), are the MSE's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the MSE's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.004$.}
+  \caption{Shown on the left-hand side, top-to-bottom (a., c.), are the MSE's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the MSE's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.006$.}
   \label{fig:MSEbench}
 \end{figure}
 
-Accompanying Figure \ref{fig:MSEbench}, we show the CPU times as a function of temporal resolution and number of iterations, respectively, for the different scenarios in Figure \ref{fig:CPUbench}. We see that the general curve is very similar for all scenarios. For the CD/FE method, we see that the CPU time becomes slightly longer for shorter t at 1000 time points. The neural network looks to have the same curve in both b. and d.
-
-Comparing the two methods, we see that the neural network is around 3 orders of magnitude, if not more, slower than the finite difference methods.
+Accompanying Figure \ref{fig:MSEbench}, we show the CPU times as a function of temporal resolution and number of iterations, respectively, for the different scenarios in Figure \ref{fig:CPUbench}. We see that the general curve is very similar for all scenarios. For the CD/FE method, we see that the CPU time becomes slightly longer for shorter t at 100000 time points. The neural network looks to have the same curve in both b. and d. All four graphs peaks at around 100 seconds.
 \begin{figure}[htbp]
  	\centering
  	\includegraphics[width=0.5\textwidth]{CPUbench}
- 	\caption{Shown on the left-hand side, top-to-bottom (a., c.), are the CPU time's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the CPU time's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.004$.}
+ 	\caption{Shown on the left-hand side, top-to-bottom (a., c.), are the CPU time's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the CPU time's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.006$.}
   \label{fig:CPUbench}
 \end{figure}
 

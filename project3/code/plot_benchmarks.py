@@ -14,36 +14,40 @@ plt.rc("font", family="serif")
 datadir = "../data/pde/"
 
 
-filename = datadir + "finite_difference_benchmark_T2E-02.dat"
+filename = datadir + "finite_difference_benchmark_T2E-02_Nt1E05.dat"
 fd1 = pd.read_csv(filename,
                 delim_whitespace=True,
                 names=["Time points", "CPU time", "MSE"]
                 )
 #fd_benchmark.drop(0, inplace=True)
 fd1.set_index("Time points", inplace=True)
+"""
 fd1["MSEmean"] = fd1.MSE.rolling(window=50,
                                 center=True
                                 ).mean()
+"""
 
-filename = datadir + "finite_difference_benchmark_T3E-01.dat"
+filename = datadir + "finite_difference_benchmark_T3E-01_Nt1E05.dat"
 fd2 = pd.read_csv(filename,
                 delim_whitespace=True,
                 names=["Time points", "CPU time", "MSE"]
                 )
 #fd_benchmark.drop(0, inplace=True)
 fd2.set_index("Time points", inplace=True)
+"""
 fd2["MSEmean"] = fd2.MSE.rolling(window=50,
                                 center=True
                                 ).mean()
+"""
 
-filename = datadir + "neural_network_benchmark_T2E-02_gamma4E-03.dat"
+filename = datadir + "neural_network_benchmark_T2E-02_gamma6E-03.dat"
 nn1 = pd.read_csv(filename,
                 delim_whitespace=True,
                 names=["Iterations", "CPU time", "MSE"]
                 )
 nn1.set_index("Iterations", inplace=True)
 
-filename = datadir + "neural_network_benchmark_T3E-01_gamma4E-03.dat"
+filename = datadir + "neural_network_benchmark_T3E-01_gamma6E-03.dat"
 nn2 = pd.read_csv(filename,
                 delim_whitespace=True,
                 names=["Iterations", "CPU time", "MSE"]
@@ -68,7 +72,7 @@ bigax.tick_params(labelcolor="none",
 bigax.set_ylabel("MSE", fontsize=20)
 bigax.get_yaxis().labelpad = 10
 
-ax[0, 0].loglog(fd1.MSEmean, color="k")
+ax[0, 0].loglog(fd1.MSE, color="k", marker="o", markersize=2, linestyle="none")
 ax[0, 0].text(0.8, 0.97, "a.",
                 horizontalalignment="left",
                 verticalalignment="top",
@@ -85,7 +89,7 @@ ax[0, 1].text(0.8, 0.97, "b.",
                 fontsize=20
                 )
 
-ax[1, 0].loglog(fd2.MSEmean, color="k")
+ax[1, 0].loglog(fd2.MSE, color="k", marker="o", markersize=2, linestyle="none")
 ax[1, 0].set_xlabel("Time points", fontsize=20)
 ax[1, 0].text(0.8, 0.97, "c.",
                 horizontalalignment="left",
@@ -120,7 +124,7 @@ bigax.tick_params(labelcolor="none",
 bigax.set_ylabel("CPU time", fontsize=20)
 bigax.get_yaxis().labelpad = 10
 
-ax[0, 0].loglog(fd1["CPU time"], color="k")
+ax[0, 0].loglog(fd1["CPU time"], color="k", marker="o", markersize=2, linestyle="none")
 ax[0, 0].text(0.8, 0.04, "a.",
                 horizontalalignment="left",
                 verticalalignment="bottom",
@@ -137,7 +141,7 @@ ax[0, 1].text(0.8, 0.04, "b.",
                 fontsize=20
                 )
 
-ax[1, 0].loglog(fd2["CPU time"], color="k")
+ax[1, 0].loglog(fd2["CPU time"], color="k", marker="o", markersize=2, linestyle="none")
 ax[1, 0].set_xlabel("Time points", fontsize=20)
 ax[1, 0].text(0.8, 0.04, "c.",
                 horizontalalignment="left",
@@ -188,5 +192,5 @@ ax.set_xlabel("Iterations", fontsize=20)
 ax.set_ylabel("MSE", fontsize=20)
 ax.legend(frameon=False, loc="lower left", fontsize=20)
 
-plt.savefig(figdir + "MSE_varying_dt.pdf")
+#plt.savefig(figdir + "MSE_varying_dt.pdf")
 plt.show()

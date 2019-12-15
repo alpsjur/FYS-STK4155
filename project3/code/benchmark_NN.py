@@ -26,7 +26,7 @@ N = np.logspace(1, N_max, N_max*4, dtype=int)
 #removing old data-files
 #pf.remove_file("../data/finite_difference_timelog.dat")
 
-learning_rate = 4E-3
+learning_rate = 8E-3
 
 filename = f"neural_network_benchmark_T{T:.0E}_gamma{learning_rate:.0E}_Nt50.dat"
 outfile = open(datadir + filename, "w")
