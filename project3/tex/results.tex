@@ -41,24 +41,26 @@ Comparing the two methods, we see that the neural network is around 3 orders of 
   \label{fig:CPUbench}
 \end{figure}
 
+Looking at Figures \ref{fig:MSE_T2E-02_varying_gamma} and \ref{fig:MSE_T3E-01_varying_gamma} we again observe that the MSE decreases for an increasing number of iterations of the neural network. We also see that, in general, this MSE decrease happens after fewer iterations for higher learning rates. The minima in both figures can be found in the upper right corner, i.e. the area of high learning rate and many iterations. In Figure \ref{fig:MSE_T2E-02_varying_gamma} the minimum MSE is on the order of $10^{-10} - 10^{-11}$, while for Figure \ref{fig:MSE_T3E-01_varying_gamma} it is on the order of $10^{-8} - 10^{-9}$.
 \begin{figure}[htbp]
  	\centering
- 	\includegraphics[width=0.5\textwidth]{}
- 	\caption{}
-  \label{fig:}
+ 	\includegraphics[width=0.5\textwidth]{MSE_T2E-02_varying_gamma}
+ 	\caption{Contour plot showing MSE (grayscale) as a function of number of iterations and learning rate for $t=0.02$ s, $N_t = 10$, and $N_x = 100$.}
+  \label{fig:MSE_T2E-02_varying_gamma}
 \end{figure}
 
 \begin{figure}[htbp]
  	\centering
- 	\includegraphics[width=0.5\textwidth]{}
- 	\caption{}
-  \label{fig:}
+ 	\includegraphics[width=0.5\textwidth]{MSE_T3E-01_varying_gamma}
+ 	\caption{Contour plot showing MSE (grayscale) as a function of number of iterations and learning rate for $t=0.3$ s, $N_t = 10$, and $N_x = 100$.}
+  \label{fig:MSE_T3E-01_varying_gamma}
 \end{figure}
 
+We also tested the temporal resolution dependency of the neural network. Our findings are shown in Figure \ref{fig:MSE_varying_dt}, where we see that the maximum MSE is found for $N_t = 10$, while the minimum MSE is found for $N_t = 50$. It is also noteworthy that the the three graphs do not diverge before approaching $10^4$ iterations.
 \begin{figure}[htbp]
  	\centering
  	\includegraphics[width=0.5\textwidth]{MSE_varying_dt}
- 	\caption{}
+ 	\caption{Comparison of the MSE for $N_t = 10$, $N_t = 50$, and $N_t = 100$ respectively. Here the learning rate is $0.004$ at $t=0.02$ s.}
   \label{fig:MSE_varying_dt}
 \end{figure}
 
