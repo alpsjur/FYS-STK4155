@@ -1,2 +1,4 @@
 \section{Conclusion}
 \label{sec:conclusion}
+
+We used a neural network to solve the diffusion equation, and compared this with a finite difference solution. Our findings show that a neural network can be used to solve a partial differential equation. The neural network is for the most part slower than the forward euler and centered difference schemes for a given MSE. However, for an MSE of around $10^{-8}$ they are around even. The neural network might be faster for higher precision, but this would require more computing power to confirm. Further tuning of the neural network could also be done to decrease the MSE further.
