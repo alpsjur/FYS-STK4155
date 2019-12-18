@@ -3,7 +3,7 @@
 
 \subsection{Diffusion equation}
 
-In Figure \ref{fig:FDcompare} two different instants in the time evolution of the diffusion equation (eq. \ref{eq:diffusionEQ}), as obtained from finite difference methods, are shown. For both, a comparison is made with the exact solution and a run with higher spatial resolution ($\Delta x = 1/100$) and lower spatial resolution ($\Delta x = 1/10$). In both cases, the graphs of the exact solution and the one with higher spatial resolution are difficult to distinguish.
+In Figure \ref{fig:FDcompare} two different instants in the time evolution of the diffusion equation (eq. \ref{eq:diffusionEQ}), as obtained from finite difference methods, are shown. For both time stamps, a comparison is made with the exact solution and a run with higher spatial resolution ($\Delta x = 1/100$) and lower spatial resolution ($\Delta x = 1/10$). In both cases, the graphs of the exact solution and the one with higher spatial resolution are difficult to distinguish.
  \begin{figure}[htbp]
   	\centering
   	\includegraphics[width=0.5\textwidth]{FD_solved_new}
@@ -19,9 +19,9 @@ Likewise, in Figure \ref{fig:NNcompare} we show a parallell to Figure \ref{fig:F
    \label{fig:NNcompare}
  \end{figure}
 
-Shown in Figure \ref{fig:MSEbench} are the MSE's for two instants in time for both finite difference methods and a neural network. For the finite difference methods we observe a decrease in MSE for increasing temporal solution. For $t=0.02$ s (a.), the MSE is minimal at around $10^{-8.5}$ for a little under 100000 time points, while for $t=0.3$ s (c.) it only becomes around $10^{-8}$ for 100000 time points.
+Shown in Figure \ref{fig:MSEbench} are the MSE's for two instants in time for both finite difference methods and a neural network. For the finite difference methods we observe a decrease in MSE for increasing temporal solution. For $t=0.02$ (a.), the MSE is minimal at around $10^{-8.5}$ for a little under $10^5$ time points, while for $t=0.3$ (c.) it only becomes around $10^{-8}$ for $10^5$ time points.
 
-For the neural network, we observe a decrease in MSE for an increasing number of iterations. In the case of $t=0.02$ s (b.), we see that the MSE decreases to almost $10^{-9}$ after less than 10000 iterations. As for $t=0.3$ s (d.), the MSE is stays at $10^{-8}$ after around 4000 iterations and is mostly unchanged afterwards.
+For the neural network, we observe a decrease in MSE for an increasing number of iterations. In the case of $t=0.02$ s (b.), we see that the MSE decreases to almost $10^{-9}$ after less than $10^4$ iterations. As for $t=0.3$ s (d.), the MSE is stays at $10^{-8}$ after around 4000 iterations and is mostly unchanged afterwards.
 \begin{figure}[htbp]
  	\centering
  	\includegraphics[width=0.5\textwidth]{MSEbench}
@@ -29,7 +29,7 @@ For the neural network, we observe a decrease in MSE for an increasing number of
   \label{fig:MSEbench}
 \end{figure}
 
-Accompanying Figure \ref{fig:MSEbench}, we show the CPU times as a function of temporal resolution and number of iterations, respectively, for the different scenarios in Figure \ref{fig:CPUbench}. We see that the general curve is very similar for all scenarios. For the CD/FE method, we see that the CPU time becomes slightly longer for shorter t at 100000 time points. The neural network looks to have the same curve in both b. and d. All four graphs peaks at around 100 seconds.
+Accompanying Figure \ref{fig:MSEbench}, we show the CPU times as a function of temporal resolution and number of iterations, respectively, for the different scenarios in Figure \ref{fig:CPUbench}. We see that the general curve is very similar for all scenarios. For the CD/FE method, we see that the CPU time becomes slightly longer for shorter t at $10^5$ time points. The neural network looks to have the same curve in both b. and d. All four graphs peaks at around 100 seconds.
 \begin{figure}[htbp]
  	\centering
  	\includegraphics[width=0.5\textwidth]{CPUbench}
@@ -62,7 +62,7 @@ We also tested the temporal resolution dependency of the neural network. Our fin
 
 
 \subsection{Eigenpairs}
-Looking at the eigenpairs of matrix A (\ref{matrix:A}), the maximum eigenvalue computed with  \texttt{numpy.linalg} is given under as $w_{max}^{np}$, with corresponding eigenvector $v_{max}^{np}$. The same eigenpair, computed with a neural network, is given as $w_{max}^{nn}$ and $v_{max}^{nn}$. Note that the eigenvectors have been normalized, to allow for comparison. We see that the two eigenvalues only differ at the 5th decimal place, while the eigenvector elements first differ at the 3th decimal place. Comparing the CPU times of the two methods for one run, the neural network is slower by a factor of about 1000.
+Looking at the eigenpairs of matrix A (\ref{matrix:A}), the maximum eigenvalue computed with  \texttt{numpy.linalg} is given under as $w_{max}^{np}$, with corresponding eigenvector $v_{max}^{np}$. The same eigenpair, computed with a neural network, is given as $w_{max}^{nn}$ and $v_{max}^{nn}$. Note that the eigenvectors have been normalized, to allow for comparison. We see that the two eigenvalues only differ at the 5th decimal place, while the eigenvector elements first differ at the 3th decimal place. Comparing the CPU times of the two methods for one run, the neural network is slower by a factor of about $10^3$.
 
 \begin{equation*}
 v_{max}^{np} = \begin{bmatrix}
