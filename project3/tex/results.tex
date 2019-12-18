@@ -3,11 +3,11 @@
 
 \subsection{Diffusion equation}
 
-In Figure \ref{fig:FDcompare} two different instants in the time evolution of the diffusion equation (eq. \ref{eq:diffusionEQ}), as obtained from finite difference methods, are shown. For both time stamps, a comparison is made with the exact solution and a run with higher spatial resolution ($\Delta x = 1/100$) and lower spatial resolution ($\Delta x = 1/10$). In both cases, the graphs of the exact solution and the one with higher spatial resolution are difficult to distinguish.
+In Figure \ref{fig:FDcompare} two different instants in the time evolution of the diffusion equation \eqref{eq:diffusionEQ}, as obtained from finite difference methods, are shown. For both time stamps, a comparison is made with the exact solution and a run with higher spatial resolution ($\Delta x = 1/100$) and lower spatial resolution ($\Delta x = 1/10$). In both cases, the graphs of the exact solution and the one with higher spatial resolution are difficult to distinguish.
  \begin{figure}[htbp]
   	\centering
   	\includegraphics[width=0.5\textwidth]{FD_solved_new}
-  	\caption{Time evolution of eq. \ref{eq:diffusionEQ} solved using finite difference methods: CD and FE for time's $t=0.02$ s and $t=0.3$ s. For each point in time a visual comparison is made with the exact solution.}
+  	\caption{Time evolution of \eqref{eq:diffusionEQ} solved using finite difference methods: CD and FE for time's $t=0.02$ s and $t=0.3$ s. For each point in time a visual comparison is made with the exact solution.}
    \label{fig:FDcompare}
  \end{figure}
 
@@ -15,7 +15,7 @@ Likewise, in Figure \ref{fig:NNcompare} we show a parallell to Figure \ref{fig:F
  \begin{figure}[htbp]
   	\centering
   	\includegraphics[width=0.5\textwidth]{NN_solved}
-  	\caption{Time evolution of eq. \ref{eq:diffusionEQ} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines. The computations are done with $N_t = 30$ and $N_x = 100$.}
+  	\caption{Time evolution of \eqref{eq:diffusionEQ} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines. The computations are done with $N_t = 30$ and $N_x = 100$.}
    \label{fig:NNcompare}
  \end{figure}
 

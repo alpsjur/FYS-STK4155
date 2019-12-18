@@ -19,63 +19,61 @@
 \citation{lagaris1998artificial}
 \citation{chiaramonte2013solving}
 \citation{yi2004neural}
-\select@language{english}
-\@writefile{toc}{\select@language{english}}
-\@writefile{lof}{\select@language{english}}
-\@writefile{lot}{\select@language{english}}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
+\providecommand \oddpage@label [2]{}
+\babel@aux{english}{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Theory and implementation}{2}{section.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Theory and implementation}{2}{section.2}\protected@file@percent }
 \newlabel{sec:theory}{{2}{2}{Theory and implementation}{section.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}The general problem}{2}{subsection.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}The general problem}{2}{subsection.2.1}\protected@file@percent }
 \newlabel{eq:diffusionEQ}{{1}{2}{The general problem}{equation.2.1}{}}
 \newlabel{eq:initialCondition}{{2}{2}{The general problem}{equation.2.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Exact solution of the diffusion equation}{2}{subsection.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Exact solution of the diffusion equation}{2}{subsection.2.2}\protected@file@percent }
 \newlabel{eq:separated}{{3}{2}{Exact solution of the diffusion equation}{equation.2.3}{}}
 \newlabel{eq:exact}{{4}{2}{Exact solution of the diffusion equation}{equation.2.4}{}}
 \citation{prosjekt2}
 \citation{lagaris1998artificial}
 \citation{yi2004neural}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Discretization of the diffusion equation}{3}{subsection.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Discretization of the diffusion equation}{3}{subsection.2.3}\protected@file@percent }
 \newlabel{eq:FE}{{5}{3}{Discretization of the diffusion equation}{equation.2.5}{}}
 \newlabel{eq:CD}{{6}{3}{Discretization of the diffusion equation}{equation.2.6}{}}
 \newlabel{eq:theAlgorithm}{{8}{3}{Discretization of the diffusion equation}{equation.2.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Solving PDEs with Neural Networks}{3}{subsection.2.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Solving PDEs with Neural Networks}{3}{subsection.2.4}\protected@file@percent }
 \newlabel{eq:errorFunc}{{9}{3}{Solving PDEs with Neural Networks}{equation.2.9}{}}
 \newlabel{eq:trialFunction}{{10}{3}{Solving PDEs with Neural Networks}{equation.2.10}{}}
 \citation{yi2004neural}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Computing eigenpairs with Neural Networks}{4}{subsection.2.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Computing eigenpairs with Neural Networks}{4}{subsection.2.5}\protected@file@percent }
 \newlabel{eq:eigenDE}{{11}{4}{Computing eigenpairs with Neural Networks}{equation.2.11}{}}
 \newlabel{eq:f}{{12}{4}{Computing eigenpairs with Neural Networks}{equation.2.12}{}}
 \newlabel{eq:find_w}{{2.5}{4}{Computing eigenpairs with Neural Networks}{equation.2.12}{}}
 \newlabel{eq:trial_eigen}{{13}{4}{Computing eigenpairs with Neural Networks}{equation.2.13}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Implementing the Neural Network}{4}{subsection.2.6}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{4}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Implementing the Neural Network}{4}{subsection.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{4}{section.3}\protected@file@percent }
 \newlabel{sec:results}{{3}{4}{Results}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Diffusion equation}{4}{subsection.3.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Time evolution of eq. \ref  {eq:diffusionEQ} solved using finite difference methods: CD and FE for time's $t=0.02$ s and $t=0.3$ s. For each point in time a visual comparison is made with the exact solution.\relax }}{4}{figure.caption.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Diffusion equation}{4}{subsection.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Time evolution of \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:diffusionEQ}\unskip \@@italiccorr )}} solved using finite difference methods: CD and FE for time's $t=0.02$ s and $t=0.3$ s. For each point in time a visual comparison is made with the exact solution.\relax }}{4}{figure.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:FDcompare}{{1}{4}{Time evolution of eq. \ref {eq:diffusionEQ} solved using finite difference methods: CD and FE for time's $t=0.02$ s and $t=0.3$ s. For each point in time a visual comparison is made with the exact solution.\relax }{figure.caption.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Time evolution of eq. \ref  {eq:diffusionEQ} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines. The computations are done with $N_t = 30$ and $N_x = 100$.\relax }}{5}{figure.caption.2}}
-\newlabel{fig:NNcompare}{{2}{5}{Time evolution of eq. \ref {eq:diffusionEQ} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines. The computations are done with $N_t = 30$ and $N_x = 100$.\relax }{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Shown on the left-hand side, top-to-bottom (a., c.), are the MSE's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the MSE's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.006$.\relax }}{5}{figure.caption.3}}
+\newlabel{fig:FDcompare}{{1}{4}{Time evolution of \eqref {eq:diffusionEQ} solved using finite difference methods: CD and FE for time's $t=0.02$ s and $t=0.3$ s. For each point in time a visual comparison is made with the exact solution.\relax }{figure.caption.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Time evolution of \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:diffusionEQ}\unskip \@@italiccorr )}} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines. The computations are done with $N_t = 30$ and $N_x = 100$.\relax }}{5}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:NNcompare}{{2}{5}{Time evolution of \eqref {eq:diffusionEQ} solved using a neural network. For both instants in time, $t=0.02$ s and $t=0.3$ s, a visual comparison is made with the exact solution, represented by dotted lines. The computations are done with $N_t = 30$ and $N_x = 100$.\relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Shown on the left-hand side, top-to-bottom (a., c.), are the MSE's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the MSE's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.006$.\relax }}{5}{figure.caption.3}\protected@file@percent }
 \newlabel{fig:MSEbench}{{3}{5}{Shown on the left-hand side, top-to-bottom (a., c.), are the MSE's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the MSE's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.006$.\relax }{figure.caption.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Shown on the left-hand side, top-to-bottom (a., c.), are the CPU time's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the CPU time's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.006$.\relax }}{6}{figure.caption.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Shown on the left-hand side, top-to-bottom (a., c.), are the CPU time's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the CPU time's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.006$.\relax }}{6}{figure.caption.4}\protected@file@percent }
 \newlabel{fig:CPUbench}{{4}{6}{Shown on the left-hand side, top-to-bottom (a., c.), are the CPU time's as a function of temporal resolution, obtained from using finite difference methods for $t=0.02$ and $t=0.3$, respectively. Likewise, on the right-hand side (b., d.) the CPU time's yielded from the neural network are shown as a function of iterations with network parameters $N_t = 10$, $N_x = 100$, and $\gamma = 0.006$.\relax }{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Contour plot showing MSE (grayscale) as a function of number of iterations and learning rate for $t=0.02$ s, $N_t = 10$, and $N_x = 100$.\relax }}{6}{figure.caption.5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Contour plot showing MSE (grayscale) as a function of number of iterations and learning rate for $t=0.02$ s, $N_t = 10$, and $N_x = 100$.\relax }}{6}{figure.caption.5}\protected@file@percent }
 \newlabel{fig:MSE_T2E-02_varying_gamma}{{5}{6}{Contour plot showing MSE (grayscale) as a function of number of iterations and learning rate for $t=0.02$ s, $N_t = 10$, and $N_x = 100$.\relax }{figure.caption.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Contour plot showing MSE (grayscale) as a function of number of iterations and learning rate for $t=0.3$ s, $N_t = 10$, and $N_x = 100$.\relax }}{6}{figure.caption.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Contour plot showing MSE (grayscale) as a function of number of iterations and learning rate for $t=0.3$ s, $N_t = 10$, and $N_x = 100$.\relax }}{6}{figure.caption.6}\protected@file@percent }
 \newlabel{fig:MSE_T3E-01_varying_gamma}{{6}{6}{Contour plot showing MSE (grayscale) as a function of number of iterations and learning rate for $t=0.3$ s, $N_t = 10$, and $N_x = 100$.\relax }{figure.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Comparison of the MSE for $N_t = 10$, $N_t = 50$, and $N_t = 100$ respectively. Here the learning rate is $0.004$ at $t=0.02$ s.\relax }}{7}{figure.caption.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Comparison of the MSE for $N_t = 10$, $N_t = 50$, and $N_t = 100$ respectively. Here the learning rate is $0.004$ at $t=0.02$ s.\relax }}{7}{figure.caption.7}\protected@file@percent }
 \newlabel{fig:MSE_varying_dt}{{7}{7}{Comparison of the MSE for $N_t = 10$, $N_t = 50$, and $N_t = 100$ respectively. Here the learning rate is $0.004$ at $t=0.02$ s.\relax }{figure.caption.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Eigenpairs}{7}{subsection.3.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Figure showing how the value of the elements of the estimated eigenvector $v_{max}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon $ and iterations $i$ needed to achieve said precision is also shown.\relax }}{8}{figure.caption.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Eigenpairs}{7}{subsection.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Figure showing how the value of the elements of the estimated eigenvector $v_{max}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon $ and iterations $i$ needed to achieve said precision is also shown.\relax }}{8}{figure.caption.8}\protected@file@percent }
 \newlabel{fig:eigenvector_max}{{8}{8}{Figure showing how the value of the elements of the estimated eigenvector $v_{max}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon $ and iterations $i$ needed to achieve said precision is also shown.\relax }{figure.caption.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{8}{section.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{8}{section.4}\protected@file@percent }
 \newlabel{sec:discussion}{{4}{8}{Discussion}{section.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Figure showing how the value of the elements of the estimated eigenvector $v_{min}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon $ and iterations $i$ needed to achieve said precision is also shown.\relax }}{8}{figure.caption.9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Figure showing how the value of the elements of the estimated eigenvector $v_{min}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon $ and iterations $i$ needed to achieve said precision is also shown.\relax }}{8}{figure.caption.9}\protected@file@percent }
 \newlabel{fig:eigenvector_min}{{9}{8}{Figure showing how the value of the elements of the estimated eigenvector $v_{min}$ evolves over time, when computed by a neural network. Each line represents one of the elements of the vector. Time step $dt$, precision $\epsilon $ and iterations $i$ needed to achieve said precision is also shown.\relax }{figure.caption.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{9}{section.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{9}{section.5}\protected@file@percent }
 \newlabel{sec:conclusion}{{5}{9}{Conclusion}{section.5}{}}
 \bibstyle{plainnat}
 \bibdata{ourbib}
