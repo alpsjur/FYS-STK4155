@@ -9,17 +9,17 @@
 ## Contents
 This repository contains the following:
 
-* **code**
- *  class - contains the classes for Neural Network and Regression, and the file *projectfunctions* that constains various functions used throughout the project.
- * various scripts that tunes the classifiers' parameters, plots results and run examples.
+**code**
+ - **class** - contains the classes for Neural Network and Regression, and the file *projectfunctions* that constains various functions used throughout the project.
+ - various scripts that tunes the classifiers' parameters, plots results and run examples.
 
-* **data**
- * input - the credit card data in various prepared forms.
- * output - the output produced by the tuning scripts.
+**data**
+ - input - the credit card data in various prepared forms.
+ - output - the output produced by the tuning scripts.
 
-* **figures**
+**figures**
 
- * figures produced by the plotting script
+ - figures produced by the plotting script
 
-* **tex**
- * all the latex files making up the report. For the report itself, please see: *tex/main.pdf*.
+**tex**
+ - all the latex files making up the report. For the report itself, please see: *tex/main.pdf*.
